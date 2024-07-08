@@ -2,7 +2,16 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ["poppins"],
+    },
+
+    extend: {
+      colors: {
+        glass: "#ffffff1a",
+      },
+    },
   },
   plugins: [],
+  darkMode: "selector",
 };

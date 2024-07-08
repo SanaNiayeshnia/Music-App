@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  transition: all 0.3s;
+}
+
+svg {
+  transition: color 0.1s !important;
+}

@@ -12,7 +12,7 @@ function PlayerTrack() {
           Dua lipa
         </p>
       </div>
-      <RiAddCircleLine className="min-h-5 min-w-5 cursor-pointer text-gray-900 hover:text-blue-600 dark:text-white" />
+      <RiAddCircleLine className="min-h-5 min-w-5 cursor-pointer text-gray-900 duration-100 hover:text-blue-600 dark:text-white" />
     </div>
   );
 }

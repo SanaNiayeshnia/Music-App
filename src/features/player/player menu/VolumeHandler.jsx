@@ -4,7 +4,7 @@ import SliderBar from "../../../ui/SliderBar";
 function VolumeHandler() {
   return (
     <div className="flex w-28 items-center gap-2">
-      <RiVolumeUpLine className="min-h-5 min-w-5" />
+      <RiVolumeUpLine className="min-h-5 min-w-5 duration-100" />
       <SliderBar valueLabelDisplay="off" />
     </div>
   );

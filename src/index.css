@@ -4,7 +4,46 @@
 * {
   transition: all 0.3s;
 }
+*::selection {
+  background-color: #2563eb;
+  color: white;
+}
+@keyframes open-searchbox {
+  from {
+    width: 0;
+  }
+  to {
+    width: 9rem;
+  }
+}
+@keyframes close-searchbox {
+  from {
+    width: 9rem;
+  }
+  to {
+    width: 0rem;
+  }
+}
+.animation-open-searchbox {
+  animation: open-searchbox 0.3s alternate;
+}
+.animation-close-searchbox {
+  animation: close-searchbox 0.3s alternate;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 0.5rem;
+}
+:root.dark .scrollbar::-webkit-scrollbar-thumb {
+  background-color: #ffffff30;
+}
 
-svg {
-  transition: color 0.1s !important;
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  transition: all 0.3s;
+  border-radius: 0.5rem;
+}
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #2563eb !important;
 }

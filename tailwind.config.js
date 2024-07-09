@@ -8,7 +8,7 @@ export default {
 
     extend: {
       colors: {
-        glass: "#ffffff1a",
+        glass: { 100: "#ffffff1a", 200: "#ffffff30", 300: "#ffffff50" },
       },
     },
   },

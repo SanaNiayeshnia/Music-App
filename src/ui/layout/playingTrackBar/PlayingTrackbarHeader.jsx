@@ -5,13 +5,15 @@ import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
 function PlayingTrackbarHeader() {
   const dispatch = useDispatch();
   return (
-    <div className="flex items-center justify-between text-gray-900 dark:text-white">
-      <p className="text-sm font-semibold">Houdini</p>
+    <div className="flex items-center justify-between">
+      <p className="text-sm font-semibold text-gray-900 dark:text-white">
+        Houdini
+      </p>
       <div className="flex items-center gap-2">
-        <RiMoreFill className="min-h-8 min-w-8 cursor-pointer rounded-full p-1 hover:bg-blue-50 dark:hover:bg-glass-100" />
+        <RiMoreFill className="min-h-8 min-w-8 cursor-pointer rounded-full p-1 text-gray-900 duration-100 hover:bg-blue-50 dark:text-white dark:hover:bg-glass-100" />
         <RiCloseFill
           onClick={() => dispatch(togglePlayingTrackBar())}
-          className="min-h-8 min-w-8 cursor-pointer rounded-full p-1 hover:bg-blue-50 dark:hover:bg-glass-100"
+          className="min-h-8 min-w-8 cursor-pointer rounded-full p-1 text-gray-900 duration-100 hover:bg-blue-50 dark:text-white dark:hover:bg-glass-100"
         />
       </div>
     </div>

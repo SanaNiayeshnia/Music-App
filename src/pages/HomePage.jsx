@@ -1,5 +1,11 @@
+import TopNav from "../ui/TopNav";
+
 function HomePage() {
-  return <div>Home page</div>;
+  return (
+    <div className="relative">
+      <TopNav />
+    </div>
+  );
 }
 
 export default HomePage;

@@ -4,6 +4,7 @@
 * {
   transition: all 0.3s;
 }
+
 *::selection {
   background-color: #2563eb;
   color: white;

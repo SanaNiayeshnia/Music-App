@@ -3,7 +3,7 @@ import SongSlider from "./SongSlider";
 
 function PlaybackController() {
   return (
-    <div className="flex w-8/12 flex-col md:w-5/12">
+    <div className="flex w-8/12 flex-col lg:w-5/12">
       <Controls />
       <SongSlider />
     </div>

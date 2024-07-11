@@ -1,12 +1,18 @@
 import { RiCloseFill, RiMoreFill } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
 
 function PlayingTrackbarHeader() {
+  const dispatch = useDispatch();
   return (
     <div className="flex items-center justify-between text-gray-900 dark:text-white">
       <p className="text-sm font-semibold">Houdini</p>
       <div className="flex items-center gap-2">
-        <RiMoreFill className="dark:hover:bg-black-100 min-h-8 min-w-8 cursor-pointer rounded-full p-1 hover:bg-blue-50" />
-        <RiCloseFill className="dark:hover:bg-black-100 min-h-8 min-w-8 cursor-pointer rounded-full p-1 hover:bg-blue-50" />
+        <RiMoreFill className="min-h-8 min-w-8 cursor-pointer rounded-full p-1 hover:bg-blue-50 dark:hover:bg-glass-100" />
+        <RiCloseFill
+          onClick={() => dispatch(togglePlayingTrackBar())}
+          className="min-h-8 min-w-8 cursor-pointer rounded-full p-1 hover:bg-blue-50 dark:hover:bg-glass-100"
+        />
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import AppLayout from "./ui/AppLayout";
 import SearchPage from "./pages/SearchPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./utilities/theme";
+import AppLayout from "./ui/layout/AppLayout";
 
 const client = new QueryClient();
 

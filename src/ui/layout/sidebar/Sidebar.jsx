@@ -7,7 +7,7 @@ import {
 } from "react-icons/ri";
 function Sidebar() {
   return (
-    <div className="dark:bg-glass-100 flex flex-col justify-center gap-4 rounded-md bg-white px-4 py-5 shadow-md">
+    <div className="flex flex-col justify-center gap-4 rounded-md bg-white px-4 py-5 shadow-md dark:bg-glass-100">
       <SideItem
         icon={<RiHomeSmileLine />}
         activeIcon={<RiHomeSmileFill />}

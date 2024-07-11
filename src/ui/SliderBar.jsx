@@ -3,7 +3,7 @@ import { Slider } from "@mui/material";
 function SliderBar({
   valueLabelDisplay = "auto",
   thumbDisplay = "on",
-  step = "1",
+  step = 1,
 }) {
   return (
     <Slider

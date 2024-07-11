@@ -4,7 +4,7 @@ function PlayerTrack() {
   return (
     <div className="flex items-center gap-4">
       <img className="h-14 w-14 border-2" src="/test.png" alt="" />
-      <div className="= flex flex-col justify-end gap-0.5">
+      <div className="flex flex-col justify-end gap-0.5 leading-4">
         <p className="text-sm font-medium text-gray-900 dark:text-white">
           Houdini
         </p>

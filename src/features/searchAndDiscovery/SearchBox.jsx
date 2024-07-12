@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { RiSearch2Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 function SearchBox() {
+  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [query, setQuery] = useState("");
   const ref = useRef();
   useEffect(() => {
@@ -18,7 +20,7 @@ function SearchBox() {
         type="text"
         autoFocus
         placeholder="What do you want to play?"
-        className="w-72 bg-transparent text-gray-900 placeholder:text-sm placeholder:text-gray-600 focus:outline-0 dark:text-white dark:placeholder:text-glass-300"
+        className={`${isPlayingTrackbarOpen ? "lg:w-36" : "lg:w-64"} bg-transparent text-gray-900 placeholder:text-sm placeholder:text-gray-600 focus:outline-0 xl:w-72 dark:text-white dark:placeholder:text-glass-300`}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

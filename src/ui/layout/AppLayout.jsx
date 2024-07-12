@@ -13,7 +13,7 @@ function AppLayout() {
       <Sidebar />
       <Library />
 
-      <div className="col-start-2 col-end-[-1] row-start-1 row-end-3 flex gap-2">
+      <div className="col-start-2 col-end-[-1] row-start-1 row-end-[-1] flex gap-2">
         <Main>
           <Outlet />
         </Main>

@@ -1,10 +1,9 @@
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function NavigatorArrows() {
+function NavigationArrows() {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const isOnTheMainPage = location?.pathname === "/";
   const isFirstTimeOnTheMainPage = location?.key === "default";
 
@@ -22,4 +21,4 @@ function NavigatorArrows() {
   );
 }
 
-export default NavigatorArrows;
+export default NavigationArrows;

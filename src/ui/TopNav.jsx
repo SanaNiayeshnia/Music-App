@@ -1,9 +1,7 @@
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import SearchBox from "../features/searchAndDiscovery/SearchBox";
 import DarkModeToggler from "./DarkModeToggler";
 import { useLocation } from "react-router-dom";
-import { current } from "@reduxjs/toolkit";
-import NavigatorArrows from "./NavigatorArrows";
+import NavigationArrows from "./NavigationArrows";
 
 function TopNav() {
   const location = useLocation();
@@ -11,9 +9,9 @@ function TopNav() {
   const currentPath = locArr[locArr?.length - 1] || null;
 
   return (
-    <div className="absolute right-0 top-0 flex w-full items-center justify-between px-4 py-3">
+    <div className="mb-3 flex w-full min-w-[425px] items-center justify-between gap-5 px-3">
       <div className="flex min-h-[52px] items-center gap-2">
-        <NavigatorArrows />
+        <NavigationArrows />
         {currentPath === "search" && <SearchBox />}
       </div>
 

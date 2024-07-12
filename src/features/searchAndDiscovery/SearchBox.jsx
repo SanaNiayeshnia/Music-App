@@ -20,7 +20,7 @@ function SearchBox() {
         type="text"
         autoFocus
         placeholder="What do you want to play?"
-        className={`${isPlayingTrackbarOpen ? "lg:w-36" : "lg:w-64"} bg-transparent text-gray-900 placeholder:text-sm placeholder:text-gray-600 focus:outline-0 xl:w-72 dark:text-white dark:placeholder:text-glass-300`}
+        className={`${isPlayingTrackbarOpen ? "md:w-28 lg:w-36" : "md:w-40 lg:w-64"} bg-transparent text-gray-900 placeholder:text-xs placeholder:text-gray-600 focus:outline-0 lg:placeholder:text-sm xl:w-72 dark:text-white dark:placeholder:text-glass-300`}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

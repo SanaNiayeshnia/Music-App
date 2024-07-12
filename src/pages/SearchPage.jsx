@@ -7,7 +7,7 @@ function SearchPage() {
 
   return (
     <div
-      className="scrollbar hide-scroll max-h-[500px] overflow-scroll px-3 pb-5"
+      className="scrollbar hide-scroll h-[calc(100%-63px)] overflow-auto px-3 pb-5"
       ref={ref}
     >
       <div className="flex items-center justify-between">

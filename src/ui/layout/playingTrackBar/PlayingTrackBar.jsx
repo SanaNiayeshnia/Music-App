@@ -10,11 +10,11 @@ function PlayingTrackBar() {
 
   return (
     <div
-      className={`${isPlayingTrackbarOpen ? "lg:block" : "lg:hidden"} hidden overflow-hidden rounded-md bg-white px-2 py-5 shadow-md lg:max-w-72 xl:max-w-80 dark:bg-glass-100`}
+      className={`${isPlayingTrackbarOpen ? "md:block" : "md:hidden"} hidden rounded-md bg-white px-2 py-5 shadow-md md:max-w-[17rem] lg:max-w-72 xl:max-w-80 dark:bg-glass-100`}
     >
       <div
         ref={ref}
-        className="scrollbar hide-scroll max-h-[553px] space-y-6 overflow-scroll px-3"
+        className="scrollbar hide-scroll h-full space-y-6 overflow-auto px-3"
       >
         <PlayingTrackbarHeader />
         <PlayingTrack />

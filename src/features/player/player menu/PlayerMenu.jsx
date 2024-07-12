@@ -11,7 +11,7 @@ function PlayerMenu() {
   const dispatch = useDispatch();
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
-    <div className="hidden items-center gap-3 lg:flex">
+    <div className="hidden items-center gap-3 md:flex">
       <RiMvLine
         className={`${isPlayingTrackbarOpen ? "text-blue-600" : "text-gray-900"} min-h-5 min-w-5 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
         onClick={() => dispatch(togglePlayingTrackBar())}

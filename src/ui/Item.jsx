@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { RiPlayCircleFill, RiPlayCircleLine, RiPlayFill } from "react-icons/ri";
+import { RiPlayFill } from "react-icons/ri";
 
-function Item({ type, title, subtitle, size }) {
+function Item({ type, title, subtitle, size, nocontent = false }) {
   const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
@@ -23,10 +22,12 @@ function Item({ type, title, subtitle, size }) {
         )}
       </div>
 
-      <div className={`flex flex-col justify-center gap-1 text-sm`}>
-        <p className="font-medium text-gray-900 dark:text-white">{title}</p>
-        <p className="text-gray-600 dark:text-gray-300">{subtitle}</p>
-      </div>
+      {!nocontent && (
+        <div className={`flex flex-col justify-center gap-1 text-sm`}>
+          <p className="font-medium text-gray-900 dark:text-white">{title}</p>
+          <p className="text-gray-600 dark:text-gray-300">{subtitle}</p>
+        </div>
+      )}
     </div>
   );
 }

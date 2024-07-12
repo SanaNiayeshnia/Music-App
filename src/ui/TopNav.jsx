@@ -9,7 +9,7 @@ function TopNav() {
   const currentPath = locArr[locArr?.length - 1] || null;
 
   return (
-    <div className="mb-3 flex w-full min-w-[425px] items-center justify-between gap-5 px-3">
+    <div className="mb-3 flex items-center justify-between gap-5 px-3 lg:min-w-[425px]">
       <div className="flex min-h-[52px] items-center gap-2">
         <NavigationArrows />
         {currentPath === "search" && <SearchBox />}
@@ -20,7 +20,7 @@ function TopNav() {
         <img
           src="./test.png"
           alt=""
-          className="h-9 w-9 rounded-full border-4 border-blue-100"
+          className="h-9 w-9 rounded-full border-4 border-blue-100 dark:border-blue-600"
         />
       </div>
     </div>

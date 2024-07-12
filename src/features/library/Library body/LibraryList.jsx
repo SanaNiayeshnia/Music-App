@@ -1,19 +1,58 @@
+import { useSelector } from "react-redux";
 import useScrollbar from "../../../hooks/useScrollbar";
 import Item from "../../../ui/Item";
 
 function LibraryList() {
   const ref = useScrollbar();
+  const { isSmallMedium } = useSelector((store) => store.global);
+  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <div
-      className="scrollbar hide-scroll space-y-3 overflow-scroll px-2"
+      className={`${isSmallMedium && isPlayingTrackbarOpen && "justify-center"} scrollbar hide-scroll flex flex-col gap-2 overflow-auto px-2`}
       ref={ref}
     >
-      <Item type="artist" title="Halsey" subtitle="Artist" size="small" />
-      <Item type="artist" title="Halsey" subtitle="Artist" size="small" />
-      <Item type="artist" title="Halsey" subtitle="Artist" size="small" />
-      <Item type="artist" title="Halsey" subtitle="Artist" size="small" />
-      <Item type="artist" title="Halsey" subtitle="Artist" size="small" />
-      <Item type="artist" title="Halsey" subtitle="Artist" size="small" />
+      <Item
+        type="artist"
+        title="Halsey"
+        subtitle="Artist"
+        size="small"
+        nocontent={isSmallMedium && isPlayingTrackbarOpen}
+      />
+      <Item
+        type="artist"
+        title="Halsey"
+        subtitle="Artist"
+        size="small"
+        nocontent={isSmallMedium && isPlayingTrackbarOpen}
+      />
+      <Item
+        type="artist"
+        title="Halsey"
+        subtitle="Artist"
+        size="small"
+        nocontent={isSmallMedium && isPlayingTrackbarOpen}
+      />
+      <Item
+        type="artist"
+        title="Halsey"
+        subtitle="Artist"
+        size="small"
+        nocontent={isSmallMedium && isPlayingTrackbarOpen}
+      />
+      <Item
+        type="artist"
+        title="Halsey"
+        subtitle="Artist"
+        size="small"
+        nocontent={isSmallMedium && isPlayingTrackbarOpen}
+      />
+      <Item
+        type="artist"
+        title="Halsey"
+        subtitle="Artist"
+        size="small"
+        nocontent={isSmallMedium && isPlayingTrackbarOpen}
+      />
     </div>
   );
 }

@@ -78,5 +78,12 @@
   background-color: #2563eb !important;
 }
 .scrollbar.hide-scroll::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: transparent !important;
+}
+.scrollbar.app-scrollbar::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+.scrollbar.app-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #2563eb !important;
 }

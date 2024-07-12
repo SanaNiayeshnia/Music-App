@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isDarkMode: localStorage.getItem("mode") === "dark" ? true : false,
+  isSmallMedium: false,
 };
 const globalSlice = createSlice({
   name: "global",
@@ -11,8 +12,11 @@ const globalSlice = createSlice({
       state.isDarkMode = !state.isDarkMode;
       localStorage.setItem("mode", action.payload);
     },
+    setIsSmallMedium(state, action) {
+      state.isSmallMedium = action.payload;
+    },
   },
 });
 
 export default globalSlice.reducer;
-export const { toggleDarkMode } = globalSlice.actions;
+export const { toggleDarkMode, setIsSmallMedium } = globalSlice.actions;

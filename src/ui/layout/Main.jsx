@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux";
+import TopNav from "../TopNav";
 
 function Main({ children }) {
   return (
-    <div className="w-full rounded-md bg-white px-4 py-5 shadow-md dark:bg-glass-100">
+    <div className="relative w-full rounded-md bg-white px-4 py-3 shadow-md dark:bg-glass-100">
+      <TopNav />
       {children}
     </div>
   );

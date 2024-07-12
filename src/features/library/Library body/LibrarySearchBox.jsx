@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RiCloseFill, RiSearch2Line } from "react-icons/ri";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
@@ -6,6 +6,10 @@ function LibrarySearchBox() {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
   const [searchQuery, setSearchQuery] = useState("");
+  const inputRef = useRef();
+  useEffect(() => {
+    isOpen && inputRef.current.focus();
+  }, [isOpen]);
 
   return (
     <div
@@ -22,6 +26,7 @@ function LibrarySearchBox() {
         <input
           type="text"
           placeholder="search in your library"
+          ref={inputRef}
           autoFocus
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

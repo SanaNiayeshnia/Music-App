@@ -3,7 +3,7 @@ import ListContainer from "../../ui/ListContainer";
 
 function RecentSearches() {
   return (
-    <ListContainer className="max-h-[212px] overflow-hidden">
+    <ListContainer className="overflow-hidden">
       <Item
         title="Future Nostalgia"
         subtitle="Dua Lipa"

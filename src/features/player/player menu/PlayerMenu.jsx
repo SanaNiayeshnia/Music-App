@@ -13,7 +13,7 @@ function PlayerMenu() {
   return (
     <div className="hidden items-center gap-3 md:flex">
       <RiMvLine
-        className={`${isPlayingTrackbarOpen ? "text-blue-600" : "text-gray-900"} min-h-5 min-w-5 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
+        className={`${isPlayingTrackbarOpen ? "text-blue-600" : "text-gray-900"} min-h-5 min-w-5 cursor-pointer duration-100 dark:text-white`}
         onClick={() => dispatch(togglePlayingTrackBar())}
       />
       <RiPlayList2Fill className="min-h-5 min-w-5 cursor-pointer text-gray-900 duration-100 hover:text-blue-600 dark:text-white" />

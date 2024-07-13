@@ -7,13 +7,13 @@ function Item({ type, title, subtitle, size, nocontent = false }) {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`${size === "large" ? "group w-40 flex-col rounded-md p-3 hover:bg-blue-50 dark:hover:bg-glass-100" : "items-center"} flex cursor-pointer gap-2`}
+      className={`${size === "large" ? "group flex-col rounded-md p-3 hover:bg-blue-50 dark:hover:bg-glass-100" : "items-center"} flex cursor-pointer gap-2`}
     >
       <div className={`${size === "large" && "relative"}`}>
         <img
           src="/test.png"
           alt=""
-          className={` ${type === "artist" ? "rounded-full" : "rounded-sm"} ${size === "large" ? "h-[8.5rem] w-[8.5rem]" : "h-12 w-12"}`}
+          className={` ${type === "artist" ? "rounded-full" : "rounded-sm"} ${size === "large" ? "w-full" : "h-12 w-12"}`}
         />
         {size === "large" && (
           <RiPlayFill

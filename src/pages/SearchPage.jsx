@@ -1,3 +1,4 @@
+import GenreList from "../features/searchAndDiscovery/GenreList";
 import RecentSearches from "../features/searchAndDiscovery/RecentSearches";
 import useScrollbar from "../hooks/useScrollbar";
 import Title from "../ui/Title";
@@ -17,9 +18,8 @@ function SearchPage() {
         </p>
       </div>
       <RecentSearches />
-      <RecentSearches />
-      <RecentSearches />
       <Title>Browse all</Title>
+      <GenreList />
     </div>
   );
 }

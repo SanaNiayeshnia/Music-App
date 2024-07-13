@@ -8,6 +8,8 @@ import theme from "./utilities/theme";
 import AppLayout from "./ui/layout/AppLayout";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import ArtistPage from "./pages/ArtistPage";
+import PageNotFound from "./pages/PageNotFound";
 
 const client = new QueryClient();
 
@@ -28,6 +30,8 @@ function App() {
             <Route exact path="/" element={<AppLayout />}>
               <Route index element={<HomePage />} />
               <Route path="search" element={<SearchPage />} />
+              <Route path="artist/:id" element={<ArtistPage />} />
+              <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import Library from "../../features/library/Library";
 import Player from "../../features/player/Player";
 import PlayingTrackBar from "./playingTrackBar/PlayingTrackBar";
@@ -27,11 +26,8 @@ function AppLayout() {
       <Sidebar />
       <Library />
 
-      <div className="col-start-2 col-end-[-1] row-start-1 row-end-[-1] flex gap-2">
-        <Main>
-          <Outlet />
-        </Main>
-
+      <div className="col-start-2 col-end-[-1] row-start-1 row-end-[-1] flex gap-2 overflow-auto">
+        <Main />
         {isPlayingTrackbarOpen && <PlayingTrackBar />}
       </div>
 

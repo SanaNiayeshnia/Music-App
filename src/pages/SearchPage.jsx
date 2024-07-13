@@ -1,16 +1,10 @@
 import GenreList from "../features/searchAndDiscovery/GenreList";
 import RecentSearches from "../features/searchAndDiscovery/RecentSearches";
-import useScrollbar from "../hooks/useScrollbar";
 import Title from "../ui/Title";
 
 function SearchPage() {
-  const ref = useScrollbar();
-
   return (
-    <div
-      className="scrollbar hide-scroll h-[calc(100%-63px)] overflow-auto px-3 pb-5"
-      ref={ref}
-    >
+    <div className="px-5 pb-5 pt-[55px]">
       <div className="flex items-center justify-between">
         <Title>Recent Searches</Title>
         <p className="cursor-pointer text-sm font-semibold text-gray-600 hover:text-base hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">

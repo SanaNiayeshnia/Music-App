@@ -1,3 +1,5 @@
+import Button from "../../ui/Button";
+
 function PlayingArtist() {
   return (
     <div className="rounded-md bg-blue-50 dark:bg-glass-100">
@@ -13,9 +15,7 @@ function PlayingArtist() {
           <p className="text-gray-600 dark:text-gray-300">
             5,400,000 monthly listeners
           </p>
-          <button className="rounded-2xl border border-blue-600 px-3 py-1 font-semibold text-blue-600 hover:bg-blue-600 hover:text-white dark:text-white">
-            Follow
-          </button>
+          <Button>Follow</Button>
         </div>
         <p className="text-justify text-sm text-gray-600 dark:text-gray-300">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius

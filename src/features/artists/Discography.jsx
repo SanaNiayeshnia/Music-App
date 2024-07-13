@@ -3,14 +3,15 @@ import ListContainer from "../../ui/ListContainer";
 import ShowAll from "../../ui/ShowAll";
 import Title from "../../ui/Title";
 
-function RecentSearches() {
+function Discography() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <Title>Recent Searches</Title>
+        <Title>Discography</Title>
         <ShowAll>Show all</ShowAll>
       </div>
-      <ListContainer className="overflow-hidden">
+
+      <ListContainer>
         <Item
           title="Future Nostalgia"
           subtitle="Dua Lipa"
@@ -21,35 +22,47 @@ function RecentSearches() {
           title="Future Nostalgia"
           subtitle="Dua Lipa"
           size="large"
-          type="artist"
+          type="album"
         />
         <Item
           title="Future Nostalgia"
           subtitle="Dua Lipa"
           size="large"
-          type="Album"
+          type="album"
         />
         <Item
           title="Future Nostalgia"
           subtitle="Dua Lipa"
           size="large"
-          type="artist"
+          type="album"
         />
         <Item
           title="Future Nostalgia"
           subtitle="Dua Lipa"
           size="large"
-          type="Album"
+          type="album"
         />
         <Item
           title="Future Nostalgia"
           subtitle="Dua Lipa"
           size="large"
-          type="artist"
+          type="album"
+        />
+        <Item
+          title="Future Nostalgia"
+          subtitle="Dua Lipa"
+          size="large"
+          type="album"
+        />
+        <Item
+          title="Future Nostalgia"
+          subtitle="Dua Lipa"
+          size="large"
+          type="album"
         />
       </ListContainer>
     </div>
   );
 }
 
-export default RecentSearches;
+export default Discography;

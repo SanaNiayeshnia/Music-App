@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RiPlayFill } from "react-icons/ri";
+import PlayButton from "./PlayButton";
 
 function Item({ type, title, subtitle, size, nocontent = false }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -16,8 +16,8 @@ function Item({ type, title, subtitle, size, nocontent = false }) {
           className={` ${type === "artist" ? "rounded-full" : "rounded-sm"} ${size === "large" ? "w-full" : "h-12 w-12"}`}
         />
         {size === "large" && (
-          <RiPlayFill
-            className={`${isHovered ? "animation-show-playicon" : "animation-hide-playicon"} absolute bottom-1 right-1 hidden min-h-10 min-w-10 rounded-full bg-blue-600 p-2 text-white shadow-md duration-300 group-hover:inline-block`}
+          <PlayButton
+            className={`${isHovered ? "animation-show-playicon" : "animation-hide-playicon"} absolute bottom-1 right-1 hidden min-h-10 min-w-10 shadow-md duration-300 group-hover:inline-block`}
           />
         )}
       </div>

@@ -10,7 +10,7 @@ function Popular() {
         <Track />
         <Track />
         <Track />
-        <ShowAll>See more</ShowAll>
+        <ShowAll className="px-3">See more</ShowAll>
       </div>
     </div>
   );

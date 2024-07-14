@@ -10,11 +10,11 @@ function LibraryHeader() {
       className={`${isPlayingTrackbarOpen && isSmallMedium ? "justify-center" : "justify-between"} flex items-center px-2`}
     >
       <div
-        className={`${isPlayingTrackbarOpen && isSmallMedium && "justify-center"} flex items-center gap-2 text-gray-900 dark:text-white`}
+        className={`${isPlayingTrackbarOpen && isSmallMedium && "justify-center"} flex items-center gap-2`}
       >
-        <RiBookmark3Line className="min-h-6 min-w-6 text-gray-800 duration-100 dark:text-white" />
+        <RiBookmark3Line className="min-h-6 min-w-6 text-gray-900 duration-100 dark:text-white" />
         <span
-          className={`${isPlayingTrackbarOpen && isSmallMedium && "md:hidden"} md:inline-block`}
+          className={`${isPlayingTrackbarOpen && isSmallMedium && "md:hidden"} text-gray-900 md:inline-block dark:text-white`}
         >
           library
         </span>

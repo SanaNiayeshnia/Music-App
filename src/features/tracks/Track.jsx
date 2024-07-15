@@ -2,7 +2,7 @@ import { IoMdPlay } from "react-icons/io";
 import { RiAddCircleLine, RiMoreFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
-function Track() {
+function Track({ noCover = false, noArtist = false }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <div className="group flex items-center justify-between rounded-sm px-3 py-2 hover:bg-blue-50 dark:hover:bg-glass-100">
@@ -13,10 +13,20 @@ function Track() {
           </span>
           <IoMdPlay className="hidden cursor-pointer text-sm text-gray-900 duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
         </p>
-        <img src="/test.png" alt="" className="h-10 w-10 rounded-sm" />
-        <p className="text-sm font-medium text-gray-900 dark:text-white">
-          Heather
-        </p>
+
+        {!noCover && (
+          <img src="/test.png" alt="" className="h-10 w-10 rounded-sm" />
+        )}
+        <div className="">
+          <p className="text-sm font-medium text-gray-900 dark:text-white">
+            Heather
+          </p>
+          {!noArtist && (
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              Conan Gray
+            </p>
+          )}
+        </div>
       </div>
       <div
         className={`${!isPlayingTrackbarOpen && "min-w-60 lg:min-w-72"} flex items-center justify-between gap-2`}

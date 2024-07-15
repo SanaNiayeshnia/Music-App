@@ -5,20 +5,21 @@ import ArtistPageMenu from "../features/artists/ArtistPageMenu";
 import Discography from "../features/artists/Discography";
 import Popular from "../features/artists/Popular";
 import TopNav from "../ui/TopNav";
+import PageBody from "../ui/PageBody";
 
 function ArtistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
   return (
-    <div>
+    <div className="pb-5">
       <TopNav transparent>
         {isMainScrolled && <NavTitle>Conan Gray</NavTitle>}
       </TopNav>
       <ArtistPageHeader />
-      <div className="h-60 space-y-10 bg-gradient-to-b from-white from-[1%] px-5 dark:from-black">
+      <PageBody>
         <ArtistPageMenu />
         <Popular />
         <Discography />
-      </div>
+      </PageBody>
     </div>
   );
 }

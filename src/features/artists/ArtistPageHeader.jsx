@@ -1,26 +1,20 @@
 import { VscVerifiedFilled } from "react-icons/vsc";
-import { useSelector } from "react-redux";
+import PageTitle from "../../ui/PageTitle";
+import PageHeader from "../../ui/PageHeader";
 
 function ArtistPageHeader() {
-  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
-    <div className="relative h-[17rem] w-full bg-[url(/header.png)] bg-cover bg-fixed bg-no-repeat">
-      <div className="absolute inset-0 bg-gradient-to-t from-white from-[1%] brightness-150 filter dark:from-black dark:brightness-50"></div>
-      <div className="absolute inset-0 space-y-5 px-5 pt-[70px]">
-        <p className="flex items-center gap-1 text-gray-900 dark:text-white">
-          <VscVerifiedFilled className="min-h-6 min-w-6 text-blue-600" />
-          verified artist
-        </p>
-        <p
-          className={`${isPlayingTrackbarOpen && "md:text-[3.25rem]"} text-6xl font-bold text-gray-900 xl:text-7xl dark:text-white`}
-        >
-          Conan Gray
-        </p>
-        <p className="text-gray-900 dark:text-white">
-          22,223,000 monthly listeners
-        </p>
-      </div>
-    </div>
+    <PageHeader background="/header.png">
+      <p className="flex items-center gap-1 text-sm text-gray-900 dark:text-white">
+        <VscVerifiedFilled className="min-h-6 min-w-6 text-blue-600" />
+        Verified Artist
+      </p>
+      <PageTitle>Conan Gray</PageTitle>
+
+      <p className="text-gray-900 dark:text-white">
+        22,223,000 monthly listeners
+      </p>
+    </PageHeader>
   );
 }
 

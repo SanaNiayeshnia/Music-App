@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ArtistPage from "./pages/ArtistPage";
 import PageNotFound from "./pages/PageNotFound";
+import AlbumPage from "./pages/AlbumPage";
 
 const client = new QueryClient();
 
@@ -31,6 +32,8 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="search" element={<SearchPage />} />
               <Route path="artist/:id" element={<ArtistPage />} />
+              <Route path="album/:id" element={<AlbumPage />} />
+
               <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>

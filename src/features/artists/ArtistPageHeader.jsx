@@ -1,6 +1,8 @@
 import { VscVerifiedFilled } from "react-icons/vsc";
+import { useSelector } from "react-redux";
 
 function ArtistPageHeader() {
+  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <div className="relative h-[17rem] w-full bg-[url(/header.png)] bg-cover bg-fixed bg-no-repeat">
       <div className="absolute inset-0 bg-gradient-to-t from-white from-[1%] brightness-150 filter dark:from-black dark:brightness-50"></div>
@@ -9,7 +11,9 @@ function ArtistPageHeader() {
           <VscVerifiedFilled className="min-h-6 min-w-6 text-blue-600" />
           verified artist
         </p>
-        <p className="text-7xl font-bold text-gray-900 dark:text-white">
+        <p
+          className={`${isPlayingTrackbarOpen && "md:text-[3.25rem]"} text-6xl font-bold text-gray-900 xl:text-7xl dark:text-white`}
+        >
           Conan Gray
         </p>
         <p className="text-gray-900 dark:text-white">

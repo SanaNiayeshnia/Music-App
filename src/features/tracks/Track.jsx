@@ -1,7 +1,9 @@
 import { IoMdPlay } from "react-icons/io";
 import { RiAddCircleLine, RiMoreFill } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 function Track() {
+  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <div className="group flex items-center justify-between rounded-sm px-3 py-2 hover:bg-blue-50 dark:hover:bg-glass-100">
       <div className="flex items-center gap-2">
@@ -16,8 +18,14 @@ function Track() {
           Heather
         </p>
       </div>
-      <div className="flex min-w-60 items-center justify-between gap-2 lg:min-w-72">
-        <p className="text-sm text-gray-900 dark:text-white">1,356,247,890</p>
+      <div
+        className={`${!isPlayingTrackbarOpen && "min-w-60 lg:min-w-72"} flex items-center justify-between gap-2`}
+      >
+        <p
+          className={`${isPlayingTrackbarOpen && "hidden"} text-sm text-gray-900 xl:inline-block dark:text-white`}
+        >
+          1,356,247,890
+        </p>
         <div className="flex items-center gap-3">
           <div className="w-5 text-center">
             <RiAddCircleLine className="text-gary-900 hidden cursor-pointer text-xl duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />

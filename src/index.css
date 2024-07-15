@@ -45,10 +45,10 @@
 }
 
 .animation-open-searchbox {
-  animation: open-searchbox 1s alternate;
+  animation: open-searchbox 0.5s alternate;
 }
 .animation-close-searchbox {
-  animation: close-searchbox 1s alternate;
+  animation: close-searchbox 0.5s alternate;
 }
 .animation-show-playicon {
   animation: show-playicon 0.5s alternate;
@@ -65,6 +65,7 @@
   height: 0.25rem;
   border-radius: 0.5rem;
 }
+
 :root.dark .scrollbar::-webkit-scrollbar-thumb {
   background-color: #ffffff30;
 }
@@ -80,6 +81,7 @@
 .scrollbar.hide-scroll::-webkit-scrollbar-thumb {
   background-color: transparent !important;
 }
+
 .scrollbar.app-scrollbar::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;

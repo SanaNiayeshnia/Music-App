@@ -5,8 +5,8 @@ import AlbumPageHeader from "../features/albums/AlbumPageHeader";
 import PageBody from "../ui/PageBody";
 import TrackList from "../features/albums/TrackList";
 import License from "../features/albums/License";
-import AlbumPageMenu from "../features/albums/AlbumPageMenu";
 import MoreByArtist from "../features/artists/MoreByArtist";
+import PageMenu from "../ui/PageMenu";
 
 function AlbumPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -17,7 +17,7 @@ function AlbumPage() {
       </TopNav>
       <AlbumPageHeader />
       <PageBody>
-        <AlbumPageMenu />
+        <PageMenu />
         <TrackList />
         <License
           release="June 24, 2022"

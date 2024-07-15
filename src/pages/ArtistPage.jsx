@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import NavTitle from "../ui/NavTitle";
 import ArtistPageHeader from "../features/artists/ArtistPageHeader";
-import ArtistPageMenu from "../features/artists/ArtistPageMenu";
 import Discography from "../features/artists/Discography";
 import Popular from "../features/artists/Popular";
 import TopNav from "../ui/TopNav";
 import PageBody from "../ui/PageBody";
+import PageMenu from "../ui/PageMenu";
 
 function ArtistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -16,7 +16,7 @@ function ArtistPage() {
       </TopNav>
       <ArtistPageHeader />
       <PageBody>
-        <ArtistPageMenu />
+        <PageMenu type="artist" />
         <Popular />
         <Discography />
       </PageBody>

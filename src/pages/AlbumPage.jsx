@@ -6,7 +6,7 @@ import License from "../features/albums/License";
 import MoreByArtist from "../features/artists/MoreByArtist";
 import PageMenu from "../ui/PageMenu";
 import PageHeader from "../ui/PageHeader";
-import TrackList from "../ui/TrackList";
+import TrackList from "../features/tracks/TrackList";
 
 function AlbumPage() {
   const { isMainScrolled } = useSelector((store) => store.global);

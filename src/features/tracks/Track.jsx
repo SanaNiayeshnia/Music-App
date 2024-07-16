@@ -11,9 +11,9 @@ function Track({
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <tr
-      className={`${isPlayingTrackbarOpen ? "grid-cols-[0.2fr_3fr_0.25fr_0.25fr_0.25fr_0.25fr]" : "grid-cols-[0.2fr_3fr_2fr_2fr_0.25fr_0.25fr_0.25fr]"} group grid items-center rounded-sm px-3 py-2 hover:bg-blue-50 dark:hover:bg-glass-100`}
+      className={`${isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]"} group grid items-center rounded-sm px-3 py-2 hover:bg-blue-50 dark:hover:bg-glass-100`}
     >
-      <td className="mr-2 w-3.5 text-center">
+      <td className="w-3.5 text-center">
         <span className="text-gray-900 group-hover:hidden dark:text-white">
           1
         </span>
@@ -39,21 +39,19 @@ function Track({
       >
         {!noAlbum && "Superache"}
       </td>
-      <td>
-        <p
-          className={`${isPlayingTrackbarOpen && "hidden"} text-sm text-gray-900 xl:inline-block dark:text-white`}
-        >
+      <td className={`${isPlayingTrackbarOpen && "hidden"} xl:inline-block`}>
+        <p className={`text-sm text-gray-900 xl:inline-block dark:text-white`}>
           {extra === "date" && "June 2, 2023"}
           {extra === "stream" && "1,356,247,890"}
         </p>
       </td>
-      <td>
+      <td className="text-center">
         <RiAddCircleLine className="text-gary-900 hidden cursor-pointer text-xl duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
       </td>
-      <td>
+      <td className="text-center">
         <p className="text-sm text-gray-900 dark:text-white">3:18</p>
       </td>
-      <td>
+      <td className="text-center">
         <RiMoreFill className="text-gary-900 hidden cursor-pointer text-xl duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
       </td>
     </tr>

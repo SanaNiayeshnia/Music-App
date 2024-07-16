@@ -5,7 +5,7 @@ import TopNav from "../ui/TopNav";
 import PageBody from "../ui/PageBody";
 import PageMenu from "../ui/PageMenu";
 import AlsoLikePlaylists from "../features/playlists/AlsoLikePlaylists";
-import TrackList from "../ui/TrackList";
+import TrackList from "../features/tracks/TrackList";
 
 function PlaylistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);

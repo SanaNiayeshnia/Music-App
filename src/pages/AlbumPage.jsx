@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import NavTitle from "../ui/NavTitle";
 import TopNav from "../ui/TopNav";
 import PageBody from "../ui/PageBody";
-import TrackList from "../features/albums/TrackList";
 import License from "../features/albums/License";
 import MoreByArtist from "../features/artists/MoreByArtist";
 import PageMenu from "../ui/PageMenu";
 import PageHeader from "../ui/PageHeader";
+import TrackList from "../ui/TrackList";
 
 function AlbumPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -32,7 +32,7 @@ function AlbumPage() {
       />
       <PageBody>
         <PageMenu />
-        <TrackList />
+        <TrackList noCover noAlbum extra="stream" />
         <License
           release="June 24, 2022"
           copyright="2022 Republic Records, a division of UMG Recordings, Inc."

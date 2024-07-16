@@ -1,6 +1,6 @@
 import {
+  RiDiscLine,
   RiExpandDiagonalLine,
-  RiMvLine,
   RiPlayList2Fill,
 } from "react-icons/ri";
 import VolumeHandler from "./VolumeHandler";
@@ -12,7 +12,7 @@ function PlayerMenu() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <div className="hidden items-center gap-3 md:flex">
-      <RiMvLine
+      <RiDiscLine
         className={`${isPlayingTrackbarOpen ? "text-blue-600" : "text-gray-900 dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
         onClick={() => dispatch(togglePlayingTrackBar())}
       />

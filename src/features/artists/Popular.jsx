@@ -7,9 +7,9 @@ function Popular() {
     <div>
       <Title>Popular</Title>
       <div>
-        <Track noArtist />
-        <Track noArtist />
-        <Track noArtist />
+        <Track noArtist noAlbum extra="stream" />
+        <Track noArtist noAlbum extra="stream" />
+        <Track noArtist noAlbum extra="stream" />
         <ShowAll className="px-3">See more</ShowAll>
       </div>
     </div>

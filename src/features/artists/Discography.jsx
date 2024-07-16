@@ -1,3 +1,4 @@
+import Filters from "../../ui/Filters";
 import Item from "../../ui/Item";
 import ListContainer from "../../ui/ListContainer";
 import ShowAll from "../../ui/ShowAll";
@@ -10,57 +11,60 @@ function Discography() {
         <Title>Discography</Title>
         <ShowAll>Show all</ShowAll>
       </div>
+      <div className="space-y-3">
+        <Filters />
 
-      <ListContainer>
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="album"
-        />
-      </ListContainer>
+        <ListContainer>
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+          <Item
+            title="Future Nostalgia"
+            subtitle="Dua Lipa"
+            size="large"
+            type="album"
+          />
+        </ListContainer>
+      </div>
     </div>
   );
 }

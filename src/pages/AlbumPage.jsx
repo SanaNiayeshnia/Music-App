@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import NavTitle from "../ui/NavTitle";
 import TopNav from "../ui/TopNav";
-import AlbumPageHeader from "../features/albums/AlbumPageHeader";
 import PageBody from "../ui/PageBody";
 import TrackList from "../features/albums/TrackList";
 import License from "../features/albums/License";
 import MoreByArtist from "../features/artists/MoreByArtist";
 import PageMenu from "../ui/PageMenu";
+import PageHeader from "../ui/PageHeader";
 
 function AlbumPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -15,7 +15,21 @@ function AlbumPage() {
       <TopNav transparent>
         {isMainScrolled && <NavTitle>Conan Gray</NavTitle>}
       </TopNav>
-      <AlbumPageHeader />
+      <PageHeader
+        background="/header.png"
+        artistPic="/test.png"
+        cover="/test.png"
+        type="album"
+        title="Superache"
+        something={
+          <p className="text-sm font-medium text-gray-900 dark:text-white">
+            <span className="font-semibold text-gray-900 dark:text-white">
+              Conan Gray
+            </span>{" "}
+            • 2022 • 12 songs, 40 min 22 sec
+          </p>
+        }
+      />
       <PageBody>
         <PageMenu />
         <TrackList />

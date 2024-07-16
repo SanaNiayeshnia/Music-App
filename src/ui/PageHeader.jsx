@@ -1,13 +1,27 @@
-function PageHeader({ children, background }) {
+import Cover from "./Cover";
+import HeaderType from "./HeaderType";
+import PageHeaderWrapper from "./PageHeaderWrapper";
+import PageTitle from "./PageTitle";
+
+function PageHeader({ background, type, title, cover, artistPic, something }) {
   return (
-    <div
-      className={`relative h-72 w-full bg-[url(${background})] bg-cover bg-fixed bg-no-repeat`}
-    >
-      <div className="absolute inset-0 bg-gradient-to-t from-white from-[0.5%] brightness-150 filter dark:from-black dark:brightness-50"></div>
-      <div className="absolute inset-0 gap-5 space-y-5 px-5 pt-[90px]">
-        {children}
+    <PageHeaderWrapper background={background}>
+      <div className="flex items-center gap-3 xl:gap-5">
+        <Cover src={cover} alt="" />
+        <div className="space-y-4">
+          <HeaderType>{type}</HeaderType>
+          <PageTitle>{title}</PageTitle>
+          <div className="flex items-center gap-1">
+            <img
+              src={artistPic}
+              alt=""
+              className="h-6 w-6 rounded-full shadow-sm"
+            />
+            {something}
+          </div>
+        </div>
       </div>
-    </div>
+    </PageHeaderWrapper>
   );
 }
 

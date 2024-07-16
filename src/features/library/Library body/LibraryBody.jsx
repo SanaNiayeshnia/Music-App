@@ -12,7 +12,7 @@ function LibraryBody() {
       <div
         className={`${
           isPlayingTrackbarOpen && isSmallMedium ? "hidden" : "inline-block"
-        } space-y-4`}
+        } space-y-4 px-2`}
       >
         <Filters />
         <div className="flex items-center justify-between px-2 text-gray-900 dark:text-white">

@@ -7,7 +7,7 @@ function Item({ type, title, subtitle, size, nocontent = false }) {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`${size === "large" ? "group flex-col p-3" : "items- p-2"} flex cursor-pointer gap-2 rounded-md hover:bg-blue-50 dark:hover:bg-glass-100`}
+      className={`${size === "large" ? "group flex-col p-3" : "items-center p-2"} flex cursor-pointer gap-2 rounded-md hover:bg-blue-50 dark:hover:bg-glass-100`}
     >
       <div className={`${size === "large" && "relative"}`}>
         <img

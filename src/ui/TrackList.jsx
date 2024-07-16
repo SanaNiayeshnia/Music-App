@@ -1,5 +1,6 @@
 import { RiTimeLine } from "react-icons/ri";
 import Track from "../features/tracks/Track";
+import { useSelector } from "react-redux";
 
 function TrackList({
   noCover = false,
@@ -7,23 +8,30 @@ function TrackList({
   noArtist = false,
   extra,
 }) {
+  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <table className="w-full pt-3">
       <thead className="border-b border-blue-100 dark:border-glass-200">
-        <tr className="grid w-full grid-cols-[0.2fr_3fr_2fr_2fr_0.25fr_0.25fr_0.25fr] px-3 py-2 text-sm font-medium">
+        <tr
+          className={`${isPlayingTrackbarOpen ? "grid-cols-[0.2fr_3fr_0.25fr_0.25fr_0.25fr]" : "grid-cols-[0.2fr_3fr_2fr_2fr_0.25fr_0.25fr_0.25fr]"} grid w-full px-3 py-2 text-sm font-medium`}
+        >
           <td className="text-gray-600 dark:text-gray-300">#</td>
           <td className="text-gray-600 dark:text-gray-300">Title</td>
-          <td className="text-gray-600 dark:text-gray-300">
+          <td
+            className={`${isPlayingTrackbarOpen && "hidden"} text-gray-600 xl:inline-block dark:text-gray-300`}
+          >
             {!noAlbum && "Album"}
           </td>
-          <td className="text-gray-600 dark:text-gray-300">
+          <td
+            className={`${isPlayingTrackbarOpen && "hidden"} text-gray-600 xl:inline-block dark:text-gray-300`}
+          >
             {extra === "date" && "Date Added"}
           </td>
-          <td className="text-gray-600 dark:text-gray-300"></td>
+          <td></td>
           <td className="text-center">
             <RiTimeLine className="min-h-5 min-w-5 text-gray-600 duration-100 dark:text-gray-300" />
           </td>
-          <td className="text-gray-600 dark:text-gray-300"></td>
+          <td></td>
         </tr>
       </thead>
       <tbody>

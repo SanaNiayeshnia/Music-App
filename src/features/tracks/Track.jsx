@@ -10,7 +10,9 @@ function Track({
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
-    <tr className="group grid grid-cols-[0.2fr_3fr_2fr_2fr_0.25fr_0.25fr_0.25fr] items-center rounded-sm px-3 py-2 hover:bg-blue-50 dark:hover:bg-glass-100">
+    <tr
+      className={`${isPlayingTrackbarOpen ? "grid-cols-[0.2fr_3fr_0.25fr_0.25fr_0.25fr_0.25fr]" : "grid-cols-[0.2fr_3fr_2fr_2fr_0.25fr_0.25fr_0.25fr]"} group grid items-center rounded-sm px-3 py-2 hover:bg-blue-50 dark:hover:bg-glass-100`}
+    >
       <td className="mr-2 w-3.5 text-center">
         <span className="text-gray-900 group-hover:hidden dark:text-white">
           1
@@ -32,7 +34,9 @@ function Track({
           )}
         </div>
       </td>
-      <td className="text-sm text-gray-900 dark:text-white">
+      <td
+        className={`${isPlayingTrackbarOpen && "hidden"} text-sm text-gray-900 xl:inline-block dark:text-white`}
+      >
         {!noAlbum && "Superache"}
       </td>
       <td>

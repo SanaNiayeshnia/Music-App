@@ -44,6 +44,23 @@
   }
 }
 
+@keyframes open-queuebar {
+  from {
+    inset: 50% 0 0 0;
+  }
+  to {
+    inset: 0;
+  }
+}
+@keyframes close-queuebar {
+  from {
+    inset: 0;
+  }
+  to {
+    inset: 100% 0 0 0;
+  }
+}
+
 .animation-open-searchbox {
   animation: open-searchbox 0.5s alternate;
 }
@@ -55,6 +72,12 @@
 }
 .animation-hide-playicon {
   animation: hide-playicon 0.5s alternate;
+}
+.animation-open-queuebar {
+  animation: open-queuebar 0.5s alternate;
+}
+.animation-close-queuebar {
+  animation: close-queuebar 0.5s alternate;
 }
 
 /*styles*/

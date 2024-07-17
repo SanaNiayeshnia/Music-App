@@ -12,7 +12,7 @@ function LibraryBody() {
       <div
         className={`${
           isPlayingTrackbarOpen && isSmallMedium ? "hidden" : "inline-block"
-        } space-y-3 px-4`}
+        } space-y-3 pl-4 pr-2`}
       >
         <Filters />
         <div className="flex items-center justify-between text-gray-900 dark:text-white">
@@ -20,7 +20,6 @@ function LibraryBody() {
           <LibrarySorting />
         </div>
       </div>
-
       <LibraryList />
     </>
   );

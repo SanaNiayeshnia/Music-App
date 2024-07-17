@@ -7,7 +7,7 @@ function LibraryHeader() {
 
   return (
     <div
-      className={`${isPlayingTrackbarOpen && isSmallMedium ? "justify-center" : "justify-between"} flex items-center px-4`}
+      className={`${isPlayingTrackbarOpen && isSmallMedium ? "justify-center" : "justify-between"} flex items-center pl-4 pr-2`}
     >
       <div
         className={`${isPlayingTrackbarOpen && isSmallMedium && "justify-center"} flex items-center gap-2`}

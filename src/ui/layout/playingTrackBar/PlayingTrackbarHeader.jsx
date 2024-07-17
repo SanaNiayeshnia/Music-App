@@ -5,7 +5,7 @@ import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
 function PlayingTrackbarHeader() {
   const dispatch = useDispatch();
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between px-2">
       <p className="text-sm font-semibold text-gray-900 dark:text-white">
         Houdini
       </p>

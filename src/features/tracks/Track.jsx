@@ -11,7 +11,7 @@ function Track({
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <tr
-      className={`${isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]"} group grid items-center rounded-sm px-3 py-2 hover:bg-blue-50 dark:hover:bg-glass-100`}
+      className={`${isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]"} group grid items-center rounded-sm px-3 py-2 hover:bg-blue-50 xl:grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr] dark:hover:bg-glass-100`}
     >
       <td className="w-3.5 text-center">
         <span className="text-gray-900 group-hover:hidden dark:text-white">

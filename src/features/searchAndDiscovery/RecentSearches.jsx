@@ -41,12 +41,7 @@ function RecentSearches() {
           size="large"
           type="Album"
         />
-        <Item
-          title="Future Nostalgia"
-          subtitle="Dua Lipa"
-          size="large"
-          type="artist"
-        />
+        <Item title="DuaLipa" subtitle="Artist" size="large" type="artist" />
       </ListContainer>
     </div>
   );

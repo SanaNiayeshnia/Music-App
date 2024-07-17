@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PlayButton from "./PlayButton";
+import FloatingPlayButton from "./FloatingPlayButton";
 
 function Item({ type, title, subtitle, size, nocontent = false }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -15,11 +16,7 @@ function Item({ type, title, subtitle, size, nocontent = false }) {
           alt=""
           className={` ${type === "artist" ? "rounded-full" : "rounded-sm"} ${size === "large" ? "w-full" : "h-12 w-12"}`}
         />
-        {size === "large" && (
-          <PlayButton
-            className={`${isHovered ? "animation-show-playicon" : "animation-hide-playicon"} absolute bottom-1 right-1 hidden min-h-10 min-w-10 shadow-md duration-300 group-hover:inline-block`}
-          />
-        )}
+        {size === "large" && <FloatingPlayButton isHovered={isHovered} />}
       </div>
 
       {!nocontent && (

@@ -13,6 +13,8 @@ import PageNotFound from "./pages/PageNotFound";
 import AlbumPage from "./pages/AlbumPage";
 import TrackPage from "./pages/TrackPage";
 import PlaylistPage from "./pages/PlaylistPage";
+import SearchResults from "./features/searchAndDiscovery/SearchResults";
+import DefaultSearchPageContent from "./features/searchAndDiscovery/DefaultSearchPageContent";
 
 const client = new QueryClient();
 
@@ -32,7 +34,10 @@ function App() {
           <Routes>
             <Route exact path="/" element={<AppLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="search" element={<SearchPage />} />
+              <Route path="search" element={<SearchPage />}>
+                <Route index element={<DefaultSearchPageContent />} />
+                <Route path=":query" element={<SearchResults />} />
+              </Route>
               <Route path="artist/:id" element={<ArtistPage />} />
               <Route path="album/:id" element={<AlbumPage />} />
               <Route path="track/:id" element={<TrackPage />} />

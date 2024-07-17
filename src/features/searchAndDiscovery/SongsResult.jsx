@@ -5,12 +5,12 @@ function SongsResult() {
   return (
     <div className="min-w-96 flex-grow">
       <Title>Songs</Title>
-      <div>
+      <table className="w-full">
         <Track noArtist noAlbum />
         <Track noArtist noAlbum />
         <Track noArtist noAlbum />
         <Track noArtist noAlbum />
-      </div>
+      </table>
     </div>
   );
 }

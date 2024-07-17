@@ -7,7 +7,7 @@ function SearchResults() {
   return (
     <div>
       <Filters />
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap gap-3">
         <TopResult />
         <SongsResult />
       </div>

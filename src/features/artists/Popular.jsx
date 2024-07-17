@@ -6,12 +6,12 @@ function Popular() {
   return (
     <div>
       <Title>Popular</Title>
-      <div>
+      <table className="w-full">
         <Track noArtist noAlbum extra="stream" />
         <Track noArtist noAlbum extra="stream" />
         <Track noArtist noAlbum extra="stream" />
         <ShowAll className="px-3">See more</ShowAll>
-      </div>
+      </table>
     </div>
   );
 }

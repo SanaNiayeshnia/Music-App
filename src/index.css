@@ -46,7 +46,7 @@
 
 @keyframes open-queuebar {
   from {
-    inset: 50% 0 0 0;
+    inset: 100% 0 0 0;
   }
   to {
     inset: 0;

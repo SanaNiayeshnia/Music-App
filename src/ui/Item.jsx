@@ -14,7 +14,7 @@ function Item({ type, title, subtitle, size, nocontent = false }) {
         <img
           src="/test.png"
           alt=""
-          className={` ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "h-12 w-12"}`}
+          className={` ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "h-12 w-12 lg:h-14 lg:w-14"}`}
         />
         {size === "large" && <FloatingPlayButton isHovered={isHovered} />}
       </div>

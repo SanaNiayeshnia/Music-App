@@ -2,10 +2,12 @@ import { RiCloseFill, RiMoreFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
 
-function PlayingTrackbarHeader() {
+function PlayingTrackbarHeader({ isScrolled }) {
   const dispatch = useDispatch();
   return (
-    <div className="flex items-center justify-between px-2">
+    <div
+      className={`${isScrolled && "shadow-sm"} flex items-center justify-between px-3 pb-6`}
+    >
       <p className="text-sm font-semibold text-gray-900 dark:text-white">
         Houdini
       </p>

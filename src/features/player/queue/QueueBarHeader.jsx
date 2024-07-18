@@ -2,10 +2,12 @@ import { RiCloseFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { toggleQueueBar } from "../PlaybackSlice";
 
-function QueueBarHeader() {
+function QueueBarHeader({ isScrolled }) {
   const dispatch = useDispatch();
   return (
-    <div className="flex items-center justify-between px-2 py-5">
+    <div
+      className={`${isScrolled && "shadow-sm"} flex items-center justify-between px-3 py-5`}
+    >
       <p className="text-sm font-semibold text-gray-900 dark:text-white">
         Queue
       </p>

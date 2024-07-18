@@ -8,7 +8,7 @@ function LibraryList() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <div
-      className={`${isSmallMedium && isPlayingTrackbarOpen && "justify-center pr-0"} scrollbar hide-scroll h-full overflow-auto pl-3 pr-2`}
+      className={`${isSmallMedium && isPlayingTrackbarOpen && "justify-center pr-0"} scrollbar hide-scroll h-full overflow-auto pb-3 pl-3 pr-2`}
       ref={ref}
     >
       <Item
@@ -61,9 +61,9 @@ function LibraryList() {
         nocontent={isSmallMedium && isPlayingTrackbarOpen}
       />
       <Item
-        type="artist"
-        title="Halsey"
-        subtitle="Artist"
+        type="album"
+        title="Found Heaven"
+        subtitle="Album"
         size="small"
         nocontent={isSmallMedium && isPlayingTrackbarOpen}
       />

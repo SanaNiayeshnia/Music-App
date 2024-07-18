@@ -1,33 +1,34 @@
 import useScrollbar from "../../../hooks/useScrollbar";
+import Track from "../../tracks/Track";
 import PlayerTrack from "../PlayerTrack";
 
-function QueueList() {
+function QueueList({ setIsScrolled }) {
   const ref = useScrollbar();
 
   return (
     <div
       ref={ref}
-      className="scrollbar hide-scroll h-[calc(100%-6rem)] space-y-10 overflow-auto px-2"
+      onScroll={(e) => setIsScrolled(e.target.scrollTop)}
+      className="scrollbar hide-scroll h-[calc(100%-4.5rem)] space-y-10 overflow-auto pb-3 pl-3 pr-2"
     >
       <div className="space-y-2">
         <p className="text-sm font-semibold text-gray-900 dark:text-white">
           Now playing
         </p>
-        <PlayerTrack hoverable />
+        <Track smallScreen />
       </div>
       <div className="space-y-2">
         <p className="text-sm font-semibold text-gray-900 dark:text-white">
-          Now playing
+          Next from: Radical Optimism
         </p>
         <div className="">
-          <PlayerTrack hoverable />
-          <PlayerTrack hoverable />
-          <PlayerTrack hoverable />
-          <PlayerTrack hoverable />
-          <PlayerTrack hoverable /> <PlayerTrack hoverable />{" "}
-          <PlayerTrack hoverable /> <PlayerTrack hoverable />
-          <PlayerTrack hoverable /> <PlayerTrack hoverable />{" "}
-          <PlayerTrack hoverable />
+          <Track smallScreen />
+          <Track smallScreen />
+          <Track smallScreen />
+          <Track smallScreen />
+          <Track smallScreen /> <Track smallScreen /> <Track smallScreen />{" "}
+          <Track smallScreen />
+          <Track smallScreen /> <Track smallScreen /> <Track smallScreen />
         </div>
       </div>
     </div>

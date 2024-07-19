@@ -8,7 +8,7 @@ function TopNav({ children, transparent }) {
 
   return (
     <div
-      className={`${isMainScrolled ? "bg-white shadow-sm dark:bg-[#1A1A1A]" : transparent ? "bg-transparent" : "bg-white dark:bg-[#1A1A1A]"} absolute right-0 top-0 z-20 flex w-full items-center justify-between gap-5 px-5 py-3 lg:min-w-[425px]`}
+      className={`${isMainScrolled ? "bg-white/40 shadow-sm backdrop-blur-3xl dark:bg-black/40" : "bg-transparent"} absolute right-0 top-0 z-20 flex w-full items-center justify-between gap-5 px-5 py-3 lg:min-w-[425px]`}
     >
       <div className="flex min-h-[52px] items-center gap-2">
         <NavigationArrows />

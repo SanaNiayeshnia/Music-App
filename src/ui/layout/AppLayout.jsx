@@ -21,7 +21,7 @@ function AppLayout() {
 
   return (
     <div
-      className={`${isPlayingTrackbarOpen && isSmallMedium ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} grid h-screen min-h-[635px] grid-rows-[1fr_4fr_0.5fr] gap-2 bg-blue-100 px-3 py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr] dark:bg-black`}
+      className={`${isPlayingTrackbarOpen && isSmallMedium ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} grid h-screen min-h-[635px] grid-rows-[1fr_4fr_0.5fr] gap-2 px-3 py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
     >
       <Sidebar />
       <Library />

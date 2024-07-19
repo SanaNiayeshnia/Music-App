@@ -13,7 +13,7 @@ function AlbumPage() {
   return (
     <div className="pb-5">
       <TopNav transparent>
-        {isMainScrolled && <NavTitle>Conan Gray</NavTitle>}
+        {isMainScrolled && <NavTitle>Superache</NavTitle>}
       </TopNav>
       <PageHeader
         background="/header.png"

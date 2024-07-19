@@ -15,8 +15,17 @@ import TrackPage from "./pages/TrackPage";
 import PlaylistPage from "./pages/PlaylistPage";
 import SearchResults from "./features/searchAndDiscovery/SearchResults";
 import DefaultSearchPageContent from "./features/searchAndDiscovery/DefaultSearchPageContent";
+import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
-const client = new QueryClient();
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 
 function App() {
   const { isDarkMode } = useSelector((store) => store.global);
@@ -28,11 +37,35 @@ function App() {
 
   return (
     <QueryClientProvider client={client}>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: "0.75rem" }}
+          toastOptions={{
+            success: { duration: 3000 },
+            error: { duration: 5000 },
+            style: {
+              fontSize: "0.9rem",
+              padding: "1rem",
+              backgroundColor: "white",
+              color: "balck",
+              border: "1px solid black",
+            },
+          }}
+        />
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<AppLayout />}>
+            <Route
+              exact
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<HomePage />} />
               <Route path="search" element={<SearchPage />}>
                 <Route index element={<DefaultSearchPageContent />} />
@@ -44,6 +77,7 @@ function App() {
               <Route path="playlist/:id" element={<PlaylistPage />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

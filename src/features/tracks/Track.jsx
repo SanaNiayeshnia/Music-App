@@ -12,7 +12,7 @@ function Track({
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <tr
-      className={`${smallScreen ? "grid-cols-[2fr_0.5fr]" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr] xl:grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr] xl:grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]"} group grid items-center rounded-md px-2 py-2 hover:bg-blue-50 dark:hover:bg-glass-100`}
+      className={`${smallScreen ? "cursor-pointer grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]"} group grid items-center rounded-md py-2 hover:bg-blue-50 dark:hover:bg-glass-100`}
     >
       {!smallScreen && (
         <td className="w-3.5 text-center">

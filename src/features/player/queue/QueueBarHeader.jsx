@@ -6,7 +6,7 @@ function QueueBarHeader({ isScrolled }) {
   const dispatch = useDispatch();
   return (
     <div
-      className={`${isScrolled && "shadow-sm"} flex items-center justify-between px-3 py-5`}
+      className={`${isScrolled && "shadow-sm"} flex items-center justify-between px-3 py-[1.4rem]`}
     >
       <p className="text-sm font-semibold text-gray-900 dark:text-white">
         Queue

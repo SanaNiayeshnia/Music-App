@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import useAccessToken from "../features/authentication/useAccessToken";
 import Spinner from "./Spinner";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 function ProtectedRoute({ children }) {
   const { isLoading, isAuthenticated } = useAccessToken();

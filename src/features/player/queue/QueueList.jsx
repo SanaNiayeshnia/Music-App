@@ -15,13 +15,15 @@ function QueueList({ setIsScrolled }) {
         <p className="text-sm font-semibold text-gray-900 dark:text-white">
           Now playing
         </p>
-        <Track smallScreen />
+        <table className="w-full">
+          <Track smallScreen />
+        </table>
       </div>
       <div className="space-y-2">
         <p className="text-sm font-semibold text-gray-900 dark:text-white">
           Next from: Radical Optimism
         </p>
-        <div className="">
+        <table className="w-full">
           <Track smallScreen />
           <Track smallScreen />
           <Track smallScreen />
@@ -29,7 +31,7 @@ function QueueList({ setIsScrolled }) {
           <Track smallScreen /> <Track smallScreen /> <Track smallScreen />{" "}
           <Track smallScreen />
           <Track smallScreen /> <Track smallScreen /> <Track smallScreen />
-        </div>
+        </table>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+const musicApp = JSON.parse(localStorage.getItem("MusicApp")) || {};
 
 const initialState = {
-  isDarkMode: localStorage.getItem("mode") === "dark" ? true : false,
+  isDarkMode: musicApp?.mode === "dark",
   isSmallMedium: false,
   isMainScrolled: false,
 };
@@ -9,9 +10,18 @@ const globalSlice = createSlice({
   name: "global",
   initialState,
   reducers: {
-    toggleDarkMode(state, action) {
+    toggleDarkMode(state) {
       state.isDarkMode = !state.isDarkMode;
-      localStorage.setItem("mode", action.payload);
+
+      const musicApp = JSON.parse(localStorage.getItem("MusicApp")) || {};
+
+      localStorage.setItem(
+        "MusicApp",
+        JSON.stringify({
+          ...musicApp,
+          mode: state.isDarkMode ? "dark" : "light",
+        }),
+      );
     },
     setIsSmallMedium(state, action) {
       state.isSmallMedium = action.payload;

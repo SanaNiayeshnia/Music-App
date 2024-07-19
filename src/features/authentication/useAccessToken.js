@@ -15,7 +15,7 @@ function useAccessToken() {
   const { refreshToken, expiresAt } = useSelector(
     (store) => store.authentication,
   );
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const code = searchParams.get("code");
 
   let queryFunc;
@@ -43,9 +43,11 @@ function useAccessToken() {
           refreshToken: data?.refresh_token,
         }),
       );
-      navigate("/", { replace: true });
+      //remove the code param from the url cause its a one time use
+      searchParams.delete("code");
+      setSearchParams(searchParams);
     }
-  }, [data, dispatch, navigate]);
+  }, [data, dispatch, navigate, searchParams, setSearchParams]);
 
   useEffect(() => {
     // Refresh query 1 minute before expiry

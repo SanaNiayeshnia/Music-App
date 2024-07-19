@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-const musicApp = JSON.parse(localStorage.getItem("MusicApp"));
+const musicApp = JSON.parse(localStorage.getItem("MusicApp")) || {};
+
 const initialState = {
   accessToken: musicApp?.spotifyAccessToken || "",
   refreshToken: musicApp?.spotifyRefreshToken || "",
@@ -19,17 +20,16 @@ const authSlice = createSlice({
       state.expiresAt = action.payload.expiresAt;
       state.isAuthenticated = action.payload.expiresAt > Date.now();
 
-      localStorage.setItem(
-        "MusicApp",
-        JSON.stringify({
-          spotifyAccessToken: action.payload.accessToken,
-          spotifyRefreshToken: action.payload.refreshToken
-            ? action.payload.refreshToken
-            : state.refreshToken,
-          expiresAt: action.payload.expiresAt,
-          ...JSON.parse(localStorage.getItem("MusicApp")),
-        }),
-      );
+      const musicApp = JSON.parse(localStorage.getItem("MusicApp")) || {};
+
+      const updatedMusicApp = {
+        ...musicApp,
+        spotifyAccessToken: state.accessToken,
+        spotifyRefreshToken: state.refreshToken,
+        expiresAt: state.expiresAt,
+      };
+
+      localStorage.setItem("MusicApp", JSON.stringify(updatedMusicApp));
     },
   },
 });

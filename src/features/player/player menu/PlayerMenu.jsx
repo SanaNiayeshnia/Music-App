@@ -6,6 +6,8 @@ import {
 import VolumeHandler from "./VolumeHandler";
 import { togglePlayingTrackBar, toggleQueueBar } from "../PlaybackSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { TbArrowsDiagonal, TbPlaylist } from "react-icons/tb";
+import { BiAlbum } from "react-icons/bi";
 
 function PlayerMenu() {
   const dispatch = useDispatch();
@@ -14,16 +16,16 @@ function PlayerMenu() {
   );
   return (
     <div className="hidden items-center gap-3 md:flex">
-      <RiDiscLine
+      <BiAlbum
         className={`${isPlayingTrackbarOpen && !isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
         onClick={() => dispatch(togglePlayingTrackBar())}
       />
-      <RiPlayList2Fill
+      <TbPlaylist
         onClick={() => dispatch(toggleQueueBar())}
         className={`${isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
       />
       <VolumeHandler />
-      <RiExpandDiagonalLine className="cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white" />
+      <TbArrowsDiagonal className="min-h-5 min-w-5 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white" />
     </div>
   );
 }

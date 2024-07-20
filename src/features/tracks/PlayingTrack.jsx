@@ -1,4 +1,5 @@
 import { RiAddCircleLine } from "react-icons/ri";
+import { TbCirclePlus } from "react-icons/tb";
 
 function PlayingTrack() {
   return (
@@ -11,7 +12,7 @@ function PlayingTrack() {
           </p>
           <p className="text-gray-700 dark:text-gray-300">Dua lipa</p>
         </div>
-        <RiAddCircleLine className="min-h-5 min-w-5 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white" />
+        <TbCirclePlus className="min-h-5 min-w-5 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white" />
       </div>
     </div>
   );

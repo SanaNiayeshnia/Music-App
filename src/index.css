@@ -87,6 +87,7 @@
   width: 0.25rem;
   height: 0.25rem;
   border-radius: 0.5rem;
+  scroll-behavior: smooth;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {

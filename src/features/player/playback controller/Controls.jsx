@@ -1,19 +1,18 @@
-import {
-  RiPlayCircleFill,
-  RiRepeat2Fill,
-  RiShuffleFill,
-  RiSkipBackFill,
-  RiSkipForwardFill,
-} from "react-icons/ri";
 import PlayButton from "../../../ui/PlayButton";
+import {
+  TbArrowsShuffle,
+  TbPlayerSkipBackFilled,
+  TbPlayerSkipForwardFilled,
+  TbRepeat,
+} from "react-icons/tb";
 function Controls() {
   return (
     <div className="flex items-center justify-center gap-3">
-      <RiShuffleFill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
-      <RiSkipBackFill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
-      <PlayButton className="min-h-10 min-w-10" />
-      <RiSkipForwardFill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
-      <RiRepeat2Fill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
+      <TbArrowsShuffle className="cursor-pointer text-2xl text-black duration-100 hover:scale-105 dark:text-white" />
+      <TbPlayerSkipBackFilled className="cursor-pointer text-2xl text-black duration-100 hover:scale-105 dark:text-white" />
+      <PlayButton className="text-3xl" />
+      <TbPlayerSkipForwardFilled className="cursor-pointer text-2xl text-black duration-100 hover:scale-105 dark:text-white" />
+      <TbRepeat className="cursor-pointer text-2xl text-black duration-100 hover:scale-105 dark:text-white" />
     </div>
   );
 }

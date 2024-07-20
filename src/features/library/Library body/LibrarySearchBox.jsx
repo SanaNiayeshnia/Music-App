@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { RiCloseFill, RiSearch2Line } from "react-icons/ri";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 import { useSelector } from "react-redux";
+import { TbSearch, TbX } from "react-icons/tb";
+import { RiSearch2Line } from "react-icons/ri";
 
 function LibrarySearchBox() {
   const { isSmallMedium } = useSelector((store) => store.global);
@@ -37,7 +38,7 @@ function LibrarySearchBox() {
         />
 
         {searchQuery !== "" && (
-          <RiCloseFill
+          <TbX
             className="min-h-5 min-w-5 cursor-pointer"
             onClick={() => {
               setSearchQuery("");

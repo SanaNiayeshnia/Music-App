@@ -6,7 +6,8 @@ const playbackSlice = createSlice({
   initialState,
   reducers: {
     togglePlayingTrackBar(state) {
-      state.isPlayingTrackbarOpen = !state.isPlayingTrackbarOpen;
+      if (state.isQueueBarOpen) state.isQueueBarOpen = false;
+      else state.isPlayingTrackbarOpen = !state.isPlayingTrackbarOpen;
     },
     toggleQueueBar(state) {
       state.isPlayingTrackbarOpen = true;

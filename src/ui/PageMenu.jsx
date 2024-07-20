@@ -10,14 +10,14 @@ function PageMenu({ type }) {
         {type === "artist" ? (
           <Button>Follow</Button>
         ) : (
-          <RiAddCircleLine className="min-h-6 min-w-6 cursor-pointer text-gray-900 duration-100 hover:scale-110 dark:text-white" />
+          <RiAddCircleLine className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
         )}
 
-        <RiMoreFill className="min-h-6 min-w-6 cursor-pointer text-gray-900 duration-100 hover:scale-110 dark:text-white" />
+        <RiMoreFill className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-gray-900 dark:text-white">List</span>
-        <RiListUnordered className="min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-gray-900 duration-100 hover:bg-blue-50 dark:text-white dark:hover:bg-glass-100" />
+        <span className="text-black dark:text-white">List</span>
+        <RiListUnordered className="min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black duration-100 hover:scale-105 hover:bg-white/70 hover:shadow dark:text-white dark:hover:bg-black" />
       </div>
     </div>
   );

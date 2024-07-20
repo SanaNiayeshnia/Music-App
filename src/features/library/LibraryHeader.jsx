@@ -12,15 +12,15 @@ function LibraryHeader() {
       <div
         className={`${isPlayingTrackbarOpen && isSmallMedium && "justify-center"} flex items-center gap-2`}
       >
-        <RiBookmark3Line className="min-h-6 min-w-6 text-gray-900 duration-100 dark:text-white" />
+        <RiBookmark3Line className="min-h-6 min-w-6 text-black duration-100 dark:text-white" />
         <span
-          className={`${isPlayingTrackbarOpen && isSmallMedium && "md:hidden"} text-gray-900 md:inline-block dark:text-white`}
+          className={`${isPlayingTrackbarOpen && isSmallMedium && "md:hidden"} text-black md:inline-block dark:text-white`}
         >
           library
         </span>
       </div>
       <RiAddFill
-        className={`${isPlayingTrackbarOpen && isSmallMedium && "md:hidden"} min-h-8 min-w-8 cursor-pointer rounded-full p-1 text-gray-900 hover:bg-blue-50 md:inline-block dark:text-white dark:hover:bg-glass-100`}
+        className={`${isPlayingTrackbarOpen && isSmallMedium && "md:hidden"} min-h-8 min-w-8 cursor-pointer rounded-full p-1 text-black hover:bg-white/40 hover:shadow md:inline-block dark:text-white dark:hover:bg-black/40`}
       />
     </div>
   );

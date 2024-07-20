@@ -9,7 +9,7 @@ function QueueBar() {
 
   return (
     <div
-      className={`${isQueueBarOpen ? "animation-open-queuebar visible inset-0" : "animation-close-queuebar invisible top-full"} animation-open-queuebar absolute rounded-md bg-white dark:bg-[#1A1A1A]`}
+      className={`${isQueueBarOpen ? "animation-open-queuebar visible inset-0" : "animation-close-queuebar invisible top-full"} animation-open-queuebar absolute rounded-md bg-blue-100 shadow dark:bg-blue-950`}
     >
       <QueueBarHeader isScrolled={isScrolled} />
       <QueueList setIsScrolled={setIsScrolled} />

@@ -17,11 +17,11 @@ function LibrarySearchBox() {
   return (
     <div
       ref={ref}
-      className={`${isOpen && "bg-blue-50 dark:bg-glass-100"} ${!isPlayingTrackbarOpen && isSmallMedium && "max-w-24 lg:max-w-52"} flex items-center gap-1 rounded-md py-1`}
+      className={`${isOpen && "bg-white/50 shadow dark:bg-black/40"} ${!isPlayingTrackbarOpen && isSmallMedium && "max-w-24 lg:max-w-52"} flex items-center gap-1 rounded-md py-1`}
     >
       <RiSearch2Line
         onClick={() => setIsOpen(true)}
-        className={`min-h-7 min-w-7 rounded-full p-1 text-gray-900 duration-100 dark:text-white ${!isOpen && "cursor-pointer hover:bg-blue-50 dark:hover:bg-glass-100"}`}
+        className={`min-h-7 min-w-7 rounded-full p-1 text-black duration-100 dark:text-white ${!isOpen && "cursor-pointer hover:bg-white/50 hover:shadow dark:hover:bg-black/50"}`}
       />
       <div
         className={`${isOpen && "animation-open-searchbox w-36 opacity-100"} ${!isOpen && "animation-close-searchbox cursor-default"} mr-2 flex items-center gap-2 opacity-0`}
@@ -33,7 +33,7 @@ function LibrarySearchBox() {
           autoFocus
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className={`w-full bg-transparent text-sm placeholder:text-xs placeholder:text-gray-600 focus:border-0 focus:outline-0 dark:placeholder:text-glass-300`}
+          className={`w-full bg-transparent text-sm placeholder:text-xs placeholder:text-gray-600 focus:border-0 focus:outline-0 dark:placeholder:text-white/50`}
         />
 
         {searchQuery !== "" && (

@@ -1,6 +1,6 @@
 function HeaderType({ children }) {
   return (
-    <p className="text-sm font-semibold text-gray-900 first-letter:uppercase dark:text-white">
+    <p className="text-sm font-semibold text-black first-letter:uppercase dark:text-white">
       {children}
     </p>
   );

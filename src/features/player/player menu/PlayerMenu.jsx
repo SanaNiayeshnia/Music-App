@@ -15,15 +15,15 @@ function PlayerMenu() {
   return (
     <div className="hidden items-center gap-3 md:flex">
       <RiDiscLine
-        className={`${isPlayingTrackbarOpen && !isQueueBarOpen ? "text-blue-600" : "text-gray-900 dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
+        className={`${isPlayingTrackbarOpen && !isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
         onClick={() => dispatch(togglePlayingTrackBar())}
       />
       <RiPlayList2Fill
         onClick={() => dispatch(toggleQueueBar())}
-        className={`${isQueueBarOpen ? "text-blue-600" : "text-gray-900 dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
+        className={`${isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
       />
       <VolumeHandler />
-      <RiExpandDiagonalLine className="cursor-pointer text-gray-900 duration-100 hover:text-blue-600 dark:text-white" />
+      <RiExpandDiagonalLine className="cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white" />
     </div>
   );
 }

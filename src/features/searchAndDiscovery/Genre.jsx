@@ -1,7 +1,7 @@
 function Genre() {
   return (
-    <div className="group relative flex min-h-36 cursor-pointer overflow-hidden rounded-md bg-blue-50 px-4 py-4">
-      <p className="text-lg font-bold">Rock</p>
+    <div className="group relative flex min-h-36 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/40">
+      <p className="text-lg font-bold text-black dark:text-white">Rock</p>
       <img
         src="/test.png"
         alt=""

@@ -15,7 +15,7 @@ function PageHeader({ background, type, title, cover, artistPic, something }) {
             <img
               src={artistPic}
               alt=""
-              className="h-6 w-6 rounded-full shadow-sm"
+              className="h-6 w-6 rounded-full shadow"
             />
             {something}
           </div>

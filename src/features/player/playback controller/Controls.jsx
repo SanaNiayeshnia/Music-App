@@ -9,11 +9,11 @@ import PlayButton from "../../../ui/PlayButton";
 function Controls() {
   return (
     <div className="flex items-center justify-center gap-3">
-      <RiShuffleFill className="min-h-6 min-w-6 cursor-pointer text-gray-800 duration-100 hover:text-gray-900 dark:text-white dark:hover:text-blue-100" />
-      <RiSkipBackFill className="min-h-6 min-w-6 cursor-pointer text-gray-800 duration-100 hover:text-gray-900 dark:text-white dark:hover:text-blue-100" />
+      <RiShuffleFill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
+      <RiSkipBackFill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
       <PlayButton className="min-h-10 min-w-10" />
-      <RiSkipForwardFill className="min-h-6 min-w-6 cursor-pointer text-gray-800 duration-100 hover:text-gray-900 dark:text-white dark:hover:text-blue-100" />
-      <RiRepeat2Fill className="min-h-6 min-w-6 cursor-pointer text-gray-800 duration-100 hover:text-gray-900 dark:text-white dark:hover:text-blue-100" />
+      <RiSkipForwardFill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
+      <RiRepeat2Fill className="min-h-6 min-w-6 cursor-pointer text-black/80 duration-100 hover:text-black dark:text-white/80 dark:hover:text-white" />
     </div>
   );
 }

@@ -1,14 +1,17 @@
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIsMainScrolled } from "../../GlobalSlice";
+import useScrollbar from "../../hooks/useScrollbar";
 
 function Main() {
   const dispatch = useDispatch();
+  const ref = useScrollbar();
 
   return (
-    <div className="relative w-full overflow-hidden rounded-md bg-white/40 shadow-lg backdrop-blur-md dark:bg-black/40">
+    <div className="relative w-full overflow-hidden rounded-lg bg-white/50 shadow-lg backdrop-blur-md dark:bg-black/50">
       <div
-        className="scrollbar h-full overflow-auto"
+        ref={ref}
+        className="scrollbar hide-scroll h-full overflow-auto"
         onScroll={(e) => {
           dispatch(setIsMainScrolled(e.target.scrollTop > 0));
         }}

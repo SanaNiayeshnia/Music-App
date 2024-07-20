@@ -14,12 +14,12 @@ function LoginForm() {
   }
 
   return (
-    <div className="flex min-h-[445px] max-w-[19rem] flex-col items-center justify-center gap-3 rounded-md bg-white p-5 shadow-md dark:bg-glass-100">
-      <p className="text-center text-3xl font-bold text-gray-900 dark:text-white">
+    <div className="flex min-h-[445px] max-w-[19rem] flex-col items-center justify-center gap-3 rounded-md bg-white/50 p-5 shadow-md lg:max-w-80 dark:bg-black/50">
+      <p className="text-center text-3xl font-bold text-black dark:text-white">
         Welcome to Music App!
       </p>
       <img src="/logo.png" alt="" className="h-52 w-52" />
-      <p className="text-center text-gray-900 dark:text-white">
+      <p className="text-center text-black dark:text-white">
         {refreshToken
           ? "You've already logged in."
           : "You need to connect to your Spotify account to log in."}

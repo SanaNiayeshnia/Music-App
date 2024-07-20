@@ -11,11 +11,11 @@ function NavigationArrows() {
     <div className="flex items-center gap-1">
       <RiArrowLeftSLine
         onClick={() => (isOnTheMainPage ? null : navigate(-1))}
-        className={`${isOnTheMainPage ? "cursor-not-allowed text-gray-600 dark:text-gray-300" : "cursor-pointer text-gray-900 hover:bg-blue-100 dark:text-white dark:hover:bg-glass-200"} min-h-8 min-w-8 rounded-full bg-blue-50 p-1 dark:bg-glass-100`}
+        className={`${isOnTheMainPage ? "cursor-not-allowed bg-blue-500 text-white/80" : "cursor-pointer text-white hover:bg-blue-700"} min-h-8 min-w-8 rounded-full bg-blue-600 p-1 shadow-md`}
       />
       <RiArrowRightSLine
         onClick={() => (isFirstTimeOnTheMainPage ? null : navigate(+1))}
-        className={`${isFirstTimeOnTheMainPage ? "cursor-not-allowed text-gray-600 dark:text-gray-300" : "cursor-pointer text-gray-900 hover:bg-blue-100 dark:text-white dark:hover:bg-glass-200"} hidden min-h-8 min-w-8 rounded-full bg-blue-50 p-1 lg:inline-block dark:bg-glass-100`}
+        className={`${isFirstTimeOnTheMainPage ? "cursor-not-allowed bg-blue-500 text-white/80" : "cursor-pointer text-white hover:bg-blue-700"} hidden min-h-8 min-w-8 rounded-full bg-blue-600 p-1 shadow-md lg:inline-block`}
       />
     </div>
   );

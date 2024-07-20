@@ -18,7 +18,7 @@ function PageMenu({ type }) {
       </div>
       <div className="flex items-center gap-2">
         <span className="text-black dark:text-white">List</span>
-        <TbList className="min-h-6 min-w-6 cursor-pointer rounded-full text-black duration-100 hover:scale-105 hover:text-blue-600" />
+        <TbList className="min-h-6 min-w-6 cursor-pointer rounded-full text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
       </div>
     </div>
   );

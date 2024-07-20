@@ -4,7 +4,7 @@ import TopNav from "../ui/TopNav";
 
 function SearchPage() {
   return (
-    <div className="px-5 pb-5 pt-[85px]">
+    <div>
       <TopNav>
         <SearchBox />
       </TopNav>

@@ -11,7 +11,7 @@ import TrackList from "../features/tracks/TrackList";
 function AlbumPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
   return (
-    <div className="pb-5">
+    <div>
       <TopNav transparent>
         {isMainScrolled && <NavTitle>Superache</NavTitle>}
       </TopNav>

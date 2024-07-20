@@ -7,10 +7,10 @@ function PageHeaderWrapper({ background, children }) {
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
       }}
-      className={`relative h-72 w-full`}
+      className={`relative h-[17rem] w-full rounded-lg shadow-md`}
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-white/40 from-[0.5%] brightness-150 filter dark:from-black/40 dark:brightness-50"></div>
-      <div className="absolute inset-0 gap-5 space-y-5 px-5 pt-[90px]">
+      <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-white/80 from-[1%] brightness-150 dark:from-black/80 dark:brightness-50"></div>
+      <div className="absolute inset-0 flex flex-col justify-center gap-5 px-5">
         {children}
       </div>
     </div>

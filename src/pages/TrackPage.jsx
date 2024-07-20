@@ -10,7 +10,7 @@ function TrackPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
 
   return (
-    <div className="pb-5">
+    <div>
       <TopNav transparent>
         {isMainScrolled && <NavTitle>People Watching</NavTitle>}
       </TopNav>

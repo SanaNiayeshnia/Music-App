@@ -10,7 +10,7 @@ import TrackList from "../features/tracks/TrackList";
 function PlaylistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
   return (
-    <div className="pb-5">
+    <div>
       <TopNav transparent>
         {isMainScrolled && <NavTitle>Conan Gray</NavTitle>}
       </TopNav>

@@ -10,7 +10,7 @@ import PageMenu from "../ui/PageMenu";
 function ArtistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
   return (
-    <div className="w-full pb-5">
+    <div className="w-full">
       <TopNav transparent>
         {isMainScrolled && <NavTitle>Conan Gray</NavTitle>}
       </TopNav>

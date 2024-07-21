@@ -33,3 +33,14 @@ export async function refreshAccessToken(refresh_token) {
   const data = await res.json();
   return { ...data, expiresAt: Date.now() + data.expires_in * 1000 };
 }
+
+export async function getUser() {
+  const accessToken = JSON.parse(
+    localStorage.getItem("MusicApp"),
+  ).spotifyAccessToken;
+  const res = await fetch("https://api.spotify.com/v1/me", {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  const data = await res.json();
+  return data;
+}

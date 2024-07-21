@@ -1,4 +1,4 @@
-import { TbHome, TbHomeFilled, TbSearch, TbSearchOff } from "react-icons/tb";
+import { TbHome, TbHomeFilled } from "react-icons/tb";
 import SideItem from "./SideItem";
 import { RiSearch2Fill, RiSearch2Line } from "react-icons/ri";
 function Sidebar() {

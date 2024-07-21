@@ -8,6 +8,7 @@ function LoginForm() {
   const { refreshToken } = useSelector((store) => store.authentication);
 
   function handleLoginClick() {
+    //check if the user has a refresh token, use it to get a new access token, otherwise go to spotify login page to get a code
     if (refreshToken) navigate("/");
     else
       window.location.href = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;

@@ -60,6 +60,15 @@
     inset: 100% 0 0 0;
   }
 }
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 
 .animation-open-searchbox {
   animation: open-searchbox 0.5s alternate;
@@ -92,7 +101,6 @@
 
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: #2563eb;
-
   transition: all 0.3s;
   border-radius: 0.5rem;
 }

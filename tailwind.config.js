@@ -5,12 +5,7 @@ export default {
     fontFamily: {
       sans: ["poppins"],
     },
-
-    extend: {
-      colors: {
-        glass: { 100: "#ffffff1a", 200: "#ffffff30", 300: "#ffffff50" },
-      },
-    },
+    extend: {},
   },
   plugins: [],
   darkMode: "selector",

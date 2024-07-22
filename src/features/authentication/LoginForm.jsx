@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { CLIENT_ID, REDIRECT_URI } from "../../utilities/constants";
 import { useSelector } from "react-redux";
+import Cover from "../../ui/Cover";
 
 function LoginForm() {
+  const { isDarkMode } = useSelector((store) => store.global);
   const RESPONSE_TYPE = "code";
   const navigate = useNavigate();
   const { refreshToken } = useSelector((store) => store.authentication);
@@ -15,22 +17,45 @@ function LoginForm() {
   }
 
   return (
-    <div className="flex min-h-[445px] max-w-[19rem] flex-col items-center justify-center gap-3 rounded-md bg-white/50 p-5 shadow-md lg:max-w-80 dark:bg-black/50">
-      <p className="text-center text-3xl font-bold text-black dark:text-white">
-        Welcome to Music App!
+    <div className="max-w-96 space-y-8 rounded-lg bg-white/50 px-8 py-5 text-center shadow-md md:max-w-[650px] md:space-y-10 md:p-10 dark:bg-black/50">
+      <p className="flex flex-col justify-center text-center text-3xl font-bold text-black md:mb-10 md:flex-row md:gap-2 dark:text-white">
+        <span>Welcome to</span>
+        <span>Music App!</span>
       </p>
-      <img src="/logo.png" alt="" className="h-52 w-52" />
-      <p className="text-center text-black dark:text-white">
-        {refreshToken
-          ? "You've already logged in."
-          : "You need to connect to your Spotify account to log in."}
-      </p>
-      <button
-        onClick={handleLoginClick}
-        className="rounded-md bg-blue-600 px-3 py-2 text-white shadow-md hover:bg-blue-700 hover:ring hover:ring-blue-100 dark:hover:ring-glass-200"
-      >
-        {refreshToken ? "Go to the app" : "Connect"}
-      </button>
+      <div className="flex flex-col items-center gap-5 md:flex-row md:gap-10">
+        <div>
+          <Cover
+            image={`/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`}
+            className="-ml-8 h-52 w-52 md:ml-auto"
+          />
+        </div>
+        <div className="space-y-5 text-center">
+          <p className="text-justify text-black dark:text-white">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus,
+            officia? Dignissimos accusamus architecto, facere rem natus aliquam
+            nostrum ab explicabo reiciendis at corrupti earum ex nam possimus
+            perferendis
+          </p>
+        </div>
+      </div>
+      <div className="space-y-3 text-center">
+        <div className="text-center text-sm text-black dark:text-white">
+          {refreshToken ? (
+            <p>You've already logged in.</p>
+          ) : (
+            <p className="flex flex-col items-center">
+              <span>You need to connect to</span>
+              <span>your Spotify account to log in.</span>
+            </p>
+          )}
+        </div>
+        <button
+          onClick={handleLoginClick}
+          className="dark:hover:ring-glass-200 rounded-md bg-blue-600 px-3 py-2 text-white shadow-md hover:bg-blue-700 hover:ring hover:ring-blue-100"
+        >
+          {refreshToken ? "Go to the app" : "Connect"}
+        </button>
+      </div>
     </div>
   );
 }

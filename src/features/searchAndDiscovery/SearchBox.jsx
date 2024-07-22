@@ -12,7 +12,7 @@ function SearchBox() {
 
   return (
     <div
-      className={`flex items-center gap-2 overflow-hidden rounded-full border-2 border-blue-600 bg-white/50 px-3 py-3 shadow-md focus-within:ring-2 focus-within:ring-blue-600/40 dark:bg-black/40`}
+      className={`flex items-center gap-2 overflow-hidden rounded-full border-2 border-blue-600 bg-white/50 px-3 py-3 shadow-md focus-within:ring-2 focus-within:ring-blue-600/40 dark:bg-black/50`}
     >
       <RiSearch2Line className="min-h-5 min-w-5 text-black dark:text-white" />
       <input

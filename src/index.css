@@ -10,6 +10,17 @@
   color: white;
 }
 
+body {
+  background-image: url(/bg-light.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+:root.dark body {
+  background-image: url(/bg-dark.jpeg);
+}
+
 /*animations*/
 @keyframes open-searchbox {
   from {

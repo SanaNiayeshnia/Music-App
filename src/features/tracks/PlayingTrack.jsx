@@ -10,7 +10,7 @@ function PlayingTrack() {
           <p className="text-lg font-bold text-black dark:text-white">
             Houdini
           </p>
-          <p className="text-gray-700 dark:text-gray-300">Dua lipa</p>
+          <p className="text-gray-600 dark:text-gray-300">Dua lipa</p>
         </div>
         <TbCirclePlus className="min-h-5 min-w-5 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white" />
       </div>

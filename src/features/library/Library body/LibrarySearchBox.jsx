@@ -18,7 +18,7 @@ function LibrarySearchBox() {
   return (
     <div
       ref={ref}
-      className={`${isOpen && "bg-white/50 shadow dark:bg-black/40"} ${!isPlayingTrackbarOpen && isSmallMedium && "max-w-24 lg:max-w-52"} flex items-center gap-1 rounded-md py-1`}
+      className={`${isOpen && "bg-white/50 shadow dark:bg-black/50"} ${!isPlayingTrackbarOpen && isSmallMedium && "max-w-24 lg:max-w-52"} flex items-center gap-1 rounded-md py-1`}
     >
       <RiSearch2Line
         onClick={() => setIsOpen(true)}

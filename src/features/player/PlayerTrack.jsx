@@ -6,7 +6,7 @@ function PlayerTrack() {
         <p className="text-sm font-medium text-black dark:text-white">
           Houdini
         </p>
-        <p className="text-[0.8rem] text-gray-700 dark:text-gray-300">
+        <p className="text-[0.8rem] text-gray-600 dark:text-gray-300">
           Dua lipa
         </p>
       </div>

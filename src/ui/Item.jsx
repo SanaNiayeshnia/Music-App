@@ -22,7 +22,7 @@ function Item({ type, title, subtitle, size, nocontent = false }) {
       {!nocontent && (
         <div className={`flex flex-col justify-center gap-1 text-sm`}>
           <p className="font-medium text-black dark:text-white">{title}</p>
-          <p className="text-gray-700 dark:text-gray-300">{subtitle}</p>
+          <p className="text-gray-600 dark:text-gray-300">{subtitle}</p>
         </div>
       )}
     </div>

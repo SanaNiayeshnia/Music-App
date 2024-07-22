@@ -9,7 +9,7 @@ function PageHeader({ background, type, title, cover, artistPic, something }) {
     <PageHeaderWrapper background={background}>
       <div className="flex items-center gap-4 xl:gap-5">
         <Cover src={cover} alt="" />
-        <div className={`max-w-44 space-y-3 lg:max-w-full lg:space-y-4`}>
+        <div className={`max-w-60 space-y-3 lg:max-w-full lg:space-y-4`}>
           <HeaderType>{type}</HeaderType>
           <PageTitle>{title}</PageTitle>
           <div className="flex items-center gap-1">

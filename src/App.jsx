@@ -37,7 +37,7 @@ function App() {
 
   return (
     <QueryClientProvider client={client}>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
         <Toaster
           position="top-center"

@@ -13,7 +13,11 @@ function Cover({ image, title }) {
         alt={title}
         className={`absolute inset-0 z-20 h-full w-full rounded shadow-[5px_3px_8px_0_#262626]`}
       />
-      <GramophoneDisc image={image} title={title} />
+      <div
+        className={` ${isPlayingTrackbarOpen ? "left-0" : "left-12 lg:left-20"} absolute top-0 z-10 grid h-full w-full place-items-center p-1`}
+      >
+        <GramophoneDisc image={image} title={title} />
+      </div>
     </div>
   );
 }

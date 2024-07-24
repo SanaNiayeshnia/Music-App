@@ -1,6 +1,5 @@
 import useScrollbar from "../../../hooks/useScrollbar";
 import Track from "../../tracks/Track";
-import PlayerTrack from "../PlayerTrack";
 
 function QueueList({ setIsScrolled }) {
   const ref = useScrollbar();

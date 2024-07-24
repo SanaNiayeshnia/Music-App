@@ -5,14 +5,13 @@ import { useSelector } from "react-redux";
 import Filters from "../../../ui/Filters";
 
 function LibraryBody() {
-  const { isSmallMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
     <>
       <div
         className={`${
-          isPlayingTrackbarOpen && isSmallMedium ? "hidden" : "inline-block"
-        } space-y-3 px-4`}
+          isPlayingTrackbarOpen ? "md:hidden" : "md:inline-block"
+        } space-y-3 px-4 lg:inline-block`}
       >
         <Filters />
         <div className="flex items-center justify-between gap-2 text-black dark:text-white">

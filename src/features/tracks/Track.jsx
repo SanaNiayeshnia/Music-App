@@ -1,5 +1,3 @@
-import { IoMdPlay } from "react-icons/io";
-import { RiAddCircleLine, RiMoreFill } from "react-icons/ri";
 import { TbCirclePlus, TbDots, TbPlayerPlayFilled } from "react-icons/tb";
 import { useSelector } from "react-redux";
 

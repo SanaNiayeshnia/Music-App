@@ -1,4 +1,3 @@
-import { RiAddCircleLine } from "react-icons/ri";
 import { TbCirclePlus } from "react-icons/tb";
 
 function PlayingTrack() {

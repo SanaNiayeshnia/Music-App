@@ -3,7 +3,7 @@ const musicApp = JSON.parse(localStorage.getItem("MusicApp")) || {};
 
 const initialState = {
   isDarkMode: musicApp?.mode === "dark",
-  isSmallMedium: false,
+  isMedium: false,
   isMainScrolled: false,
 };
 const globalSlice = createSlice({
@@ -23,8 +23,8 @@ const globalSlice = createSlice({
         }),
       );
     },
-    setIsSmallMedium(state, action) {
-      state.isSmallMedium = action.payload;
+    setIsMedium(state, action) {
+      state.isMedium = action.payload;
     },
     setIsMainScrolled(state, action) {
       state.isMainScrolled = action.payload;
@@ -33,5 +33,5 @@ const globalSlice = createSlice({
 });
 
 export default globalSlice.reducer;
-export const { toggleDarkMode, setIsSmallMedium, setIsMainScrolled } =
+export const { toggleDarkMode, setIsMedium, setIsMainScrolled } =
   globalSlice.actions;

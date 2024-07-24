@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 import { useSelector } from "react-redux";
-import { TbSearch, TbX } from "react-icons/tb";
+import { TbX } from "react-icons/tb";
 import { RiSearch2Line } from "react-icons/ri";
 
 function LibrarySearchBox() {
-  const { isSmallMedium } = useSelector((store) => store.global);
+  const { isMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
@@ -18,7 +18,7 @@ function LibrarySearchBox() {
   return (
     <div
       ref={ref}
-      className={`${isOpen && "bg-white/50 shadow dark:bg-black/50"} ${!isPlayingTrackbarOpen && isSmallMedium && "max-w-24 lg:max-w-52"} flex items-center gap-1 rounded-md py-1`}
+      className={`${isOpen && "bg-white/50 shadow dark:bg-black/50"} ${!isPlayingTrackbarOpen && isMedium && "max-w-24 lg:max-w-52"} flex items-center gap-1 rounded-md py-1`}
     >
       <RiSearch2Line
         onClick={() => setIsOpen(true)}

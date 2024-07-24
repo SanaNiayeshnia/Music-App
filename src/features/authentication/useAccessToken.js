@@ -12,7 +12,7 @@ function useAccessToken() {
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { refreshToken, expiresAt } = useSelector(
+  const { refreshToken, expiresAt, isOnLine } = useSelector(
     (store) => store.authentication,
   );
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,7 +30,7 @@ function useAccessToken() {
     queryKey: ["access-token"],
     queryFn: queryFunc,
     staleTime: refreshToken ? expiresAt - Date.now() - 60000 : 0,
-    enabled: Boolean(refreshToken || code),
+    enabled: Boolean(refreshToken || code) && isOnLine,
   });
 
   useEffect(() => {

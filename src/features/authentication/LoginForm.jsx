@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { CLIENT_ID, REDIRECT_URI } from "../../utilities/constants";
+import { APP_NAME, CLIENT_ID, REDIRECT_URI } from "../../utilities/constants";
 import { useSelector } from "react-redux";
 import Cover from "../../ui/Cover";
+import Logo from "../../ui/Logo";
 
 function LoginForm() {
-  const { isDarkMode } = useSelector((store) => store.global);
   const RESPONSE_TYPE = "code";
   const navigate = useNavigate();
   const { refreshToken } = useSelector((store) => store.authentication);
@@ -20,15 +20,10 @@ function LoginForm() {
     <div className="max-w-96 space-y-8 rounded-lg bg-white/50 px-8 py-5 text-center shadow-md md:max-w-[650px] md:space-y-10 md:p-10 dark:bg-black/50">
       <p className="flex flex-col justify-center text-center text-3xl font-bold text-black md:mb-10 md:flex-row md:gap-2 dark:text-white">
         <span>Welcome to</span>
-        <span>Music App!</span>
+        <span>{APP_NAME}!</span>
       </p>
       <div className="flex flex-col items-center gap-5 md:flex-row md:gap-10">
-        <div>
-          <Cover
-            image={`/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`}
-            className="-ml-8 h-52 w-52 md:ml-auto"
-          />
-        </div>
+        <Logo />
         <div className="space-y-5 text-center">
           <p className="text-justify text-black dark:text-white">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus,

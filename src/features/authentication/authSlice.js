@@ -6,6 +6,7 @@ const initialState = {
   refreshToken: musicApp?.spotifyRefreshToken || "",
   expiresAt: musicApp?.expiresAt || 0,
   isAuthenticated: (musicApp?.expiresAt || 0) > Date.now(),
+  isOnLine: navigator.onLine,
 };
 
 const authSlice = createSlice({
@@ -31,8 +32,12 @@ const authSlice = createSlice({
 
       localStorage.setItem("MusicApp", JSON.stringify(updatedMusicApp));
     },
+
+    setIsOnline(state, action) {
+      state.isOnLine = action.payload;
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { setAccessToken } = authSlice.actions;
+export const { setAccessToken, setIsOnline } = authSlice.actions;

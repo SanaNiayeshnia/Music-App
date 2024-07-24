@@ -7,7 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "./utilities/theme";
 import AppLayout from "./ui/layout/AppLayout";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ArtistPage from "./pages/ArtistPage";
 import PageNotFound from "./pages/PageNotFound";
 import AlbumPage from "./pages/AlbumPage";
@@ -18,6 +18,7 @@ import DefaultSearchPageContent from "./features/searchAndDiscovery/DefaultSearc
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import { setIsOnline } from "./features/authentication/authSlice";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -29,11 +30,27 @@ const client = new QueryClient({
 
 function App() {
   const { isDarkMode } = useSelector((store) => store.global);
+  const dispatch = useDispatch();
+
   useEffect(() => {
+    //set dark class for root element based on localstorage mode property
     isDarkMode
       ? document.documentElement.classList.add("dark")
       : document.documentElement.classList.remove("dark");
   }, [isDarkMode]);
+
+  useEffect(() => {
+    //change connection state(offline/online) based on user connection
+    function changeConnectionState() {
+      dispatch(setIsOnline(navigator.onLine));
+    }
+    window.addEventListener("online", changeConnectionState);
+    window.addEventListener("offline", changeConnectionState);
+    return () => {
+      window.removeEventListener("online", changeConnectionState);
+      window.removeEventListener("offline", changeConnectionState);
+    };
+  }, [dispatch]);
 
   return (
     <QueryClientProvider client={client}>

@@ -3,7 +3,7 @@ import Skeleton from "./Skeleton";
 
 function UserAvatar() {
   const { isLoading, user } = useUser();
-  const firstLetterOfUserName = user?.display_name?.slice(0, 1);
+  const firstLetterOfUserName = user?.display_name?.slice(0, 1) || "";
   return (
     <div className="h-9 w-9 overflow-hidden rounded-full border-4 border-blue-600 shadow-md">
       {isLoading ? (
@@ -11,7 +11,7 @@ function UserAvatar() {
       ) : (
         <>
           {/*show the first letter of username when there is no image*/}
-          {user.images.length > 0 ? (
+          {user?.images?.length > 0 ? (
             <img
               className="size-full"
               src={user.images[0].url}

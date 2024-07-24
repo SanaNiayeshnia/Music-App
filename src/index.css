@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 * {
-  transition: all 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    outline-color 0.3s,
+    color 0.3s;
 }
 
 *::selection {
@@ -82,21 +86,27 @@ body {
 }
 
 .animation-open-searchbox {
+  transition: all 0.3s;
   animation: open-searchbox 0.5s alternate;
 }
 .animation-close-searchbox {
+  transition: all 0.3s;
   animation: close-searchbox 0.5s alternate;
 }
 .animation-show-playicon {
+  transition: all 0.3s;
   animation: show-playicon 0.5s alternate;
 }
 .animation-hide-playicon {
+  transition: all 0.3s;
   animation: hide-playicon 0.5s alternate;
 }
 .animation-open-queuebar {
+  transition: all 0.3s;
   animation: open-queuebar 0.5s alternate;
 }
 .animation-close-queuebar {
+  transition: all 0.3s;
   animation: close-queuebar 0.5s alternate;
 }
 

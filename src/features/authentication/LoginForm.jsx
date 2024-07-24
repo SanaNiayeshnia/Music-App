@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { APP_NAME, CLIENT_ID, REDIRECT_URI } from "../../utilities/constants";
 import { useSelector } from "react-redux";
-import Cover from "../../ui/Cover";
 import Logo from "../../ui/Logo";
 
 function LoginForm() {
   const RESPONSE_TYPE = "code";
+  const scope = "user-follow-read";
   const navigate = useNavigate();
   const { refreshToken } = useSelector((store) => store.authentication);
 
@@ -13,7 +13,7 @@ function LoginForm() {
     //check if the user has a refresh token, use it to get a new access token, otherwise go to spotify login page to get a code
     if (refreshToken) navigate("/");
     else
-      window.location.href = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+      window.location.href = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${scope}`;
   }
 
   return (

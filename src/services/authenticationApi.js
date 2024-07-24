@@ -41,6 +41,7 @@ export async function getUser() {
   const res = await fetch("https://api.spotify.com/v1/me", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
+  if (res.status !== 200) throw new Error("Failed to get the user info!");
   const data = await res.json();
   return data;
 }

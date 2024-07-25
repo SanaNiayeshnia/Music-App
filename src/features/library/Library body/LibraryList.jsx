@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import useScrollbar from "../../../hooks/useScrollbar";
 import Item from "../../../ui/Item";
-import useFollowedItems from "./useFollowedItems";
+import useFollowedItems from "../useFollowedItems";
 
 function LibraryList() {
   const ref = useScrollbar();

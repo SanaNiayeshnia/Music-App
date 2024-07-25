@@ -2,7 +2,6 @@ import { TbBookmark, TbPlus } from "react-icons/tb";
 import { useSelector } from "react-redux";
 
 function LibraryHeader() {
-  const { isMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
 
   return (

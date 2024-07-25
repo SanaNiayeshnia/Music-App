@@ -2,7 +2,7 @@ export async function getFollowedArtists() {
   const accessToken = JSON.parse(
     localStorage.getItem("MusicApp"),
   ).spotifyAccessToken;
-  let url = "https://api.spotify.com/v1/me/following?type=artist";
+  let url = "https://api.spotify.com/v1/me/following?type=artist&limit=50";
 
   const res = await fetch(url, {
     headers: { authorization: `Bearer ${accessToken}` },

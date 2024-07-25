@@ -2,7 +2,7 @@ export async function getSavedPlaylists() {
   const accessToken = JSON.parse(
     localStorage.getItem("MusicApp"),
   ).spotifyAccessToken;
-  const res = await fetch("https://api.spotify.com/v1/me/playlists", {
+  const res = await fetch("https://api.spotify.com/v1/me/playlists?limit=50", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
   if (res.status !== 200) throw new Error("Failed to get the saved playlists!");

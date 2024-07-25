@@ -7,5 +7,10 @@ export async function getSavedAlbums() {
   });
   if (res.status !== 200) throw new Error("Failed to get the saved albums!");
   const data = await res.json();
-  return data;
+
+  return {
+    albums: data?.items?.map((item) => item.album),
+    count: data?.total,
+    next: data?.next,
+  };
 }

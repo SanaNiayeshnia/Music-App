@@ -7,8 +7,10 @@ function useSavedAlbums() {
     queryFn: getSavedAlbums,
   });
 
-  const savedAlbums = data?.items?.map((item) => item.album);
-  return { isLoading, savedAlbums };
+  const savedAlbums = data?.albums;
+  const count = data?.count;
+  const next = data?.next;
+  return { isLoading, savedAlbums, count, next };
 }
 
 export default useSavedAlbums;

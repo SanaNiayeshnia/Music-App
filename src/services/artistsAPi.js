@@ -12,5 +12,9 @@ export async function getFollowedArtists() {
 
   const data = await res.json();
 
-  return data;
+  return {
+    artists: data?.artists?.items,
+    count: data?.artists?.total,
+    next: data?.artists?.next,
+  };
 }

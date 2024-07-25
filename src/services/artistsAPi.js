@@ -2,21 +2,15 @@ export async function getFollowedArtists() {
   const accessToken = JSON.parse(
     localStorage.getItem("MusicApp"),
   ).spotifyAccessToken;
-  let url = "https://api.spotify.com/v1/me/following?type=artist&limit=50";
-  let allArtists = [];
+  let url = "https://api.spotify.com/v1/me/following?type=artist";
 
-  //fetch till it reaces the end and there's no more artist items
-  while (url) {
-    const res = await fetch(url, {
-      headers: { authorization: `Bearer ${accessToken}` },
-    });
-    if (res.status !== 200)
-      throw new Error("Failed to get the followed artists!");
+  const res = await fetch(url, {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (res.status !== 200)
+    throw new Error("Failed to get the followed artists!");
 
-    const data = await res.json();
-    allArtists = [...allArtists, ...data?.artists.items];
-    url = data?.artists?.next;
-  }
+  const data = await res.json();
 
-  return allArtists;
+  return data;
 }

@@ -4,12 +4,14 @@ import Item from "../../../ui/Item";
 import useFollowedArtists from "../../artists/useFollowedArtists";
 import useSavedAlbums from "../../albums/useSavedAlbums";
 import { useEffect, useState } from "react";
+import useSavedPlaylists from "../../playlists/useSavedPlaylists";
 
 function LibraryList() {
   const ref = useScrollbar();
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const { isLoading: isLoadingArtists, followedArtists } = useFollowedArtists();
   const { isLoading: isLoadingAlbums, savedAlbums } = useSavedAlbums();
+  const { isLoading: isLoadingPlaylists, savedPlaylists } = useSavedPlaylists();
   const [followedItems, setFollowedItems] = useState([]);
 
   return (
@@ -28,6 +30,9 @@ function LibraryList() {
           ))}
           {savedAlbums?.map((album) => (
             <Item key={album.id} item={album} size="small" />
+          ))}
+          {savedPlaylists?.map((playlist) => (
+            <Item key={playlist.id} item={playlist} size="small" />
           ))}
         </>
       )}

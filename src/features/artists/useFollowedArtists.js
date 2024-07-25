@@ -2,11 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import { getFollowedArtists } from "../../services/artistsAPi";
 
 function useFollowedArtists() {
-  const { isLoading, data: followedArtists } = useQuery({
+  const {
+    isLoading,
+    data,
+    total: count,
+  } = useQuery({
     queryKey: ["followed-artists"],
     queryFn: getFollowedArtists,
   });
-  const count = followedArtists?.length;
+
+  const followedArtists = data?.artists?.items;
 
   return { isLoading, followedArtists, count };
 }

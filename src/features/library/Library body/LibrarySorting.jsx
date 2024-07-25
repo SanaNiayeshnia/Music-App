@@ -1,11 +1,14 @@
-import { TbList } from "react-icons/tb";
+import { useDispatch } from "react-redux";
+import Sorting from "../../../ui/Sorting";
+import { setSortByIndex } from "../librarySlice";
 
 function LibrarySorting() {
+  const dispatch = useDispatch();
   return (
-    <div className="group flex cursor-pointer items-center gap-1 text-sm text-black dark:text-white">
-      Recents
-      <TbList className="min-h-5 min-w-5 rounded-full text-black duration-100 group-hover:text-blue-600 dark:text-white" />
-    </div>
+    <Sorting
+      options={["Type", "A-Z", "Z-A"]}
+      handler={(value) => dispatch(setSortByIndex(value))}
+    />
   );
 }
 

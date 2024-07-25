@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentFiltersArray: [],
+  sortByIndex: 0,
 };
 const librarySlice = createSlice({
   name: "library",
@@ -18,8 +19,11 @@ const librarySlice = createSlice({
         (filter) => filter !== action.payload,
       );
     },
+    setSortByIndex(state, action) {
+      state.sortByIndex = action.payload;
+    },
   },
 });
 
 export default librarySlice.reducer;
-export const { addFilter, removeFilter } = librarySlice.actions;
+export const { addFilter, removeFilter, setSortByIndex } = librarySlice.actions;

@@ -25,7 +25,7 @@ function Item({ item = {}, size, isLoading = false }) {
           <img
             src={images[2]?.url}
             alt={name}
-            className={`shadow group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "h-12 w-12 lg:h-14 lg:w-14"}`}
+            className={`shadow group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
           />
         )}
 

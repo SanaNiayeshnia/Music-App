@@ -13,7 +13,7 @@ function LibraryBody() {
           isPlayingTrackbarOpen ? "md:hidden" : "md:inline-block"
         } space-y-3 px-4 lg:inline-block`}
       >
-        <Filters />
+        <Filters items={["Artists", "Albums", "Playlists"]} />
         <div className="flex items-center justify-between gap-2 text-black dark:text-white">
           <LibrarySearchBox />
           <LibrarySorting />

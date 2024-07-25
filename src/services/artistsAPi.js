@@ -2,7 +2,7 @@ export async function getFollowedArtists() {
   const accessToken = JSON.parse(
     localStorage.getItem("MusicApp"),
   ).spotifyAccessToken;
-  let url = "https://api.spotify.com/v1/me/following?type=artist&limit=2";
+  let url = "https://api.spotify.com/v1/me/following?type=artist&limit=50";
   let allArtists = [];
 
   //fetch till it reaces the end and there's no more artist items

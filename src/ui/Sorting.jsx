@@ -11,12 +11,12 @@ function Sorting({ options, handler }) {
   return (
     <div
       ref={ref}
+      onClick={() => setIsOpen((isOpen) => !isOpen)}
       className="group relative flex cursor-pointer items-center gap-1 text-sm text-black dark:text-white"
     >
       {options[sortByIndex]}
       <TbList
         className={`${isOpen ? "text-blue-600" : "text-black group-hover:text-blue-600 dark:text-white"} min-h-5 min-w-5 rounded-full duration-100`}
-        onClick={() => setIsOpen((isOpen) => !isOpen)}
       />
       {isOpen && (
         <ul className="absolute right-0 top-[150%] min-w-40 rounded bg-white py-2 text-sm dark:bg-black">

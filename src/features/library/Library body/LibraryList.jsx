@@ -6,8 +6,8 @@ import useFollowedItems from "../useFollowedItems";
 function LibraryList() {
   const ref = useScrollbar();
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
-  const { isLoading, followedItems, filteredItems } = useFollowedItems();
-  const items = filteredItems.length > 0 ? filteredItems : followedItems;
+  const { isLoading, filteredItems } = useFollowedItems();
+
   return (
     <div
       className={`${isPlayingTrackbarOpen && "md:justify-center"} scrollbar hide-scroll h-full overflow-auto pb-3 pl-3 pr-2`}
@@ -17,7 +17,9 @@ function LibraryList() {
         ? Array.from({ length: 6 }).map(() => {
             return <Item key={Math.random()} isLoading={true} size="small" />;
           })
-        : items?.map((item) => <Item key={item.id} item={item} size="small" />)}
+        : filteredItems?.map((item) => (
+            <Item key={item.id} item={item} size="small" />
+          ))}
     </div>
   );
 }

@@ -2,7 +2,6 @@ import LibraryList from "./LibraryList";
 import LibrarySearchBox from "./LibrarySearchBox";
 import LibrarySorting from "./LibrarySorting";
 import { useSelector } from "react-redux";
-import Filters from "../../../ui/Filters";
 import LibraryFilters from "./LibraryFilters";
 
 function LibraryBody() {

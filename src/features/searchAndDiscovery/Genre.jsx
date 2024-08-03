@@ -11,11 +11,11 @@ function Genre({ genre, isLoading }) {
       ) : (
         <>
           <p className="text-lg font-bold text-black dark:text-white">
-            {genre.name}
+            {genre?.name}
           </p>
           <img
-            src={genre.cover || "/test.png"}
-            alt={genre.name}
+            src={genre?.cover || "/test.png"}
+            alt={genre?.name}
             className="absolute -bottom-5 -right-5 aspect-square w-[7.5rem] rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110"
           />
         </>

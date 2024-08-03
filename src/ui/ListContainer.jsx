@@ -15,11 +15,11 @@ function ListContainer({ children, className }) {
     function sliceChildren() {
       const windowWidth = window.innerWidth;
       if (windowWidth >= 1280)
-        setSlicedChildren(children.slice(0, maxItems.xl));
+        setSlicedChildren(children?.slice(0, maxItems.xl));
       else if (windowWidth >= 1024)
-        setSlicedChildren(children.slice(0, maxItems.lg));
+        setSlicedChildren(children?.slice(0, maxItems.lg));
       else if (windowWidth >= 768)
-        setSlicedChildren(children.slice(0, maxItems.md));
+        setSlicedChildren(children?.slice(0, maxItems.md));
       else setSlicedChildren(children);
     }
 

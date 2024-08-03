@@ -1,13 +1,11 @@
 import Item from "../../ui/Item";
 import ListContainer from "../../ui/ListContainer";
 import ShowAll from "../../ui/ShowAll";
-import Skeleton from "../../ui/Skeleton";
 import Title from "../../ui/Title";
 import useRecentlyPlayed from "./useRecentlyPlayed";
 
 function RecentlyPlayed() {
   const { isLoading, recentlyPlayedItems } = useRecentlyPlayed();
-  console.log(recentlyPlayedItems);
   return (
     <div>
       <div className="flex items-center justify-between">

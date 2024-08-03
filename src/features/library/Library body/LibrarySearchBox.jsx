@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import useOutsideClick from "../../../hooks/useOutsideClick";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TbX } from "react-icons/tb";
 import { RiSearch2Line } from "react-icons/ri";
+import { setSearchQuery } from "../librarySlice";
 
 function LibrarySearchBox() {
   const { isMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchQuery = useSelector((store) => store.library.searchQuery);
+  const dispatch = useDispatch();
   const inputRef = useRef();
   useEffect(() => {
     isOpen && inputRef.current.focus();
@@ -33,7 +35,7 @@ function LibrarySearchBox() {
           ref={inputRef}
           autoFocus
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => dispatch(setSearchQuery(e.target.value))}
           className={`w-full bg-transparent text-sm placeholder:text-xs placeholder:text-gray-600 focus:border-0 focus:outline-0 dark:placeholder:text-white/50`}
         />
 
@@ -41,7 +43,7 @@ function LibrarySearchBox() {
           <TbX
             className="min-h-5 min-w-5 cursor-pointer"
             onClick={() => {
-              setSearchQuery("");
+              dispatch(setSearchQuery(""));
             }}
           />
         )}

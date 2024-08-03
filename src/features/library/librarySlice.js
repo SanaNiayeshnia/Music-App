@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentFilterArray: ["artist", "playlist", "album"],
+  currentFilterArray: [],
   sortByIndex: 0,
+  searchQuery: "",
   followedItems: [],
   filteredItems: [],
 };
@@ -24,33 +25,15 @@ const librarySlice = createSlice({
         ];
       }
 
-      // filter the items based on the current filter array
-      state.filteredItems =
-        state.currentFilterArray.length > 0
-          ? state.followedItems.filter((item) =>
-              state.currentFilterArray.includes(item.type),
-            )
-          : state.followedItems;
+      // filter the items
+      filteringFunc(state);
     },
+
     setSortByIndex(state, action) {
       state.sortByIndex = action.payload;
-      switch (state.sortByIndex) {
-        case 1: //sort alphabetical (a-z)
-          state.filteredItems.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-          });
-          break;
-        case 2: //sort alphabetical (z-a)
-          state.filteredItems.sort((a, b) => {
-            return b.name.localeCompare(a.name);
-          });
-          break;
-        case 0: //sort by type
-        default:
-          state.filteredItems.sort((a, b) => a.type.localeCompare(b.type)); //sorting items like this: album => artist => playlist
-          break;
-      }
+      filteringFunc(state);
     },
+
     setFollowedItems(state, action) {
       state.followedItems = action.payload;
 
@@ -58,19 +41,62 @@ const librarySlice = createSlice({
         state.filteredItems = state.followedItems;
 
       //apply filters on initial followedItems
-      state.filteredItems =
-        state.currentFilterArray.length > 0
-          ? state.followedItems.filter((item) =>
-              state.currentFilterArray.includes(item.type),
-            )
-          : state.followedItems;
+      filteringFunc(state);
+    },
 
-      //apply sorting by type
-      state.filteredItems.sort((a, b) => a.type.localeCompare(b.type));
+    setSearchQuery(state, action) {
+      state.searchQuery = action.payload;
+      filteringFunc(state);
     },
   },
 });
 
+//reusable functions
+
+function sortingFunc(state) {
+  switch (state.sortByIndex) {
+    case 1: //sort alphabetical (a-z)
+      state.filteredItems.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      });
+      break;
+    case 2: //sort alphabetical (z-a)
+      state.filteredItems.sort((a, b) => {
+        return b.name.localeCompare(a.name);
+      });
+      break;
+    case 0: //sort by type
+    default:
+      state.filteredItems.sort((a, b) => a.type.localeCompare(b.type)); //sorting items like this: album => artist => playlist
+      break;
+  }
+}
+
+function settingQueryFunc(state) {
+  const pattern = new RegExp(state.searchQuery, "i");
+  state.filteredItems = state.filteredItems.filter((item) =>
+    pattern.test(item.name),
+  );
+}
+
+function filteringFunc(state) {
+  // filter the items based on the current filter array
+  state.filteredItems =
+    state.currentFilterArray.length > 0
+      ? state.followedItems.filter((item) =>
+          state.currentFilterArray.includes(item.type),
+        )
+      : state.followedItems;
+  //sort items
+  sortingFunc(state);
+  //set search query
+  settingQueryFunc(state);
+}
+
 export default librarySlice.reducer;
-export const { addRemoveFilter, setSortByIndex, setFollowedItems } =
-  librarySlice.actions;
+export const {
+  addRemoveFilter,
+  setSortByIndex,
+  setFollowedItems,
+  setSearchQuery,
+} = librarySlice.actions;

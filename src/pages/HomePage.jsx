@@ -1,9 +1,14 @@
+import RecentlyPlayed from "../features/player/RecentlyPlayed";
+import PageBody from "../ui/PageBody";
 import TopNav from "../ui/TopNav";
 
 function HomePage() {
   return (
-    <div className="px-5 pb-5">
+    <div>
       <TopNav />
+      <PageBody className="pt-0">
+        <RecentlyPlayed />
+      </PageBody>
     </div>
   );
 }

@@ -5,7 +5,8 @@ import Logo from "../../ui/Logo";
 
 function LoginForm() {
   const RESPONSE_TYPE = "code";
-  const scope = "user-follow-read user-library-read playlist-read-private";
+  const scope =
+    "user-follow-read user-library-read playlist-read-private user-read-recently-played";
   const navigate = useNavigate();
   const { refreshToken } = useSelector((store) => store.authentication);
 

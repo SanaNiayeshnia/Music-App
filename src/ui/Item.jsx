@@ -8,7 +8,8 @@ function Item({ item = {}, size, isLoading = false }) {
   const [isHovered, setIsHovered] = useState(false);
   const { isMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
-  const { name, type, images } = item;
+  const { name, type } = item;
+  const images = type === "track" ? item?.album?.images : item?.images;
 
   const content = (
     <div
@@ -19,11 +20,11 @@ function Item({ item = {}, size, isLoading = false }) {
       <div className={`${size === "large" && "relative"}`}>
         {isLoading ? (
           <Skeleton
-            className={`rounded-full shadow ${size === "large" ? "w-full" : "h-12 w-12 lg:h-14 lg:w-14"}`}
+            className={`rounded shadow ${size === "large" ? `aspect-square h-full w-full` : "h-12 w-12 lg:h-14 lg:w-14"}`}
           />
         ) : (
           <img
-            src={images[2]?.url || images[0]?.url}
+            src={images[0]?.url}
             alt={name}
             className={`shadow group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
           />
@@ -37,8 +38,12 @@ function Item({ item = {}, size, isLoading = false }) {
       >
         {isLoading ? (
           <div className="flex flex-col justify-center gap-1">
-            <Skeleton className="h-2 w-16 rounded-sm" />
-            <Skeleton className="h-2 w-10 rounded-sm" />
+            <Skeleton
+              className={`${size === "large" ? "h-3 w-24" : "h-2 w-16"} rounded-sm`}
+            />
+            <Skeleton
+              className={`${size === "large" ? "h-3 w-12" : "h-2 w-10"} rounded-sm`}
+            />
           </div>
         ) : (
           <div className="flex flex-col justify-center gap-1">

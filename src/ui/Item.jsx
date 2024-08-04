@@ -12,11 +12,11 @@ function Item({ item = {}, size, isLoading = false }) {
   const artists = item?.artists || [];
   const images = type === "track" ? item?.album?.images : item?.images;
   const filteredName =
-    name.length > 25
+    name?.length > 25
       ? name
-          .slice(0, 25)
+          ?.slice(0, 25)
           .split(" ")
-          .slice(0, name.slice(0, 20).split(" ").length - 1)
+          .slice(0, name?.slice(0, 20)?.split(" ")?.length - 1)
           .join(" ") + "..."
       : name; //if the name length was more than 25 char, cut it and add "..."
 
@@ -24,7 +24,7 @@ function Item({ item = {}, size, isLoading = false }) {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`${size === "large" ? "flex-col p-3" : "items-center p-2"} group flex cursor-pointer gap-2 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      className={`${size === "large" ? "flex-col p-3" : "items-center p-2"} group flex cursor-pointer gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       <div className={`${size === "large" && "relative"}`}>
         {isLoading ? (
@@ -43,7 +43,7 @@ function Item({ item = {}, size, isLoading = false }) {
       </div>
 
       <div
-        className={`${isPlayingTrackbarOpen && "md:hidden"} text-sm lg:inline-block`}
+        className={`${isPlayingTrackbarOpen && size === "small" && "md:hidden"} flex-grow text-sm lg:inline-block`}
       >
         {isLoading ? (
           <div className="flex flex-col justify-center gap-1">
@@ -55,7 +55,7 @@ function Item({ item = {}, size, isLoading = false }) {
             />
           </div>
         ) : (
-          <div className="flex flex-col justify-center gap-1">
+          <div className="flex flex-col justify-between gap-1">
             <p className="font-medium text-black dark:text-white">
               {filteredName}
             </p>
@@ -70,7 +70,7 @@ function Item({ item = {}, size, isLoading = false }) {
     </div>
   );
 
-  return isMedium && isPlayingTrackbarOpen ? (
+  return isMedium && isPlayingTrackbarOpen && size === "small" ? (
     <Tooltip title={name} placement="right">
       {content}
     </Tooltip>

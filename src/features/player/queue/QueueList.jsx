@@ -30,9 +30,13 @@ function QueueList({ setIsScrolled }) {
             <Track smallScreen />
             <Track smallScreen />
             <Track smallScreen />
-            <Track smallScreen /> <Track smallScreen /> <Track smallScreen />
             <Track smallScreen />
-            <Track smallScreen /> <Track smallScreen /> <Track smallScreen />
+            <Track smallScreen />
+            <Track smallScreen />
+            <Track smallScreen />
+            <Track smallScreen />
+            <Track smallScreen />
+            <Track smallScreen />
           </tbody>
         </table>
       </div>

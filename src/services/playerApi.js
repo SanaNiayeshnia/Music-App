@@ -8,15 +8,16 @@ export async function getRecentlyPlayed() {
   );
   if (res.status !== 200)
     throw new Error("Failed to get the recently played items!");
-  const data = await res.json();
+  const data = await res.json(); //list of individual tracks that has been played
 
   const hrefs = data?.items
     .map((item) => item?.context?.href)
-    .filter((item) => item);
+    .filter((item) => item); //only get the hrefs which are not a falsey value like null or undefined
 
-  const hrefsSet = new Set(hrefs);
-  const items = await Promise.all(
+  const hrefsSet = new Set(hrefs); //a set of context hrefs of recently played items (href of playlists/albums)
+  let items = await Promise.all(
     [...hrefsSet].map(async (href) => {
+      //fetch each item data
       const itemRes = await fetch(href, {
         headers: { authorization: `Bearer ${accessToken}` },
       });
@@ -30,6 +31,12 @@ export async function getRecentlyPlayed() {
       return itemData;
     }),
   );
+
+  //add items with no context (tracks)
+  data?.items.map(
+    (item) => item?.context === null && (items = [...items, item.track]),
+  );
+
   return items;
 }
 

@@ -3,7 +3,6 @@ import useCurrentlyPlayingTrack from "./useCurrentlyPlayingTrack";
 
 function PlayerTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
-  console.log(currentlyPlayingTrack);
   return (
     <div className="flex items-center gap-4">
       {isLoading ? (

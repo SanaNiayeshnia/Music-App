@@ -4,15 +4,15 @@ import Skeleton from "../../ui/Skeleton";
 
 function PlayingTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
-  const { artists, name, album } = currentlyPlayingTrack;
+
   return (
     <div className="space-y-3">
       {isLoading ? (
         <Skeleton className="aspect-square h-full w-full rounded-md shadow" />
       ) : (
         <img
-          src={album?.images[0]?.url || "/test.png"}
-          alt={name}
+          src={currentlyPlayingTrack?.album?.images[0]?.url || "/test.png"}
+          alt={currentlyPlayingTrack?.name}
           className="w-full rounded-md shadow"
         />
       )}
@@ -26,11 +26,11 @@ function PlayingTrack() {
             </>
           ) : (
             <>
-              <p className="text-lg font-bold text-black dark:text-white">
-                {name}
+              <p className="text-lg font-bold leading-6 text-black dark:text-white">
+                {currentlyPlayingTrack?.name}
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                {artists[0]?.name}
+                {currentlyPlayingTrack?.artists[0]?.name}
               </p>
             </>
           )}

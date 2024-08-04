@@ -6,12 +6,13 @@ import { Tooltip } from "@mui/material";
 import Skeleton from "../../ui/Skeleton";
 
 function PlayingArtist() {
-  const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const { isLoading: isLoadingTrack, currentlyPlayingTrack } =
+    useCurrentlyPlayingTrack();
   const artistId = currentlyPlayingTrack?.artists[0]?.id;
-  const { isLoading, artist } = useGetArtist(artistId);
+  const { isLoading: isLoadingArtist, artist } = useGetArtist(artistId);
   return (
     <div className="rounded-md bg-white/50 shadow dark:bg-black/50">
-      {isLoading ? (
+      {isLoadingTrack || isLoadingArtist ? (
         <Skeleton className="aspect-square h-full w-full rounded-b-none rounded-t-md" />
       ) : (
         <div className="relative overflow-hidden">
@@ -40,7 +41,7 @@ function PlayingArtist() {
       )}
 
       <div className="space-y-3 px-5 py-4">
-        {isLoading ? (
+        {isLoadingTrack || isLoadingArtist ? (
           <Skeleton className="h-4 w-24 rounded-sm" />
         ) : (
           <p className="font-semibold text-black dark:text-white">
@@ -49,7 +50,7 @@ function PlayingArtist() {
         )}
 
         <div className="flex items-center justify-between text-sm">
-          {isLoading ? (
+          {isLoadingTrack || isLoadingArtist ? (
             <Skeleton className="h-4 w-36 rounded-sm" />
           ) : (
             <>

@@ -3,6 +3,7 @@ import FloatingPlayButton from "./FloatingPlayButton";
 import { Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
+import { formatName } from "../utilities/helper";
 
 function Item({ item = {}, size, isLoading = false }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -11,14 +12,7 @@ function Item({ item = {}, size, isLoading = false }) {
   const { name, type } = item;
   const artists = item?.artists || [];
   const images = type === "track" ? item?.album?.images : item?.images;
-  const filteredName =
-    name?.length > 25
-      ? name
-          ?.slice(0, 25)
-          .split(" ")
-          .slice(0, name?.slice(0, 20)?.split(" ")?.length - 1)
-          .join(" ") + "..."
-      : name; //if the name length was more than 25 char, cut it and add "..."
+  const filteredName = formatName(name);
 
   const content = (
     <div
@@ -35,11 +29,13 @@ function Item({ item = {}, size, isLoading = false }) {
           <img
             src={images[0]?.url}
             alt={name}
-            className={`shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
+            className={`aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
           />
         )}
 
-        {size === "large" && <FloatingPlayButton isHovered={isHovered} />}
+        {size === "large" && !isLoading && (
+          <FloatingPlayButton isHovered={isHovered} />
+        )}
       </div>
 
       <div

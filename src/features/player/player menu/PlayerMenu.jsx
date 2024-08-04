@@ -15,7 +15,7 @@ function PlayerMenu() {
     (store) => store.playback,
   );
   return (
-    <div className="hidden items-center gap-3 md:flex">
+    <div className="hidden max-w-52 items-center gap-3 md:flex">
       <BiAlbum
         className={`${isPlayingTrackbarOpen && !isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} min-h-5 min-w-5 cursor-pointer duration-100`}
         onClick={() => dispatch(togglePlayingTrackBar())}

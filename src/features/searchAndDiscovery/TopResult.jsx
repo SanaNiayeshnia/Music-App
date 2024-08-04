@@ -1,9 +1,18 @@
 import { useState } from "react";
 import FloatingPlayButton from "../../ui/FloatingPlayButton";
 import Title from "../../ui/Title";
+import { useSearchParams } from "react-router-dom";
+import Skeleton from "../../ui/Skeleton";
 
-function TopResult() {
+function TopResult({ item, isLoading = false }) {
   const [isHovered, setIsHovered] = useState(false);
+  const images = item?.type === "track" ? item?.album?.images : item?.images;
+  const byWho =
+    item?.type === "playlist"
+      ? item?.owner?.display_name
+      : item?.type === "artist"
+        ? ""
+        : item?.artists[0]?.name;
 
   return (
     <div className="min-w-96">
@@ -13,23 +22,39 @@ function TopResult() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img
-          src="/test.png"
-          alt=""
-          className="h-28 w-28 rounded-md shadow-md"
-        />
+        {isLoading ? (
+          <Skeleton className="h-28 w-28 rounded-md shadow-md" />
+        ) : (
+          <img
+            src={images[0]?.url || "/test.png"}
+            alt={item?.name}
+            className="h-28 w-28 rounded-md shadow-md"
+          />
+        )}
+
         <div className="relative">
-          <p className="text-3xl font-bold text-black dark:text-white">
-            Superache
-          </p>
-          <div>
-            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
-              Album •{" "}
-            </span>
-            <span className="text-sm font-medium text-black dark:text-white">
-              Conan Gray
-            </span>
-          </div>
+          {isLoading ? (
+            <div className="space-y-2">
+              <Skeleton className="h-5 w-40" />
+              <Skeleton className="h-3 w-20" />
+            </div>
+          ) : (
+            <>
+              <p className="text-3xl font-bold text-black dark:text-white">
+                {item?.name}
+              </p>
+
+              <div>
+                <span className="font-medium text-gray-600 first-letter:uppercase dark:text-gray-300">
+                  {item?.type !== "artist" ? item?.type + " • " : item?.type}
+                </span>
+                <span className="text-sm font-medium text-black dark:text-white">
+                  {byWho}
+                </span>
+              </div>
+            </>
+          )}
+
           <FloatingPlayButton isHovered={isHovered} />
         </div>
       </div>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Item from "./Item";
 
-function ListContainer({ children, className }) {
+function ListContainer({ children, className, all = false, isLoading }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [slicedChildren, setSlicedChildren] = useState(children);
 
   useEffect(() => {
-    //Change the displayed items count based on window width
     const maxItems = {
       xl: isPlayingTrackbarOpen ? 4 : 6,
       lg: isPlayingTrackbarOpen ? 3 : 4,
@@ -23,17 +23,24 @@ function ListContainer({ children, className }) {
       else setSlicedChildren(children);
     }
 
-    sliceChildren();
+    if (!all) {
+      //Change the displayed items count based on window width
+      sliceChildren();
 
-    window.addEventListener("resize", sliceChildren);
-    return () => window.removeEventListener("resize", sliceChildren);
-  }, [children, setSlicedChildren, isPlayingTrackbarOpen]);
+      window.addEventListener("resize", sliceChildren);
+      return () => window.removeEventListener("resize", sliceChildren);
+    }
+  }, [children, setSlicedChildren, isPlayingTrackbarOpen, all]);
 
   return (
     <div
       className={`${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid grid-rows-1 overflow-hidden py-1.5 ${className}`}
     >
-      {slicedChildren}
+      {isLoading
+        ? Array.from({ length: all ? 12 : 6 }).map((item, index) => (
+            <Item key={index} item={item} isLoading={true} size="large" />
+          ))
+        : slicedChildren}
     </div>
   );
 }

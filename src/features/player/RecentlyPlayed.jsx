@@ -4,22 +4,22 @@ import ShowAll from "../../ui/ShowAll";
 import Title from "../../ui/Title";
 import useRecentlyPlayed from "./useRecentlyPlayed";
 
-function RecentlyPlayed() {
-  const { isLoading, recentlyPlayedItems } = useRecentlyPlayed();
+function RecentlyPlayed({ all = false }) {
+  const { isLoading, recentlyPlayedItems } = useRecentlyPlayed({ all });
   return (
-    <div>
+    <div key={Math.random()}>
       <div className="flex items-center justify-between">
         <Title>Recently Played</Title>
-        <ShowAll>Show all</ShowAll>
+        {!all && <ShowAll to="/section/recently-played">Show all</ShowAll>}
       </div>
-      <ListContainer className="overflow-hidden">
-        {isLoading
-          ? Array.from({ length: 6 }).map((item, index) => (
-              <Item key={index} item={item} isLoading={true} size="large" />
-            ))
-          : recentlyPlayedItems?.map((item) => (
-              <Item key={item.id} item={item} size="large" />
-            ))}
+      <ListContainer
+        all={all}
+        className="overflow-hidden"
+        isLoading={isLoading}
+      >
+        {recentlyPlayedItems?.map((item) => (
+          <Item key={item.id} item={item} size="large" />
+        ))}
       </ListContainer>
     </div>
   );

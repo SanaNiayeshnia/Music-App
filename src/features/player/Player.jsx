@@ -1,6 +1,6 @@
+import PlayerTrack from "../tracks/PlayerTrack";
 import PlaybackController from "./playback controller/PlaybackController";
 import PlayerMenu from "./player menu/PlayerMenu";
-import PlayerTrack from "./PlayerTrack";
 import { TbCirclePlus } from "react-icons/tb";
 
 function Player() {

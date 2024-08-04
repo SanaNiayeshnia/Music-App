@@ -1,5 +1,6 @@
 import Skeleton from "../../ui/Skeleton";
-import useCurrentlyPlayingTrack from "./useCurrentlyPlayingTrack";
+import { formatName } from "../../utilities/helper";
+import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 
 function PlayerTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
@@ -23,8 +24,8 @@ function PlayerTrack() {
           </>
         ) : (
           <>
-            <p className="text-sm font-medium text-black dark:text-white">
-              {currentlyPlayingTrack?.name}
+            <p className="w-40 text-sm font-medium text-black dark:text-white">
+              {formatName(currentlyPlayingTrack?.name, 30)}
             </p>
             <p className="text-[0.8rem] text-gray-600 dark:text-gray-300">
               {currentlyPlayingTrack?.artists[0]?.name}

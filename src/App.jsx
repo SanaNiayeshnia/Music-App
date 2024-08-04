@@ -19,6 +19,8 @@ import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import { setIsOnline } from "./features/authentication/authSlice";
+import SectionPage from "./pages/SectionPage";
+import RecentlyPlayed from "./features/player/RecentlyPlayed";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -84,14 +86,17 @@ function App() {
               }
             >
               <Route index element={<HomePage />} />
-              <Route path="search" element={<SearchPage />}>
-                <Route index element={<DefaultSearchPageContent />} />
-                <Route path=":query" element={<SearchResults />} />
-              </Route>
+              <Route path="search" element={<SearchPage />} />
               <Route path="artist/:id" element={<ArtistPage />} />
               <Route path="album/:id" element={<AlbumPage />} />
               <Route path="track/:id" element={<TrackPage />} />
               <Route path="playlist/:id" element={<PlaylistPage />} />
+              <Route path="section/" element={<SectionPage />}>
+                <Route
+                  path="recently-played"
+                  element={<RecentlyPlayed all={true} />}
+                />
+              </Route>
               <Route path="*" element={<PageNotFound />} />
             </Route>
             <Route path="/login" element={<LoginPage />} />

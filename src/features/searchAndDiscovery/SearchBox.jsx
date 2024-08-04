@@ -1,14 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { RiSearch2Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 function SearchBox() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
-  const [query, setQuery] = useState("");
   const ref = useRef();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     if (ref.current) ref.current.focus();
   }, []);
+
+  function changeQueryhandler(e) {
+    searchParams.set("q", e.target.value.toLowerCase());
+    setSearchParams(searchParams);
+  }
 
   return (
     <div
@@ -21,8 +28,7 @@ function SearchBox() {
         autoFocus
         placeholder="What do you want to play?"
         className={`${isPlayingTrackbarOpen ? "md:w-28 lg:w-36" : "md:w-40 lg:w-64"} bg-transparent text-black placeholder:text-xs placeholder:text-gray-700 focus:outline-0 lg:placeholder:text-sm xl:w-72 dark:text-white dark:placeholder:text-white/50`}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onKeyUp={(e) => changeQueryhandler(e)}
       />
     </div>
   );

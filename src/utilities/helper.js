@@ -20,7 +20,7 @@ export function formatName(name, length = 25) {
   return formattedName;
 }
 
-export function formatDate(date) {
+export function formatDate(date = new Date()) {
   const options = { year: "numeric", month: "short", day: "numeric" };
   const formatter = new Intl.DateTimeFormat("en-US", options);
   const formattedDate = formatter.format(new Date(date));

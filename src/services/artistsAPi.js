@@ -1,6 +1,8 @@
+import { APP_NAME } from "../utilities/constants";
+
 export async function getFollowedArtists() {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   let url = "https://api.spotify.com/v1/me/following?type=artist&limit=50";
 
@@ -21,7 +23,7 @@ export async function getFollowedArtists() {
 
 export async function getArtist(id) {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
 
   const res = await fetch(`https://api.spotify.com/v1/artists?ids=${id}`, {

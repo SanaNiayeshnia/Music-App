@@ -1,6 +1,8 @@
+import { APP_NAME } from "../utilities/constants";
+
 export async function getRecentlyPlayed(all = false) {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch(
     "https://api.spotify.com/v1/me/player/recently-played?limit=50",
@@ -47,7 +49,7 @@ export async function getRecentlyPlayed(all = false) {
 
 export async function getCurrentlyPlaingTrack() {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch(
     "https://api.spotify.com/v1/me/player/currently-playing",
@@ -61,7 +63,7 @@ export async function getCurrentlyPlaingTrack() {
 
 export async function getQueue() {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch("https://api.spotify.com/v1/me/player/queue", {
     headers: { authorization: `Bearer ${accessToken}` },

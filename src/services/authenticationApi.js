@@ -1,4 +1,9 @@
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../utilities/constants";
+import {
+  APP_NAME,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URI,
+} from "../utilities/constants";
 
 export async function getAccessToken(code) {
   const res = await fetch("https://accounts.spotify.com/api/token", {
@@ -36,7 +41,7 @@ export async function refreshAccessToken(refresh_token) {
 
 export async function getUser() {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch("https://api.spotify.com/v1/me", {
     headers: { authorization: `Bearer ${accessToken}` },

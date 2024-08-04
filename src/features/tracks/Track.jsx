@@ -28,7 +28,7 @@ function Track({
 
       <td className="flex items-center gap-2">
         {!noCover && (
-          <div className="relative">
+          <div className="relative flex-shrink-0">
             <img
               src={track?.album?.images[0].url || "/test.png"}
               alt={track?.name}

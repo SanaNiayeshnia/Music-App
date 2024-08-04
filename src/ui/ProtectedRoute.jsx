@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import useAccessToken from "../features/authentication/useAccessToken";
 import Spinner from "./Spinner";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsOnline } from "../features/authentication/authSlice";
+import { useSelector } from "react-redux";
 import OfflineNotification from "./OfflineNotification";
 
 function ProtectedRoute({ children }) {

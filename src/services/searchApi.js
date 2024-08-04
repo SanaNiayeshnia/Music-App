@@ -1,6 +1,8 @@
+import { APP_NAME } from "../utilities/constants";
+
 export async function getAvailableGenres() {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch(
     "https://api.spotify.com/v1/recommendations/available-genre-seeds",
@@ -33,7 +35,7 @@ export async function getSearchResult(query) {
   let controller = null;
   try {
     const accessToken = JSON.parse(
-      localStorage.getItem("MusicApp"),
+      localStorage.getItem(APP_NAME),
     ).spotifyAccessToken;
 
     if (controller) controller.abort();

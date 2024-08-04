@@ -1,6 +1,8 @@
+import { APP_NAME } from "../utilities/constants";
+
 export async function getSavedPlaylists() {
   const accessToken = JSON.parse(
-    localStorage.getItem("MusicApp"),
+    localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch("https://api.spotify.com/v1/me/playlists?limit=50", {
     headers: { authorization: `Bearer ${accessToken}` },

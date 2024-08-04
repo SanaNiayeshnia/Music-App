@@ -40,7 +40,7 @@ function TopResult({ item, isLoading = false }) {
             </div>
           ) : (
             <>
-              <p className="text-3xl font-bold text-black dark:text-white">
+              <p className="max-w-96 text-3xl font-bold text-black dark:text-white">
                 {item?.name}
               </p>
 

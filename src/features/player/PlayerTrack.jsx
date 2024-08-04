@@ -11,7 +11,7 @@ function PlayerTrack() {
       ) : (
         <img
           className="h-14 w-14 rounded shadow"
-          src={currentlyPlayingTrack?.album?.images[0]?.url}
+          src={currentlyPlayingTrack?.album?.images[0]?.url || "/test.png"}
           alt={currentlyPlayingTrack?.name}
         />
       )}

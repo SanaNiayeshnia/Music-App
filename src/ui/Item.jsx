@@ -9,7 +9,16 @@ function Item({ item = {}, size, isLoading = false }) {
   const { isMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const { name, type } = item;
+  const artists = item?.artists || [];
   const images = type === "track" ? item?.album?.images : item?.images;
+  const filteredName =
+    name.length > 25
+      ? name
+          .slice(0, 25)
+          .split(" ")
+          .slice(0, name.slice(0, 20).split(" ").length - 1)
+          .join(" ") + "..."
+      : name; //if the name length was more than 25 char, cut it and add "..."
 
   const content = (
     <div
@@ -47,9 +56,13 @@ function Item({ item = {}, size, isLoading = false }) {
           </div>
         ) : (
           <div className="flex flex-col justify-center gap-1">
-            <p className="font-medium text-black dark:text-white">{name}</p>
+            <p className="font-medium text-black dark:text-white">
+              {filteredName}
+            </p>
             <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">
-              {type}
+              {size === "large" && (type === "track" || type === "album")
+                ? artists[0]?.name
+                : type}
             </p>
           </div>
         )}

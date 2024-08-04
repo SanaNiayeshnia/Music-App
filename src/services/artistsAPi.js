@@ -18,3 +18,18 @@ export async function getFollowedArtists() {
     next: data?.artists?.next,
   };
 }
+
+export async function getArtist(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem("MusicApp"),
+  ).spotifyAccessToken;
+  let url = "https://api.spotify.com/v1/me/following?type=artist&limit=50";
+
+  const res = await fetch(url, {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (res.status !== 200) throw new Error("Failed to get the artist info!");
+
+  const data = await res.json();
+  return data;
+}

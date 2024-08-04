@@ -20,7 +20,7 @@ function PlayingArtist() {
             alt={artist?.name}
             className="aspect-square w-full rounded-t-md brightness-90 filter"
           />
-          <p className="absolute left-4 top-4 text-sm font-semibold text-white">
+          <p className="absolute left-4 top-4 text-sm font-semibold text-white drop-shadow-md">
             About the artist
           </p>
 
@@ -28,7 +28,7 @@ function PlayingArtist() {
             <div className="absolute bottom-4 right-4 flex items-center justify-end gap-1">
               {Array.from({ length: artist?.popularity / 20 }).map(
                 (heart, index) => (
-                  <BsHeartFill key={index} className="text-white" />
+                  <BsHeartFill key={index} className="text-white drop-shadow" />
                 ),
               )}
               {artist?.popularity % 20 >= 10 && (

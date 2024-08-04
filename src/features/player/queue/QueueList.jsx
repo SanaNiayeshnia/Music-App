@@ -1,8 +1,11 @@
 import useScrollbar from "../../../hooks/useScrollbar";
 import Track from "../../tracks/Track";
+import useQueue from "./useQueue";
 
 function QueueList({ setIsScrolled }) {
   const ref = useScrollbar();
+  const { isLoading, queue } = useQueue();
+  console.log(queue);
 
   return (
     <div

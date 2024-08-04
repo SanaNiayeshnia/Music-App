@@ -53,3 +53,16 @@ export async function getCurrentlyPlaingTrack() {
   const data = await res.json();
   return data.item;
 }
+
+export async function getQueue() {
+  const accessToken = JSON.parse(
+    localStorage.getItem("MusicApp"),
+  ).spotifyAccessToken;
+  const res = await fetch("https://api.spotify.com/v1/me/player/queue", {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  console.log(res);
+  if (res.status !== 200) throw new Error("Failed to get the queue!");
+  const data = await res.json();
+  return data.item;
+}

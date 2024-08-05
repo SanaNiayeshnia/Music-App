@@ -62,8 +62,6 @@ export async function getSearchResult(query) {
         data?.playlists?.items[0]) ||
       data?.tracks?.items[0];
 
-    console.log(data, topResult);
-
     return { ...data, topResult };
   } catch (error) {
     if (error.name !== "AbortError") throw new Error(error.message);

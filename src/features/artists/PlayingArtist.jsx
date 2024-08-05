@@ -1,6 +1,6 @@
 import Button from "../../ui/Button";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
-import { BsHeartFill, BsHeartHalf } from "react-icons/bs";
+import { BsHeart, BsHeartFill, BsHeartHalf } from "react-icons/bs";
 import { Tooltip } from "@mui/material";
 import Skeleton from "../../ui/Skeleton";
 import useArtist from "./useArtist";
@@ -13,6 +13,18 @@ function PlayingArtist() {
   const { isLoading: isLoadingArtist, artist } = useArtist(artistId);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+  const popularityFilledHeartsCount =
+    Math.floor(artist?.popularity / 20) +
+    (artist?.popularity % 20 >= 15 ? 1 : 0);
+  const popularityHalfHeartsCount =
+    artist?.popularity % 20 >= 10 && artist?.popularity % 20 < 15 ? 1 : 0;
+  const popularityEmptyHeartsCount =
+    5 - (popularityFilledHeartsCount + popularityHalfHeartsCount);
+  console.log(
+    popularityFilledHeartsCount,
+    popularityHalfHeartsCount,
+    popularityEmptyHeartsCount,
+  );
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
     setIsImageLoaded(false);
@@ -36,19 +48,26 @@ function PlayingArtist() {
             <p className="absolute left-4 top-4 text-sm font-semibold text-white drop-shadow-md">
               About the artist
             </p>
-            <Tooltip title="popularity" placement="left">
+            <Tooltip
+              title={`popularity: ${artist?.popularity}%`}
+              placement="left"
+            >
               <div className="absolute bottom-4 right-4 flex items-center justify-end gap-1">
-                {Array.from({ length: artist?.popularity / 20 }).map(
-                  (heart, index) => (
-                    <BsHeartFill
-                      key={index}
-                      className="text-white drop-shadow"
-                    />
-                  ),
-                )}
-                {artist?.popularity % 20 >= 10 && (
-                  <BsHeartHalf className="text-white" />
-                )}
+                {Array.from({
+                  length: popularityFilledHeartsCount,
+                }).map((heart, index) => (
+                  <BsHeartFill key={index} className="text-white drop-shadow" />
+                ))}
+                {Array.from({
+                  length: popularityHalfHeartsCount,
+                }).map((heart, index) => (
+                  <BsHeartHalf key={index} className="text-white drop-shadow" />
+                ))}
+                {Array.from({
+                  length: popularityEmptyHeartsCount,
+                }).map((heart, index) => (
+                  <BsHeart key={index} className="text-white drop-shadow" />
+                ))}
               </div>
             </Tooltip>
           </>

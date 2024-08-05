@@ -47,19 +47,22 @@ export async function getSearchResult(query) {
         headers: { authorization: `Bearer ${accessToken}` },
       },
     );
+    console.log(res);
     if (res.status !== 200)
       throw new Error("Failed to get the available genres!");
     const data = await res.json();
     const topResult =
-      (data.artists.items[0].name.toLowerCase().startsWith(query) &&
-        data.artists.items[0]) ||
-      (data.tracks.items[0].name.toLowerCase().startsWith(query) &&
-        data.tracks.items[0]) ||
-      (data.albums.items[0].name.toLowerCase().startsWith(query) &&
-        data.albums.items[0]) ||
-      (data.playlists.items[0].name.toLowerCase().startsWith(query) &&
-        data.playlists.items[0]) ||
-      data.tracks.items[0];
+      (data?.artists?.items[0]?.name.toLowerCase().startsWith(query) &&
+        data?.artists?.items[0]) ||
+      (data?.tracks?.items[0]?.name.toLowerCase().startsWith(query) &&
+        data?.tracks?.items[0]) ||
+      (data?.albums?.items[0]?.name.toLowerCase().startsWith(query) &&
+        data?.albums?.items[0]) ||
+      (data?.playlists?.items[0]?.name.toLowerCase().startsWith(query) &&
+        data?.playlists?.items[0]) ||
+      data?.tracks?.items[0];
+
+    console.log(data, topResult);
 
     return { ...data, topResult };
   } catch (error) {

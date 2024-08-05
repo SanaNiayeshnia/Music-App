@@ -9,13 +9,7 @@ function SongsResult({ items, isLoading }) {
         <tbody>
           {isLoading
             ? Array.from({ length: 4 }).map((item, index) => (
-                <Track
-                  key={index}
-                  isLoading={isLoading}
-                  index={index + 1}
-                  noArtist
-                  noAlbum
-                />
+                <Track key={index} isLoading={isLoading} index={index + 1} />
               ))
             : items
                 ?.slice(0, 4)

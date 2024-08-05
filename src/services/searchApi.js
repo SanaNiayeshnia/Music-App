@@ -47,7 +47,6 @@ export async function getSearchResult(query) {
         headers: { authorization: `Bearer ${accessToken}` },
       },
     );
-    console.log(res);
     if (res.status !== 200)
       throw new Error("Failed to get the available genres!");
     const data = await res.json();
@@ -61,6 +60,8 @@ export async function getSearchResult(query) {
       (data?.playlists?.items[0]?.name.toLowerCase().startsWith(query) &&
         data?.playlists?.items[0]) ||
       data?.tracks?.items[0];
+
+    if (!topResult) throw new Error("Couldn't find anything relatable!");
 
     return { ...data, topResult };
   } catch (error) {

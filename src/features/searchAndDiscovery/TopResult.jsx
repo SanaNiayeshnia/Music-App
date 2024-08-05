@@ -1,7 +1,6 @@
 import { useState } from "react";
 import FloatingPlayButton from "../../ui/FloatingPlayButton";
 import Title from "../../ui/Title";
-import { useSearchParams } from "react-router-dom";
 import Skeleton from "../../ui/Skeleton";
 
 function TopResult({ item, isLoading = false }) {

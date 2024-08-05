@@ -4,6 +4,7 @@ function SliderBar({
   valueLabelDisplay = "auto",
   thumbDisplay = "on",
   step = 1,
+  disabled = false,
 }) {
   return (
     <Slider
@@ -12,6 +13,7 @@ function SliderBar({
       aria-label="medium"
       valueLabelDisplay={valueLabelDisplay}
       step={step}
+      disabled={disabled}
       sx={{
         "& .MuiSlider-thumb": {
           width: 15,

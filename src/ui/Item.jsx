@@ -58,7 +58,9 @@ function Item({ item = {}, size, isLoading = false }) {
             <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">
               {size === "large" && (type === "track" || type === "album")
                 ? artists[0]?.name
-                : type}
+                : size === "large" && type === "playlist"
+                  ? item?.owner?.display_name
+                  : type}
             </p>
           </div>
         )}

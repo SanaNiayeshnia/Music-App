@@ -5,7 +5,9 @@ import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 function PlayerTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   return (
-    <div className="flex items-center gap-4">
+    <div
+      className={`${!currentlyPlayingTrack && "opacity-50"} flex items-center gap-4`}
+    >
       {isLoading ? (
         <Skeleton className="h-14 w-14 rounded shadow" />
       ) : (
@@ -16,7 +18,9 @@ function PlayerTrack() {
         />
       )}
 
-      <div className="flex flex-col justify-end gap-0.5 leading-4">
+      <div
+        className={`${!isLoading && !currentlyPlayingTrack && "w-16"} flex flex-col justify-end gap-0.5 leading-4`}
+      >
         {isLoading ? (
           <>
             <Skeleton className="w- h-2 w-16 rounded-sm" />

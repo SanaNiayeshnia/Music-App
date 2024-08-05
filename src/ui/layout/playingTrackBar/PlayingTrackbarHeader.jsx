@@ -20,7 +20,9 @@ function PlayingTrackbarHeader({ isScrolled }) {
       )}
 
       <div className="flex items-center gap-2">
-        <TbDots className="min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black duration-100 hover:scale-105 hover:bg-white hover:shadow dark:text-white dark:hover:bg-black" />
+        <TbDots
+          className={`${!currentlyPlayingTrack && "hidden"} min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black duration-100 hover:scale-105 hover:bg-white hover:shadow dark:text-white dark:hover:bg-black`}
+        />
         <TbX
           onClick={() => dispatch(togglePlayingTrackBar())}
           className="min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black duration-100 hover:scale-105 hover:bg-white hover:shadow dark:text-white dark:hover:bg-black"

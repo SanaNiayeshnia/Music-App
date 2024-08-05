@@ -14,10 +14,11 @@ function TopResult({ item, isLoading }) {
         : item?.artists[0]?.name;
 
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
   useEffect(() => {
+    //if the query changed, set the isImageLoaded to false and show the skeleton before loading the new image
     setIsImageLoaded(false);
   }, [item]);
-  console.log(isImageLoaded);
 
   return (
     <div className="min-w-96">
@@ -41,8 +42,8 @@ function TopResult({ item, isLoading }) {
         <div className="relative">
           {isLoading ? (
             <div className="space-y-2">
-              <Skeleton className="h-5 w-40" />
-              <Skeleton className="h-3 w-20" />
+              <Skeleton className="h-5 w-40 rounded-sm" />
+              <Skeleton className="h-3 w-20 rounded-sm" />
             </div>
           ) : (
             <>

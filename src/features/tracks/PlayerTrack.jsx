@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { formatName } from "../../utilities/helper";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
@@ -6,6 +6,12 @@ import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 function PlayerTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useEffect(() => {
+    //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
+    setIsImageLoaded(false);
+  }, [currentlyPlayingTrack?.id]);
+
   return (
     <div
       className={`${!currentlyPlayingTrack && "opacity-50"} flex items-center gap-4`}
@@ -31,7 +37,7 @@ function PlayerTrack() {
         ) : (
           <>
             <p className="w-40 text-sm font-medium text-black dark:text-white">
-              {formatName(currentlyPlayingTrack?.name, 30)}
+              {formatName(currentlyPlayingTrack?.name, 35)}
             </p>
             <p className="text-[0.8rem] text-gray-600 dark:text-gray-300">
               {currentlyPlayingTrack?.artists[0]?.name}

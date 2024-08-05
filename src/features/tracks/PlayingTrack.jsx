@@ -1,11 +1,16 @@
 import { TbCirclePlus } from "react-icons/tb";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function PlayingTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useEffect(() => {
+    //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
+    setIsImageLoaded(false);
+  }, [currentlyPlayingTrack?.id]);
 
   return (
     <div className="space-y-3">

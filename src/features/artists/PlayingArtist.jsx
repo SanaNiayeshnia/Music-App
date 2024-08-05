@@ -4,7 +4,7 @@ import { BsHeartFill, BsHeartHalf } from "react-icons/bs";
 import { Tooltip } from "@mui/material";
 import Skeleton from "../../ui/Skeleton";
 import useArtist from "./useArtist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function PlayingArtist() {
   const { isLoading: isLoadingTrack, currentlyPlayingTrack } =
@@ -12,6 +12,11 @@ function PlayingArtist() {
   const artistId = currentlyPlayingTrack?.artists[0]?.id;
   const { isLoading: isLoadingArtist, artist } = useArtist(artistId);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useEffect(() => {
+    //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
+    setIsImageLoaded(false);
+  }, [currentlyPlayingTrack?.id]);
 
   return (
     <div className="rounded-md bg-white/50 shadow dark:bg-black/50">

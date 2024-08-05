@@ -20,11 +20,7 @@ function PlayingArtist() {
     artist?.popularity % 20 >= 10 && artist?.popularity % 20 < 15 ? 1 : 0;
   const popularityEmptyHeartsCount =
     5 - (popularityFilledHeartsCount + popularityHalfHeartsCount);
-  console.log(
-    popularityFilledHeartsCount,
-    popularityHalfHeartsCount,
-    popularityEmptyHeartsCount,
-  );
+
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
     setIsImageLoaded(false);
@@ -34,14 +30,12 @@ function PlayingArtist() {
     <div className="rounded-md bg-white/50 shadow dark:bg-black/50">
       <div className="relative overflow-hidden">
         <img
-          src={
-            !isLoadingArtist || !isLoadingArtist ? artist?.images[1]?.url : ""
-          }
+          src={!isLoadingArtist ? artist?.images[1]?.url : ""}
           alt={artist?.name}
           className={`${!isImageLoaded && "hidden"} aspect-square w-full rounded-t-md brightness-90 filter`}
           onLoad={() => setIsImageLoaded(true)}
         />
-        {isLoadingArtist || isLoadingArtist || !isImageLoaded ? (
+        {isLoadingArtist || isLoadingTrack || !isImageLoaded ? (
           <Skeleton className="aspect-square h-full w-full rounded-b-none rounded-t-md" />
         ) : (
           <>

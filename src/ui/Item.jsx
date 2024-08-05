@@ -13,6 +13,7 @@ function Item({ item = {}, size, isLoading = false }) {
   const artists = item?.artists || [];
   const images = type === "track" ? item?.album?.images : item?.images;
   const filteredName = formatName(name);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const content = (
     <div
@@ -21,17 +22,18 @@ function Item({ item = {}, size, isLoading = false }) {
       className={`${size === "large" ? "flex-col p-3" : "items-center p-2"} group flex cursor-pointer gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       <div className={`${size === "large" && "relative"}`}>
-        {isLoading ? (
+        {(!isImageLoaded || isLoading) && (
           <Skeleton
             className={`rounded shadow ${size === "large" ? `aspect-square h-full w-full` : "h-12 w-12 lg:h-14 lg:w-14"}`}
           />
-        ) : (
-          <img
-            src={images[0]?.url}
-            alt={name}
-            className={`aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
-          />
         )}
+
+        <img
+          src={!isLoading ? images[0]?.url : ""}
+          alt={name}
+          onLoad={() => setIsImageLoaded(true)}
+          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
+        />
 
         {size === "large" && !isLoading && (
           <FloatingPlayButton isHovered={isHovered} />

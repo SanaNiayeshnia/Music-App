@@ -13,7 +13,10 @@ function SearchResults() {
       {/* <Filters /> */}
       <div className="flex flex-wrap gap-3">
         <TopResult item={searchResult?.topResult} isLoading={isLoading} />
-        <SongsResult items={searchResult?.tracks?.items} />
+        <SongsResult
+          items={searchResult?.tracks?.items}
+          isLoading={isLoading}
+        />
       </div>
       <ResultList
         isLoading={isLoading}

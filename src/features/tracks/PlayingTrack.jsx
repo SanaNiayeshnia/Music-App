@@ -1,21 +1,24 @@
 import { TbCirclePlus } from "react-icons/tb";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
+import { useState } from "react";
 
 function PlayingTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
     <div className="space-y-3">
-      {isLoading ? (
+      {(!isImageLoaded || isLoading) && (
         <Skeleton className="aspect-square h-full w-full rounded-md shadow" />
-      ) : (
-        <img
-          src={currentlyPlayingTrack?.album?.images[0]?.url || "/test.png"}
-          alt={currentlyPlayingTrack?.name}
-          className="w-full rounded-md shadow"
-        />
       )}
+
+      <img
+        src={!isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""}
+        alt={currentlyPlayingTrack?.name}
+        onLoad={() => setIsImageLoaded(true)}
+        className={`${!isImageLoaded && "hidden"} w-full rounded-md shadow`}
+      />
 
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-1 leading-4">

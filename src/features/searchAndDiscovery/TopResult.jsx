@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FloatingPlayButton from "../../ui/FloatingPlayButton";
 import Title from "../../ui/Title";
 import Skeleton from "../../ui/Skeleton";
 
-function TopResult({ item, isLoading = false }) {
+function TopResult({ item, isLoading }) {
   const [isHovered, setIsHovered] = useState(false);
   const images = item?.type === "track" ? item?.album?.images : item?.images;
   const byWho =
@@ -13,6 +13,12 @@ function TopResult({ item, isLoading = false }) {
         ? ""
         : item?.artists[0]?.name;
 
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  useEffect(() => {
+    setIsImageLoaded(false);
+  }, [item]);
+  console.log(isImageLoaded);
+
   return (
     <div className="min-w-96">
       <Title>Top Result</Title>
@@ -21,15 +27,16 @@ function TopResult({ item, isLoading = false }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {isLoading ? (
+        {(!isImageLoaded || isLoading) && (
           <Skeleton className="h-28 w-28 rounded-md shadow-md" />
-        ) : (
-          <img
-            src={images[0]?.url || "/test.png"}
-            alt={item?.name}
-            className="h-28 w-28 rounded-md shadow-md"
-          />
         )}
+
+        <img
+          src={!isLoading ? images[0]?.url : ""}
+          alt={item?.name}
+          className={`${!isImageLoaded ? "hidden" : ""} h-28 w-28 rounded-md shadow-md`}
+          onLoad={() => setIsImageLoaded(true)}
+        />
 
         <div className="relative">
           {isLoading ? (
@@ -54,7 +61,7 @@ function TopResult({ item, isLoading = false }) {
             </>
           )}
 
-          <FloatingPlayButton isHovered={isHovered} />
+          {!isLoading && <FloatingPlayButton isHovered={isHovered} />}
         </div>
       </div>
     </div>

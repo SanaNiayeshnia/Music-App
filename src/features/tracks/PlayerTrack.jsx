@@ -1,22 +1,24 @@
+import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { formatName } from "../../utilities/helper";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 
 function PlayerTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   return (
     <div
       className={`${!currentlyPlayingTrack && "opacity-50"} flex items-center gap-4`}
     >
-      {isLoading ? (
+      {(isLoading || !isImageLoaded) && (
         <Skeleton className="h-14 w-14 rounded shadow" />
-      ) : (
-        <img
-          className="h-14 w-14 rounded shadow"
-          src={currentlyPlayingTrack?.album?.images[0]?.url || "/test.png"}
-          alt={currentlyPlayingTrack?.name}
-        />
       )}
+      <img
+        className={`${!isImageLoaded && "hidden"} h-14 w-14 rounded shadow`}
+        src={!isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""}
+        alt={currentlyPlayingTrack?.name}
+        onLoad={() => setIsImageLoaded(true)}
+      />
 
       <div
         className={`${!isLoading && !currentlyPlayingTrack && "w-16"} flex flex-col justify-end gap-0.5 leading-4`}

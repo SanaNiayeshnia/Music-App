@@ -13,8 +13,13 @@ function SearchBox() {
   }, []);
 
   function changeQueryhandler(e) {
-    searchParams.set("q", e.target.value.toLowerCase());
-    setSearchParams(searchParams);
+    if (e.target.value) {
+      searchParams.set("q", e.target.value.toLowerCase());
+      setSearchParams(searchParams);
+    } else {
+      searchParams.delete("q");
+      setSearchParams(searchParams);
+    }
   }
 
   return (

@@ -12,17 +12,18 @@ export async function getRecentlyPlayed(all = false) {
     throw new Error("Failed to get the recently played items!");
   const data = await res.json(); //list of individual tracks that has been played
 
-  const uniqueItems = new Map();
+  const uniqueItemsMap = new Map();
   data?.items?.forEach((item) => {
-    if (!uniqueItems.has(item.track.id)) {
-      uniqueItems.set(item.track.id, item.track);
+    if (!uniqueItemsMap.has(item.track.id)) {
+      uniqueItemsMap.set(item.track.id, item);
     }
   });
-  const allItems = Array.from(uniqueItems.values());
+  const uniqueItemsArray = Array.from(uniqueItemsMap.values());
+  const allTracks = uniqueItemsArray.map((item) => item.track);
   if (all)
-    return allItems; //return all the individual tracks
+    return allTracks; //return all the individual tracks
   else {
-    const hrefs = data?.items
+    const hrefs = uniqueItemsArray
       .map((item) => item?.context?.href)
       .filter((item) => item); //only get the hrefs which are not a falsey value like null or undefined
 
@@ -45,7 +46,7 @@ export async function getRecentlyPlayed(all = false) {
     );
 
     //add items with no context (tracks)
-    data?.items.forEach(
+    uniqueItemsArray.forEach(
       (item) =>
         item?.context === null &&
         (contextItems = [...contextItems, item.track]),

@@ -7,6 +7,7 @@ function SearchResultFilters() {
         { title: "Artists", value: "artist" },
         { title: "Albums", value: "album" },
         { title: "Playlists", value: "playlist" },
+        { title: "Songs", value: "track" },
       ]}
       filterField="type"
       handler={() => {}}

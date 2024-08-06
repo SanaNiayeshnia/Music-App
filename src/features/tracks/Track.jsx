@@ -16,6 +16,7 @@ function Track({
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const artists = track?.artists.map((artist) => artist.name).join(", ");
 
   return (
     <tr
@@ -63,7 +64,7 @@ function Track({
               </p>
               {!noArtist && (
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  {track?.artists[0].name}
+                  {artists}
                 </p>
               )}
             </>
@@ -77,7 +78,7 @@ function Track({
               <td
                 className={`${isPlayingTrackbarOpen && "hidden"} text-sm text-black xl:inline-block dark:text-white`}
               >
-                {!noAlbum && "Superache"}
+                {!noAlbum && track?.album?.name}
               </td>
               <td
                 className={`${isPlayingTrackbarOpen && "hidden"} xl:inline-block`}

@@ -6,6 +6,9 @@ import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 function PlayerTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const artists = currentlyPlayingTrack?.artists
+    .map((artist) => artist.name)
+    .join(", ");
 
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
@@ -40,7 +43,7 @@ function PlayerTrack() {
               {formatName(currentlyPlayingTrack?.name, 35)}
             </p>
             <p className="text-[0.8rem] text-gray-600 dark:text-gray-300">
-              {currentlyPlayingTrack?.artists[0]?.name}
+              {artists}
             </p>
           </>
         )}

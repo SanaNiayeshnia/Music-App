@@ -59,7 +59,7 @@ function Item({ item = {}, size, isLoading = false }) {
             </p>
             <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">
               {size === "large" && (type === "track" || type === "album")
-                ? artists[0]?.name
+                ? artists.map((artist) => artist.name).join(", ")
                 : size === "large" && type === "playlist"
                   ? item?.owner?.display_name
                   : type}

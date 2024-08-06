@@ -41,7 +41,7 @@ export async function getSearchResult(query) {
     if (controller) controller.abort();
     controller = new AbortController();
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${query}&type=track,album,artist,playlist&limit=6`,
+      `https://api.spotify.com/v1/search?q=${query}&type=track,album,artist,playlist&limit=24`,
       {
         signal: controller.signal,
         headers: { authorization: `Bearer ${accessToken}` },

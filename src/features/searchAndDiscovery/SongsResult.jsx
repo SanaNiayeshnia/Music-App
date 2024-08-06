@@ -1,10 +1,21 @@
 import Title from "../../ui/Title";
 import Track from "../tracks/Track";
 
-function SongsResult({ items, isLoading }) {
+function SongsResult({ items, isLoading, all, setCurrentFilterArray }) {
   return (
-    <div className="min-w-96 flex-grow">
-      <Title>Songs</Title>
+    <div key={all} className="min-w-96 flex-grow">
+      <div className="flex items-center justify-between">
+        <Title>Songs</Title>
+
+        {!all && (
+          <p
+            className="mt-5 cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
+            onClick={() => setCurrentFilterArray([items[0]?.type])}
+          >
+            Show all
+          </p>
+        )}
+      </div>
       <table className="w-full">
         <tbody>
           {isLoading
@@ -12,7 +23,7 @@ function SongsResult({ items, isLoading }) {
                 <Track key={index} isLoading={isLoading} index={index + 1} />
               ))
             : items
-                ?.slice(0, 4)
+                ?.slice(0, all ? items?.length : 4)
                 .map((item, index) => (
                   <Track
                     isLoading={isLoading}

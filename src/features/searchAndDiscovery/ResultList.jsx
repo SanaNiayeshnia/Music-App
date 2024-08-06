@@ -2,11 +2,22 @@ import Item from "../../ui/Item";
 import ListContainer from "../../ui/ListContainer";
 import Title from "../../ui/Title";
 
-function ResultList({ title, items, isLoading }) {
+function ResultList({ title, items, isLoading, all, setCurrentFilterArray }) {
   return (
-    <div>
-      <Title>{title}</Title>
-      <ListContainer isLoading={isLoading}>
+    <div key={all}>
+      <div className="flex items-center justify-between">
+        <Title>{title}</Title>
+        {!all && (
+          <p
+            className="mt-5 cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
+            onClick={() => setCurrentFilterArray([items[0]?.type])}
+          >
+            Show all
+          </p>
+        )}
+      </div>
+
+      <ListContainer isLoading={isLoading} all={all}>
         {items?.map((item) => (
           <Item key={item.id} item={item} size="large" />
         ))}

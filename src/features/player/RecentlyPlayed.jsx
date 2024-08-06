@@ -7,7 +7,7 @@ import useRecentlyPlayed from "./useRecentlyPlayed";
 function RecentlyPlayed({ all = false }) {
   const { isLoading, recentlyPlayedItems } = useRecentlyPlayed({ all });
   return (
-    <div key={Math.random()}>
+    <div key={`${all}-${Math.random()}`}>
       <div className="flex items-center justify-between">
         <Title>Recently Played</Title>
         {!all && <ShowAll to="/section/recently-played">Show all</ShowAll>}

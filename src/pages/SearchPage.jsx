@@ -1,4 +1,4 @@
-import { Outlet, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SearchBox from "../features/searchAndDiscovery/SearchBox";
 import TopNav from "../ui/TopNav";
 import DefaultSearchPageContent from "../features/searchAndDiscovery/DefaultSearchPageContent";

@@ -24,7 +24,7 @@ function Item({ item = {}, size, isLoading = false }) {
       <div className={`${size === "large" && "relative"}`}>
         {(!isImageLoaded || isLoading) && (
           <Skeleton
-            className={`rounded shadow ${size === "large" ? `aspect-square h-full w-full` : "h-12 w-12 lg:h-14 lg:w-14"}`}
+            className={`rounded shadow ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? `aspect-square h-full w-full` : "h-12 w-12 lg:h-14 lg:w-14"}`}
           />
         )}
 

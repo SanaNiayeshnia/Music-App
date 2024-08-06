@@ -7,6 +7,7 @@ const initialState = {
   followedItems: [],
   filteredItems: [],
 };
+
 const librarySlice = createSlice({
   name: "library",
   initialState,

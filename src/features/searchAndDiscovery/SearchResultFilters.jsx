@@ -1,6 +1,21 @@
 import Filters from "../../ui/Filters";
 
-function SearchResultFilters() {
+function SearchResultFilters({ currentFilterArray, setCurrentFilterArray }) {
+  function addRemoveFilter(newFilter) {
+    if (currentFilterArray.includes(newFilter)) {
+      //remove filter if it already exists in the current filter array
+      setCurrentFilterArray((currentFilterArray) =>
+        currentFilterArray.filter((filter) => filter !== newFilter),
+      );
+    } else {
+      //add filter
+      setCurrentFilterArray((currentFilterArray) => [
+        ...currentFilterArray,
+        newFilter,
+      ]);
+    }
+  }
+
   return (
     <Filters
       options={[
@@ -10,8 +25,8 @@ function SearchResultFilters() {
         { title: "Songs", value: "track" },
       ]}
       filterField="type"
-      handler={() => {}}
-      currentFilterArray={[]}
+      handler={addRemoveFilter}
+      currentFilterArray={currentFilterArray}
     />
   );
 }

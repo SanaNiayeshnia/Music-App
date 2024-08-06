@@ -5,12 +5,15 @@ import TopResult from "./TopResult";
 import useSearchResult from "./useSearchResult";
 import SearchResultFilters from "./SearchResultFilters";
 import { TbMoodSad } from "react-icons/tb";
+import { useState } from "react";
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
   const { isLoading, searchResult, error } = useSearchResult(
     searchParams.get("q"),
   );
+  const [currentFilterArray, setCurrentFilterArray] = useState([]);
+
   return (
     <div>
       {error ? (
@@ -20,29 +23,59 @@ function SearchResults() {
         </div>
       ) : (
         <>
-          <SearchResultFilters />
+          <SearchResultFilters
+            currentFilterArray={currentFilterArray}
+            setCurrentFilterArray={setCurrentFilterArray}
+          />
           <div className="flex flex-wrap gap-3">
-            <TopResult item={searchResult?.topResult} isLoading={isLoading} />
-            <SongsResult
-              items={searchResult?.tracks?.items}
-              isLoading={isLoading}
-            />
+            {(currentFilterArray.length === 0 ||
+              currentFilterArray.includes("track")) && (
+              <>
+                <TopResult
+                  item={searchResult?.topResult}
+                  isLoading={isLoading}
+                />
+                <SongsResult
+                  items={searchResult?.tracks?.items}
+                  isLoading={isLoading}
+                  all={currentFilterArray.includes("track")}
+                  setCurrentFilterArray={setCurrentFilterArray}
+                />
+              </>
+            )}
           </div>
-          <ResultList
-            isLoading={isLoading}
-            title="Artists"
-            items={searchResult?.artists?.items}
-          />
-          <ResultList
-            isLoading={isLoading}
-            title="Albums"
-            items={searchResult?.albums?.items}
-          />
-          <ResultList
-            isLoading={isLoading}
-            title="Playlists"
-            items={searchResult?.playlists?.items}
-          />
+          {(currentFilterArray.length === 0 ||
+            currentFilterArray.includes("artist")) && (
+            <ResultList
+              isLoading={isLoading}
+              title="Artists"
+              items={searchResult?.artists?.items}
+              all={currentFilterArray.includes("artist")}
+              setCurrentFilterArray={setCurrentFilterArray}
+            />
+          )}
+
+          {(currentFilterArray.length === 0 ||
+            currentFilterArray.includes("album")) && (
+            <ResultList
+              isLoading={isLoading}
+              title="Albums"
+              items={searchResult?.albums?.items}
+              all={currentFilterArray.includes("album")}
+              setCurrentFilterArray={setCurrentFilterArray}
+            />
+          )}
+
+          {(currentFilterArray.length === 0 ||
+            currentFilterArray.includes("playlist")) && (
+            <ResultList
+              isLoading={isLoading}
+              title="Playlists"
+              items={searchResult?.playlists?.items}
+              all={currentFilterArray.includes("playlist")}
+              setCurrentFilterArray={setCurrentFilterArray}
+            />
+          )}
         </>
       )}
     </div>

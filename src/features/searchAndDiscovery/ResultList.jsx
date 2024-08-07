@@ -12,7 +12,7 @@ function ResultList({ title, items, isLoading, all, setCurrentFilterArray }) {
   }
 
   return (
-    <div key={all}>
+    <div key={all} className={!isLoading && items.length === 0 ? "hidden" : ""}>
       <div className="flex items-center justify-between">
         <Title>{title}</Title>
         {!all && items?.length > 6 && (

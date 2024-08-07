@@ -4,6 +4,7 @@ import { Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
 import { formatName } from "../utilities/helper";
+import { useNavigate } from "react-router-dom";
 
 function Item({ item = {}, size, isLoading = false }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -12,13 +13,15 @@ function Item({ item = {}, size, isLoading = false }) {
   const { name, type } = item;
   const artists = item?.artists || [];
   const images = type === "track" ? item?.album?.images : item?.images;
-  const filteredName = formatName(name);
+  const filteredName = formatName(name, 45);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const navigate = useNavigate();
 
   const content = (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => navigate(`/${type}/${item?.id}`)}
       className={`${size === "large" ? "flex-col p-3" : "items-center p-2"} group flex cursor-pointer gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       <div className={`${size === "large" && "relative"}`}>

@@ -5,10 +5,10 @@ function License({ release, copyright, soundRecording }) {
         {release}
       </p>
       <p className="text-[0.6rem] text-gray-600 dark:text-gray-300">
-        © {copyright}
+        {copyright}
       </p>
       <p className="text-[0.6rem] text-gray-600 dark:text-gray-300">
-        ℗ {soundRecording}
+        {soundRecording}
       </p>
     </div>
   );

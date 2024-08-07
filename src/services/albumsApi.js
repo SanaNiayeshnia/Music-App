@@ -16,3 +16,15 @@ export async function getSavedAlbums() {
     next: data?.next,
   };
 }
+
+export async function getAlbum(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(`https://api.spotify.com/v1/albums/${id}`, {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (res.status !== 200) throw new Error("Failed to get the album!");
+  const data = await res.json();
+  return data;
+}

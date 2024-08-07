@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import { TbClock } from "react-icons/tb";
 
 function TrackList({
+  items = {},
   noCover = false,
   noAlbum = false,
   noArtist = false,
   extra,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
+
   return (
     <table className="w-full pt-3">
       <thead className="border-b border-black/20 dark:border-white/20">
@@ -35,30 +37,16 @@ function TrackList({
         </tr>
       </thead>
       <tbody>
-        <Track
-          noCover={noCover}
-          noAlbum={noAlbum}
-          noArtist={noArtist}
-          extra={extra}
-        />
-        <Track
-          noCover={noCover}
-          noAlbum={noAlbum}
-          noArtist={noArtist}
-          extra={extra}
-        />
-        <Track
-          noCover={noCover}
-          noAlbum={noAlbum}
-          noArtist={noArtist}
-          extra={extra}
-        />
-        <Track
-          noCover={noCover}
-          noAlbum={noAlbum}
-          noArtist={noArtist}
-          extra={extra}
-        />
+        {items.map((item) => (
+          <Track
+            track={item}
+            key={item.id}
+            noCover={noCover}
+            noAlbum={noAlbum}
+            noArtist={noArtist}
+            extra={extra}
+          />
+        ))}
       </tbody>
     </table>
   );

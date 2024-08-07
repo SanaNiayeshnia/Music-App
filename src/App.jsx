@@ -21,6 +21,7 @@ import { Toaster } from "react-hot-toast";
 import { setIsOnline } from "./features/authentication/authSlice";
 import SectionPage from "./pages/SectionPage";
 import RecentlyPlayed from "./features/player/RecentlyPlayed";
+import MoreByArtist from "./features/artists/MoreByArtist";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -89,6 +90,14 @@ function App() {
               <Route path="search" element={<SearchPage />} />
               <Route path="artist/:id" element={<ArtistPage />} />
               <Route path="album/:id" element={<AlbumPage />} />
+              <Route
+                path="album/:id/more-by-artist"
+                element={
+                  <SectionPage>
+                    <MoreByArtist all={true} />
+                  </SectionPage>
+                }
+              />
               <Route path="track/:id" element={<TrackPage />} />
               <Route path="playlist/:id" element={<PlaylistPage />} />
               <Route path="section/" element={<SectionPage />}>

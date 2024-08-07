@@ -15,7 +15,7 @@ function PlayingTrackbarHeader({ isScrolled }) {
         <Skeleton className="h-4 w-32" />
       ) : (
         <p className="text-sm font-semibold text-black dark:text-white">
-          {currentlyPlayingTrack?.name}
+          {currentlyPlayingTrack?.context?.name}
         </p>
       )}
 

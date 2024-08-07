@@ -67,7 +67,15 @@ export async function getCurrentlyPlaingTrack() {
   if (res.status !== 200)
     throw new Error("Failed to get the currently playing track!");
   const data = await res.json();
-  return data.item;
+  let context = { type: data?.context?.type };
+  const playlistRes = await fetch(data?.context?.href, {
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (playlistRes.status !== 200)
+    throw new Error("Failed to get the currently playing track!");
+  const playlistData = await playlistRes.json();
+  context = { ...context, name: playlistData?.name, id: playlistData?.id };
+  return { ...data?.item, context };
 }
 
 export async function getQueue() {

@@ -7,6 +7,7 @@ function useCurrentlyPlayingTrack() {
     queryFn: getCurrentlyPlaingTrack,
     staleTime: 1000,
   });
+
   return { isLoading, currentlyPlayingTrack };
 }
 

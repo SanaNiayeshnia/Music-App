@@ -8,7 +8,6 @@ import useArtistsAlbums from "./useArtistsAlbums";
 
 function MoreByArtist({ all }) {
   const { id } = useParams();
-  console.log(id);
   const { isLoading: isLoadingAlbum, album } = useAlbum(id);
   const { isLoading: isLoadingArtist, artistsAlbums } = useArtistsAlbums(
     album?.artists[0]?.id,

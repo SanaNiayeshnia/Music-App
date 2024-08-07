@@ -12,3 +12,5 @@ export async function getSavedPlaylists() {
 
   return { playlists: data?.items, count: data?.total, next: data?.next };
 }
+
+export async function getPlaylist(id) {}

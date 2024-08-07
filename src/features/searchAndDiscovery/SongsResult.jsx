@@ -1,16 +1,23 @@
 import Title from "../../ui/Title";
+import useMainContext from "../../ui/layout/useMainContext";
 import Track from "../tracks/Track";
 
 function SongsResult({ items, isLoading, all, setCurrentFilterArray }) {
+  const { scrollMainToTop } = useMainContext();
+
+  function handleShowAll() {
+    setCurrentFilterArray([items[0]?.type]);
+    scrollMainToTop();
+  }
   return (
     <div key={all} className="min-w-96 flex-grow">
       <div className="flex items-center justify-between">
         <Title>Songs</Title>
 
-        {!all && (
+        {!all && items?.length > 4 && (
           <p
             className="mt-5 cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
-            onClick={() => setCurrentFilterArray([items[0]?.type])}
+            onClick={handleShowAll}
           >
             Show all
           </p>
@@ -30,7 +37,6 @@ function SongsResult({ items, isLoading, all, setCurrentFilterArray }) {
                     track={item}
                     index={index + 1}
                     key={item.id}
-                    noArtist
                     noAlbum
                   />
                 ))}

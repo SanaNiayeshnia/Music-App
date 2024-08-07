@@ -26,6 +26,7 @@ function SearchResults() {
           <SearchResultFilters
             currentFilterArray={currentFilterArray}
             setCurrentFilterArray={setCurrentFilterArray}
+            searchResult={searchResult}
           />
           <div className="flex flex-wrap gap-3">
             {(currentFilterArray.length === 0 ||

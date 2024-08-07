@@ -1,16 +1,24 @@
 import Item from "../../ui/Item";
 import ListContainer from "../../ui/ListContainer";
 import Title from "../../ui/Title";
+import useMainContext from "../../ui/layout/useMainContext";
 
 function ResultList({ title, items, isLoading, all, setCurrentFilterArray }) {
+  const { scrollMainToTop } = useMainContext();
+
+  function handleShowAll() {
+    setCurrentFilterArray([items[0]?.type]);
+    scrollMainToTop();
+  }
+
   return (
     <div key={all}>
       <div className="flex items-center justify-between">
         <Title>{title}</Title>
-        {!all && (
+        {!all && items?.length > 6 && (
           <p
             className="mt-5 cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
-            onClick={() => setCurrentFilterArray([items[0]?.type])}
+            onClick={handleShowAll}
           >
             Show all
           </p>

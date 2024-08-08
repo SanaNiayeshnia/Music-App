@@ -6,6 +6,7 @@ import useSearchResult from "./useSearchResult";
 import SearchResultFilters from "./SearchResultFilters";
 import { TbMoodSad } from "react-icons/tb";
 import { useState } from "react";
+import Spinner from "../../ui/Spinner";
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -15,8 +16,12 @@ function SearchResults() {
   const [currentFilterArray, setCurrentFilterArray] = useState([]);
 
   return (
-    <div>
-      {error ? (
+    <div className="h-[calc(100%-52px)]">
+      {isLoading ? (
+        <div className="grid h-full place-items-center">
+          <Spinner />
+        </div>
+      ) : !isLoading && error ? (
         <div className="flex min-h-40 items-center justify-center gap-1 font-semibold">
           <p className="text-black dark:text-white">{error?.message}</p>
           <TbMoodSad className="h-7 w-7 text-blue-600 duration-100" />

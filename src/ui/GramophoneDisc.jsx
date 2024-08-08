@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Skeleton from "./Skeleton";
+import { useSelector } from "react-redux";
 
 function GramophoneDisc({ image, title, className }) {
   const [isImgLoaded, setIsImgLoaded] = useState(false);
+  const { isDarkMode } = useSelector((store) => store.global);
+
   return (
     <div
       className={`${className} grid h-full w-full place-items-center rounded-full bg-black`}
@@ -14,7 +17,9 @@ function GramophoneDisc({ image, title, className }) {
               <Skeleton className="absolute left-1/2 top-1/2 h-2/5 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-full shadow" />
             )}
             <img
-              src={image}
+              src={
+                image || `/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`
+              }
               alt={title}
               onLoad={() => setIsImgLoaded(true)}
               className={`${isImgLoaded ? "inline-block" : "hidden"} absolute left-1/2 top-1/2 h-2/5 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-full`}

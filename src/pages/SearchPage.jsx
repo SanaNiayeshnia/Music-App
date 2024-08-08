@@ -8,11 +8,11 @@ function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
   return (
-    <div>
+    <div className="h-full">
       <TopNav>
         <SearchBox />
       </TopNav>
-      <div className="space-y-10">
+      <div className="h-full space-y-10">
         {query ? <SearchResults /> : <DefaultSearchPageContent />}
       </div>
     </div>

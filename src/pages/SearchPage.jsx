@@ -7,6 +7,7 @@ import SearchResults from "../features/searchAndDiscovery/SearchResults";
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
+
   return (
     <div className="h-full">
       <TopNav>

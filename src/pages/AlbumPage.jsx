@@ -23,7 +23,7 @@ function AlbumPage() {
   );
 
   const [totalDuration, setTotalDuration] = useState(0);
-  const { sec, min } = getTrackDuration(totalDuration);
+  const { hour, sec, min } = getTrackDuration(totalDuration);
 
   useEffect(() => {
     if (album) {
@@ -48,7 +48,7 @@ function AlbumPage() {
       ) : (
         <>
           <PageHeader
-            background={artist?.images[0]?.url}
+            background={album?.images[0]?.url}
             artistPic={artist?.images[0]?.url}
             cover={album?.images[0]?.url}
             type={album?.type}
@@ -59,12 +59,13 @@ function AlbumPage() {
                   {artist?.name}
                 </span>{" "}
                 • {album?.release_date.slice(0, 4)} • {album?.total_tracks}{" "}
-                songs, {min} min {sec} sec
+                songs, {hour > 0 && hour + " hr"} {min > 0 && min + " min"}{" "}
+                {sec > 0 && sec + " sec"}
               </p>
             }
           />
           <PageBody>
-            <PageMenu />
+            <PageMenu item={album} />
             <TrackList
               items={album?.tracks?.items}
               noCover

@@ -1,7 +1,8 @@
 export function getTrackDuration(duration) {
-  const min = parseInt(duration / 1000 / 60);
-  const sec = parseInt((duration / 1000) % 60);
-  return { min, sec };
+  const hour = Math.floor(duration / 1000 / 60 / 60);
+  const min = Math.floor(duration / 1000 / 60) % 60;
+  const sec = Math.floor((duration / 1000) % 60);
+  return { hour, min, sec };
 }
 export function formatTrackDuration(duration) {
   const minutes = getTrackDuration(duration).min.toString();

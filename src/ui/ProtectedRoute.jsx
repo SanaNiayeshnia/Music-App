@@ -29,7 +29,7 @@ function ProtectedRoute({ children }) {
       </div>
     );
 
-  if (isAuthenticated) return children;
+  if (!isLoading && isAuthenticated) return children;
   else null;
 }
 

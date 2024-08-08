@@ -2,7 +2,7 @@ import Title from "../../ui/Title";
 import useMainContext from "../../ui/layout/useMainContext";
 import Track from "../tracks/Track";
 
-function SongsResult({ items, isLoading, all, setCurrentFilterArray }) {
+function SongsResult({ items, all, setCurrentFilterArray }) {
   const { scrollMainToTop } = useMainContext();
 
   function handleShowAll() {
@@ -25,21 +25,9 @@ function SongsResult({ items, isLoading, all, setCurrentFilterArray }) {
       </div>
       <table className="w-full">
         <tbody>
-          {isLoading
-            ? Array.from({ length: 4 }).map((item, index) => (
-                <Track key={index} isLoading={isLoading} index={index + 1} />
-              ))
-            : items
-                ?.slice(0, all ? items?.length : 4)
-                .map((item, index) => (
-                  <Track
-                    isLoading={isLoading}
-                    track={item}
-                    index={index + 1}
-                    key={item.id}
-                    noAlbum
-                  />
-                ))}
+          {items?.slice(0, all ? items?.length : 4).map((item, index) => (
+            <Track track={item} index={index + 1} key={item.id} noAlbum />
+          ))}
         </tbody>
       </table>
     </div>

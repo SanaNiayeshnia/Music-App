@@ -6,34 +6,59 @@ import PageBody from "../ui/PageBody";
 import PageMenu from "../ui/PageMenu";
 import AlsoLikePlaylists from "../features/playlists/AlsoLikePlaylists";
 import TrackList from "../features/tracks/TrackList";
+import { useParams } from "react-router-dom";
+import usePlaylist from "../features/playlists/usePlaylist";
+import { getTrackDuration } from "../utilities/helper";
+import Spinner from "../ui/Spinner";
 
 function PlaylistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
+  const { id } = useParams();
+  const { isLoading, playlist } = usePlaylist(id);
+  const totalDuration = playlist?.tracks?.items?.reduce(
+    (totalDuration, item) => totalDuration + item?.track?.duration_ms,
+    0,
+  );
+  const { hour, min, sec } = getTrackDuration(totalDuration);
   return (
-    <div>
+    <div className="h-full">
       <TopNav transparent>
-        {isMainScrolled && <NavTitle>Conan Gray</NavTitle>}
+        {isMainScrolled && <NavTitle>{playlist?.name}</NavTitle>}
       </TopNav>
-      <PageHeader
-        background="/header.png"
-        artistPic="/spotify-logo.png"
-        cover="/test.png"
-        type="playlist"
-        title="All Out Of 80s"
-        something={
-          <p className="text-sm font-medium text-gray-900 dark:text-white">
-            <span className="font-semibold text-gray-900 dark:text-white">
-              Spotify
-            </span>{" "}
-            • 32,455,093 saves • 150 songs, about 1 hr
-          </p>
-        }
-      />
-      <PageBody>
-        <PageMenu />
-        <TrackList extra="date" />
-        <AlsoLikePlaylists />
-      </PageBody>
+      {isLoading ? (
+        <div className="grid h-[calc(100%-52px)] place-items-center">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          {" "}
+          <PageHeader
+            background="/header.png"
+            artistPic="/spotify-logo.png"
+            cover={playlist?.images[0]?.url}
+            type={playlist?.type}
+            title={playlist?.name}
+            something={
+              <p className="text-sm font-medium text-gray-900 dark:text-white">
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {playlist?.owner?.display_name}
+                </span>{" "}
+                • {playlist?.followers?.total?.toLocaleString()} saves •{" "}
+                {playlist?.tracks?.total} songs, {hour > 0 && hour + " hr"}{" "}
+                {min > 0 && min + " min"} {sec > 0 && sec + " sec"}
+              </p>
+            }
+          />
+          <PageBody>
+            <PageMenu item={playlist} />
+            <TrackList
+              items={playlist?.tracks?.items?.map((item) => item?.track)}
+              extra="date"
+            />
+            <AlsoLikePlaylists />
+          </PageBody>
+        </>
+      )}
     </div>
   );
 }

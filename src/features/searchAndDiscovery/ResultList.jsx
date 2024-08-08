@@ -3,7 +3,7 @@ import ListContainer from "../../ui/ListContainer";
 import Title from "../../ui/Title";
 import useMainContext from "../../ui/layout/useMainContext";
 
-function ResultList({ title, items, isLoading, all, setCurrentFilterArray }) {
+function ResultList({ title, items, all, setCurrentFilterArray }) {
   const { scrollMainToTop } = useMainContext();
 
   function handleShowAll() {
@@ -12,7 +12,7 @@ function ResultList({ title, items, isLoading, all, setCurrentFilterArray }) {
   }
 
   return (
-    <div key={all} className={!isLoading && items.length === 0 ? "hidden" : ""}>
+    <div key={all} className={items.length === 0 ? "hidden" : ""}>
       <div className="flex items-center justify-between">
         <Title>{title}</Title>
         {!all && items?.length > 6 && (
@@ -25,7 +25,7 @@ function ResultList({ title, items, isLoading, all, setCurrentFilterArray }) {
         )}
       </div>
 
-      <ListContainer isLoading={isLoading} all={all}>
+      <ListContainer all={all}>
         {items?.map((item) => (
           <Item key={item.id} item={item} size="large" />
         ))}

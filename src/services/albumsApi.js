@@ -28,3 +28,18 @@ export async function getAlbum(id) {
   const data = await res.json();
   return data;
 }
+
+export async function checkUsersSavedAlbums(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/albums/contains/${id}`,
+    {
+      headers: { authorization: `Bearer ${accessToken}` },
+    },
+  );
+  if (res.status !== 200) throw new Error("Failed to get the album!");
+  const data = await res.json();
+  return data;
+}

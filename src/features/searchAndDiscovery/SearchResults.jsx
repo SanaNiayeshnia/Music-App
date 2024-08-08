@@ -43,7 +43,6 @@ function SearchResults() {
                 />
                 <SongsResult
                   items={searchResult?.tracks?.items}
-                  isLoading={isLoading}
                   all={currentFilterArray.includes("track")}
                   setCurrentFilterArray={setCurrentFilterArray}
                 />
@@ -53,7 +52,6 @@ function SearchResults() {
           {(currentFilterArray.length === 0 ||
             currentFilterArray.includes("artist")) && (
             <ResultList
-              isLoading={isLoading}
               title="Artists"
               items={searchResult?.artists?.items}
               all={currentFilterArray.includes("artist")}
@@ -64,7 +62,6 @@ function SearchResults() {
           {(currentFilterArray.length === 0 ||
             currentFilterArray.includes("album")) && (
             <ResultList
-              isLoading={isLoading}
               title="Albums"
               items={searchResult?.albums?.items}
               all={currentFilterArray.includes("album")}
@@ -75,7 +72,6 @@ function SearchResults() {
           {(currentFilterArray.length === 0 ||
             currentFilterArray.includes("playlist")) && (
             <ResultList
-              isLoading={isLoading}
               title="Playlists"
               items={searchResult?.playlists?.items}
               all={currentFilterArray.includes("playlist")}

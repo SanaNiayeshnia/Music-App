@@ -6,6 +6,7 @@ import Skeleton from "./Skeleton";
 function Cover({ cover, title, className }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImgLoaded, setIsImgLoaded] = useState(false);
+  const { isDarkMode } = useSelector((store) => store.global);
 
   return (
     <div
@@ -15,7 +16,7 @@ function Cover({ cover, title, className }) {
         <Skeleton className="absolute inset-0 z-20 h-full w-full animate-none rounded" />
       )}
       <img
-        src={cover}
+        src={cover || `/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`}
         alt={title}
         onLoad={() => setIsImgLoaded(true)}
         className={`${!isImgLoaded && "hidden"} absolute inset-0 z-20 h-full w-full rounded shadow-[5px_3px_8px_0_black]`}

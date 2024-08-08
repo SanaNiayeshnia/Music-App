@@ -22,6 +22,7 @@ import { setIsOnline } from "./features/authentication/authSlice";
 import SectionPage from "./pages/SectionPage";
 import RecentlyPlayed from "./features/player/RecentlyPlayed";
 import MoreByArtist from "./features/artists/MoreByArtist";
+import AlsoLikePlaylists from "./features/playlists/AlsoLikePlaylists";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -100,6 +101,14 @@ function App() {
               />
               <Route path="track/:id" element={<TrackPage />} />
               <Route path="playlist/:id" element={<PlaylistPage />} />
+              <Route
+                path="playlist/:id/might-also-like"
+                element={
+                  <SectionPage>
+                    <AlsoLikePlaylists all={true} />
+                  </SectionPage>
+                }
+              />
               <Route path="section/" element={<SectionPage />}>
                 <Route
                   path="recently-played"

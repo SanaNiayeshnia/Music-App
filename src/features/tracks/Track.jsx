@@ -16,11 +16,11 @@ function Track({
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const artists = track?.artists.map((artist) => artist.name).join(", ");
+  const artists = track?.artists?.map((artist) => artist.name).join(", ");
 
   return (
     <tr
-      className={`${smallScreen ? "cursor-pointer grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2fr_2fr_0.5fr_0.5fr_0.5fr]"} group grid items-center rounded-md py-2 hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      className={`${smallScreen ? "cursor-pointer grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       {!smallScreen && (
         <td className="w-3.5 text-center">

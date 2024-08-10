@@ -14,7 +14,6 @@ function LibraryFilters() {
           { title: "Albums", value: "album" },
           { title: "Playlists", value: "playlist" },
         ]}
-        filterField="type"
         handler={(filter) => dispatch(addRemoveFilter(filter))}
         currentFilterArray={currentFilterArray}
       />

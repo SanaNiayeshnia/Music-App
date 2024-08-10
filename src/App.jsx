@@ -23,6 +23,9 @@ import SectionPage from "./pages/SectionPage";
 import RecentlyPlayed from "./features/player/RecentlyPlayed";
 import MoreByArtist from "./features/artists/MoreByArtist";
 import AlsoLikePlaylists from "./features/playlists/AlsoLikePlaylists";
+import Discography from "./features/artists/Discography";
+import RelatedArtists from "./features/artists/RelatedArtists";
+import AppearsOn from "./features/artists/AppearsOn";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -90,6 +93,30 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="search" element={<SearchPage />} />
               <Route path="artist/:id" element={<ArtistPage />} />
+              <Route
+                path="artist/:id/discography"
+                element={
+                  <SectionPage>
+                    <Discography all={true} />
+                  </SectionPage>
+                }
+              />
+              <Route
+                path="artist/:id/appears-on"
+                element={
+                  <SectionPage>
+                    <AppearsOn all={true} />
+                  </SectionPage>
+                }
+              />
+              <Route
+                path="artist/:id/fans-also-like"
+                element={
+                  <SectionPage>
+                    <RelatedArtists all={true} />
+                  </SectionPage>
+                }
+              />
               <Route path="album/:id" element={<AlbumPage />} />
               <Route
                 path="album/:id/more-by-artist"

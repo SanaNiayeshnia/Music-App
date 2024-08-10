@@ -33,7 +33,9 @@ function PlaylistPage() {
         <>
           {" "}
           <PageHeader
-            background="/header.png"
+            background={
+              playlist?.tracks?.items[0]?.track?.album?.images[0]?.url
+            }
             artistPic="/spotify-logo.png"
             cover={playlist?.images[0]?.url}
             type={playlist?.type}

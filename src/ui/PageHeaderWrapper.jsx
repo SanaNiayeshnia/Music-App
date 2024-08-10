@@ -2,11 +2,11 @@ function PageHeaderWrapper({ background, children }) {
   return (
     <div
       style={{
-        background: `url(${background})`,
-        backgroundRepeat: "no-repeat",
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "no-repeat !important",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
-        backgroundPosition: "center",
+        backgroundPosition: "center center",
       }}
       className={`relative h-52 w-full rounded-lg shadow-md lg:h-[17rem]`}
     >

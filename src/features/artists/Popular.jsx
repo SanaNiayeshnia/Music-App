@@ -1,17 +1,38 @@
+import { useState } from "react";
 import ShowAll from "../../ui/ShowAll";
 import Title from "../../ui/Title";
 import Track from "../tracks/Track";
+import useArtistsTopTracks from "./useArtistsTopTracks";
 
-function Popular() {
+function Popular({ artistsTopTracks }) {
+  const [isSeeMoreOpen, setIsSeeMoreOpen] = useState(false);
   return (
     <div>
       <Title>Popular</Title>
       <table className="w-full">
-        <Track noArtist noAlbum extra="stream" />
-        <Track noArtist noAlbum extra="stream" />
-        <Track noArtist noAlbum extra="stream" />
-        <ShowAll className="px-3">See more</ShowAll>
+        <tbody>
+          {[
+            ...(isSeeMoreOpen
+              ? artistsTopTracks
+              : artistsTopTracks.slice(0, 5)),
+          ].map((track, index) => (
+            <Track
+              key={track.id}
+              index={index + 1}
+              track={track}
+              noArtist
+              noAlbum
+              extra="stream"
+            />
+          ))}
+        </tbody>
       </table>
+      <p
+        onClick={() => setIsSeeMoreOpen((isSeeMoreOpen) => !isSeeMoreOpen)}
+        className="mt-3 cursor-pointer px-3 text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
+      >
+        {isSeeMoreOpen ? "See less" : "See more"}
+      </p>
     </div>
   );
 }

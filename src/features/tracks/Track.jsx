@@ -87,7 +87,6 @@ function Track({
                   className={`text-sm text-black xl:inline-block dark:text-white`}
                 >
                   {extra === "date" && formatDate(track?.album?.release_date)}
-                  {extra === "stream" && "1,356,247,890"}
                 </p>
               </td>
               <td className="text-center">

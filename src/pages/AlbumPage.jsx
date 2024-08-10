@@ -48,7 +48,7 @@ function AlbumPage() {
       ) : (
         <>
           <PageHeader
-            background={album?.images[0]?.url}
+            background={artist?.images[0]?.url}
             artistPic={artist?.images[0]?.url}
             cover={album?.images[0]?.url}
             type={album?.type}

@@ -6,20 +6,41 @@ import Popular from "../features/artists/Popular";
 import TopNav from "../ui/TopNav";
 import PageBody from "../ui/PageBody";
 import PageMenu from "../ui/PageMenu";
+import useArtist from "../features/artists/useArtist";
+import { useParams } from "react-router-dom";
+import Spinner from "../ui/Spinner";
+import useArtistsTopTracks from "../features/artists/useArtistsTopTracks";
+import RelatedArtists from "../features/artists/RelatedArtists";
+import AppearsOn from "../features/artists/AppearsOn";
 
 function ArtistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
+  const { id } = useParams();
+  const { isLoading: isLoadingArtist, artist } = useArtist(id);
+  const { isLoading: isLoadingArtistsTopTracks, artistsTopTracks } =
+    useArtistsTopTracks(id);
+
   return (
-    <div className="w-full">
+    <div className="h-full w-full">
       <TopNav transparent>
-        {isMainScrolled && <NavTitle>Conan Gray</NavTitle>}
+        {isMainScrolled && <NavTitle>{artist?.name}</NavTitle>}
       </TopNav>
-      <ArtistPageHeader />
-      <PageBody>
-        <PageMenu type="artist" />
-        <Popular />
-        <Discography />
-      </PageBody>
+      {isLoadingArtist || isLoadingArtistsTopTracks ? (
+        <div className="grid h-full place-items-center">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          <ArtistPageHeader artist={artist} />
+          <PageBody>
+            <PageMenu item={artist} />
+            <Popular artistsTopTracks={artistsTopTracks} />
+            <Discography />
+            <AppearsOn />
+            <RelatedArtists />
+          </PageBody>
+        </>
+      )}
     </div>
   );
 }

@@ -10,19 +10,19 @@ import ShowAll from "../../ui/ShowAll";
 function AlsoLikePlaylists({ all }) {
   const { id } = useParams();
   const { isLoading: isLoadingPlaylist, playlist } = usePlaylist(id);
-  console.log(playlist);
   const { isLoading: isLoadingArtist, artist } = useArtist(
     playlist?.tracks?.items[0]?.track?.artists[0]?.id,
   );
   const { isLoading: isLoadingRelatedPlaylists, relatedPlaylists } =
     useRelatedPlaylists(artist?.genres[0]);
-  console.log(relatedPlaylists);
 
   return (
     <div key={all}>
       <div className="flex items-center justify-between">
         <Title>You might also like</Title>
-        {!all && <ShowAll to="might-also-like">Show all</ShowAll>}
+        {!all && relatedPlaylists?.length > 6 && (
+          <ShowAll to="might-also-like">Show all</ShowAll>
+        )}
       </div>
       <ListContainer
         all={all}

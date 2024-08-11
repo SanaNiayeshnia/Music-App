@@ -10,8 +10,7 @@ import TrackList from "../features/tracks/TrackList";
 import useAlbum from "../features/albums/useAlbum";
 import { useParams } from "react-router-dom";
 import useArtist from "../features/artists/useArtist";
-import { useEffect, useState } from "react";
-import { formatDate, getTrackDuration } from "../utilities/helper";
+import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
 
 function AlbumPage() {

@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 import useTrack from "../features/tracks/useTrack";
 import Spinner from "../ui/Spinner";
 import useArtist from "../features/artists/useArtist";
-import { formatTrackDuration } from "../utilities/helper";
 import useRecommendations from "../features/tracks/useRecommendations";
 
 function TrackPage() {
@@ -33,19 +32,7 @@ function TrackPage() {
         </div>
       ) : (
         <>
-          <PageHeader
-            item={track}
-            artist={artist}
-            something={
-              <p className="text-sm font-medium text-gray-900 dark:text-white">
-                <span className="font-semibold text-gray-900 dark:text-white">
-                  {artist?.name}
-                </span>{" "}
-                • {track?.album?.release_date.slice(0, 4)} •{" "}
-                {formatTrackDuration(track?.duration_ms)}
-              </p>
-            }
-          />
+          <PageHeader item={track} artist={artist} />
           <PageBody>
             <PageMenu />
             <RecommendedTracks recommendations={recommendations} />

@@ -6,6 +6,7 @@ import usePlaylist from "./usePlaylist";
 import useRelatedPlaylists from "./useRelatedPlaylists";
 import useArtist from "../artists/useArtist";
 import ShowAll from "../../ui/ShowAll";
+import NothingFound from "../../ui/NothingFound";
 
 function AlsoLikePlaylists({ all }) {
   const { id } = useParams();
@@ -24,6 +25,7 @@ function AlsoLikePlaylists({ all }) {
           <ShowAll to="might-also-like">Show all</ShowAll>
         )}
       </div>
+      {relatedPlaylists?.length === 0 && <NothingFound />}
       <ListContainer
         all={all}
         isLoading={

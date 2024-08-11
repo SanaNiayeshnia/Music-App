@@ -5,6 +5,7 @@ import ShowAll from "../../ui/ShowAll";
 import Title from "../../ui/Title";
 import useAlbum from "../albums/useAlbum";
 import useArtistsDiscography from "./useArtistsDiscography";
+import NothingFound from "../../ui/NothingFound";
 
 function MoreByArtist({ all }) {
   const { id } = useParams();
@@ -23,6 +24,7 @@ function MoreByArtist({ all }) {
           <ShowAll to="more-by-artist">Show All</ShowAll>
         )}
       </div>
+      {filteredArtistsDiscography.length === 0 && <NothingFound />}
       <ListContainer
         all={all}
         isLoading={isLoadingAlbum || isLoadingDicography}

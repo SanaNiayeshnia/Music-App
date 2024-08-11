@@ -1,7 +1,5 @@
 import Button from "../../ui/Button";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
-import { BsHeart, BsHeartFill, BsHeartHalf } from "react-icons/bs";
-import { Tooltip } from "@mui/material";
 import Skeleton from "../../ui/Skeleton";
 import useArtist from "./useArtist";
 import { useEffect, useState } from "react";
@@ -11,6 +9,8 @@ import PopularityHearts from "../../ui/PopularityHearts";
 function PlayingArtist() {
   const { isLoading: isLoadingTrack, currentlyPlayingTrack } =
     useCurrentlyPlayingTrack();
+  console.log(currentlyPlayingTrack);
+
   const artistId = currentlyPlayingTrack?.artists[0]?.id;
   const { isLoading: isLoadingArtist, artist } = useArtist(artistId);
   const [isImageLoaded, setIsImageLoaded] = useState(false);

@@ -25,7 +25,7 @@ function PlayingTrackBar() {
           className="scrollbar hide-scroll h-[calc(100%-5rem)] space-y-6 overflow-auto px-3 pb-5"
           onScroll={(e) => setIsScrolled(e.target.scrollTop > 0)}
         >
-          {!isLoading && !currentlyPlayingTrack ? (
+          {!isLoading && !currentlyPlayingTrack?.name ? (
             <TrackBarError />
           ) : (
             <>

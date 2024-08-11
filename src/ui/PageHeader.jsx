@@ -5,7 +5,6 @@ import PageHeaderWrapper from "./PageHeaderWrapper";
 import PageTitle from "./PageTitle";
 
 function PageHeader({ item, artist }) {
-  console.log(artist);
   const type = item?.type;
   const background =
     type !== "playlist"

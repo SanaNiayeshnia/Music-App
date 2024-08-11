@@ -6,8 +6,8 @@ import ShowAll from "../../ui/ShowAll";
 import Title from "../../ui/Title";
 import useArtistsDiscography from "./useArtistsDiscography";
 import { useEffect, useState } from "react";
-import { addRemoveFilter } from "../library/librarySlice";
 import useArtist from "./useArtist";
+import NothingFound from "../../ui/NothingFound";
 
 function Discography({ all }) {
   const { id } = useParams();
@@ -55,15 +55,20 @@ function Discography({ all }) {
         )}
       </div>
       <div className="space-y-3">
-        <Filters
-          options={[
-            { title: "Albums", value: "album" },
-            { title: "Singles", value: "single" },
-          ]}
-          handler={addRemoveFilter}
-          currentFilterArray={currentFilterArray}
-        />
+        {!isLoadingArtist &&
+          !isLoadingDiscography &&
+          artistsDiscography?.length > 0 && (
+            <Filters
+              options={[
+                { title: "Albums", value: "album" },
+                { title: "Singles", value: "single" },
+              ]}
+              handler={addRemoveFilter}
+              currentFilterArray={currentFilterArray}
+            />
+          )}
 
+        {artistsDiscography?.length === 0 && <NothingFound />}
         <ListContainer
           all={all}
           isLoading={isLoadingArtist || isLoadingDiscography}

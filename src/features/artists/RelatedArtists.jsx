@@ -5,6 +5,7 @@ import Item from "../../ui/Item";
 import Title from "../../ui/Title";
 import ShowAll from "../../ui/ShowAll";
 import useArtist from "./useArtist";
+import NothingFound from "../../ui/NothingFound";
 
 function RelatedArtists({ all = false }) {
   const { id } = useParams();
@@ -19,6 +20,7 @@ function RelatedArtists({ all = false }) {
           <ShowAll to="fans-also-like">Show all</ShowAll>
         )}
       </div>
+      {relatedArtists?.length === 0 && <NothingFound />}
       <ListContainer
         all={all}
         isLoading={isLoadingArtist || isLoadingRelatedArtists}

@@ -5,6 +5,7 @@ import ShowAll from "../../ui/ShowAll";
 import Title from "../../ui/Title";
 import useArtistsAppearsOn from "./useArtistsAppearsOn";
 import useArtist from "./useArtist";
+import NothingFound from "../../ui/NothingFound";
 
 function AppearsOn({ all }) {
   const { id } = useParams();
@@ -20,6 +21,7 @@ function AppearsOn({ all }) {
           <ShowAll to="appears-on">Show all</ShowAll>
         )}
       </div>
+      {appearsOn?.length === 0 && <NothingFound />}
       <ListContainer
         all={all}
         isLoading={isLoadingArtist || isLoadingAppearsOn}

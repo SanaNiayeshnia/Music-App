@@ -1,17 +1,11 @@
 import Title from "../../ui/Title";
-import Track from "./Track";
+import TrackListV2 from "./TrackListV2";
 
-function RecommendedTracks() {
+function RecommendedTracks({ recommendations }) {
   return (
-    <div>
+    <div className="pb-5">
       <Title>Recommended</Title>
-      <div>
-        <Track />
-        <Track />
-        <Track />
-        <Track />
-        <Track />
-      </div>
+      <TrackListV2 tracks={recommendations} />
     </div>
   );
 }

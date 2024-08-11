@@ -14,8 +14,6 @@ function MoreByArtist({ all }) {
   const filteredArtistsDiscography = all
     ? artistsDiscography
     : artistsDiscography?.filter((item) => item?.id !== album?.id);
-  console.log(album?.artists);
-  console.log(artistsDiscography);
 
   return (
     <div key={`${all}-${Math.random()}`}>

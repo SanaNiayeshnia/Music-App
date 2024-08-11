@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { formatDate, formatTrackDuration } from "../../utilities/helper";
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
+import { useNavigate } from "react-router-dom";
 
 function Track({
   track,
@@ -16,11 +17,10 @@ function Track({
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const artists = track?.artists?.map((artist) => artist.name).join(", ");
-
+  const navigate = useNavigate();
   return (
     <tr
-      className={`${smallScreen ? "cursor-pointer grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      className={`${smallScreen ? "grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       {!smallScreen && (
         <td className="w-3.5 text-center">
@@ -59,12 +59,26 @@ function Track({
             <Skeleton className="h-3 w-20 rounded-sm" />
           ) : (
             <>
-              <p className="text-sm font-medium text-black dark:text-white">
+              <p
+                onClick={() => navigate(`/track/${track?.id}`)}
+                className="cursor-pointer text-sm font-medium text-black hover:underline dark:text-white"
+              >
                 {track?.name}
               </p>
               {!noArtist && (
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  {artists}
+                <p className="cursor-pointer text-sm text-gray-600 dark:text-gray-300">
+                  {track?.artists?.map((artist, index) => (
+                    <span
+                      onClick={() => navigate(`/artist/${artist?.id}`)}
+                      className="hover:underline"
+                      key={artist?.id}
+                    >
+                      {artist.name}
+                      {track.artists.length > 1 &&
+                        index < track.artists.length - 1 &&
+                        ", "}
+                    </span>
+                  ))}
                 </p>
               )}
             </>
@@ -76,7 +90,8 @@ function Track({
           {!smallScreen && (
             <>
               <td
-                className={`${isPlayingTrackbarOpen && "hidden"} text-sm text-black xl:inline-block dark:text-white`}
+                onClick={() => navigate(`/album/${track?.album?.id}`)}
+                className={`${isPlayingTrackbarOpen && "hidden"} cursor-pointer text-sm text-black hover:underline xl:inline-block dark:text-white`}
               >
                 {!noAlbum && track?.album?.name}
               </td>

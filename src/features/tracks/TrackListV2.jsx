@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Track from "./Track";
 
-function TrackListV2({ tracks, max = 5 }) {
+function TrackListV2({ tracks, max = 5, noArtist = true, noAlbum = true }) {
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState(false);
 
   return (
@@ -14,19 +14,21 @@ function TrackListV2({ tracks, max = 5 }) {
                 key={track.id}
                 index={index + 1}
                 track={track}
-                noArtist
-                noAlbum
+                noArtist={noArtist}
+                noAlbum={noAlbum}
               />
             ),
           )}
         </tbody>
       </table>
-      <p
-        onClick={() => setIsSeeMoreOpen((isSeeMoreOpen) => !isSeeMoreOpen)}
-        className="mt-3 cursor-pointer px-3 text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
-      >
-        {isSeeMoreOpen ? "See less" : "See more"}
-      </p>
+      {tracks?.length > max && (
+        <p
+          onClick={() => setIsSeeMoreOpen((isSeeMoreOpen) => !isSeeMoreOpen)}
+          className="mt-3 cursor-pointer px-3 text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
+        >
+          {isSeeMoreOpen ? "See less" : "See more"}
+        </p>
+      )}
     </div>
   );
 }

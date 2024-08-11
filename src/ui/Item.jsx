@@ -67,7 +67,21 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
             ) : (
               <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">
                 {size === "large" && (type === "track" || type === "album")
-                  ? artists.map((artist) => artist.name).join(", ")
+                  ? artists?.map((artist, index) => (
+                      <span
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/artist/${artist?.id}`);
+                        }}
+                        className="hover:underline"
+                        key={artist?.id}
+                      >
+                        {artist.name}
+                        {artists.length > 1 &&
+                          index < artists.length - 1 &&
+                          ", "}
+                      </span>
+                    ))
                   : size === "large" && type === "playlist"
                     ? item?.owner?.display_name
                     : type}

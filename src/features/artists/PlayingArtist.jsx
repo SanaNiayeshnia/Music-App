@@ -5,6 +5,8 @@ import { Tooltip } from "@mui/material";
 import Skeleton from "../../ui/Skeleton";
 import useArtist from "./useArtist";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PopularityHearts from "../../ui/PopularityHearts";
 
 function PlayingArtist() {
   const { isLoading: isLoadingTrack, currentlyPlayingTrack } =
@@ -12,14 +14,7 @@ function PlayingArtist() {
   const artistId = currentlyPlayingTrack?.artists[0]?.id;
   const { isLoading: isLoadingArtist, artist } = useArtist(artistId);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-
-  const popularityFilledHeartsCount =
-    Math.floor(artist?.popularity / 20) +
-    (artist?.popularity % 20 >= 15 ? 1 : 0);
-  const popularityHalfHeartsCount =
-    artist?.popularity % 20 >= 10 && artist?.popularity % 20 < 15 ? 1 : 0;
-  const popularityEmptyHeartsCount =
-    5 - (popularityFilledHeartsCount + popularityHalfHeartsCount);
+  const navigate = useNavigate();
 
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
@@ -42,28 +37,7 @@ function PlayingArtist() {
             <p className="absolute left-4 top-4 text-sm font-semibold text-white drop-shadow-md">
               About the artist
             </p>
-            <Tooltip
-              title={`popularity: ${artist?.popularity}%`}
-              placement="left"
-            >
-              <div className="absolute bottom-4 right-4 flex items-center justify-end gap-1">
-                {Array.from({
-                  length: popularityFilledHeartsCount,
-                }).map((heart, index) => (
-                  <BsHeartFill key={index} className="text-white drop-shadow" />
-                ))}
-                {Array.from({
-                  length: popularityHalfHeartsCount,
-                }).map((heart, index) => (
-                  <BsHeartHalf key={index} className="text-white drop-shadow" />
-                ))}
-                {Array.from({
-                  length: popularityEmptyHeartsCount,
-                }).map((heart, index) => (
-                  <BsHeart key={index} className="text-white drop-shadow" />
-                ))}
-              </div>
-            </Tooltip>
+            <PopularityHearts popularity={artist?.popularity} />
           </>
         )}
       </div>
@@ -72,7 +46,10 @@ function PlayingArtist() {
         {isLoadingTrack || isLoadingArtist ? (
           <Skeleton className="h-4 w-24 rounded-sm" />
         ) : (
-          <p className="font-semibold text-black dark:text-white">
+          <p
+            className="cursor-pointer font-semibold text-black hover:underline dark:text-white"
+            onClick={() => navigate(`/artist/${artist?.id}`)}
+          >
             {artist?.name}
           </p>
         )}

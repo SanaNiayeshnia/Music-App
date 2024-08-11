@@ -2,13 +2,12 @@ import { TbCirclePlus } from "react-icons/tb";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PlayingTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const artists = currentlyPlayingTrack?.artists
-    .map((artist) => artist.name)
-    .join(", ");
+  const navigate = useNavigate();
 
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
@@ -37,10 +36,26 @@ function PlayingTrack() {
             </>
           ) : (
             <>
-              <p className="text-lg font-bold leading-6 text-black dark:text-white">
+              <p
+                onClick={() => navigate(`track/${currentlyPlayingTrack?.id}`)}
+                className="cursor-pointer text-lg font-bold leading-6 text-black hover:underline dark:text-white"
+              >
                 {currentlyPlayingTrack?.name}
               </p>
-              <p className="text-gray-600 dark:text-gray-300">{artists}</p>
+              <p className="cursor-pointer text-gray-600 dark:text-gray-300">
+                {currentlyPlayingTrack?.artists?.map((artist, index) => (
+                  <span
+                    onClick={() => navigate(`/artist/${artist?.id}`)}
+                    className="hover:underline"
+                    key={artist?.id}
+                  >
+                    {artist.name}
+                    {currentlyPlayingTrack.artists.length > 1 &&
+                      index < currentlyPlayingTrack.artists.length - 1 &&
+                      ", "}
+                  </span>
+                ))}
+              </p>
             </>
           )}
         </div>

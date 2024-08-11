@@ -1,8 +1,8 @@
-import useUser from "../features/authentication/useUser";
-import Skeleton from "./Skeleton";
+import Skeleton from "../../ui/Skeleton";
+import useCurrentUser from "./useCurrentUser";
 
 function UserAvatar() {
-  const { isLoading, user } = useUser();
+  const { isLoading, user } = useCurrentUser();
   const firstLetterOfUserName = user?.display_name?.slice(0, 1) || "";
   return (
     <div className="h-9 w-9 overflow-hidden rounded-full border-4 border-blue-600 shadow-md">

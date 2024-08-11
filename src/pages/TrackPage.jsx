@@ -34,11 +34,8 @@ function TrackPage() {
       ) : (
         <>
           <PageHeader
-            background={artist?.images[0]?.url}
-            artistPic={artist?.images[0]?.url}
-            cover={track?.album?.images[0]?.url}
-            type="song"
-            title={track?.name}
+            item={track}
+            artist={artist}
             something={
               <p className="text-sm font-medium text-gray-900 dark:text-white">
                 <span className="font-semibold text-gray-900 dark:text-white">

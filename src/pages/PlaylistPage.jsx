@@ -8,49 +8,29 @@ import AlsoLikePlaylists from "../features/playlists/AlsoLikePlaylists";
 import TrackList from "../features/tracks/TrackList";
 import { useParams } from "react-router-dom";
 import usePlaylist from "../features/playlists/usePlaylist";
-import { getTrackDuration } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
+import useUser from "../features/users/useUser";
 
 function PlaylistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
   const { id } = useParams();
-  const { isLoading, playlist } = usePlaylist(id);
-  const totalDuration = playlist?.tracks?.items?.reduce(
-    (totalDuration, item) => totalDuration + item?.track?.duration_ms,
-    0,
+  const { isLoading: isLoadingPlaylist, playlist } = usePlaylist(id);
+  const { isLoading: isLoadingOwner, user: owner } = useUser(
+    playlist?.owner?.id,
   );
-  const { hour, min, sec } = getTrackDuration(totalDuration);
+
   return (
     <div className="h-full">
       <TopNav transparent>
         {isMainScrolled && <NavTitle>{playlist?.name}</NavTitle>}
       </TopNav>
-      {isLoading ? (
+      {isLoadingPlaylist || isLoadingOwner ? (
         <div className="grid h-[calc(100%-52px)] place-items-center">
           <Spinner />
         </div>
       ) : (
         <>
-          {" "}
-          <PageHeader
-            background={
-              playlist?.tracks?.items[0]?.track?.album?.images[0]?.url
-            }
-            artistPic="/spotify-logo.png"
-            cover={playlist?.images[0]?.url}
-            type={playlist?.type}
-            title={playlist?.name}
-            something={
-              <p className="text-sm font-medium text-gray-900 dark:text-white">
-                <span className="font-semibold text-gray-900 dark:text-white">
-                  {playlist?.owner?.display_name}
-                </span>{" "}
-                • {playlist?.followers?.total?.toLocaleString()} saves •{" "}
-                {playlist?.tracks?.total} songs, {hour > 0 && hour + " hr"}{" "}
-                {min > 0 && min + " min"} {sec > 0 && sec + " sec"}
-              </p>
-            }
-          />
+          <PageHeader item={playlist} artist={owner} />
           <PageBody>
             <PageMenu item={playlist} />
             <TrackList

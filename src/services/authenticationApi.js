@@ -39,14 +39,15 @@ export async function refreshAccessToken(refresh_token) {
   return { ...data, expiresAt: Date.now() + data.expires_in * 1000 };
 }
 
-export async function getUser() {
+export async function getCurrentUser() {
   const accessToken = JSON.parse(
     localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch("https://api.spotify.com/v1/me", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
-  if (res.status !== 200) throw new Error("Failed to get the user info!");
+  if (res.status !== 200)
+    throw new Error("Failed to get the current user info!");
   const data = await res.json();
   return data;
 }

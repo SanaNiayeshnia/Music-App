@@ -1,8 +1,8 @@
 import { TbMoodSad } from "react-icons/tb";
-import useUser from "../../../features/authentication/useUser";
+import useCurrentUser from "../../../features/users/useCurrentUser";
 
 function TrackBarError() {
-  const { user } = useUser();
+  const { user } = useCurrentUser();
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2 px-2">

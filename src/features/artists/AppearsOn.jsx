@@ -11,7 +11,6 @@ function AppearsOn({ all }) {
   const { id } = useParams();
   const { isLoading: isLoadingAppearsOn, appearsOn } = useArtistsAppearsOn(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
-  console.log(appearsOn);
 
   return (
     <div key={`${all}-${Math.random()}`}>

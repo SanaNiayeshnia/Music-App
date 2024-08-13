@@ -10,6 +10,7 @@ import useTrack from "../features/tracks/useTrack";
 import Spinner from "../ui/Spinner";
 import useArtist from "../features/artists/useArtist";
 import useRecommendations from "../features/tracks/useRecommendations";
+import TrackPageMenu from "../features/tracks/TrackPageMenu";
 
 function TrackPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -34,7 +35,7 @@ function TrackPage() {
         <>
           <PageHeader item={track} artist={artist} />
           <PageBody>
-            <PageMenu />
+            <TrackPageMenu track={track} />
             <RecommendedTracks recommendations={recommendations} />
           </PageBody>
         </>

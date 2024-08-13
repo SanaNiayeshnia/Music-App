@@ -28,7 +28,7 @@ function PlayingTrack() {
       />
 
       <div className="flex items-center justify-between">
-        <div className="flex flex-col gap-1 leading-4">
+        <div className="flex flex-col gap-2 leading-4">
           {isLoading ? (
             <>
               <Skeleton className="h-4 w-32 rounded-sm" />

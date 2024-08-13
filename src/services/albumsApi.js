@@ -34,12 +34,13 @@ export async function checkUsersSavedAlbums(id) {
     localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch(
-    `https://api.spotify.com/v1/me/albums/contains/${id}`,
+    `https://api.spotify.com/v1/me/albums/contains?ids=${id}`,
     {
       headers: { authorization: `Bearer ${accessToken}` },
     },
   );
-  if (res.status !== 200) throw new Error("Failed to get the album!");
+  if (res.status !== 200)
+    throw new Error("Failed to check if the album is saved!");
   const data = await res.json();
   return data;
 }

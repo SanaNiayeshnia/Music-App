@@ -14,7 +14,7 @@ function PlayerMenu() {
 
   return (
     <div
-      className={`${!currentlyPlayingTrack && "opacity-50"} hidden max-w-52 items-center gap-3 md:flex`}
+      className={`${!currentlyPlayingTrack && "opacity-50"} hidden w-60 items-center justify-between gap-3 md:flex`}
     >
       <BiAlbum
         className={` ${currentlyPlayingTrack && isPlayingTrackbarOpen && !isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} ${currentlyPlayingTrack && "cursor-pointer"} min-h-5 min-w-5 duration-100`}

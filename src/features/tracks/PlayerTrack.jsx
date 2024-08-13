@@ -3,6 +3,7 @@ import Skeleton from "../../ui/Skeleton";
 import { formatName } from "../../utilities/helper";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import { useNavigate } from "react-router-dom";
+import { TbCirclePlus } from "react-icons/tb";
 
 function PlayerTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
@@ -16,13 +17,13 @@ function PlayerTrack() {
 
   return (
     <div
-      className={`${!currentlyPlayingTrack && "opacity-50"} flex items-center gap-4`}
+      className={`${!currentlyPlayingTrack && "opacity-50"} flex w-60 items-center gap-4`}
     >
       {(isLoading || !isImageLoaded) && (
         <Skeleton className="h-14 w-14 rounded shadow" />
       )}
       <img
-        className={`${!isImageLoaded && "hidden"} h-14 w-14 rounded shadow`}
+        className={`${!isImageLoaded && "hidden"} aspect-square h-14 w-14 flex-shrink-0 rounded shadow`}
         src={!isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""}
         alt={currentlyPlayingTrack?.name}
         onLoad={() => setIsImageLoaded(true)}
@@ -61,6 +62,9 @@ function PlayerTrack() {
           </>
         )}
       </div>
+      <TbCirclePlus
+        className={`${!currentlyPlayingTrack && "hidden"}ml-4 min-h-5 min-w-5 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white`}
+      />
     </div>
   );
 }

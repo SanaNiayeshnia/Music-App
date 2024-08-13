@@ -24,7 +24,7 @@ function MoreByArtist({ all }) {
           <ShowAll to="more-by-artist">Show All</ShowAll>
         )}
       </div>
-      {filteredArtistsDiscography.length === 0 && <NothingFound />}
+      {filteredArtistsDiscography?.length === 0 && <NothingFound />}
       <ListContainer
         all={all}
         isLoading={isLoadingAlbum || isLoadingDicography}

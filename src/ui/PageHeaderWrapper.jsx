@@ -6,7 +6,7 @@ function PageHeaderWrapper({ background, children }) {
         backgroundRepeat: "no-repeat !important",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
-        backgroundPosition: "center center",
+        backgroundPosition: "center",
       }}
       className={`relative h-52 w-full rounded-lg shadow-md lg:h-[17rem]`}
     >

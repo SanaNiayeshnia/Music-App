@@ -12,6 +12,7 @@ import Spinner from "../ui/Spinner";
 import useArtistsTopTracks from "../features/artists/useArtistsTopTracks";
 import RelatedArtists from "../features/artists/RelatedArtists";
 import AppearsOn from "../features/artists/AppearsOn";
+import ArtistPageMenu from "../features/artists/ArtistPageMenu";
 
 function ArtistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -33,7 +34,7 @@ function ArtistPage() {
         <>
           <ArtistPageHeader artist={artist} />
           <PageBody>
-            <PageMenu item={artist} />
+            <ArtistPageMenu artist={artist} />
             <Popular artistsTopTracks={artistsTopTracks} />
             <Discography />
             <AppearsOn />

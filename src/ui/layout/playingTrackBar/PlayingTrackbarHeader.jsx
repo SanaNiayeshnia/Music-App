@@ -3,10 +3,13 @@ import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
 import { TbDots, TbX } from "react-icons/tb";
 import useCurrentlyPlayingTrack from "../../../features/player/useCurrentlyPlayingTrack";
 import Skeleton from "../../Skeleton";
+import { useNavigate } from "react-router-dom";
 
 function PlayingTrackbarHeader({ isScrolled }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  console.log(currentlyPlayingTrack);
   return (
     <div
       className={`${isScrolled && "bg-white/70 shadow backdrop-blur-3xl dark:bg-black/70"} flex items-center justify-between px-3 py-6`}
@@ -14,7 +17,14 @@ function PlayingTrackbarHeader({ isScrolled }) {
       {isLoading ? (
         <Skeleton className="h-4 w-32" />
       ) : (
-        <p className="text-sm font-semibold text-black dark:text-white">
+        <p
+          className="cursor-pointer text-sm font-semibold text-black hover:underline dark:text-white"
+          onClick={() => {
+            navigate(
+              `/${currentlyPlayingTrack?.context?.type}/${currentlyPlayingTrack?.context?.id}`,
+            );
+          }}
+        >
           {currentlyPlayingTrack?.context?.name}
         </p>
       )}

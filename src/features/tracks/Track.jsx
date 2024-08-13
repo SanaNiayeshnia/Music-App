@@ -11,7 +11,6 @@ function Track({
   noCover = false,
   noArtist = false,
   noAlbum = false,
-  extra = "",
   smallScreen = false,
   isLoading = false,
 }) {
@@ -20,7 +19,7 @@ function Track({
   const navigate = useNavigate();
   return (
     <tr
-      className={`${smallScreen ? "grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_3fr_2.5fr_1.5fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      className={`${smallScreen ? "grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       {!smallScreen && (
         <td className="w-3.5 text-center">
@@ -95,15 +94,7 @@ function Track({
               >
                 {!noAlbum && track?.album?.name}
               </td>
-              <td
-                className={`${isPlayingTrackbarOpen && "hidden"} xl:inline-block`}
-              >
-                <p
-                  className={`text-sm text-black xl:inline-block dark:text-white`}
-                >
-                  {extra === "date" && formatDate(track?.album?.release_date)}
-                </p>
-              </td>
+
               <td className="text-center">
                 {!isLoading && (
                   <TbCirclePlus className="text-gary-900 hidden min-h-5 min-w-5 cursor-pointer duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />

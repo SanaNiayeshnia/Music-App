@@ -5,11 +5,12 @@ import useArtist from "./useArtist";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopularityHearts from "../../ui/PopularityHearts";
+import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
+import FollowArtistButton from "./FollowArtistButton";
 
 function PlayingArtist() {
   const { isLoading: isLoadingTrack, currentlyPlayingTrack } =
     useCurrentlyPlayingTrack();
-  console.log(currentlyPlayingTrack);
 
   const artistId = currentlyPlayingTrack?.artists[0]?.id;
   const { isLoading: isLoadingArtist, artist } = useArtist(artistId);
@@ -62,7 +63,8 @@ function PlayingArtist() {
               <p className="text-gray-600 dark:text-gray-300">
                 {artist?.followers?.total.toLocaleString()} followers
               </p>
-              <Button>Follow</Button>
+
+              <FollowArtistButton artist={artist} />
             </>
           )}
         </div>

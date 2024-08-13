@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import usePlaylist from "../features/playlists/usePlaylist";
 import Spinner from "../ui/Spinner";
 import useUser from "../features/users/useUser";
+import PlaylistPageMenu from "../features/playlists/PlaylistPageMenu";
 
 function PlaylistPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -32,7 +33,7 @@ function PlaylistPage() {
         <>
           <PageHeader item={playlist} artist={owner} />
           <PageBody>
-            <PageMenu item={playlist} />
+            <PlaylistPageMenu playlist={playlist} />
             <TrackList
               items={playlist?.tracks?.items?.map((item) => item?.track)}
               extra="date"

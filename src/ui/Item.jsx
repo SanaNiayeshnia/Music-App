@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
 import { formatName } from "../utilities/helper";
 import { useNavigate } from "react-router-dom";
+import useMainContext from "./layout/useMainContext";
 
 function Item({ item = {}, size, isLoading = false, discography = false }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -16,12 +17,18 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
   const filteredName = formatName(name, 45);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
+  const state = useMainContext();
+
+  function handleOnClick() {
+    navigate(`/${type}/${item?.id}`);
+    state && state.scrollMainToTop();
+  }
 
   const content = (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => navigate(`/${type}/${item?.id}`)}
+      onClick={handleOnClick}
       className={`${size === "large" ? "flex-col p-3" : "items-center p-2"} group flex cursor-pointer gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       <div className={`${size === "large" && "relative"}`}>
@@ -32,7 +39,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
         )}
 
         <img
-          src={!isLoading ? images[0]?.url : ""}
+          src={!isLoading ? images[0]?.url || "/test.png" : ""}
           alt={name}
           onLoad={() => setIsImageLoaded(true)}
           className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 drop-shadow lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}

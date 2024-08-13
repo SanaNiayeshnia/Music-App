@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { formatTrackDuration, getTrackDuration } from "../utilities/helper";
 import Cover from "./Cover";
 import HeaderType from "./HeaderType";
@@ -5,6 +6,7 @@ import PageHeaderWrapper from "./PageHeaderWrapper";
 import PageTitle from "./PageTitle";
 
 function PageHeader({ item, artist }) {
+  const navigate = useNavigate();
   const type = item?.type;
   const background =
     type !== "playlist"
@@ -31,8 +33,12 @@ function PageHeader({ item, artist }) {
       </>
     ) : type === "track" ? (
       <>
-        <span className="font-semibold text-gray-900 dark:text-white">
-          {artist?.name}
+        •{" "}
+        <span
+          className="cursor-pointer hover:underline"
+          onClick={() => navigate(`/album/${item?.album?.id}`)}
+        >
+          {item?.album?.name}
         </span>{" "}
         • {item?.album?.release_date.slice(0, 4)} •{" "}
         {formatTrackDuration(item?.duration_ms)}
@@ -63,7 +69,12 @@ function PageHeader({ item, artist }) {
             )}
 
             <p className="text-sm font-medium text-gray-900 dark:text-white">
-              <span className="font-semibold text-gray-900 dark:text-white">
+              <span
+                onClick={() =>
+                  type !== "playlist" && navigate(`/artist/${artist?.id}`)
+                }
+                className={`${type !== "playlist" && "cursor-pointer hover:underline"} font-semibold text-gray-900 dark:text-white`}
+              >
                 {type === "playlist" ? artist?.display_name : artist?.name}
               </span>{" "}
               {info}

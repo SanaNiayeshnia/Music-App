@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import useArtist from "../features/artists/useArtist";
 import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
+import AlbumPageMenu from "../features/albums/AlbumPageMenu";
 
 function AlbumPage() {
   const { isMainScrolled } = useSelector((store) => store.global);
@@ -34,7 +35,7 @@ function AlbumPage() {
         <>
           <PageHeader item={album} artist={artist} />
           <PageBody>
-            <PageMenu item={album} />
+            <AlbumPageMenu album={album} />
             <TrackList
               items={album?.tracks?.items}
               noCover

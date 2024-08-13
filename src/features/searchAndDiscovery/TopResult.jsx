@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FloatingPlayButton from "../../ui/FloatingPlayButton";
 import Title from "../../ui/Title";
 import Skeleton from "../../ui/Skeleton";
+import { useNavigate } from "react-router-dom";
 
 function TopResult({ item, isLoading }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -14,6 +15,7 @@ function TopResult({ item, isLoading }) {
         : item?.artists[0]?.name;
 
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const navigate=useNavigate();
 
   useEffect(() => {
     //if the query changed, set the isImageLoaded to false and show the skeleton before loading the new image
@@ -21,7 +23,7 @@ function TopResult({ item, isLoading }) {
   }, [item]);
 
   return (
-    <div className="min-w-96">
+    <div className="min-w-96" onClick={()=>navigate(`/${item?.type}/${item?.id}`)}>
       <Title>Top Result</Title>
       <div
         className="group flex min-h-[232px] cursor-pointer flex-col justify-center gap-3 rounded-md bg-white/40 p-5 shadow hover:bg-white/50 dark:bg-black/40 dark:hover:bg-black/50"

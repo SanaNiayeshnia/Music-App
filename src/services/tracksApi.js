@@ -41,5 +41,5 @@ export async function checkUsersSavedTracks(id) {
   if (res.status !== 200)
     throw new Error("Failed to check if the track is saved!");
   const data = await res.json();
-  return data;
+  return data[0];
 }

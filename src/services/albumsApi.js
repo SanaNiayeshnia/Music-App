@@ -42,5 +42,5 @@ export async function checkUsersSavedAlbums(id) {
   if (res.status !== 200)
     throw new Error("Failed to check if the album is saved!");
   const data = await res.json();
-  return data;
+  return data[0];
 }

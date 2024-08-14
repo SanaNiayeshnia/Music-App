@@ -28,8 +28,8 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={handleOnClick}
-      className={`${size === "large" ? "flex-col p-3" : "items-center p-2"} group flex cursor-pointer gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      onClick={() => !isLoading && handleOnClick()}
+      className={`${size === "large" ? "flex-col p-3" : "items-center p-2"} ${!isLoading && "cursor-pointer"} group flex gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       <div className={`${size === "large" && "relative"}`}>
         {(!isImageLoaded || isLoading) && (

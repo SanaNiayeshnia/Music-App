@@ -15,7 +15,7 @@ function TopResult({ item, isLoading }) {
         : item?.artists[0]?.name;
 
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     //if the query changed, set the isImageLoaded to false and show the skeleton before loading the new image
@@ -23,7 +23,10 @@ function TopResult({ item, isLoading }) {
   }, [item]);
 
   return (
-    <div className="min-w-96" onClick={()=>navigate(`/${item?.type}/${item?.id}`)}>
+    <div
+      className="min-w-96"
+      onClick={() => navigate(`/${item?.type}/${item?.id}`)}
+    >
       <Title>Top Result</Title>
       <div
         className="group flex min-h-[232px] cursor-pointer flex-col justify-center gap-3 rounded-md bg-white/40 p-5 shadow hover:bg-white/50 dark:bg-black/40 dark:hover:bg-black/50"
@@ -53,8 +56,8 @@ function TopResult({ item, isLoading }) {
                 {item?.name}
               </p>
 
-              <div>
-                <span className="font-medium text-gray-600 first-letter:uppercase dark:text-gray-300">
+              <div className="first-letter:uppercase">
+                <span className="font-medium text-gray-600 dark:text-gray-300">
                   {item?.type !== "artist" ? item?.type + " • " : item?.type}
                 </span>
                 <span className="text-sm font-medium text-black dark:text-white">

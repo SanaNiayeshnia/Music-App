@@ -1,11 +1,8 @@
 import PageMenu from "../../ui/PageMenu";
-import useSavedPlaylists from "./useSavedPlaylists";
+import useIsPlaylistSaved from "./useIsPlaylistSaved";
 
 function PlaylistPageMenu({ playlist }) {
-  const { isLoading, savedPlaylists } = useSavedPlaylists();
-  const isPlaylistSaved = savedPlaylists?.some(
-    (savedPlaylist) => savedPlaylist.id === playlist.id,
-  );
+  const { isLoading, isPlaylistSaved } = useIsPlaylistSaved(playlist?.id);
   return (
     <PageMenu item={playlist} isSaved={isLoading ? false : isPlaylistSaved} />
   );

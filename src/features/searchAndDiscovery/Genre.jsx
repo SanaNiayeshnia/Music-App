@@ -13,7 +13,7 @@ function Genre({ genre, isLoading }) {
         </>
       ) : (
         <>
-          <p className="text-lg font-bold text-black dark:text-white">
+          <p className="text-lg font-bold text-black first-letter:uppercase dark:text-white">
             {genre?.name}
           </p>
         </>

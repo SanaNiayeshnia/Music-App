@@ -9,7 +9,6 @@ function PlayingTrackbarHeader({ isScrolled }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
-  console.log(currentlyPlayingTrack);
   return (
     <div
       className={`${isScrolled && "bg-white/70 shadow backdrop-blur-3xl dark:bg-black/70"} flex items-center justify-between px-3 py-6`}

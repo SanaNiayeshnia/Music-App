@@ -4,6 +4,7 @@ import Cover from "./Cover";
 import HeaderType from "./HeaderType";
 import PageHeaderWrapper from "./PageHeaderWrapper";
 import PageTitle from "./PageTitle";
+import { Tooltip } from "@mui/material";
 
 function PageHeader({ item, artist }) {
   const navigate = useNavigate();
@@ -34,12 +35,14 @@ function PageHeader({ item, artist }) {
     ) : type === "track" ? (
       <>
         •{" "}
-        <span
-          className="cursor-pointer hover:underline"
-          onClick={() => navigate(`/album/${item?.album?.id}`)}
-        >
-          {item?.album?.name}
-        </span>{" "}
+        <Tooltip title="Album" placement="bottom">
+          <span
+            className="cursor-pointer hover:underline"
+            onClick={() => navigate(`/album/${item?.album?.id}`)}
+          >
+            {item?.album?.name}
+          </span>
+        </Tooltip>{" "}
         • {item?.album?.release_date.slice(0, 4)} •{" "}
         {formatTrackDuration(item?.duration_ms)}
       </>
@@ -69,14 +72,19 @@ function PageHeader({ item, artist }) {
             )}
 
             <p className="text-sm font-medium text-gray-900 dark:text-white">
-              <span
-                onClick={() =>
-                  type !== "playlist" && navigate(`/artist/${artist?.id}`)
-                }
-                className={`${type !== "playlist" && "cursor-pointer hover:underline"} font-semibold text-gray-900 dark:text-white`}
+              <Tooltip
+                title={type === "playlist" ? "Owner" : "Artist"}
+                placement="bottom"
               >
-                {type === "playlist" ? artist?.display_name : artist?.name}
-              </span>{" "}
+                <span
+                  onClick={() =>
+                    type !== "playlist" && navigate(`/artist/${artist?.id}`)
+                  }
+                  className={`${type !== "playlist" && "cursor-pointer hover:underline"} font-semibold text-gray-900 dark:text-white`}
+                >
+                  {type === "playlist" ? artist?.display_name : artist?.name}
+                </span>
+              </Tooltip>{" "}
               {info}
             </p>
           </div>

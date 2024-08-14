@@ -2,6 +2,7 @@ import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
 import Button from "../../ui/Button";
 import useFollowArtist from "./useFollowArtist";
 import useUnfollowArtist from "./useUnfollowArtist";
+import TinySpinner from "../../ui/TinySpinner";
 
 function FollowArtistButton({ artist }) {
   const { isArtistBeingFollowed } = useIsArtistBeingFollowed(artist?.id);
@@ -12,18 +13,25 @@ function FollowArtistButton({ artist }) {
     useUnfollowArtist(artist?.id);
   return (
     <div>
-      {!isArtistBeingFollowed ? (
-        <Button disabled={isPendingFollow} onClick={followArtistMutate}>
-          {isPendingFollow ? "following..." : "Follow"}
-        </Button>
+      {isPendingFollow || isPendingUnfollow ? (
+        <TinySpinner />
       ) : (
-        <Button
-          disabled={isPendingUnfollow}
-          active={true}
-          onClick={unfollowArtistMutate}
-        >
-          {isPendingUnfollow ? "unfollowing..." : "Following"}
-        </Button>
+        <>
+          {" "}
+          {!isArtistBeingFollowed ? (
+            <Button disabled={isPendingFollow} onClick={followArtistMutate}>
+              Follow
+            </Button>
+          ) : (
+            <Button
+              disabled={isPendingUnfollow}
+              active={true}
+              onClick={unfollowArtistMutate}
+            >
+              Following
+            </Button>
+          )}
+        </>
       )}
     </div>
   );

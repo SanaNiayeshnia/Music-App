@@ -1,10 +1,10 @@
-import { TbCirclePlus, TbDots, TbPlayerPlayFilled } from "react-icons/tb";
+import { TbDots, TbPlayerPlayFilled } from "react-icons/tb";
 import { useSelector } from "react-redux";
-import { formatDate, formatTrackDuration } from "../../utilities/helper";
+import { formatTrackDuration } from "../../utilities/helper";
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { useNavigate } from "react-router-dom";
-import AddRemoveTrackToLibraryBtn from "./AddRemoveTrackToLibraryBtn";
+import SaveTrackButton from "./SaveTrackButton";
 
 function Track({
   track,
@@ -98,7 +98,7 @@ function Track({
 
               <td className="text-center">
                 {!isLoading && (
-                  <AddRemoveTrackToLibraryBtn
+                  <SaveTrackButton
                     className="hidden min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white"
                     track={track}
                   />

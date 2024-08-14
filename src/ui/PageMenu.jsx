@@ -2,7 +2,8 @@ import PlayButton from "./PlayButton";
 import { TbCircleCheckFilled, TbCirclePlus, TbDots } from "react-icons/tb";
 import { Tooltip } from "@mui/material";
 import FollowArtistButton from "../features/artists/FollowArtistButton";
-import AddRemoveTrackToLibraryBtn from "../features/tracks/AddRemoveTrackToLibraryBtn";
+import SaveTrackButton from "../features/tracks/SaveTrackButton";
+import SaveAlbumButton from "../features/albums/SaveAlbumButton";
 
 function PageMenu({ item, isSaved = false }) {
   return (
@@ -12,10 +13,9 @@ function PageMenu({ item, isSaved = false }) {
         {item?.type === "artist" ? (
           <FollowArtistButton artist={item} />
         ) : item?.type === "track" ? (
-          <AddRemoveTrackToLibraryBtn
-            className="min-h-7 min-w-7"
-            track={item}
-          />
+          <SaveTrackButton className="min-h-7 min-w-7" track={item} />
+        ) : item?.type === "album" ? (
+          <SaveAlbumButton album={item} />
         ) : (
           <Tooltip
             title={

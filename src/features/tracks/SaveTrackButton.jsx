@@ -5,7 +5,7 @@ import useSaveTrack from "./useSaveTrack";
 import useUnsaveTrack from "./useUnsaveTrack";
 import TinySpinner from "../../ui/TinySpinner";
 
-function AddRemoveTrackToLibraryBtn({ track, className }) {
+function SaveTrackButton({ track, className }) {
   const { isTrackSaved } = useIsTrackSaved(track.id);
   const { isPending: isPendingSave, saveTrackMutate } = useSaveTrack(track.id);
   const { isPending: isPendingUnsave, unsaveTrackMutate } = useUnsaveTrack(
@@ -40,4 +40,4 @@ function AddRemoveTrackToLibraryBtn({ track, className }) {
   );
 }
 
-export default AddRemoveTrackToLibraryBtn;
+export default SaveTrackButton;

@@ -1,14 +1,29 @@
 import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
 import Button from "../../ui/Button";
+import useFollowArtist from "./useFollowArtist";
+import useUnfollowArtist from "./useUnfollowArtist";
 
 function FollowArtistButton({ artist }) {
   const { isArtistBeingFollowed } = useIsArtistBeingFollowed(artist?.id);
+  const { isPending: isPendingFollow, followArtistMutate } = useFollowArtist(
+    artist?.id,
+  );
+  const { isPending: isPendingUnfollow, unfollowArtistMutate } =
+    useUnfollowArtist(artist?.id);
   return (
     <div>
       {!isArtistBeingFollowed ? (
-        <Button>Follow</Button>
+        <Button disabled={isPendingFollow} onClick={followArtistMutate}>
+          {isPendingFollow ? "following..." : "Follow"}
+        </Button>
       ) : (
-        <Button>Following</Button>
+        <Button
+          disabled={isPendingUnfollow}
+          active={true}
+          onClick={unfollowArtistMutate}
+        >
+          {isPendingUnfollow ? "unfollowing..." : "Following"}
+        </Button>
       )}
     </div>
   );

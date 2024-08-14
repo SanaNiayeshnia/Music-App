@@ -1,5 +1,6 @@
 import { APP_NAME } from "../utilities/constants";
 
+//get requests
 export async function getFollowedArtists() {
   const accessToken = JSON.parse(
     localStorage.getItem(APP_NAME),
@@ -108,17 +109,51 @@ export async function getAppearsOn(id) {
 }
 
 export async function checkUsersFollowedArtists(id) {
+  try {
+    const accessToken = JSON.parse(
+      localStorage.getItem(APP_NAME),
+    ).spotifyAccessToken;
+    const res = await fetch(
+      `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${id}`,
+      {
+        headers: { authorization: `Bearer ${accessToken}` },
+      },
+    );
+    if (res.status !== 200)
+      throw new Error("Failed to check if the artist is being followed!");
+    const data = await res.json();
+    return data[0] || false;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+//put requests
+export async function followArtist(id) {
   const accessToken = JSON.parse(
     localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
   const res = await fetch(
-    `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${id}`,
+    `https://api.spotify.com/v1/me/following?type=artist&ids=${id}`,
     {
+      method: "PUT",
       headers: { authorization: `Bearer ${accessToken}` },
     },
   );
-  if (res.status !== 200)
-    throw new Error("Failed to check if the artist is being followed!");
-  const data = await res.json();
-  return data[0];
+  if (res.status !== 204) throw new Error("Failed to follow the artist!");
+}
+
+//delete requests
+export async function unfollowArtist(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/following?type=artist&ids=${id}`,
+    {
+      method: "DELETE",
+      headers: { authorization: `Bearer ${accessToken}` },
+    },
+  );
+  if (res.status !== 204) throw new Error("Failed to follow the artist!");
 }

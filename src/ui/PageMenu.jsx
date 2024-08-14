@@ -2,14 +2,21 @@ import PlayButton from "./PlayButton";
 import { TbCircleCheckFilled, TbCirclePlus, TbDots } from "react-icons/tb";
 import { Tooltip } from "@mui/material";
 import FollowArtistButton from "../features/artists/FollowArtistButton";
+import AddRemoveTrackToLibraryBtn from "../features/tracks/AddRemoveTrackToLibraryBtn";
 
 function PageMenu({ item, isSaved = false }) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-5">
         <PlayButton className="min-h-14 min-w-14" />
-        {item?.type === "artist" && <FollowArtistButton artist={item} />}
-        {item?.type !== "artist" && (
+        {item?.type === "artist" ? (
+          <FollowArtistButton artist={item} />
+        ) : item?.type === "track" ? (
+          <AddRemoveTrackToLibraryBtn
+            className="min-h-7 min-w-7"
+            track={item}
+          />
+        ) : (
           <Tooltip
             title={
               isSaved ? "Remove from your library" : "Save to your library"

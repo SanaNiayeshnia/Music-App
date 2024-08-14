@@ -1,5 +1,7 @@
 import { APP_NAME } from "../utilities/constants";
 
+//get requests
+
 export async function getTrack(id) {
   const accessToken = JSON.parse(
     localStorage.getItem(APP_NAME),
@@ -28,7 +30,6 @@ export async function getRecommendations(trackId) {
 }
 
 export async function checkUsersSavedTracks(id) {
-  console.log(id);
   const accessToken = JSON.parse(
     localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
@@ -42,4 +43,30 @@ export async function checkUsersSavedTracks(id) {
     throw new Error("Failed to check if the track is saved!");
   const data = await res.json();
   return data[0];
+}
+
+//put requests
+
+export async function saveTrack(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(`https://api.spotify.com/v1/me/tracks?ids=${id}`, {
+    method: "PUT",
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (res.status !== 200) throw new Error("Failed to save the track!");
+}
+
+//delete requests
+
+export async function unsaveTrack(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(`https://api.spotify.com/v1/me/tracks?ids=${id}`, {
+    method: "DELETE",
+    headers: { authorization: `Bearer ${accessToken}` },
+  });
+  if (res.status !== 200) throw new Error("Failed to delete the track!");
 }

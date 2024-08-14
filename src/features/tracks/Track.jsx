@@ -4,6 +4,7 @@ import { formatDate, formatTrackDuration } from "../../utilities/helper";
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { useNavigate } from "react-router-dom";
+import AddRemoveTrackToLibraryBtn from "./AddRemoveTrackToLibraryBtn";
 
 function Track({
   track,
@@ -97,7 +98,10 @@ function Track({
 
               <td className="text-center">
                 {!isLoading && (
-                  <TbCirclePlus className="text-gary-900 hidden min-h-5 min-w-5 cursor-pointer duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
+                  <AddRemoveTrackToLibraryBtn
+                    className="hidden min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white"
+                    track={track}
+                  />
                 )}
               </td>
               <td className="text-center">
@@ -110,7 +114,7 @@ function Track({
             </>
           )}
           <td className="text-center">
-            <TbDots className="text-gary-900 hidden min-h-5 min-w-5 cursor-pointer duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
+            <TbDots className="hidden min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
           </td>
         </>
       )}

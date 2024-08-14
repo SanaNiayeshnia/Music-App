@@ -3,6 +3,7 @@ import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SaveTrackButton from "./SaveTrackButton";
 
 function PlayingTrack() {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
@@ -60,7 +61,10 @@ function PlayingTrack() {
           )}
         </div>
         {!isLoading && (
-          <TbCirclePlus className="min-h-5 min-w-5 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white" />
+          <SaveTrackButton
+            className="min-h-5 min-w-5"
+            track={currentlyPlayingTrack}
+          />
         )}
       </div>
     </div>

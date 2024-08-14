@@ -3,7 +3,7 @@ import { getSavedPlaylists } from "../../services/playlistsAPi";
 
 function useSavedPlaylists() {
   const { isLoading, data } = useQuery({
-    queryKey: ["saved-playlist"],
+    queryKey: ["saved-playlists"],
     queryFn: getSavedPlaylists,
   });
 

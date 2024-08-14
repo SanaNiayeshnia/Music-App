@@ -1,5 +1,6 @@
 import { APP_NAME } from "../utilities/constants";
 
+//get requests
 export async function getSavedPlaylists() {
   const accessToken = JSON.parse(
     localStorage.getItem(APP_NAME),
@@ -54,4 +55,27 @@ export async function checkUsersSavedPlaylists(id) {
     throw new Error("Failed to check if the playlist is saved!");
   const data = await res.json();
   return data[0];
+}
+
+//put requests
+export async function savePlaylist(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(
+    `https://api.spotify.com/v1/playlists/${id}/followers`,
+    { method: "PUT", headers: { authorization: `Bearer ${accessToken}` } },
+  );
+  if (res.status !== 200) throw new Error("Failed to save the playlist!");
+}
+
+export async function unsavePlaylist(id) {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(
+    `https://api.spotify.com/v1/playlists/${id}/followers`,
+    { method: "DELETE", headers: { authorization: `Bearer ${accessToken}` } },
+  );
+  if (res.status !== 200) throw new Error("Failed to unsave the playlist!");
 }

@@ -17,6 +17,7 @@ function SearchBox() {
 
   function changeQueryhandler() {
     if (query) {
+      searchParams.delete("genre");
       searchParams.set("q", query.toLowerCase());
       setSearchParams(searchParams);
     } else {

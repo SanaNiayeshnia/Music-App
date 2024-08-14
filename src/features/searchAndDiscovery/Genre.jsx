@@ -1,11 +1,21 @@
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
+import { useSearchParams } from "react-router-dom";
 
 function Genre({ genre, isLoading }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function handleOnClick() {
+    searchParams.set("genre", genre?.name);
+    setSearchParams(searchParams);
+  }
 
   return (
-    <div className="group relative flex min-h-36 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/50">
+    <div
+      onClick={handleOnClick}
+      className="group relative flex min-h-36 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/50"
+    >
       {isLoading || !isImageLoaded ? (
         <>
           <Skeleton className="h-5 w-20" />

@@ -1,11 +1,4 @@
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import {
-  TbArrowBack,
-  TbArrowBackUp,
-  TbArrowForwardUp,
-  TbSquareArrowLeft,
-  TbSquareArrowLeftFilled,
-} from "react-icons/tb";
+import { TbArrowBackUp, TbArrowForwardUp } from "react-icons/tb";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function NavigationArrows() {

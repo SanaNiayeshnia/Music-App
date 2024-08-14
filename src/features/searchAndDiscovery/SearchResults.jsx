@@ -12,6 +12,7 @@ function SearchResults() {
   const [searchParams] = useSearchParams();
   const { isLoading, searchResult, error } = useSearchResult(
     searchParams.get("q"),
+    searchParams.get("genre"),
   );
   const [currentFilterArray, setCurrentFilterArray] = useState([]);
 

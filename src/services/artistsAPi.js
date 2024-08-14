@@ -109,23 +109,19 @@ export async function getAppearsOn(id) {
 }
 
 export async function checkUsersFollowedArtists(id) {
-  try {
-    const accessToken = JSON.parse(
-      localStorage.getItem(APP_NAME),
-    ).spotifyAccessToken;
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${id}`,
-      {
-        headers: { authorization: `Bearer ${accessToken}` },
-      },
-    );
-    if (res.status !== 200)
-      throw new Error("Failed to check if the artist is being followed!");
-    const data = await res.json();
-    return data[0] || false;
-  } catch (error) {
-    console.log(error.message);
-  }
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${id}`,
+    {
+      headers: { authorization: `Bearer ${accessToken}` },
+    },
+  );
+  if (res.status !== 200)
+    throw new Error("Failed to check if the artist is being followed!");
+  const data = await res.json();
+  return data[0] || false;
 }
 
 //put requests

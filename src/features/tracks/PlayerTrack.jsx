@@ -24,6 +24,7 @@ function PlayerTrack() {
         <Skeleton className="aspect-square h-14 w-14 flex-shrink-0 rounded shadow" />
       )}
       <img
+        key={currentlyPlayingTrack?.id}
         className={`${!isImageLoaded && "hidden"} aspect-square h-14 w-14 flex-shrink-0 rounded shadow`}
         src={!isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""}
         alt={currentlyPlayingTrack?.name}

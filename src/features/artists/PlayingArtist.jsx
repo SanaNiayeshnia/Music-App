@@ -26,6 +26,7 @@ function PlayingArtist() {
     <div className="rounded-md bg-white/50 shadow dark:bg-black/50">
       <div className="relative overflow-hidden">
         <img
+          key={currentlyPlayingTrack?.id}
           src={!isLoadingArtist ? artist?.images[1]?.url : ""}
           alt={artist?.name}
           className={`${!isImageLoaded && "hidden"} aspect-square w-full rounded-t-md brightness-90 filter`}

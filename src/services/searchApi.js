@@ -31,7 +31,7 @@ export async function getAvailableGenres() {
   return genres;
 }
 
-export async function getSearchResult(query) {
+export async function getSearchResult({ query, genre }) {
   let controller = null;
   try {
     const accessToken = JSON.parse(
@@ -40,8 +40,11 @@ export async function getSearchResult(query) {
 
     if (controller) controller.abort();
     controller = new AbortController();
+    console.log(
+      `https://api.spotify.com/v1/search?q=${query}${genre ? `genre:"${genre}"` : ""}&type=track,album,artist,playlist&limit=30`,
+    );
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${query}&type=track,album,artist,playlist&limit=30`,
+      `https://api.spotify.com/v1/search?q=${query}${genre ? `genre:"${genre}"` : ""}&type=track,album,artist,playlist&limit=30`,
       {
         signal: controller.signal,
         headers: { authorization: `Bearer ${accessToken}` },

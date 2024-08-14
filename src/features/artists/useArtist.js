@@ -3,7 +3,7 @@ import { getArtist } from "../../services/artistsAPi";
 
 function useArtist(id) {
   const { isLoading, data: artist } = useQuery({
-    queryKey: [`artist-${id}`],
+    queryKey: ["artist", id],
     queryFn: () => getArtist(id),
     enabled: Boolean(id),
   });

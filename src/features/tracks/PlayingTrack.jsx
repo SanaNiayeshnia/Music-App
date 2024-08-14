@@ -1,4 +1,3 @@
-import { TbCirclePlus } from "react-icons/tb";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
 import { useEffect, useState } from "react";
@@ -22,6 +21,7 @@ function PlayingTrack() {
       )}
 
       <img
+        key={currentlyPlayingTrack?.id}
         src={!isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""}
         alt={currentlyPlayingTrack?.name}
         onLoad={() => setIsImageLoaded(true)}

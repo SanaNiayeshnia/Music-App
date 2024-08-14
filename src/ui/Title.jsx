@@ -1,6 +1,6 @@
 function Title({ children }) {
   return (
-    <p className="my-5 text-2xl font-bold text-black dark:text-white">
+    <p className="my-5 text-2xl font-semibold text-black dark:text-white">
       {children}
     </p>
   );

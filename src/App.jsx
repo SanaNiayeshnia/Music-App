@@ -28,6 +28,8 @@ import FeaturedPlaylists from "./features/playlists/FeaturedPlaylists";
 import NewReleases from "./features/albums/NewReleases";
 import AccountCenterPage from "./pages/AccountCenterPage";
 import UsersTopTracks from "./features/users/UsersTopTracks";
+import UsersTopArtists from "./features/users/UsersTopArtists";
+import UsersFollowings from "./features/users/UsersFollowings";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -104,7 +106,19 @@ function App() {
               />
               <Route
                 path="account/top/artists"
-                element={<SectionPage></SectionPage>}
+                element={
+                  <SectionPage>
+                    <UsersTopArtists all={true} />
+                  </SectionPage>
+                }
+              />
+              <Route
+                path="account/following"
+                element={
+                  <SectionPage>
+                    <UsersFollowings all={true} />
+                  </SectionPage>
+                }
               />
               <Route path="search" element={<SearchPage />} />
               <Route path="artist/:id" element={<ArtistPage />} />

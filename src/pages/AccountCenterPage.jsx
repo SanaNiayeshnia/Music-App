@@ -6,6 +6,8 @@ import TopNav from "../ui/TopNav";
 import useMainContext from "../ui/layout/useMainContext";
 import PersonPageHeader from "../ui/PersonPageHeader";
 import UsersTopTracks from "../features/users/UsersTopTracks";
+import UsersTopArtists from "../features/users/UsersTopArtists";
+import UsersFollowings from "../features/users/UsersFollowings";
 
 function AccountCenterPage() {
   const { isMainScrolled } = useMainContext();
@@ -27,6 +29,8 @@ function AccountCenterPage() {
           <PersonPageHeader person={user} />
           <PageBody>
             <UsersTopTracks />
+            <UsersTopArtists />
+            <UsersFollowings />
           </PageBody>
         </>
       )}

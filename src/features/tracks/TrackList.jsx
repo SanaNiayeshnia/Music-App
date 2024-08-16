@@ -9,6 +9,7 @@ function TrackList({
   noArtist = false,
   all = false,
   max = 4,
+  isLoading = false,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
@@ -36,16 +37,22 @@ function TrackList({
       )}
 
       <tbody>
-        {items?.slice(0, all ? items?.length : max).map((item, index) => (
-          <Track
-            track={item}
-            index={index + 1}
-            key={item.id}
-            noCover={noCover}
-            noAlbum={noAlbum}
-            noArtist={noArtist}
-          />
-        ))}
+        {isLoading
+          ? Array.from({ length: max }).map((item, index) => (
+              <Track index={index + 1} key={index} isLoading={isLoading} />
+            ))
+          : items
+              ?.slice(0, all ? items?.length : max)
+              .map((item, index) => (
+                <Track
+                  track={item}
+                  index={index + 1}
+                  key={item.id}
+                  noCover={noCover}
+                  noAlbum={noAlbum}
+                  noArtist={noArtist}
+                />
+              ))}
       </tbody>
     </table>
   );

@@ -56,7 +56,10 @@ function Track({
         )}
         <div>
           {isLoading ? (
-            <Skeleton className="h-3 w-20 rounded-sm" />
+            <div className="space-y-1">
+              <Skeleton className="h-3 w-20 rounded-sm" />
+              <Skeleton className="h-3 w-10 rounded-sm" />
+            </div>
           ) : (
             <>
               <p

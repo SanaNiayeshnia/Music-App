@@ -1,6 +1,6 @@
+import NothingFound from "../../ui/NothingFound";
 import ShowAll from "../../ui/ShowAll";
 import Title from "../../ui/Title";
-import Track from "../tracks/Track";
 import TrackList from "../tracks/TrackList";
 import useUsersTopTracks from "./useUsersTopTracks";
 
@@ -15,7 +15,8 @@ function UsersTopTracks({ all }) {
           <ShowAll to="top/tracks">Show all</ShowAll>
         )}
       </div>
-      <TrackList items={usersTopTracks} all={all} />
+      {usersTopTracks?.length === 0 && <NothingFound />}
+      <TrackList items={usersTopTracks} all={all} isLoading={isLoading} />
     </div>
   );
 }

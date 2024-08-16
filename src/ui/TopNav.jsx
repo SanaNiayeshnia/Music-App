@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import DarkModeToggler from "./DarkModeToggler";
 import NavigationArrows from "./NavigationArrows";
 import UserAvatar from "../features/users/UserAvatar";

@@ -1,6 +1,7 @@
 import Title from "../../ui/Title";
 import useMainContext from "../../ui/layout/useMainContext";
 import Track from "../tracks/Track";
+import TrackList from "../tracks/TrackList";
 
 function SongsResult({ items, all, setCurrentFilterArray }) {
   const { scrollMainToTop } = useMainContext();
@@ -23,13 +24,7 @@ function SongsResult({ items, all, setCurrentFilterArray }) {
           </p>
         )}
       </div>
-      <table className="w-full">
-        <tbody>
-          {items?.slice(0, all ? items?.length : 4).map((item, index) => (
-            <Track track={item} index={index + 1} key={item.id} noAlbum />
-          ))}
-        </tbody>
-      </table>
+      <TrackList all={all} items={items} noAlbum />
     </div>
   );
 }

@@ -36,6 +36,7 @@ function AlbumPage() {
           <PageBody>
             <AlbumPageMenu album={album} />
             <TrackList
+              all={true}
               items={album?.tracks?.items}
               noCover
               noAlbum

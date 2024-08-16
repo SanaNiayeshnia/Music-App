@@ -34,8 +34,8 @@ function PlaylistPage() {
           <PageBody>
             <PlaylistPageMenu playlist={playlist} />
             <TrackList
+              all={true}
               items={playlist?.tracks?.items?.map((item) => item?.track)}
-              extra="date"
             />
             <AlsoLikePlaylists />
           </PageBody>

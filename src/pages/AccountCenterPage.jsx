@@ -5,6 +5,7 @@ import Spinner from "../ui/Spinner";
 import TopNav from "../ui/TopNav";
 import useMainContext from "../ui/layout/useMainContext";
 import PersonPageHeader from "../ui/PersonPageHeader";
+import UsersTopTracks from "../features/users/UsersTopTracks";
 
 function AccountCenterPage() {
   const { isMainScrolled } = useMainContext();
@@ -13,7 +14,9 @@ function AccountCenterPage() {
   return (
     <div className="h-full w-full">
       <TopNav>
-        {isMainScrolled && <NavTitle>{user?.display_name}</NavTitle>}
+        {isMainScrolled && (
+          <NavTitle noPlayButton>{user?.display_name}</NavTitle>
+        )}
       </TopNav>
       {isLoadingUser ? (
         <div className="grid h-full place-items-center">
@@ -22,7 +25,9 @@ function AccountCenterPage() {
       ) : (
         <>
           <PersonPageHeader person={user} />
-          <PageBody></PageBody>
+          <PageBody>
+            <UsersTopTracks />
+          </PageBody>
         </>
       )}
     </div>

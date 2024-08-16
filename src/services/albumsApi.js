@@ -44,8 +44,7 @@ export async function getNewReleases() {
       headers: getRequestHeader(),
     },
   );
-  if (res.status !== 200)
-    throw new Error("Failed to check if the album is saved!");
+  if (res.status !== 200) throw new Error("Failed to get the new releases!");
   const data = await res.json();
   return data?.albums?.items;
 }

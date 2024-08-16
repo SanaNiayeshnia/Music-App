@@ -13,8 +13,6 @@ import PageNotFound from "./pages/PageNotFound";
 import AlbumPage from "./pages/AlbumPage";
 import TrackPage from "./pages/TrackPage";
 import PlaylistPage from "./pages/PlaylistPage";
-import SearchResults from "./features/searchAndDiscovery/SearchResults";
-import DefaultSearchPageContent from "./features/searchAndDiscovery/DefaultSearchPageContent";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
@@ -28,6 +26,7 @@ import RelatedArtists from "./features/artists/RelatedArtists";
 import AppearsOn from "./features/artists/AppearsOn";
 import FeaturedPlaylists from "./features/playlists/FeaturedPlaylists";
 import NewReleases from "./features/albums/NewReleases";
+import AccountCenterPage from "./pages/AccountCenterPage";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -93,6 +92,7 @@ function App() {
               }
             >
               <Route index element={<HomePage />} />
+              <Route path="account" element={<AccountCenterPage />} />
               <Route path="search" element={<SearchPage />} />
               <Route path="artist/:id" element={<ArtistPage />} />
               <Route

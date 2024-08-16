@@ -1,5 +1,4 @@
 import NavTitle from "../ui/NavTitle";
-import ArtistPageHeader from "../features/artists/ArtistPageHeader";
 import Discography from "../features/artists/Discography";
 import Popular from "../features/artists/Popular";
 import TopNav from "../ui/TopNav";
@@ -12,6 +11,7 @@ import RelatedArtists from "../features/artists/RelatedArtists";
 import AppearsOn from "../features/artists/AppearsOn";
 import ArtistPageMenu from "../features/artists/ArtistPageMenu";
 import useMainContext from "../ui/layout/useMainContext";
+import PersonPageHeader from "../ui/PersonPageHeader";
 
 function ArtistPage() {
   const { isMainScrolled } = useMainContext();
@@ -22,16 +22,14 @@ function ArtistPage() {
 
   return (
     <div className="h-full w-full">
-      <TopNav transparent>
-        {isMainScrolled && <NavTitle>{artist?.name}</NavTitle>}
-      </TopNav>
+      <TopNav>{isMainScrolled && <NavTitle>{artist?.name}</NavTitle>}</TopNav>
       {isLoadingArtist || isLoadingArtistsTopTracks ? (
         <div className="grid h-full place-items-center">
           <Spinner />
         </div>
       ) : (
         <>
-          <ArtistPageHeader artist={artist} />
+          <PersonPageHeader person={artist} />
           <PageBody>
             <ArtistPageMenu artist={artist} />
             <Popular artistsTopTracks={artistsTopTracks} />

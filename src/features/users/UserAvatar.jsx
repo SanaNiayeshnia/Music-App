@@ -1,11 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Skeleton from "../../ui/Skeleton";
 import useCurrentUser from "./useCurrentUser";
+import { useSelector } from "react-redux";
 
-function UserAvatar() {
+function UserAvatar({ size }) {
   const { isLoading, user } = useCurrentUser();
   const firstLetterOfUserName = user?.display_name?.slice(0, 1) || "";
+  const navigate = useNavigate();
+  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
-    <div className="h-9 w-9 overflow-hidden rounded-full border-4 border-blue-600 shadow-md">
+    <div
+      onClick={() => (size !== "large" ? navigate("/account") : null)}
+      className={`${size == "large" ? `relative flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 xl:h-48 xl:w-48 ${isPlayingTrackbarOpen ? "md:h-36 md:w-36 lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"}` : "h-9 w-9 cursor-pointer"} overflow-hidden rounded-full border-4 border-blue-600 shadow-md`}
+    >
       {isLoading ? (
         <Skeleton className="size-full" />
       ) : (
@@ -18,7 +25,9 @@ function UserAvatar() {
               alt={user.display_name}
             />
           ) : (
-            <div className="grid size-full place-items-center bg-white font-semibold text-blue-600">
+            <div
+              className={`${size === "large" && "text-4xl"} grid size-full place-items-center bg-white font-semibold text-blue-600`}
+            >
               <span>{firstLetterOfUserName}</span>
             </div>
           )}

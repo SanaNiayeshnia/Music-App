@@ -1,4 +1,3 @@
-import Item from "../../ui/Item";
 import ListContainer from "../../ui/ListContainer";
 import Title from "../../ui/Title";
 import useMainContext from "../../ui/layout/useMainContext";

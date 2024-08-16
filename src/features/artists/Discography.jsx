@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Filters from "../../ui/Filters";
 import ListContainer from "../../ui/ListContainer";
 import useArtistsDiscography from "./useArtistsDiscography";
@@ -14,6 +14,7 @@ function Discography({ all }) {
   const [filteredArtistsDiscography, setFilteredArtistsDiscography] = useState(
     [],
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (artistsDiscography) {
@@ -42,10 +43,22 @@ function Discography({ all }) {
     }
   }
 
+  const title = (
+    <>
+      <span
+        className="cursor-pointer hover:underline"
+        onClick={() => navigate(`/artist/${artist?.id}`)}
+      >
+        {all ? artist?.name : ""}
+      </span>
+      {all ? "'s" : ""} Discography
+    </>
+  );
+
   return (
     <div key={`${all}-${Math.random()}`}>
       <ListContainer
-        title={`${all ? artist?.name + "'s" : ""} Discography`}
+        title={title}
         showAllTo="discography"
         all={all}
         isLoading={isLoadingArtist || isLoadingDiscography}

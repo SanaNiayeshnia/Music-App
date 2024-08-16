@@ -14,6 +14,7 @@ function ListContainer({
   isLoading,
   discography = false,
   noTitle = false,
+  alwaysShowAll = false,
   children,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
@@ -28,15 +29,23 @@ function ListContainer({
       md: isPlayingTrackbarOpen ? 2 : 3,
     };
   }, [isPlayingTrackbarOpen]);
+  const [screenSizeMaxItems, setScreenSizeMaxItems] = useState(6);
 
   useEffect(() => {
     function sliceItems() {
       const windowWidth = window.innerWidth;
-      if (windowWidth >= 1280) setSlicedItems(items?.slice(0, maxItems.xl));
-      else if (windowWidth >= 1024)
+      if (windowWidth >= 1280) {
+        setSlicedItems(items?.slice(0, maxItems.xl));
+        setScreenSizeMaxItems(maxItems.xl);
+      } else if (windowWidth >= 1024) {
         setSlicedItems(items?.slice(0, maxItems.lg));
-      else if (windowWidth >= 768) setSlicedItems(items?.slice(0, maxItems.md));
-      else setSlicedItems(items);
+        setScreenSizeMaxItems(maxItems.lg);
+      } else if (windowWidth >= 768) {
+        setSlicedItems(items?.slice(0, maxItems.md));
+        setScreenSizeMaxItems(maxItems.md);
+      } else {
+        setSlicedItems(items);
+      }
     }
 
     if (!all) {
@@ -74,7 +83,7 @@ function ListContainer({
       {!noTitle && (
         <div className="flex items-center justify-between">
           <Title>{title}</Title>
-          {!all && items?.length > 6 && (
+          {!all && (items?.length > screenSizeMaxItems || alwaysShowAll) && (
             <ShowAll to={showAllTo}>Show all</ShowAll>
           )}
         </div>

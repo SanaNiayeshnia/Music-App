@@ -8,6 +8,7 @@ function RecentlyPlayed({ all = false }) {
       <ListContainer
         title="Recently Played"
         showAllTo="/section/recently-played"
+        alwaysShowAll
         all={all}
         className="overflow-hidden"
         items={recentlyPlayedItems}

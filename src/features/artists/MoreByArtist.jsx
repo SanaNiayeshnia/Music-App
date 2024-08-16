@@ -1,11 +1,7 @@
-import { useParams } from "react-router-dom";
-import Item from "../../ui/Item";
+import { useNavigate, useParams } from "react-router-dom";
 import ListContainer from "../../ui/ListContainer";
-import ShowAll from "../../ui/ShowAll";
-import Title from "../../ui/Title";
 import useAlbum from "../albums/useAlbum";
 import useArtistsDiscography from "./useArtistsDiscography";
-import NothingFound from "../../ui/NothingFound";
 
 function MoreByArtist({ all }) {
   const { id } = useParams();
@@ -15,11 +11,25 @@ function MoreByArtist({ all }) {
   const filteredArtistsDiscography = all
     ? artistsDiscography
     : artistsDiscography?.filter((item) => item?.id !== album?.id);
+  const navigate = useNavigate();
+
+  const title = (
+    <>
+      More By
+      <span
+        className="cursor-pointer hover:underline"
+        onClick={() => navigate(`/artist/${album?.artists[0]?.id}`)}
+      >
+        {" "}
+        {album?.artists[0]?.name}
+      </span>
+    </>
+  );
 
   return (
     <div key={`${all}-${Math.random()}`}>
       <ListContainer
-        title={`More By ${album?.artists[0]?.name}`}
+        title={title}
         showAllTo="more-by-artist"
         all={all}
         isLoading={isLoadingAlbum || isLoadingDicography}

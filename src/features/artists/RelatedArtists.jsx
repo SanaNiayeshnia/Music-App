@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useRelatedArtists from "./useRelatedArtists";
 import ListContainer from "../../ui/ListContainer";
 import Item from "../../ui/Item";
@@ -12,11 +12,23 @@ function RelatedArtists({ all = false }) {
   const { isLoading: isLoadingRelatedArtists, relatedArtists } =
     useRelatedArtists(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
+  const navigate = useNavigate();
+  const title = (
+    <>
+      {" "}
+      <span
+        className="cursor-pointer hover:underline"
+        onClick={() => navigate(`/artist/${artist?.id}`)}
+      >
+        {all ? artist?.name : ""}
+      </span>
+      {all ? "'s" : ""} Fans Also Like
+    </>
+  );
   return (
     <div key={`${all}-${Math.random()}`}>
-      {relatedArtists?.length === 0 && <NothingFound />}
       <ListContainer
-        title={`${all ? artist?.name + "'s" : ""} Fans also like`}
+        title={title}
         showAllTo="fans-also-like"
         all={all}
         isLoading={isLoadingArtist || isLoadingRelatedArtists}

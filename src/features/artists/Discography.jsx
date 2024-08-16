@@ -1,13 +1,9 @@
 import { useParams } from "react-router-dom";
 import Filters from "../../ui/Filters";
-import Item from "../../ui/Item";
 import ListContainer from "../../ui/ListContainer";
-import ShowAll from "../../ui/ShowAll";
-import Title from "../../ui/Title";
 import useArtistsDiscography from "./useArtistsDiscography";
 import { useEffect, useState } from "react";
 import useArtist from "./useArtist";
-import NothingFound from "../../ui/NothingFound";
 
 function Discography({ all }) {
   const { id } = useParams();
@@ -48,13 +44,14 @@ function Discography({ all }) {
 
   return (
     <div key={`${all}-${Math.random()}`}>
-      <div className="flex items-center justify-between">
-        <Title>{all && artist?.name + "'s"} Discography</Title>
-        {!all && artistsDiscography?.length > 6 && (
-          <ShowAll to="discography">Show all</ShowAll>
-        )}
-      </div>
-      <div className="space-y-3">
+      <ListContainer
+        title={`${all ? artist?.name + "'s" : ""} Discography`}
+        showAllTo="discography"
+        all={all}
+        isLoading={isLoadingArtist || isLoadingDiscography}
+        items={filteredArtistsDiscography}
+        discography
+      >
         {!isLoadingArtist &&
           !isLoadingDiscography &&
           artistsDiscography?.length > 0 && (
@@ -67,15 +64,7 @@ function Discography({ all }) {
               currentFilterArray={currentFilterArray}
             />
           )}
-
-        {artistsDiscography?.length === 0 && <NothingFound />}
-        <ListContainer
-          all={all}
-          isLoading={isLoadingArtist || isLoadingDiscography}
-          items={filteredArtistsDiscography}
-          discography
-        />
-      </div>
+      </ListContainer>
     </div>
   );
 }

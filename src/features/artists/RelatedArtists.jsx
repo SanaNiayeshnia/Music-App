@@ -14,14 +14,10 @@ function RelatedArtists({ all = false }) {
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
   return (
     <div key={`${all}-${Math.random()}`}>
-      <div className="flex items-center justify-between">
-        <Title>{all && artist?.name + "'s"} Fans also like</Title>
-        {!all && relatedArtists?.length > 6 && (
-          <ShowAll to="fans-also-like">Show all</ShowAll>
-        )}
-      </div>
       {relatedArtists?.length === 0 && <NothingFound />}
       <ListContainer
+        title={`${all ? artist?.name + "'s" : ""} Fans also like`}
+        showAllTo="fans-also-like"
         all={all}
         isLoading={isLoadingArtist || isLoadingRelatedArtists}
         items={relatedArtists}

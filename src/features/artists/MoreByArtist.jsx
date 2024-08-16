@@ -18,14 +18,9 @@ function MoreByArtist({ all }) {
 
   return (
     <div key={`${all}-${Math.random()}`}>
-      <div className="flex items-center justify-between">
-        <Title>More By {album?.artists[0]?.name}</Title>
-        {!all && filteredArtistsDiscography?.length > 6 && (
-          <ShowAll to="more-by-artist">Show All</ShowAll>
-        )}
-      </div>
-      {filteredArtistsDiscography?.length === 0 && <NothingFound />}
       <ListContainer
+        title={`More By ${album?.artists[0]?.name}`}
+        showAllTo="more-by-artist"
         all={all}
         isLoading={isLoadingAlbum || isLoadingDicography}
         items={filteredArtistsDiscography}

@@ -25,7 +25,7 @@ function ResultList({ title, items, all, setCurrentFilterArray }) {
         )}
       </div>
 
-      <ListContainer all={all} items={items} />
+      <ListContainer noTitle all={all} items={items} />
     </div>
   );
 }

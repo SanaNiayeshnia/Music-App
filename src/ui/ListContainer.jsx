@@ -1,13 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Item from "./Item";
+import NothingFound from "./NothingFound";
+import Title from "./Title";
+import ShowAll from "./ShowAll";
 
 function ListContainer({
   items,
+  title,
+  showAllTo,
   className,
   all = false,
   isLoading,
   discography = false,
+  noTitle = false,
+  children,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [slicedItems, setSlicedItems] = useState(items);
@@ -63,22 +70,40 @@ function ListContainer({
   }, [all, items, maxItems]);
 
   return (
-    <div
-      className={`${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid grid-rows-1 overflow-hidden py-1.5 ${className}`}
-    >
-      {isLoading
-        ? loadingItems.map((item, index) => (
-            <Item key={index} isLoading={true} size="large" />
-          ))
-        : slicedItems?.map((item) => (
-            <Item
-              key={item.id}
-              item={item}
-              size="large"
-              discography={discography}
-            />
-          ))}
-    </div>
+    <>
+      {!noTitle && (
+        <div className="flex items-center justify-between">
+          <Title>{title}</Title>
+          {!all && items?.length > 6 && (
+            <ShowAll to={showAllTo}>Show all</ShowAll>
+          )}
+        </div>
+      )}
+
+      <div className="space-y-3">
+        {children}
+        <div
+          className={`${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid grid-rows-1 overflow-hidden py-1.5 ${className}`}
+        >
+          {isLoading ? (
+            loadingItems.map((item, index) => (
+              <Item key={index} isLoading={true} size="large" />
+            ))
+          ) : !isLoading && slicedItems.length > 0 ? (
+            slicedItems?.map((item) => (
+              <Item
+                key={item.id}
+                item={item}
+                size="large"
+                discography={discography}
+              />
+            ))
+          ) : (
+            <NothingFound />
+          )}
+        </div>
+      </div>
+    </>
   );
 }
 

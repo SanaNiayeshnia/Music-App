@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
 import TopNav from "../ui/TopNav";
 import NavTitle from "../ui/NavTitle";
 import PageBody from "../ui/PageBody";
-import PageMenu from "../ui/PageMenu";
 import RecommendedTracks from "../features/tracks/RecommendedTracks";
 import PageHeader from "../ui/PageHeader";
 import { useParams } from "react-router-dom";
@@ -11,9 +9,10 @@ import Spinner from "../ui/Spinner";
 import useArtist from "../features/artists/useArtist";
 import useRecommendations from "../features/tracks/useRecommendations";
 import TrackPageMenu from "../features/tracks/TrackPageMenu";
+import useMainContext from "../ui/layout/useMainContext";
 
 function TrackPage() {
-  const { isMainScrolled } = useSelector((store) => store.global);
+  const { isMainScrolled } = useMainContext();
   const { id } = useParams();
   const { isLoading: isLoadingTrack, track } = useTrack(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(

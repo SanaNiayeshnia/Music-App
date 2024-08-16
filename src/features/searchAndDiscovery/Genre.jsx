@@ -1,14 +1,17 @@
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { useSearchParams } from "react-router-dom";
+import useMainContext from "../../ui/layout/useMainContext";
 
 function Genre({ genre, isLoading }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { scrollMainToTop } = useMainContext();
 
   function handleOnClick() {
     searchParams.set("genre", genre?.name);
     setSearchParams(searchParams);
+    scrollMainToTop();
   }
 
   return (

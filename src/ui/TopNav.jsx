@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import DarkModeToggler from "./DarkModeToggler";
 import NavigationArrows from "./NavigationArrows";
 import UserAvatar from "../features/users/UserAvatar";
+import useMainContext from "./layout/useMainContext";
 
-function TopNav({ children, transparent }) {
-  const { isMainScrolled } = useSelector((store) => store.global);
+function TopNav({ children }) {
+  const { isMainScrolled } = useMainContext();
 
   return (
     <div

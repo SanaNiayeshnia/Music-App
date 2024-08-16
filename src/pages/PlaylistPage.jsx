@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import NavTitle from "../ui/NavTitle";
 import PageHeader from "../ui/PageHeader";
 import TopNav from "../ui/TopNav";
@@ -10,9 +9,10 @@ import usePlaylist from "../features/playlists/usePlaylist";
 import Spinner from "../ui/Spinner";
 import useUser from "../features/users/useUser";
 import PlaylistPageMenu from "../features/playlists/PlaylistPageMenu";
+import useMainContext from "../ui/layout/useMainContext";
 
 function PlaylistPage() {
-  const { isMainScrolled } = useSelector((store) => store.global);
+  const { isMainScrolled } = useMainContext();
   const { id } = useParams();
   const { isLoading: isLoadingPlaylist, playlist } = usePlaylist(id);
   const { isLoading: isLoadingOwner, user: owner } = useUser(

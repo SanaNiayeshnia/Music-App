@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
 import NavTitle from "../ui/NavTitle";
 import ArtistPageHeader from "../features/artists/ArtistPageHeader";
 import Discography from "../features/artists/Discography";
 import Popular from "../features/artists/Popular";
 import TopNav from "../ui/TopNav";
 import PageBody from "../ui/PageBody";
-import PageMenu from "../ui/PageMenu";
 import useArtist from "../features/artists/useArtist";
 import { useParams } from "react-router-dom";
 import Spinner from "../ui/Spinner";
@@ -13,9 +11,10 @@ import useArtistsTopTracks from "../features/artists/useArtistsTopTracks";
 import RelatedArtists from "../features/artists/RelatedArtists";
 import AppearsOn from "../features/artists/AppearsOn";
 import ArtistPageMenu from "../features/artists/ArtistPageMenu";
+import useMainContext from "../ui/layout/useMainContext";
 
 function ArtistPage() {
-  const { isMainScrolled } = useSelector((store) => store.global);
+  const { isMainScrolled } = useMainContext();
   const { id } = useParams();
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
   const { isLoading: isLoadingArtistsTopTracks, artistsTopTracks } =

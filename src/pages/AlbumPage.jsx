@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
 import NavTitle from "../ui/NavTitle";
 import TopNav from "../ui/TopNav";
 import PageBody from "../ui/PageBody";
 import License from "../features/albums/License";
 import MoreByArtist from "../features/artists/MoreByArtist";
-import PageMenu from "../ui/PageMenu";
 import PageHeader from "../ui/PageHeader";
 import TrackList from "../features/tracks/TrackList";
 import useAlbum from "../features/albums/useAlbum";
@@ -13,9 +11,10 @@ import useArtist from "../features/artists/useArtist";
 import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
 import AlbumPageMenu from "../features/albums/AlbumPageMenu";
+import useMainContext from "../ui/layout/useMainContext";
 
 function AlbumPage() {
-  const { isMainScrolled } = useSelector((store) => store.global);
+  const { isMainScrolled } = useMainContext();
   const { id } = useParams();
   const { isLoading: isLoadingAlbum, album } = useAlbum(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(

@@ -27,6 +27,7 @@ import Discography from "./features/artists/Discography";
 import RelatedArtists from "./features/artists/RelatedArtists";
 import AppearsOn from "./features/artists/AppearsOn";
 import FeaturedPlaylists from "./features/playlists/FeaturedPlaylists";
+import NewReleases from "./features/albums/NewReleases";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -145,6 +146,10 @@ function App() {
                 <Route
                   path="featured-playlists"
                   element={<FeaturedPlaylists all={true} />}
+                />
+                <Route
+                  path="new-releases"
+                  element={<NewReleases all={true} />}
                 />
               </Route>
               <Route path="*" element={<PageNotFound />} />

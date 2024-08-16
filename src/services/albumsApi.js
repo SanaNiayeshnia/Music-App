@@ -37,6 +37,19 @@ export async function checkUsersSavedAlbums(id) {
   return data[0];
 }
 
+export async function getNewReleases() {
+  const res = await fetch(
+    `https://api.spotify.com/v1/browse/new-releases?limit=50`,
+    {
+      headers: getRequestHeader(),
+    },
+  );
+  if (res.status !== 200)
+    throw new Error("Failed to check if the album is saved!");
+  const data = await res.json();
+  return data?.albums?.items;
+}
+
 //put requests
 export async function saveAlbum(id) {
   const res = await fetch(`https://api.spotify.com/v1/me/albums?ids=${id}`, {

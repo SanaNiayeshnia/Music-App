@@ -1,9 +1,5 @@
-import {
-  APP_NAME,
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REDIRECT_URI,
-} from "../utilities/constants";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../utilities/constants";
+import { getRequestHeader } from "../utilities/helper";
 
 export async function getAccessToken(code) {
   const res = await fetch("https://accounts.spotify.com/api/token", {
@@ -40,11 +36,8 @@ export async function refreshAccessToken(refresh_token) {
 }
 
 export async function getCurrentUser() {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch("https://api.spotify.com/v1/me", {
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (res.status !== 200)
     throw new Error("Failed to get the current user info!");

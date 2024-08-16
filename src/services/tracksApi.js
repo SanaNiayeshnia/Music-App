@@ -1,13 +1,9 @@
-import { APP_NAME } from "../utilities/constants";
+import { getRequestHeader } from "../utilities/helper";
 
 //get requests
-
 export async function getTrack(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (res.status !== 200) throw new Error("Failed to get the track!");
   const data = await res.json();
@@ -15,13 +11,10 @@ export async function getTrack(id) {
 }
 
 export async function getRecommendations(trackId) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(
     `https://api.spotify.com/v1/recommendations?seed_tracks=${trackId}&limit=10`,
     {
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 200) throw new Error("Failed to get the recommendations!");
@@ -30,13 +23,10 @@ export async function getRecommendations(trackId) {
 }
 
 export async function checkUsersSavedTracks(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(
     `https://api.spotify.com/v1/me/tracks/contains?ids=${id}`,
     {
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 200)
@@ -48,12 +38,9 @@ export async function checkUsersSavedTracks(id) {
 //put requests
 
 export async function saveTrack(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(`https://api.spotify.com/v1/me/tracks?ids=${id}`, {
     method: "PUT",
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (res.status !== 200) throw new Error("Failed to save the track!");
 }
@@ -61,12 +48,9 @@ export async function saveTrack(id) {
 //delete requests
 
 export async function unsaveTrack(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(`https://api.spotify.com/v1/me/tracks?ids=${id}`, {
     method: "DELETE",
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (res.status !== 200) throw new Error("Failed to delete the track!");
 }

@@ -1,12 +1,9 @@
-import { APP_NAME } from "../utilities/constants";
+import { getRequestHeader } from "../utilities/helper";
 
 export async function getRecentlyPlayed(all = false) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(
     "https://api.spotify.com/v1/me/player/recently-played?limit=50",
-    { headers: { authorization: `Bearer ${accessToken}` } },
+    { headers: getRequestHeader() },
   );
   if (res.status !== 200)
     throw new Error("Failed to get the recently played items!");
@@ -32,7 +29,7 @@ export async function getRecentlyPlayed(all = false) {
       [...hrefsSet].map(async (href) => {
         //fetch each item data
         const itemRes = await fetch(href, {
-          headers: { authorization: `Bearer ${accessToken}` },
+          headers: getRequestHeader(),
         });
 
         if (itemRes.status !== 200) {
@@ -57,19 +54,16 @@ export async function getRecentlyPlayed(all = false) {
 }
 
 export async function getCurrentlyPlaingTrack() {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(
     "https://api.spotify.com/v1/me/player/currently-playing",
-    { headers: { authorization: `Bearer ${accessToken}` } },
+    { headers: getRequestHeader() },
   );
   if (res.status !== 200)
     throw new Error("Failed to get the currently playing track!");
   const data = await res.json();
   let context = { type: data?.context?.type };
   const playlistRes = await fetch(data?.context?.href, {
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (playlistRes.status !== 200)
     throw new Error("Failed to get the currently playing track!");
@@ -79,11 +73,8 @@ export async function getCurrentlyPlaingTrack() {
 }
 
 export async function getQueue() {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch("https://api.spotify.com/v1/me/player/queue", {
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (res.status !== 200) throw new Error("Failed to get the queue!");
   const data = await res.json();

@@ -1,14 +1,11 @@
-import { APP_NAME } from "../utilities/constants";
+import { getRequestHeader } from "../utilities/helper";
 
 //get requests
 export async function getFollowedArtists() {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   let url = "https://api.spotify.com/v1/me/following?type=artist&limit=50";
 
   const res = await fetch(url, {
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (res.status !== 200)
     throw new Error("Failed to get the followed artists!");
@@ -23,12 +20,8 @@ export async function getFollowedArtists() {
 }
 
 export async function getArtist(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
-
   const res = await fetch(`https://api.spotify.com/v1/artists?ids=${id}`, {
-    headers: { authorization: `Bearer ${accessToken}` },
+    headers: getRequestHeader(),
   });
   if (res.status !== 200) throw new Error("Failed to get the artist info!");
 
@@ -38,14 +31,10 @@ export async function getArtist(id) {
 }
 
 export async function getArtistsDiscography(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
-
   const res = await fetch(
     `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single,compilation&limit=50`,
     {
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 200) throw new Error("Failed to get the artist info!");
@@ -56,14 +45,10 @@ export async function getArtistsDiscography(id) {
 }
 
 export async function getArtistsTopTracks(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
-
   const res = await fetch(
     `https://api.spotify.com/v1/artists/${id}/top-tracks`,
     {
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 200)
@@ -74,14 +59,10 @@ export async function getArtistsTopTracks(id) {
 }
 
 export async function getRelatedArtists(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
-
   const res = await fetch(
     `https://api.spotify.com/v1/artists/${id}/related-artists`,
     {
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 200) throw new Error("Failed to get the related artists!");
@@ -91,14 +72,10 @@ export async function getRelatedArtists(id) {
 }
 
 export async function getAppearsOn(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
-
   const res = await fetch(
     `https://api.spotify.com/v1/artists/${id}/albums?include_groups=appears_on&limit=50`,
     {
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 200)
@@ -109,13 +86,10 @@ export async function getAppearsOn(id) {
 }
 
 export async function checkUsersFollowedArtists(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(
     `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${id}`,
     {
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 200)
@@ -126,14 +100,11 @@ export async function checkUsersFollowedArtists(id) {
 
 //put requests
 export async function followArtist(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(
     `https://api.spotify.com/v1/me/following?type=artist&ids=${id}`,
     {
       method: "PUT",
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 204) throw new Error("Failed to follow the artist!");
@@ -141,14 +112,11 @@ export async function followArtist(id) {
 
 //delete requests
 export async function unfollowArtist(id) {
-  const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
-  ).spotifyAccessToken;
   const res = await fetch(
     `https://api.spotify.com/v1/me/following?type=artist&ids=${id}`,
     {
       method: "DELETE",
-      headers: { authorization: `Bearer ${accessToken}` },
+      headers: getRequestHeader(),
     },
   );
   if (res.status !== 204) throw new Error("Failed to follow the artist!");

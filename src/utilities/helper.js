@@ -1,9 +1,19 @@
+import { APP_NAME } from "./constants";
+
+export function getRequestHeader() {
+  const accessToken = JSON.parse(
+    localStorage.getItem(APP_NAME),
+  ).spotifyAccessToken;
+  return { authorization: `Bearer ${accessToken}` };
+}
+
 export function getTrackDuration(duration) {
   const hour = Math.floor(duration / 1000 / 60 / 60);
   const min = Math.floor(duration / 1000 / 60) % 60;
   const sec = Math.floor((duration / 1000) % 60);
   return { hour, min, sec };
 }
+
 export function formatTrackDuration(duration) {
   const minutes = getTrackDuration(duration).min.toString();
   const seconds = getTrackDuration(duration).sec.toString().padStart(2, "0");

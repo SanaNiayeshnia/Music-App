@@ -72,11 +72,9 @@ function Discography({ all }) {
         <ListContainer
           all={all}
           isLoading={isLoadingArtist || isLoadingDiscography}
-        >
-          {filteredArtistsDiscography?.map((item) => (
-            <Item key={item.id} item={item} size="large" discography />
-          ))}
-        </ListContainer>
+          items={filteredArtistsDiscography}
+          discography
+        />
       </div>
     </div>
   );

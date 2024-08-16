@@ -24,11 +24,8 @@ function RelatedArtists({ all = false }) {
       <ListContainer
         all={all}
         isLoading={isLoadingArtist || isLoadingRelatedArtists}
-      >
-        {relatedArtists?.map((item) => (
-          <Item key={item.id} item={item} size="large" />
-        ))}
-      </ListContainer>
+        items={relatedArtists}
+      />
     </div>
   );
 }

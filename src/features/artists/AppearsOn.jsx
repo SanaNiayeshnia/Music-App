@@ -24,11 +24,8 @@ function AppearsOn({ all }) {
       <ListContainer
         all={all}
         isLoading={isLoadingArtist || isLoadingAppearsOn}
-      >
-        {appearsOn?.map((item) => (
-          <Item key={item.id} item={item} size="large" />
-        ))}
-      </ListContainer>
+        items={appearsOn}
+      />
     </div>
   );
 }

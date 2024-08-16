@@ -28,11 +28,9 @@ function MoreByArtist({ all }) {
       <ListContainer
         all={all}
         isLoading={isLoadingAlbum || isLoadingDicography}
-      >
-        {filteredArtistsDiscography?.map((item) => (
-          <Item key={item?.id} item={item} size="large" discography />
-        ))}
-      </ListContainer>
+        items={filteredArtistsDiscography}
+        discography
+      />
     </div>
   );
 }

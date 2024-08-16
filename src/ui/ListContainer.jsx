@@ -2,9 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Item from "./Item";
 
-function ListContainer({ children, className, all = false, isLoading }) {
+function ListContainer({
+  items,
+  className,
+  all = false,
+  isLoading,
+  discography = false,
+}) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
-  const [slicedChildren, setSlicedChildren] = useState(children);
+  const [slicedItems, setSlicedItems] = useState(items);
   const [loadingItems, setLoadingItems] = useState(
     Array.from({ length: all ? 12 : 6 }),
   );
@@ -17,25 +23,23 @@ function ListContainer({ children, className, all = false, isLoading }) {
   }, [isPlayingTrackbarOpen]);
 
   useEffect(() => {
-    function sliceChildren() {
+    function sliceItems() {
       const windowWidth = window.innerWidth;
-      if (windowWidth >= 1280)
-        setSlicedChildren(children?.slice(0, maxItems.xl));
+      if (windowWidth >= 1280) setSlicedItems(items?.slice(0, maxItems.xl));
       else if (windowWidth >= 1024)
-        setSlicedChildren(children?.slice(0, maxItems.lg));
-      else if (windowWidth >= 768)
-        setSlicedChildren(children?.slice(0, maxItems.md));
-      else setSlicedChildren(children);
+        setSlicedItems(items?.slice(0, maxItems.lg));
+      else if (windowWidth >= 768) setSlicedItems(items?.slice(0, maxItems.md));
+      else setSlicedItems(items);
     }
 
     if (!all) {
       //Change the displayed items count based on window width
-      sliceChildren();
+      sliceItems();
 
-      window.addEventListener("resize", sliceChildren);
-      return () => window.removeEventListener("resize", sliceChildren);
+      window.addEventListener("resize", sliceItems);
+      return () => window.removeEventListener("resize", sliceItems);
     }
-  }, [children, setSlicedChildren, all, maxItems]);
+  }, [items, setSlicedItems, all, maxItems]);
 
   useEffect(() => {
     function sliceLoadingItems() {
@@ -56,7 +60,7 @@ function ListContainer({ children, className, all = false, isLoading }) {
       window.addEventListener("resize", sliceLoadingItems);
       return () => window.removeEventListener("resize", sliceLoadingItems);
     }
-  }, [all, children, maxItems]);
+  }, [all, items, maxItems]);
 
   return (
     <div
@@ -66,7 +70,14 @@ function ListContainer({ children, className, all = false, isLoading }) {
         ? loadingItems.map((item, index) => (
             <Item key={index} isLoading={true} size="large" />
           ))
-        : slicedChildren}
+        : slicedItems?.map((item) => (
+            <Item
+              key={item.id}
+              item={item}
+              size="large"
+              discography={discography}
+            />
+          ))}
     </div>
   );
 }

@@ -35,19 +35,16 @@ function SearchResults() {
             searchResult={searchResult}
           />
           <div className="flex flex-wrap gap-3">
+            {currentFilterArray.length === 0 && (
+              <TopResult item={searchResult?.topResult} isLoading={isLoading} />
+            )}
             {(currentFilterArray.length === 0 ||
               currentFilterArray.includes("track")) && (
-              <>
-                <TopResult
-                  item={searchResult?.topResult}
-                  isLoading={isLoading}
-                />
-                <SongsResult
-                  items={searchResult?.tracks?.items}
-                  all={currentFilterArray.includes("track")}
-                  setCurrentFilterArray={setCurrentFilterArray}
-                />
-              </>
+              <SongsResult
+                items={searchResult?.tracks?.items}
+                all={currentFilterArray.includes("track")}
+                setCurrentFilterArray={setCurrentFilterArray}
+              />
             )}
           </div>
           {(currentFilterArray.length === 0 ||

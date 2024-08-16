@@ -25,11 +25,7 @@ function ResultList({ title, items, all, setCurrentFilterArray }) {
         )}
       </div>
 
-      <ListContainer all={all}>
-        {items?.map((item) => (
-          <Item key={item.id} item={item} size="large" />
-        ))}
-      </ListContainer>
+      <ListContainer all={all} items={items} />
     </div>
   );
 }

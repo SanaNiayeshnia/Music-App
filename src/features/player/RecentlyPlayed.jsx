@@ -15,12 +15,9 @@ function RecentlyPlayed({ all = false }) {
       <ListContainer
         all={all}
         className="overflow-hidden"
+        items={recentlyPlayedItems}
         isLoading={isLoading}
-      >
-        {recentlyPlayedItems?.map((item) => (
-          <Item key={item.id} item={item} size="large" />
-        ))}
-      </ListContainer>
+      />
     </div>
   );
 }

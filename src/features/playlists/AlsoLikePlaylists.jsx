@@ -31,11 +31,8 @@ function AlsoLikePlaylists({ all }) {
         isLoading={
           isLoadingPlaylist || isLoadingRelatedPlaylists || isLoadingArtist
         }
-      >
-        {relatedPlaylists?.map((playlist) => (
-          <Item item={playlist} key={playlist?.id} size="large" />
-        ))}
-      </ListContainer>
+        items={relatedPlaylists}
+      />
     </div>
   );
 }

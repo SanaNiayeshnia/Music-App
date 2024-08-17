@@ -35,6 +35,16 @@ export async function checkUsersSavedTracks(id) {
   return data[0];
 }
 
+export async function getUsersSavedTracks() {
+  const res = await fetch(`https://api.spotify.com/v1/me/tracks?limit=50`, {
+    headers: getRequestHeader(),
+  });
+  if (res.status !== 200)
+    throw new Error("Failed to get the user's saved tracks!");
+  const data = await res.json();
+  return data;
+}
+
 //put requests
 
 export async function saveTrack(id) {

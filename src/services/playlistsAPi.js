@@ -1,4 +1,6 @@
 import { getRequestHeader } from "../utilities/helper";
+import { getCurrentUser } from "./authenticationApi";
+import { getUsersSavedTracks } from "./tracksApi";
 
 //get requests
 export async function getSavedPlaylists() {
@@ -8,15 +10,25 @@ export async function getSavedPlaylists() {
   if (res.status !== 200) throw new Error("Failed to get the saved playlists!");
   const data = await res.json();
 
-  return { playlists: data?.items, count: data?.total, next: data?.next };
+  //add likedSongsPlaylist to the saved playlists
+  const likedSongsPlaylist = await getLikedSongsPlaylist();
+  const allSavedPlaylists = [...data?.items, likedSongsPlaylist];
+
+  return { playlists: allSavedPlaylists, count: data?.total, next: data?.next };
 }
 
 export async function getPlaylist(id) {
-  const res = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
-    headers: getRequestHeader(),
-  });
-  if (res.status !== 200) throw new Error("Failed to get the saved playlists!");
-  const data = await res.json();
+  let data;
+  if (id === "LikedSongs") data = await getLikedSongsPlaylist();
+  else {
+    const res = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+      headers: getRequestHeader(),
+    });
+    if (res.status !== 200)
+      throw new Error("Failed to get the saved playlists!");
+    data = await res.json();
+  }
+
   return data;
 }
 
@@ -56,6 +68,23 @@ export async function getFeaturedPlaylists() {
     throw new Error("Failed to check if the playlist is saved!");
   const data = await res.json();
   return data?.playlists?.items;
+}
+
+export async function getLikedSongsPlaylist() {
+  const { items: likedSongsPlaylistTracks, total } =
+    await getUsersSavedTracks();
+  const user = await getCurrentUser();
+  const likedSongsPlaylist = {
+    tracks: { items: [...likedSongsPlaylistTracks], total },
+    type: "playlist",
+    name: "Liked Songs",
+    public: false,
+    id: "LikedSongs",
+    owner: { id: user.id, display_name: user.display_name, type: "user" },
+    images: [{ url: "/heart-folder.jpg" }],
+  };
+
+  return likedSongsPlaylist;
 }
 
 //put requests

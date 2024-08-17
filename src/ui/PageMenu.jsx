@@ -1,12 +1,11 @@
 import PlayButton from "./PlayButton";
-import { TbCircleCheckFilled, TbCirclePlus, TbDots } from "react-icons/tb";
-import { Tooltip } from "@mui/material";
+import { TbDots } from "react-icons/tb";
 import FollowArtistButton from "../features/artists/FollowArtistButton";
 import SaveTrackButton from "../features/tracks/SaveTrackButton";
 import SaveAlbumButton from "../features/albums/SaveAlbumButton";
 import SavePlaylistButton from "../features/playlists/SavePlaylistButton";
 
-function PageMenu({ item, isSaved = false }) {
+function PageMenu({ item }) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-5">
@@ -17,13 +16,14 @@ function PageMenu({ item, isSaved = false }) {
           <SaveTrackButton className="min-h-7 min-w-7" track={item} />
         ) : item?.type === "album" ? (
           <SaveAlbumButton album={item} />
-        ) : item?.type === "playlist" ? (
+        ) : item?.type === "playlist" && item.id !== "LikedSongs" ? (
           <SavePlaylistButton playlist={item} />
         ) : (
           ""
         )}
-
-        <TbDots className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
+        {item.id !== "LikedSongs" && (
+          <TbDots className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
+        )}
       </div>
     </div>
   );

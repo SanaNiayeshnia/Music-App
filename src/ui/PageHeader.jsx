@@ -48,7 +48,10 @@ function PageHeader({ item, artist }) {
       </>
     ) : type === "playlist" ? (
       <>
-        • {item?.followers?.total?.toLocaleString()} saves •{" "}
+        •{" "}
+        {item?.id !== "LikedSongs"
+          ? item?.followers?.total?.toLocaleString() + "saves • "
+          : ""}
         {item?.tracks?.total} songs, {hour > 0 && hour + " hr"}{" "}
         {min > 0 && min + " min"} {sec > 0 && sec + " sec"}
       </>

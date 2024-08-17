@@ -23,7 +23,7 @@ function ContextMenu({ options, position = "left" }) {
                 opt.handler();
                 opt.close && setIsOpen(false);
               }}
-              className="group flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-black hover:bg-blue-50 dark:text-white dark:hover:bg-white/10 [&_svg]:min-h-4 [&_svg]:min-w-4 [&_svg]:text-black [&_svg]:duration-100 dark:[&_svg]:text-white"
+              className="group/contextli flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-black hover:bg-blue-50 dark:text-white dark:hover:bg-white/10 [&_svg]:min-h-4 [&_svg]:min-w-4 [&_svg]:text-black [&_svg]:duration-100 dark:[&_svg]:text-white"
             >
               {opt.icon}
               {opt.title}

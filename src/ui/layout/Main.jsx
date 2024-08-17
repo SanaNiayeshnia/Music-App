@@ -13,7 +13,7 @@ function Main() {
 
   return (
     <MainContext.Provider value={{ scrollMainToTop, isMainScrolled }}>
-      <div className="relative w-full overflow-hidden rounded-lg bg-white/50 shadow-lg backdrop-blur-md lg:min-w-[425px] dark:bg-black/50">
+      <div className="relative w-full rounded-lg bg-white/50 shadow-lg backdrop-blur-md lg:min-w-[425px] dark:bg-black/50">
         <div
           ref={ref}
           className="scrollbar hide-scroll h-full overflow-auto px-5 pb-5 pt-[85px]"

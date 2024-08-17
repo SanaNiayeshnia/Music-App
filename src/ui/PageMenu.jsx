@@ -6,6 +6,7 @@ import SavePlaylistButton from "../features/playlists/SavePlaylistButton";
 import TrackContextMenu from "../features/tracks/TrackContextMenu";
 import AlbumContextMenu from "../features/albums/AlbumContextMenu";
 import PlaylistContextMenu from "../features/playlists/PlaylistContextMenu";
+import ArtistContextMenu from "../features/artists/ArtistContextMenu";
 
 function PageMenu({ item }) {
   return (
@@ -13,7 +14,10 @@ function PageMenu({ item }) {
       <div className="flex items-center gap-5">
         <PlayButton className="min-h-14 min-w-14" />
         {item?.type === "artist" ? (
-          <FollowArtistButton artist={item} />
+          <>
+            <FollowArtistButton artist={item} />
+            <ArtistContextMenu artist={item} position="right" />
+          </>
         ) : item?.type === "track" ? (
           <>
             <SaveTrackButton className="min-h-7 min-w-7" track={item} />

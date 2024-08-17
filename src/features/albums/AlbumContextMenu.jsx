@@ -25,34 +25,31 @@ function AlbumContextMenu({ album, position }) {
   const options = [
     {
       title: isAlbumSaved ? "Remove from your library" : "Add to your library",
-      icon:
-        isLoadingAlbumSaved || isPendingSave || isPendingUnsave ? (
-          <TinySpinner />
-        ) : (
-          <>
-            {isAlbumSaved ? (
-              <TbCircleCheckFilled className="group-hover:text-blue-600" />
-            ) : (
-              <TbCirclePlus className="group-hover:text-blue-600" />
-            )}
-          </>
-        ),
-
+      icon: (
+        <>
+          {isAlbumSaved ? (
+            <TbCircleCheckFilled className="group-hover/contextli:text-blue-600" />
+          ) : (
+            <TbCirclePlus className="group-hover/contextli:text-blue-600" />
+          )}
+        </>
+      ),
       handler: isAlbumSaved ? unsaveAlbumMutate : saveAlbumMutate,
+      close: true,
     },
     {
       title: "Add to the queue",
-      icon: <TbMusicPlus className="group-hover:text-blue-600" />,
+      icon: <TbMusicPlus className="group-hover/contextli:text-blue-600" />,
       handler,
     },
     {
       title: "Add to playlist",
-      icon: <TbPlus className="group-hover:text-blue-600" />,
+      icon: <TbPlus className="group-hover/contextli:text-blue-600" />,
       handler,
     },
     {
       title: "Copy the link",
-      icon: <TbLink className="group-hover:text-blue-600" />,
+      icon: <TbLink className="group-hover/contextli:text-blue-600" />,
       handler: () => copyLink(album),
       close: true,
     },

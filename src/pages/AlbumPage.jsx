@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 import useArtist from "../features/artists/useArtist";
 import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
-import AlbumPageMenu from "../features/albums/AlbumPageMenu";
 import useMainContext from "../ui/layout/useMainContext";
 import PageMenu from "../ui/PageMenu";
 

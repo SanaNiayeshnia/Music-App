@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { unsaveTrack } from "../../services/tracksApi";
+import toast from "react-hot-toast";
 
 function useUnsaveTrack(id) {
   const queryClient = useQueryClient();
@@ -8,6 +9,9 @@ function useUnsaveTrack(id) {
     mutationFn: () => unsaveTrack(id),
     onSuccess: () => {
       queryClient.invalidateQueries(["is-track-saved", id]);
+      queryClient.invalidateQueries(["playlist", "LikedSongs"]);
+
+      toast("Removed from your library");
     },
   });
   return { isPending, unsaveTrackMutate };

@@ -31,28 +31,29 @@ function TrackContextMenu({ track, position }) {
         ) : (
           <>
             {isTrackSaved ? (
-              <TbCircleCheckFilled className="group-hover:text-blue-600" />
+              <TbCircleCheckFilled className="group-hover/contextli:text-blue-600" />
             ) : (
-              <TbCirclePlus className="group-hover:text-blue-600" />
+              <TbCirclePlus className="group-hover/contextli:text-blue-600" />
             )}
           </>
         ),
 
       handler: isTrackSaved ? unsaveTrackMutate : saveTrackMutate,
+      close: true,
     },
     {
       title: "Add to the queue",
-      icon: <TbMusicPlus className="group-hover:text-blue-600" />,
+      icon: <TbMusicPlus className="group-hover/contextli:text-blue-600" />,
       handler,
     },
     {
       title: "Add to playlist",
-      icon: <TbPlus className="group-hover:text-blue-600" />,
+      icon: <TbPlus className="group-hover/contextli:text-blue-600" />,
       handler,
     },
     {
       title: "Copy the link",
-      icon: <TbLink className="group-hover:text-blue-600" />,
+      icon: <TbLink className="group-hover/contextli:text-blue-600" />,
       handler: () => copyLink(track),
       close: true,
     },

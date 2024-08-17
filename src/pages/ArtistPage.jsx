@@ -9,7 +9,6 @@ import Spinner from "../ui/Spinner";
 import useArtistsTopTracks from "../features/artists/useArtistsTopTracks";
 import RelatedArtists from "../features/artists/RelatedArtists";
 import AppearsOn from "../features/artists/AppearsOn";
-import ArtistPageMenu from "../features/artists/ArtistPageMenu";
 import useMainContext from "../ui/layout/useMainContext";
 import PersonPageHeader from "../ui/PersonPageHeader";
 import PageMenu from "../ui/PageMenu";

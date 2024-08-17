@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { unfollowArtist } from "../../services/artistsAPi";
+import toast from "react-hot-toast";
 
 function useUnfollowArtist(id) {
   const queryClient = useQueryClient();
@@ -12,6 +13,7 @@ function useUnfollowArtist(id) {
         queryKey: ["is-artist-being-followed", id],
       });
       queryClient.invalidateQueries({ queryKey: ["followed-artists"] });
+      toast("Removed from your library");
     },
   });
 

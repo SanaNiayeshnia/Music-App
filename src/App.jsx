@@ -74,11 +74,13 @@ function App() {
           toastOptions={{
             success: { duration: 3000 },
             error: { duration: 5000 },
+            duration: 2000,
             style: {
-              fontSize: "0.9rem",
-              padding: "1rem",
+              fontSize: "1rem",
+              padding: "1rem 0.5rem",
               backgroundColor: "white",
               color: "balck",
+              fontWeight: "500",
             },
           }}
         />

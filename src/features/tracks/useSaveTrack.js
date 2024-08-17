@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { saveTrack } from "../../services/tracksApi";
+import toast from "react-hot-toast";
 
 function useSaveTrack(id) {
   const queryClient = useQueryClient();
@@ -8,6 +9,9 @@ function useSaveTrack(id) {
     mutationFn: () => saveTrack(id),
     onSuccess: () => {
       queryClient.invalidateQueries(["is-track-saved", id]);
+      queryClient.invalidateQueries(["playlist", "LikedSongs"]);
+
+      toast("Added to your library");
     },
   });
   return { isPending, saveTrackMutate };

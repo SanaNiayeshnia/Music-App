@@ -27,34 +27,31 @@ function PlaylistContextMenu({ position, playlist }) {
       title: isPlaylistSaved
         ? "Remove from your library"
         : "Add to your library",
-      icon:
-        isLoadingPlaylistSaved || isPendingSave || isPendingUnsave ? (
-          <TinySpinner />
-        ) : (
-          <>
-            {isPlaylistSaved ? (
-              <TbCircleCheckFilled className="group-hover:text-blue-600" />
-            ) : (
-              <TbCirclePlus className="group-hover:text-blue-600" />
-            )}
-          </>
-        ),
-
+      icon: (
+        <>
+          {isPlaylistSaved ? (
+            <TbCircleCheckFilled className="group-hover/contxetli:text-blue-600" />
+          ) : (
+            <TbCirclePlus className="group-hover/contxetli:text-blue-600" />
+          )}
+        </>
+      ),
       handler: isPlaylistSaved ? unsavePlaylistMutate : savePlaylistMutate,
+      close: true,
     },
     {
       title: "Add to the queue",
-      icon: <TbMusicPlus className="group-hover:text-blue-600" />,
+      icon: <TbMusicPlus className="group-hover/contxetli:text-blue-600" />,
       handler,
     },
     {
       title: "Add to playlist",
-      icon: <TbPlus className="group-hover:text-blue-600" />,
+      icon: <TbPlus className="group-hover/contxetli:text-blue-600" />,
       handler,
     },
     {
       title: "Copy the link",
-      icon: <TbLink className="group-hover:text-blue-600" />,
+      icon: <TbLink className="group-hover/contxetli:text-blue-600" />,
       handler: () => copyLink(playlist),
       close: true,
     },

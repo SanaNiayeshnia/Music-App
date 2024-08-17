@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { unsaveAlbum } from "../../services/albumsApi";
+import toast from "react-hot-toast";
 
 function useUnsaveAlbum(id) {
   const queryClient = useQueryClient();
@@ -9,6 +10,7 @@ function useUnsaveAlbum(id) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["is-album-saved", id] });
       queryClient.invalidateQueries({ queryKey: ["saved-albums"] });
+      toast("Removed from your Library");
     },
   });
   return { isPending, unsaveAlbumMutate };

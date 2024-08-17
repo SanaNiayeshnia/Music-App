@@ -12,6 +12,7 @@ import AppearsOn from "../features/artists/AppearsOn";
 import ArtistPageMenu from "../features/artists/ArtistPageMenu";
 import useMainContext from "../ui/layout/useMainContext";
 import PersonPageHeader from "../ui/PersonPageHeader";
+import PageMenu from "../ui/PageMenu";
 
 function ArtistPage() {
   const { isMainScrolled } = useMainContext();
@@ -31,7 +32,7 @@ function ArtistPage() {
         <>
           <PersonPageHeader person={artist} />
           <PageBody>
-            <ArtistPageMenu artist={artist} />
+            <PageMenu item={artist} />
             <Popular artistsTopTracks={artistsTopTracks} />
             <Discography />
             <AppearsOn />

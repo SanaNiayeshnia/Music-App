@@ -5,6 +5,7 @@ import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
+import TrackContextMenu from "./TrackContextMenu";
 
 function Track({
   track,
@@ -117,7 +118,9 @@ function Track({
             </>
           )}
           <td className="text-center">
-            <TbDots className="hidden min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
+            <div className="hidden group-hover:inline-block">
+              <TrackContextMenu track={track} />
+            </div>
           </td>
         </>
       )}

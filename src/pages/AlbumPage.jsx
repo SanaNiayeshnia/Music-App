@@ -12,6 +12,7 @@ import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
 import AlbumPageMenu from "../features/albums/AlbumPageMenu";
 import useMainContext from "../ui/layout/useMainContext";
+import PageMenu from "../ui/PageMenu";
 
 function AlbumPage() {
   const { isMainScrolled } = useMainContext();
@@ -34,7 +35,7 @@ function AlbumPage() {
         <>
           <PageHeader item={album} artist={artist} />
           <PageBody>
-            <AlbumPageMenu album={album} />
+            <PageMenu item={album} />
             <TrackList
               all={true}
               items={album?.tracks?.items}

@@ -4,6 +4,7 @@ import { TbDots, TbX } from "react-icons/tb";
 import useCurrentlyPlayingTrack from "../../../features/player/useCurrentlyPlayingTrack";
 import Skeleton from "../../Skeleton";
 import { useNavigate } from "react-router-dom";
+import TrackContextMenu from "../../../features/tracks/TrackContextMenu";
 
 function PlayingTrackbarHeader({ isScrolled }) {
   const dispatch = useDispatch();
@@ -29,9 +30,9 @@ function PlayingTrackbarHeader({ isScrolled }) {
       )}
 
       <div className="flex items-center gap-2">
-        <TbDots
-          className={`${!currentlyPlayingTrack && "hidden"} min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black duration-100 hover:scale-105 hover:bg-white hover:shadow dark:text-white dark:hover:bg-black`}
-        />
+        <div className={`${!currentlyPlayingTrack && "hidden"}`}>
+          <TrackContextMenu track={currentlyPlayingTrack} />
+        </div>
         <TbX
           onClick={() => dispatch(togglePlayingTrackBar())}
           className="min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black duration-100 hover:scale-105 hover:bg-white hover:shadow dark:text-white dark:hover:bg-black"

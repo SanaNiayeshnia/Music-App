@@ -68,7 +68,7 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
         <Toaster
-          position="top-center"
+          position="bottom-center"
           gutter={12}
           containerStyle={{ margin: "0.75rem" }}
           toastOptions={{
@@ -79,7 +79,6 @@ function App() {
               padding: "1rem",
               backgroundColor: "white",
               color: "balck",
-              border: "1px solid black",
             },
           }}
         />

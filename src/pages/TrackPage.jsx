@@ -10,6 +10,7 @@ import useArtist from "../features/artists/useArtist";
 import useRecommendations from "../features/tracks/useRecommendations";
 import TrackPageMenu from "../features/tracks/TrackPageMenu";
 import useMainContext from "../ui/layout/useMainContext";
+import PageMenu from "../ui/PageMenu";
 
 function TrackPage() {
   const { isMainScrolled } = useMainContext();
@@ -34,7 +35,7 @@ function TrackPage() {
         <>
           <PageHeader item={track} artist={artist} />
           <PageBody>
-            <TrackPageMenu track={track} />
+            <PageMenu item={track} />
             <RecommendedTracks recommendations={recommendations} />
           </PageBody>
         </>

@@ -10,6 +10,7 @@ import Spinner from "../ui/Spinner";
 import useUser from "../features/users/useUser";
 import PlaylistPageMenu from "../features/playlists/PlaylistPageMenu";
 import useMainContext from "../ui/layout/useMainContext";
+import PageMenu from "../ui/PageMenu";
 
 function PlaylistPage() {
   const { isMainScrolled } = useMainContext();
@@ -34,7 +35,7 @@ function PlaylistPage() {
         <>
           <PageHeader item={playlist} artist={owner} />
           <PageBody>
-            <PlaylistPageMenu playlist={playlist} />
+            <PageMenu item={playlist} />
             <TrackList
               all={true}
               items={playlist?.tracks?.items?.map((item) => item?.track)}

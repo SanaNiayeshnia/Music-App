@@ -1,4 +1,5 @@
-import { APP_NAME } from "./constants";
+import toast from "react-hot-toast";
+import { APP_NAME, REDIRECT_URI } from "./constants";
 
 export function getRequestHeader() {
   const accessToken = JSON.parse(
@@ -39,4 +40,9 @@ export function formatDate(date = new Date()) {
   const formatter = new Intl.DateTimeFormat("en-US", options);
   const formattedDate = formatter.format(new Date(date));
   return formattedDate;
+}
+
+export function copyLink(item) {
+  navigator.clipboard.writeText(`${REDIRECT_URI}/${item.type}/${item.id}`);
+  toast("Link copied to clipboard");
 }

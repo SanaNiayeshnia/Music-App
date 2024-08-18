@@ -19,7 +19,7 @@ function Sorting({ options, handler }) {
         className={`${isOpen ? "text-blue-600" : "text-black group-hover:text-blue-600 dark:text-white"} min-h-5 min-w-5 rounded-full duration-100`}
       />
       {isOpen && (
-        <ul className="absolute right-0 top-[150%] min-w-40 rounded bg-white py-2 text-sm dark:bg-black">
+        <ul className="absolute right-0 top-[150%] min-w-40 rounded bg-white py-2 text-sm shadow dark:bg-black">
           <li className="px-3 py-1 text-sm font-semibold text-black dark:text-white">
             Sort by
           </li>

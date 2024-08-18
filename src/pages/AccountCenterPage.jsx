@@ -12,7 +12,6 @@ import UsersFollowings from "../features/users/UsersFollowings";
 function AccountCenterPage() {
   const { isMainScrolled } = useMainContext();
   const { isLoading: isLoadingUser, user } = useCurrentUser();
-  console.log(user);
   return (
     <div className="h-full w-full">
       <TopNav>

@@ -39,7 +39,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
         )}
 
         <img
-          src={!isLoading ? images[0]?.url || "/test.png" : ""}
+          src={!isLoading ? images?.at(0)?.url : ""}
           alt={name}
           onLoad={() => setIsImageLoaded(true)}
           className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 drop-shadow lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
@@ -73,25 +73,32 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
               </p>
             ) : (
               <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">
-                {size === "large" && (type === "track" || type === "album")
-                  ? artists?.map((artist, index) => (
-                      <span
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/artist/${artist?.id}`);
-                        }}
-                        className="hover:underline"
-                        key={artist?.id}
-                      >
-                        {artist.name}
-                        {artists.length > 1 &&
-                          index < artists.length - 1 &&
-                          ", "}
-                      </span>
-                    ))
-                  : size === "large" && type === "playlist"
-                    ? item?.owner?.display_name
-                    : type}
+                {size === "large" && (type === "track" || type === "album") ? (
+                  artists?.map((artist, index) => (
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/artist/${artist?.id}`);
+                      }}
+                      className="hover:underline"
+                      key={artist?.id}
+                    >
+                      {artist.name}
+                      {artists.length > 1 && index < artists.length - 1 && ", "}
+                    </span>
+                  ))
+                ) : size === "large" && type === "playlist" ? (
+                  item?.owner?.display_name
+                ) : (
+                  <>
+                    {type}
+                    {type === "playlist"
+                      ? " • " + item?.owner?.display_name
+                      : type === "album"
+                        ? " • " + artists[0]?.name
+                        : ""}
+                  </>
+                )}
               </p>
             )}
           </div>

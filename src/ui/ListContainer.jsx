@@ -98,7 +98,7 @@ function ListContainer({
             loadingItems.map((item, index) => (
               <Item key={index} isLoading={true} size="large" />
             ))
-          ) : !isLoading && slicedItems.length > 0 ? (
+          ) : !isLoading && slicedItems?.length > 0 ? (
             slicedItems?.map((item) => (
               <Item
                 key={item.id}

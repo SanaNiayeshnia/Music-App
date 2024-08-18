@@ -11,12 +11,14 @@ function PageHeader({ item, artist }) {
   const type = item?.type;
   const background =
     type !== "playlist"
-      ? artist?.images[0]?.url
-      : item?.tracks?.items[0]?.track?.album?.images[0]?.url;
+      ? artist?.images?.at(0)?.url
+      : item?.tracks?.items[0]?.track?.album?.images?.at(0)?.url;
   const title = item?.name;
   const cover =
-    type !== "track" ? item?.images[0]?.url : item?.album?.images[0]?.url;
-  const artistPic = artist?.images[0]?.url;
+    type !== "track"
+      ? item?.images?.at(0)?.url
+      : item?.album?.images?.at(0)?.url;
+  const artistPic = artist?.images?.at(0)?.url;
   const totalDuration = item?.tracks?.items?.reduce(
     (totalDuration, item) =>
       totalDuration +

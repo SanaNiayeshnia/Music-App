@@ -11,7 +11,7 @@ function AlsoLikePlaylists({ all }) {
     playlist?.tracks?.items[0]?.track?.artists[0]?.id,
   );
   const { isLoading: isLoadingRelatedPlaylists, relatedPlaylists } =
-    useRelatedPlaylists(artist?.genres[0]);
+    useRelatedPlaylists(artist?.genres?.at(0) || "pop");
 
   return (
     <div key={`${all}-${Math.random()}`}>

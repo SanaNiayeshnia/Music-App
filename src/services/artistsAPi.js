@@ -32,7 +32,7 @@ export async function getArtist(id) {
 
 export async function getArtistsDiscography(id) {
   const res = await fetch(
-    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single,compilation&limit=50`,
+    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single&limit=50`,
     {
       headers: getRequestHeader(),
     },

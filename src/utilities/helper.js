@@ -5,7 +5,9 @@ export function getRequestHeader() {
   const accessToken = JSON.parse(
     localStorage.getItem(APP_NAME),
   ).spotifyAccessToken;
-  return { authorization: `Bearer ${accessToken}` };
+  return {
+    authorization: `Bearer ${accessToken}`,
+  };
 }
 
 export function getTrackDuration(duration) {

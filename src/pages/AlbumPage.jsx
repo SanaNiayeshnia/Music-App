@@ -37,7 +37,9 @@ function AlbumPage() {
             <PageMenu item={album} />
             <TrackList
               all={true}
-              items={album?.tracks?.items}
+              items={album?.tracks?.items?.map((item) => {
+                return { ...item, album };
+              })}
               noCover
               noAlbum
               extra="stream"

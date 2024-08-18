@@ -45,7 +45,7 @@ function Track({
               />
             )}
             <img
-              src={!isLoading ? track?.album?.images[0].url : ""}
+              src={!isLoading ? track?.album?.images?.at(0)?.url : ""}
               alt={track?.name}
               onLoad={() => setIsImageLoaded(true)}
               className={`${smallScreen ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}

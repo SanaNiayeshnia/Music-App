@@ -96,10 +96,41 @@ export async function savePlaylist(id) {
   if (res.status !== 200) throw new Error("Failed to save the playlist!");
 }
 
+//delete requests
 export async function unsavePlaylist(id) {
   const res = await fetch(
     `https://api.spotify.com/v1/playlists/${id}/followers`,
     { method: "DELETE", headers: getRequestHeader() },
   );
   if (res.status !== 200) throw new Error("Failed to unsave the playlist!");
+}
+
+//post requests
+export async function createPlaylist({ userId, playlistName }) {
+  const res = await fetch(
+    `https://api.spotify.com/v1/users/${userId}/playlists`,
+    {
+      method: "POST",
+      headers: { ...getRequestHeader(), "Content-Type": "application/json" },
+      body: JSON.stringify({ name: playlistName }),
+    },
+  );
+  if (res.status !== 201) throw new Error("Failed to create the playlist!");
+  const data = await res.json();
+  return data;
+}
+
+export async function addItemsToPlaylist({ playlistId, itemUris }) {
+  const res = await fetch(
+    `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+    {
+      method: "POST",
+      headers: { ...getRequestHeader(), "Content-Type": "application/json" },
+      body: JSON.stringify({ uris: itemUris }),
+    },
+  );
+  if (res.status !== 201)
+    throw new Error("Failed to add items to the playlist!");
+  const data = await res.json();
+  return data;
 }

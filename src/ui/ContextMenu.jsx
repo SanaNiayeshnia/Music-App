@@ -14,7 +14,7 @@ function ContextMenu({ options, position = "left" }) {
       />
       {isOpen && (
         <ul
-          className={`absolute ${position === "right" ? "left-[150%]" : "right-[130%]"} top-[0] min-w-48 overflow-hidden rounded bg-white text-sm dark:bg-black`}
+          className={`absolute shadow ${position === "right" ? "left-[150%]" : "right-[130%]"} top-[0] min-w-48 rounded bg-white text-sm dark:bg-black`}
         >
           {options.map((opt, index) => (
             <li
@@ -23,10 +23,11 @@ function ContextMenu({ options, position = "left" }) {
                 opt.handler();
                 opt.close && setIsOpen(false);
               }}
-              className="group/contextli flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-black hover:bg-blue-50 dark:text-white dark:hover:bg-white/10 [&_svg]:min-h-4 [&_svg]:min-w-4 [&_svg]:text-black [&_svg]:duration-100 dark:[&_svg]:text-white"
+              className={`${opt.child && "relative"} group/contextli flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-black hover:bg-blue-50 dark:text-white dark:hover:bg-white/10 [&_svg]:min-h-4 [&_svg]:min-w-4 [&_svg]:text-black [&_svg]:duration-100 dark:[&_svg]:text-white`}
             >
               {opt.icon}
               {opt.title}
+              {opt.child}
             </li>
           ))}
         </ul>

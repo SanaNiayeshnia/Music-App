@@ -19,8 +19,6 @@ function PlaylistPage() {
     playlist?.owner?.id,
   );
 
-  console.log(playlist);
-
   return (
     <div className="h-full">
       <TopNav transparent>

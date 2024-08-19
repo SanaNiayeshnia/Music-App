@@ -11,7 +11,7 @@ function useSaveTrack(id) {
       queryClient.invalidateQueries(["is-track-saved", id]);
       queryClient.invalidateQueries(["playlist", "LikedSongs"]);
 
-      toast("Added to your library");
+      toast("Added to your liked songs");
     },
   });
   return { isPending, saveTrackMutate };

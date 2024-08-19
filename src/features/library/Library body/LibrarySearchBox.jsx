@@ -10,7 +10,7 @@ function LibrarySearchBox() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
-  const searchQuery = useSelector((store) => store.library.searchQuery);
+  const { searchQuery, currentFilter } = useSelector((store) => store.library);
   const dispatch = useDispatch();
   const inputRef = useRef();
   useEffect(() => {
@@ -31,7 +31,7 @@ function LibrarySearchBox() {
       >
         <input
           type="text"
-          placeholder="search in your library"
+          placeholder={`search in ${currentFilter ? currentFilter + "s" : "your library"}`}
           ref={inputRef}
           autoFocus
           value={searchQuery}

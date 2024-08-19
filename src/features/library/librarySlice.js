@@ -19,6 +19,7 @@ const librarySlice = createSlice({
       } else {
         //add filter
         state.currentFilter = action.payload;
+        if (action.payload !== "") state.sortByIndex = 0;
       }
 
       // filter the items

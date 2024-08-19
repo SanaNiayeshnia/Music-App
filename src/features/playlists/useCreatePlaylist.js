@@ -2,13 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPlaylist } from "../../services/playlistsAPi";
 import useCurrentUser from "../users/useCurrentUser";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import useAddItemsToPlaylist from "./useAddItemsToPlaylist";
 
 function useCreatePlaylist(playlistName, uris) {
   const { user } = useCurrentUser();
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
   const { addItemsToPlaylistMutate } = useAddItemsToPlaylist();
 
   const {
@@ -32,7 +30,7 @@ function useCreatePlaylist(playlistName, uris) {
         );
       } else {
         queryClient.invalidateQueries(["saved-playlists"]);
-        toast("Playlist created");
+        toast(`Playlist ${playlistName} created`);
       }
     },
   });

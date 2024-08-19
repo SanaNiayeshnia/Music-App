@@ -9,7 +9,7 @@ function useAddItemsToPlaylist(playlistId) {
     mutationFn: addItemsToPlaylist,
     onSuccess: () => {
       queryClient.invalidateQueries(["playlist", playlistId]);
-      toast("Added items to the playlist");
+      toast(`Added items to the playlist`);
     },
   });
   return { isPending, addItemsToPlaylistMutate };

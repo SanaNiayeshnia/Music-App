@@ -11,7 +11,7 @@ function useUnsaveTrack(id) {
       queryClient.invalidateQueries(["is-track-saved", id]);
       queryClient.invalidateQueries(["playlist", "LikedSongs"]);
 
-      toast("Removed from your library");
+      toast("Removed from your liked songs");
     },
   });
   return { isPending, unsaveTrackMutate };

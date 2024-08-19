@@ -1,8 +1,20 @@
+import { useEffect } from "react";
 import ListContainer from "../../ui/ListContainer";
 import useFeaturedPlaylists from "./useFeaturedPlaylists";
+import { useDispatch } from "react-redux";
+import { setPageTitle } from "../../GlobalSlice";
 
 function FeaturedPlaylists({ all }) {
   const { isLoading, featuredPlaylists } = useFeaturedPlaylists();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setPageTitle("Featured Playlists"));
+
+    return () => {
+      dispatch(setPageTitle(""));
+    };
+  }, [dispatch]);
+
   return (
     <div key={`${all}-${Math.random()}`}>
       <ListContainer

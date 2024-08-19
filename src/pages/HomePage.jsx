@@ -16,6 +16,7 @@ function HomePage() {
       dispatch(setPageTitle(""));
     };
   }, [dispatch]);
+
   return (
     <div>
       <TopNav />

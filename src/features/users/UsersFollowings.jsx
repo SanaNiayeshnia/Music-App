@@ -1,18 +1,27 @@
+import { useEffect } from "react";
 import ListContainer from "../../ui/ListContainer";
-import NothingFound from "../../ui/NothingFound";
-import ShowAll from "../../ui/ShowAll";
-import Title from "../../ui/Title";
 import useFollowedArtists from "../artists/useFollowedArtists";
+import { setPageTitle } from "../../GlobalSlice";
+import { useDispatch } from "react-redux";
 
 function UsersFollowings({ all }) {
   const { isLoading, followedArtists } = useFollowedArtists();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setPageTitle(`Your Following`));
+
+    return () => {
+      dispatch(setPageTitle(""));
+    };
+  }, [dispatch]);
+
   return (
     <div key={`${all}-${Math.random()}`}>
       <ListContainer
         all={all}
         isLoading={isLoading}
         items={followedArtists}
-        title="Following"
+        title={`${all ? "Your " : ""}Following`}
         showAllTo="following"
       />
     </div>

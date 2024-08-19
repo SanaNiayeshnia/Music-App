@@ -5,7 +5,7 @@ import useRelatedPlaylists from "./useRelatedPlaylists";
 import useArtist from "../artists/useArtist";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setSectionPageTitle } from "../../GlobalSlice";
+import { setPageTitle } from "../../GlobalSlice";
 
 function AlsoLikePlaylists({ all }) {
   const { id } = useParams();
@@ -18,11 +18,11 @@ function AlsoLikePlaylists({ all }) {
   const dispatch = useDispatch();
   useEffect(() => {
     if (all) {
-      dispatch(setSectionPageTitle(`You Might Also Like`));
+      dispatch(setPageTitle(`You Might Also Like`));
     }
 
     return () => {
-      dispatch(setSectionPageTitle(""));
+      dispatch(setPageTitle(""));
     };
   }, [all, artist, dispatch]);
 

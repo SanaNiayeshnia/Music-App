@@ -3,7 +3,7 @@ import useRelatedArtists from "./useRelatedArtists";
 import ListContainer from "../../ui/ListContainer";
 import useArtist from "./useArtist";
 import { useEffect } from "react";
-import { setSectionPageTitle } from "../../GlobalSlice";
+import { setPageTitle } from "../../GlobalSlice";
 import { useDispatch } from "react-redux";
 
 function RelatedArtists({ all = false }) {
@@ -28,11 +28,11 @@ function RelatedArtists({ all = false }) {
 
   useEffect(() => {
     if (all) {
-      dispatch(setSectionPageTitle(`${artist?.name}'s Fans Also Like`));
+      dispatch(setPageTitle(`${artist?.name}'s Fans Also Like`));
     }
 
     return () => {
-      dispatch(setSectionPageTitle(""));
+      dispatch(setPageTitle(""));
     };
   }, [all, artist, dispatch]);
 

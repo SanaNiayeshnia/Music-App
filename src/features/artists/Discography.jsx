@@ -5,7 +5,7 @@ import useArtistsDiscography from "./useArtistsDiscography";
 import { useEffect, useState } from "react";
 import useArtist from "./useArtist";
 import { useDispatch } from "react-redux";
-import { setSectionPageTitle } from "../../GlobalSlice";
+import { setPageTitle } from "../../GlobalSlice";
 
 function Discography({ all }) {
   const { id } = useParams();
@@ -31,11 +31,11 @@ function Discography({ all }) {
 
   useEffect(() => {
     if (all) {
-      dispatch(setSectionPageTitle(`${artist?.name}'s Discography`));
+      dispatch(setPageTitle(`${artist?.name}'s Discography`));
     }
 
     return () => {
-      dispatch(setSectionPageTitle(""));
+      dispatch(setPageTitle(""));
     };
   }, [all, artist, dispatch]);
 

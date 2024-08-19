@@ -7,7 +7,7 @@ import NavTitle from "./NavTitle";
 
 function TopNav({ children }) {
   const { isMainScrolled } = useMainContext();
-  const { sectionPageTitle } = useSelector((store) => store.global);
+  const { pageTitle } = useSelector((store) => store.global);
 
   return (
     <div
@@ -17,8 +17,8 @@ function TopNav({ children }) {
         <NavigationArrows />
         {children}
 
-        {sectionPageTitle && isMainScrolled && (
-          <NavTitle noPlayButton> {sectionPageTitle}</NavTitle>
+        {pageTitle && isMainScrolled && (
+          <NavTitle noPlayButton> {pageTitle}</NavTitle>
         )}
       </div>
 

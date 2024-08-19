@@ -1,9 +1,21 @@
+import { useEffect } from "react";
 import NewReleases from "../features/albums/NewReleases";
 import RecentlyPlayed from "../features/player/RecentlyPlayed";
 import FeaturedPlaylists from "../features/playlists/FeaturedPlaylists";
 import TopNav from "../ui/TopNav";
+import { setPageTitle } from "../GlobalSlice";
+import { useDispatch } from "react-redux";
+import { APP_NAME } from "../utilities/constants";
 
 function HomePage() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setPageTitle(APP_NAME));
+
+    return () => {
+      dispatch(setPageTitle(""));
+    };
+  }, [dispatch]);
   return (
     <div>
       <TopNav />

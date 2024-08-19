@@ -3,7 +3,7 @@ import ListContainer from "../../ui/ListContainer";
 import useAlbum from "../albums/useAlbum";
 import useArtistsDiscography from "./useArtistsDiscography";
 import { useEffect } from "react";
-import { setSectionPageTitle } from "../../GlobalSlice";
+import { setPageTitle } from "../../GlobalSlice";
 import { useDispatch } from "react-redux";
 
 function MoreByArtist({ all }) {
@@ -32,11 +32,11 @@ function MoreByArtist({ all }) {
 
   useEffect(() => {
     if (all) {
-      dispatch(setSectionPageTitle(`More By ${album?.artists[0]?.name}`));
+      dispatch(setPageTitle(`More By ${album?.artists[0]?.name}`));
     }
 
     return () => {
-      dispatch(setSectionPageTitle(""));
+      dispatch(setPageTitle(""));
     };
   }, [all, album, dispatch]);
 

@@ -19,9 +19,10 @@ function Track({
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
+  const [isUsingContextMenu, setIsUsingContextMenu] = useState(false);
   return (
     <tr
-      className={`${smallScreen ? "grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      className={`${smallScreen ? "grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}
     >
       {!smallScreen && (
         <td className="w-3.5 text-center">
@@ -103,7 +104,7 @@ function Track({
               <td className="text-center">
                 {!isLoading && (
                   <SaveTrackButton
-                    className="hidden min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white"
+                    className={`${isUsingContextMenu ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
                     track={track}
                   />
                 )}
@@ -118,8 +119,18 @@ function Track({
             </>
           )}
           <td className="text-center">
-            <div className="hidden group-hover:inline-block">
-              <TrackContextMenu track={track} />
+            <div
+              className={
+                isUsingContextMenu
+                  ? "inline-block"
+                  : "hidden group-hover:inline-block"
+              }
+            >
+              <TrackContextMenu
+                setIsUsingContextMenu={setIsUsingContextMenu}
+                track={track}
+                position="left"
+              />
             </div>
           </td>
         </>

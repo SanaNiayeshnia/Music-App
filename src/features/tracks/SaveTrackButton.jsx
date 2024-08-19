@@ -1,15 +1,16 @@
 import { Tooltip } from "@mui/material";
-import { TbCircleCheckFilled, TbCirclePlus } from "react-icons/tb";
+
 import useIsTrackSaved from "./useIsTrackSaved";
 import useSaveTrack from "./useSaveTrack";
 import useUnsaveTrack from "./useUnsaveTrack";
 import TinySpinner from "../../ui/TinySpinner";
+import { RiHeart3Fill, RiHeartAdd2Line } from "react-icons/ri";
 
 function SaveTrackButton({ track, className }) {
-  const { isTrackSaved } = useIsTrackSaved(track.id);
-  const { isPending: isPendingSave, saveTrackMutate } = useSaveTrack(track.id);
+  const { isTrackSaved } = useIsTrackSaved(track?.id);
+  const { isPending: isPendingSave, saveTrackMutate } = useSaveTrack(track?.id);
   const { isPending: isPendingUnsave, unsaveTrackMutate } = useUnsaveTrack(
-    track.id,
+    track?.id,
   );
 
   return (
@@ -23,12 +24,12 @@ function SaveTrackButton({ track, className }) {
         ) : (
           <>
             {!isTrackSaved ? (
-              <TbCirclePlus
+              <RiHeartAdd2Line
                 onClick={saveTrackMutate}
                 className={`${className} cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white`}
               />
             ) : (
-              <TbCircleCheckFilled
+              <RiHeart3Fill
                 onClick={unsaveTrackMutate}
                 className={`${className} cursor-pointer text-blue-600 duration-100 hover:scale-105`}
               />

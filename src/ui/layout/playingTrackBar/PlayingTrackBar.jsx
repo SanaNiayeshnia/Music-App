@@ -16,7 +16,7 @@ function PlayingTrackBar() {
 
   return (
     <div
-      className={`${isPlayingTrackbarOpen ? "md:block" : "md:hidden"} relative hidden h-full min-w-60 overflow-hidden rounded-lg bg-white/50 shadow-lg backdrop-blur-md md:max-w-60 lg:min-w-72 lg:max-w-72 xl:min-w-80 xl:max-w-80 dark:bg-black/50`}
+      className={`${isPlayingTrackbarOpen ? "md:block" : "md:hidden"} relative hidden h-full min-w-64 overflow-hidden rounded-lg bg-white/50 shadow-lg backdrop-blur-md md:max-w-60 lg:min-w-72 lg:max-w-72 xl:min-w-80 xl:max-w-80 dark:bg-black/50`}
     >
       <div className="h-full">
         <PlayingTrackbarHeader isScrolled={isScrolled} />

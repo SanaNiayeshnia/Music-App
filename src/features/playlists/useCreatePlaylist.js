@@ -3,11 +3,14 @@ import { createPlaylist } from "../../services/playlistsAPi";
 import useCurrentUser from "../users/useCurrentUser";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAddItemsToPlaylist from "./useAddItemsToPlaylist";
 
-function useCreatePlaylist(playlistName) {
+function useCreatePlaylist(playlistName, uris) {
   const { user } = useCurrentUser();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { isPending: isPendingAddItemsToPlaylist, addItemsToPlaylistMutate } =
+    useAddItemsToPlaylist();
 
   const {
     isPending,
@@ -17,9 +20,23 @@ function useCreatePlaylist(playlistName) {
     mutationKey: ["create-playlist", playlistName],
     mutationFn: () => createPlaylist({ userId: user.id, playlistName }),
     onSuccess: (data) => {
-      queryClient.invalidateQueries(["saved-playlists"]);
-      navigate(`/playlist/${data.id}`);
-      toast("Playlist created");
+      if (uris) {
+        addItemsToPlaylistMutate(
+          { playlistId: data.id, itemUris: uris },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["playlist", data.id]);
+              queryClient.invalidateQueries(["saved-playlists"]);
+              navigate(`/playlist/${data.id}`);
+              toast("Playlist created");
+            },
+          },
+        );
+      } else {
+        queryClient.invalidateQueries(["saved-playlists"]);
+        navigate(`/playlist/${data.id}`);
+        toast("Playlist created");
+      }
     },
   });
   return { isPending, createPlaylistMutate, playlist };

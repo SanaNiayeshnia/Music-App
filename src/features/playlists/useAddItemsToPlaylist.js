@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addItemsToPlaylist } from "../../services/playlistsAPi";
+import toast from "react-hot-toast";
 
 function useAddItemsToPlaylist(playlistId) {
   const queryClient = useQueryClient();
@@ -8,6 +9,7 @@ function useAddItemsToPlaylist(playlistId) {
     mutationFn: addItemsToPlaylist,
     onSuccess: () => {
       queryClient.invalidateQueries(["playlist", playlistId]);
+      toast("Added items to the playlist");
     },
   });
   return { isPending, addItemsToPlaylistMutate };

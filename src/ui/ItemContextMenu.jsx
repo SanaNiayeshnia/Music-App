@@ -24,7 +24,11 @@ function ItemContextMenu({
   noAddToPlaylist = false,
 }) {
   const [isOpenPlaylistOpt, setIsOpenPlaylistOpt] = useState(false);
-  const addToPlaylistRef = useOutsideClick(() => setIsOpenPlaylistOpt(false));
+  const addToPlaylistRef = useOutsideClick(() => {
+    setIsOpenPlaylistOpt(false);
+  });
+  const [isClickedOnPlaylistChildren, setIsClickedOnPlaylistChildren] =
+    useState(false);
 
   function handler() {}
   const options = [
@@ -44,7 +48,7 @@ function ItemContextMenu({
         ),
 
       handler: isItemSaved ? unsaveItemMutate : saveItemMutate,
-      close: true,
+      closeAfterClick: true,
     },
     {
       title: "Add to the queue",
@@ -55,7 +59,12 @@ function ItemContextMenu({
       title: "Add to playlist",
       icon: <TbPlus className="group-hover/contextli:text-blue-600" />,
       child: isOpenPlaylistOpt ? (
-        <AddToPlaylist item={item} position={position} ref={addToPlaylistRef} />
+        <AddToPlaylist
+          item={item}
+          position={position}
+          ref={addToPlaylistRef}
+          setIsClickedOnPlaylistChildren={setIsClickedOnPlaylistChildren}
+        />
       ) : (
         ""
       ),
@@ -66,10 +75,16 @@ function ItemContextMenu({
       title: "Copy the link",
       icon: <TbLink className="group-hover/contextli:text-blue-600" />,
       handler: () => copyLink(item),
-      close: true,
+      closeAfterClick: true,
     },
   ].filter(Boolean);
-  return <ContextMenu position={position} options={options} />;
+  return (
+    <ContextMenu
+      position={position}
+      options={options}
+      close={isClickedOnPlaylistChildren}
+    />
+  );
 }
 
 export default ItemContextMenu;

@@ -1,11 +1,9 @@
-import Button from "../../ui/Button";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
 import useArtist from "./useArtist";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopularityHearts from "../../ui/PopularityHearts";
-import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
 import FollowArtistButton from "./FollowArtistButton";
 
 function PlayingArtist() {

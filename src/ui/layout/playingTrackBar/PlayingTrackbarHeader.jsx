@@ -31,7 +31,7 @@ function PlayingTrackbarHeader({ isScrolled }) {
 
       <div className="flex items-center gap-2">
         <div className={`${!currentlyPlayingTrack && "hidden"}`}>
-          <TrackContextMenu track={currentlyPlayingTrack} />
+          <TrackContextMenu track={currentlyPlayingTrack} position="center" />
         </div>
         <TbX
           onClick={() => dispatch(togglePlayingTrackBar())}

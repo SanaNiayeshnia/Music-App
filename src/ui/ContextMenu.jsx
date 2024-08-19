@@ -2,21 +2,31 @@ import { TbDots } from "react-icons/tb";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useEffect, useState } from "react";
 
-function ContextMenu({ options, position = "left", close = false }) {
+function ContextMenu({
+  options,
+  position = "left",
+  close = false,
+  setIsUsingContextMenu,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => {
+    setIsUsingContextMenu(false);
     setIsOpen(false);
   });
 
   useEffect(() => {
-    close && setIsOpen(false);
-  }, [close]);
+    if (close) {
+      setIsOpen(false);
+      setIsUsingContextMenu(false);
+    }
+  }, [close, setIsUsingContextMenu]);
 
   return (
     <div ref={ref} className="relative">
       <TbDots
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
+          setIsUsingContextMenu((isUsingContextMenu) => !isUsingContextMenu);
         }}
         className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white"
       />

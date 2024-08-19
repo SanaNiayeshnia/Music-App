@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <div>
       <TopNav />
-      <div className="space-y-10">
+      <div className="space-y-8">
         <RecentlyPlayed />
         <FeaturedPlaylists />
         <NewReleases />

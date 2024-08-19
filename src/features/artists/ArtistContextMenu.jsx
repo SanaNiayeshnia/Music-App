@@ -38,13 +38,13 @@ function ArtistContextMenu({ artist, position }) {
       handler: isArtistBeingFollowed
         ? unfollowArtistMutate
         : followArtistMutate,
-      close: true,
+      closeAfterClick: true,
     },
     {
       title: "Copy the link",
       icon: <TbLink className="group-hover/contextli:text-blue-600" />,
       handler: () => copyLink(artist),
-      close: true,
+      closeAfterClick: true,
     },
   ];
   return <ContextMenu position={position} options={options} />;

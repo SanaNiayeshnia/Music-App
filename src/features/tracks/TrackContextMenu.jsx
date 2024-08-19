@@ -4,7 +4,7 @@ import useIsTrackSaved from "./useIsTrackSaved";
 
 import ItemContextMenu from "../../ui/ItemContextMenu";
 
-function TrackContextMenu({ track, position }) {
+function TrackContextMenu({ track, position, setIsUsingContextMenu }) {
   const { isLoading: isLoadingTrackSaved, isTrackSaved } = useIsTrackSaved(
     track?.id,
   );
@@ -22,6 +22,7 @@ function TrackContextMenu({ track, position }) {
       unsaveItemMutate={unsaveTrackMutate}
       item={track}
       position={position}
+      setIsUsingContextMenu={setIsUsingContextMenu}
     />
   );
 }

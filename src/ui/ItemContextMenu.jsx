@@ -22,6 +22,7 @@ function ItemContextMenu({
   unsaveItemMutate,
   isItemSaved,
   noAddToPlaylist = false,
+  setIsUsingContextMenu,
 }) {
   const [isOpenPlaylistOpt, setIsOpenPlaylistOpt] = useState(false);
   const addToPlaylistRef = useOutsideClick(() => {
@@ -83,6 +84,7 @@ function ItemContextMenu({
       position={position}
       options={options}
       close={isClickedOnPlaylistChildren}
+      setIsUsingContextMenu={setIsUsingContextMenu}
     />
   );
 }

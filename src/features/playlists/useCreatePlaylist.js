@@ -9,8 +9,7 @@ function useCreatePlaylist(playlistName, uris) {
   const { user } = useCurrentUser();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { isPending: isPendingAddItemsToPlaylist, addItemsToPlaylistMutate } =
-    useAddItemsToPlaylist();
+  const { addItemsToPlaylistMutate } = useAddItemsToPlaylist();
 
   const {
     isPending,
@@ -27,14 +26,12 @@ function useCreatePlaylist(playlistName, uris) {
             onSuccess: () => {
               queryClient.invalidateQueries(["playlist", data.id]);
               queryClient.invalidateQueries(["saved-playlists"]);
-              navigate(`/playlist/${data.id}`);
               toast("Playlist created");
             },
           },
         );
       } else {
         queryClient.invalidateQueries(["saved-playlists"]);
-        navigate(`/playlist/${data.id}`);
         toast("Playlist created");
       }
     },

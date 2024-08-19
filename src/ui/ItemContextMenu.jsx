@@ -62,7 +62,6 @@ function ItemContextMenu({
       child: isOpenPlaylistOpt ? (
         <AddToPlaylist
           item={item}
-          position={position}
           ref={addToPlaylistRef}
           setIsClickedOnPlaylistChildren={setIsClickedOnPlaylistChildren}
         />

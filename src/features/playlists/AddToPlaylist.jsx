@@ -7,7 +7,7 @@ import TinySpinner from "../../ui/TinySpinner";
 import useAddItemsToPlaylist from "./useAddItemsToPlaylist";
 
 const AddToPlaylist = forwardRef(
-  ({ item, position = "left", setIsClickedOnPlaylistChildren }, ref) => {
+  ({ item, setIsClickedOnPlaylistChildren }, ref) => {
     const { playlists } = useCreatedByUserPlaylists();
     const [searchQuery, setSearchQuery] = useState("");
     const filteredPlaylists = playlists.filter((playlist) =>
@@ -48,7 +48,7 @@ const AddToPlaylist = forwardRef(
       <div
         ref={ref}
         onClick={(e) => e.stopPropagation()}
-        className={`absolute z-50 ${position === "right" ? "left-[95%]" : ""} ${position === "left" ? "right-[95%]" : ""} ${position === "center" ? "left-0 top-full" : "bottom-0"} w-56 overflow-hidden rounded bg-white text-sm shadow-md dark:bg-black dark:shadow-gray-50/10`}
+        className={`absolute left-0 top-full z-50 w-56 overflow-hidden rounded bg-white text-sm shadow-md dark:bg-black dark:shadow-gray-50/10`}
       >
         <div className="px-3 py-2">
           <SearchForPlaylists
@@ -58,12 +58,12 @@ const AddToPlaylist = forwardRef(
         </div>
         <p
           onClick={addToNewPlaylist}
-          className="group flex items-center gap-2 border-b border-gray-600 px-3 py-2 hover:bg-blue-50 dark:border-gray-300 dark:hover:bg-white/10"
+          className="group/new flex items-center gap-2 border-b border-gray-600 px-3 py-2 hover:bg-blue-50 dark:border-gray-300 dark:hover:bg-white/10"
         >
           {isPendingCreatePlaylist || isPendingAddItemsToPlaylist ? (
             <TinySpinner />
           ) : (
-            <TbPlus className="min-h-6 min-w-6 text-black duration-100 group-hover:text-blue-600 dark:text-white" />
+            <TbPlus className="min-h-6 min-w-6 text-black duration-100 group-hover/new:text-blue-600 dark:text-white" />
           )}
           <span className="text-black dark:text-white"> New playlist</span>
         </p>

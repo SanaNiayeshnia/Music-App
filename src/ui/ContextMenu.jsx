@@ -10,14 +10,14 @@ function ContextMenu({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => {
-    setIsUsingContextMenu(false);
+    setIsUsingContextMenu && setIsUsingContextMenu(false);
     setIsOpen(false);
   });
 
   useEffect(() => {
     if (close) {
       setIsOpen(false);
-      setIsUsingContextMenu(false);
+      setIsUsingContextMenu && setIsUsingContextMenu(false);
     }
   }, [close, setIsUsingContextMenu]);
 
@@ -26,7 +26,8 @@ function ContextMenu({
       <TbDots
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
-          setIsUsingContextMenu((isUsingContextMenu) => !isUsingContextMenu);
+          setIsUsingContextMenu &&
+            setIsUsingContextMenu((isUsingContextMenu) => !isUsingContextMenu);
         }}
         className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white"
       />

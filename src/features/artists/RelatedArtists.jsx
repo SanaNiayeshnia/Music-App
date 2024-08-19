@@ -1,11 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useRelatedArtists from "./useRelatedArtists";
 import ListContainer from "../../ui/ListContainer";
-import Item from "../../ui/Item";
-import Title from "../../ui/Title";
-import ShowAll from "../../ui/ShowAll";
 import useArtist from "./useArtist";
-import NothingFound from "../../ui/NothingFound";
+import { useEffect } from "react";
+import { setSectionPageTitle } from "../../GlobalSlice";
+import { useDispatch } from "react-redux";
 
 function RelatedArtists({ all = false }) {
   const { id } = useParams();
@@ -13,6 +12,7 @@ function RelatedArtists({ all = false }) {
     useRelatedArtists(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const title = (
     <>
       {" "}
@@ -25,6 +25,17 @@ function RelatedArtists({ all = false }) {
       {all ? "'s" : ""} Fans Also Like
     </>
   );
+
+  useEffect(() => {
+    if (all) {
+      dispatch(setSectionPageTitle(`${artist?.name}'s Fans Also Like`));
+    }
+
+    return () => {
+      dispatch(setSectionPageTitle(""));
+    };
+  }, [all, artist, dispatch]);
+
   return (
     <div key={`${all}-${Math.random()}`}>
       <ListContainer

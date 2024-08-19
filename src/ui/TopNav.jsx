@@ -2,9 +2,12 @@ import DarkModeToggler from "./DarkModeToggler";
 import NavigationArrows from "./NavigationArrows";
 import UserAvatar from "../features/users/UserAvatar";
 import useMainContext from "./layout/useMainContext";
+import { useSelector } from "react-redux";
+import NavTitle from "./NavTitle";
 
 function TopNav({ children }) {
   const { isMainScrolled } = useMainContext();
+  const { sectionPageTitle } = useSelector((store) => store.global);
 
   return (
     <div
@@ -13,6 +16,10 @@ function TopNav({ children }) {
       <div className="flex min-h-[52px] items-center gap-2">
         <NavigationArrows />
         {children}
+
+        {sectionPageTitle && isMainScrolled && (
+          <NavTitle noPlayButton> {sectionPageTitle}</NavTitle>
+        )}
       </div>
 
       <div className="flex items-center gap-2">

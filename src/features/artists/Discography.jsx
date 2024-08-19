@@ -4,6 +4,8 @@ import ListContainer from "../../ui/ListContainer";
 import useArtistsDiscography from "./useArtistsDiscography";
 import { useEffect, useState } from "react";
 import useArtist from "./useArtist";
+import { useDispatch } from "react-redux";
+import { setSectionPageTitle } from "../../GlobalSlice";
 
 function Discography({ all }) {
   const { id } = useParams();
@@ -15,6 +17,7 @@ function Discography({ all }) {
     [],
   );
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (artistsDiscography) {
@@ -25,6 +28,16 @@ function Discography({ all }) {
         setFilteredArtistsDiscography(artistsDiscography);
     }
   }, [currentFilter, artistsDiscography]);
+
+  useEffect(() => {
+    if (all) {
+      dispatch(setSectionPageTitle(`${artist?.name}'s Discography`));
+    }
+
+    return () => {
+      dispatch(setSectionPageTitle(""));
+    };
+  }, [all, artist, dispatch]);
 
   function addRemoveFilter(newFilter) {
     if (currentFilter === newFilter) {

@@ -7,7 +7,7 @@ function LibrarySorting() {
   const { currentFilter } = useSelector((store) => store.library);
   return (
     <Sorting
-      options={[currentFilter === "" && "Type", "A-Z", "Z-A"].filter(Boolean)}
+      options={[currentFilter === " " && "Type", "A-Z", "Z-A"].filter(Boolean)}
       handler={(value) => dispatch(setSortByIndex(value))}
     />
   );

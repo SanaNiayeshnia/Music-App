@@ -2,6 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import ListContainer from "../../ui/ListContainer";
 import useAlbum from "../albums/useAlbum";
 import useArtistsDiscography from "./useArtistsDiscography";
+import { useEffect } from "react";
+import { setSectionPageTitle } from "../../GlobalSlice";
+import { useDispatch } from "react-redux";
 
 function MoreByArtist({ all }) {
   const { id } = useParams();
@@ -12,6 +15,7 @@ function MoreByArtist({ all }) {
     ? artistsDiscography
     : artistsDiscography?.filter((item) => item?.id !== album?.id);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const title = (
     <>
@@ -25,6 +29,16 @@ function MoreByArtist({ all }) {
       </span>
     </>
   );
+
+  useEffect(() => {
+    if (all) {
+      dispatch(setSectionPageTitle(`More By ${album?.artists[0]?.name}`));
+    }
+
+    return () => {
+      dispatch(setSectionPageTitle(""));
+    };
+  }, [all, album, dispatch]);
 
   return (
     <div key={`${all}-${Math.random()}`}>

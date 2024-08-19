@@ -1,22 +1,17 @@
 import Filters from "../../ui/Filters";
 
 function SearchResultFilters({
-  currentFilterArray,
-  setCurrentFilterArray,
+  currentFilter,
+  setCurrentFilter,
   searchResult,
 }) {
   function addRemoveFilter(newFilter) {
-    if (currentFilterArray.includes(newFilter)) {
-      //remove filter if it already exists in the current filter array
-      setCurrentFilterArray((currentFilterArray) =>
-        currentFilterArray.filter((filter) => filter !== newFilter),
-      );
+    if (currentFilter === newFilter) {
+      //remove filter if it already chosen as the current filter
+      setCurrentFilter("");
     } else {
       //add filter
-      setCurrentFilterArray((currentFilterArray) => [
-        ...currentFilterArray,
-        newFilter,
-      ]);
+      setCurrentFilter(newFilter);
     }
   }
 
@@ -44,7 +39,7 @@ function SearchResultFilters({
       }
       filterField="type"
       handler={addRemoveFilter}
-      currentFilterArray={currentFilterArray}
+      currentFilter={currentFilter}
     />
   );
 }

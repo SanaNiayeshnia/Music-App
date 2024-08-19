@@ -2,11 +2,11 @@ import ListContainer from "../../ui/ListContainer";
 import Title from "../../ui/Title";
 import useMainContext from "../../ui/layout/useMainContext";
 
-function ResultList({ title, items, all, setCurrentFilterArray }) {
+function ResultList({ title, items, all, setCurrentFilter }) {
   const { scrollMainToTop } = useMainContext();
 
   function handleShowAll() {
-    setCurrentFilterArray([items[0]?.type]);
+    setCurrentFilter(items[0]?.type);
     scrollMainToTop();
   }
 

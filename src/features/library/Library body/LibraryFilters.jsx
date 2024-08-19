@@ -4,10 +4,10 @@ import Filters from "../../../ui/Filters";
 
 function LibraryFilters() {
   const dispatch = useDispatch();
-  const { currentFilterArray } = useSelector((store) => store.library);
+  const { currentFilter } = useSelector((store) => store.library);
 
   return (
-    <div className="min-w-[285px]">
+    <div className="min-w-[290px]">
       <Filters
         options={[
           { title: "Artists", value: "artist" },
@@ -15,7 +15,7 @@ function LibraryFilters() {
           { title: "Playlists", value: "playlist" },
         ]}
         handler={(filter) => dispatch(addRemoveFilter(filter))}
-        currentFilterArray={currentFilterArray}
+        currentFilter={currentFilter}
       />
     </div>
   );

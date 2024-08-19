@@ -14,7 +14,7 @@ function SearchResults() {
     searchParams.get("q"),
     searchParams.get("genre"),
   );
-  const [currentFilterArray, setCurrentFilterArray] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("");
 
   return (
     <div className="h-[calc(100%-52px)]">
@@ -30,50 +30,46 @@ function SearchResults() {
       ) : (
         <>
           <SearchResultFilters
-            currentFilterArray={currentFilterArray}
-            setCurrentFilterArray={setCurrentFilterArray}
+            currentFilter={currentFilter}
+            setCurrentFilter={setCurrentFilter}
             searchResult={searchResult}
           />
           <div className="flex flex-wrap gap-3">
-            {currentFilterArray.length === 0 && (
+            {currentFilter === "" && (
               <TopResult item={searchResult?.topResult} isLoading={isLoading} />
             )}
-            {(currentFilterArray.length === 0 ||
-              currentFilterArray.includes("track")) && (
+            {(currentFilter === "" || currentFilter === "track") && (
               <SongsResult
                 items={searchResult?.tracks?.items}
-                all={currentFilterArray.includes("track")}
-                setCurrentFilterArray={setCurrentFilterArray}
+                all={currentFilter === "track"}
+                setCurrentFilter={setCurrentFilter}
               />
             )}
           </div>
-          {(currentFilterArray.length === 0 ||
-            currentFilterArray.includes("artist")) && (
+          {(currentFilter === "" || currentFilter === "artist") && (
             <ResultList
               title="Artists"
               items={searchResult?.artists?.items}
-              all={currentFilterArray.includes("artist")}
-              setCurrentFilterArray={setCurrentFilterArray}
+              all={currentFilter === "artist"}
+              setCurrentFilter={setCurrentFilter}
             />
           )}
 
-          {(currentFilterArray.length === 0 ||
-            currentFilterArray.includes("album")) && (
+          {(currentFilter === "" || currentFilter === "album") && (
             <ResultList
               title="Albums"
               items={searchResult?.albums?.items}
-              all={currentFilterArray.includes("album")}
-              setCurrentFilterArray={setCurrentFilterArray}
+              all={currentFilter === "album"}
+              setCurrentFilter={setCurrentFilter}
             />
           )}
 
-          {(currentFilterArray.length === 0 ||
-            currentFilterArray.includes("playlist")) && (
+          {(currentFilter === "" || currentFilter === "playlist") && (
             <ResultList
               title="Playlists"
               items={searchResult?.playlists?.items}
-              all={currentFilterArray.includes("playlist")}
-              setCurrentFilterArray={setCurrentFilterArray}
+              all={currentFilter === "playlist"}
+              setCurrentFilter={setCurrentFilter}
             />
           )}
         </>

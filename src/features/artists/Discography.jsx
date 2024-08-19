@@ -10,7 +10,7 @@ function Discography({ all }) {
   const { isLoading: isLoadingDiscography, artistsDiscography } =
     useArtistsDiscography(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
-  const [currentFilterArray, setCurrentFilterArray] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("");
   const [filteredArtistsDiscography, setFilteredArtistsDiscography] = useState(
     [],
   );
@@ -19,27 +19,20 @@ function Discography({ all }) {
   useEffect(() => {
     if (artistsDiscography) {
       setFilteredArtistsDiscography(
-        artistsDiscography.filter((item) =>
-          currentFilterArray.includes(item.album_type),
-        ),
+        artistsDiscography.filter((item) => currentFilter === item.album_type),
       );
-      if (currentFilterArray.length === 0)
+      if (currentFilter === "")
         setFilteredArtistsDiscography(artistsDiscography);
     }
-  }, [currentFilterArray, artistsDiscography]);
+  }, [currentFilter, artistsDiscography]);
 
   function addRemoveFilter(newFilter) {
-    if (currentFilterArray.includes(newFilter)) {
-      //remove filter if it already exists in the current filter array
-      setCurrentFilterArray((currentFilterArray) =>
-        currentFilterArray.filter((filter) => filter !== newFilter),
-      );
+    if (currentFilter === newFilter) {
+      //remove filter if it already chosen as the current filter
+      setCurrentFilter("");
     } else {
       //add filter
-      setCurrentFilterArray((currentFilterArray) => [
-        ...currentFilterArray,
-        newFilter,
-      ]);
+      setCurrentFilter(newFilter);
     }
   }
 
@@ -74,7 +67,7 @@ function Discography({ all }) {
                 { title: "Singles", value: "single" },
               ]}
               handler={addRemoveFilter}
-              currentFilterArray={currentFilterArray}
+              currentFilter={currentFilter}
             />
           )}
       </ListContainer>

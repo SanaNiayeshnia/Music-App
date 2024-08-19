@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentFilterArray: [],
+  currentFilter: "",
   sortByIndex: 0,
   searchQuery: "",
   followedItems: [],
@@ -13,17 +13,12 @@ const librarySlice = createSlice({
   initialState,
   reducers: {
     addRemoveFilter(state, action) {
-      if (state.currentFilterArray.includes(action.payload)) {
-        //remove filter if it already exists in the current filter array
-        state.currentFilterArray = state.currentFilterArray.filter(
-          (filter) => filter !== action.payload,
-        );
+      if (state.currentFilter === action.payload) {
+        //remove filter if it already chosen as the current filter
+        state.currentFilter = "";
       } else {
         //add filter
-        state.currentFilterArray = [
-          ...state.currentFilterArray,
-          action.payload,
-        ];
+        state.currentFilter = action.payload;
       }
 
       // filter the items
@@ -81,12 +76,10 @@ function settingQueryFunc(state) {
 }
 
 function filteringFunc(state) {
-  // filter the items based on the current filter array
+  // filter the items based on the current filter
   state.filteredItems =
-    state.currentFilterArray.length > 0
-      ? state.followedItems.filter((item) =>
-          state.currentFilterArray.includes(item.type),
-        )
+    state.currentFilter.length > 0
+      ? state.followedItems.filter((item) => state.currentFilter === item.type)
       : state.followedItems;
   //sort items
   sortingFunc(state);

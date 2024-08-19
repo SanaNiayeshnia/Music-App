@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentFilter: "",
-  sortByIndex: 0,
+  sortBy: "Type",
   searchQuery: "",
   followedItems: [],
   filteredItems: [],
@@ -19,15 +19,16 @@ const librarySlice = createSlice({
       } else {
         //add filter
         state.currentFilter = action.payload;
-        if (action.payload !== "") state.sortByIndex = 0;
+        if (action.payload !== "" && state.sortBy === "Type")
+          state.sortBy = "A-Z";
       }
 
       // filter the items
       filteringFunc(state);
     },
 
-    setSortByIndex(state, action) {
-      state.sortByIndex = action.payload;
+    setSortBy(state, action) {
+      state.sortBy = action.payload;
       filteringFunc(state);
     },
 
@@ -51,18 +52,18 @@ const librarySlice = createSlice({
 //reusable functions
 
 function sortingFunc(state) {
-  switch (state.sortByIndex) {
-    case 1: //sort alphabetical (a-z)
+  switch (state.sortBy) {
+    case "A-Z": //sort alphabetical (a-z)
       state.filteredItems.sort((a, b) => {
         return a.name.localeCompare(b.name);
       });
       break;
-    case 2: //sort alphabetical (z-a)
+    case "Z-A": //sort alphabetical (z-a)
       state.filteredItems.sort((a, b) => {
         return b.name.localeCompare(a.name);
       });
       break;
-    case 0: //sort by type
+    case "Type": //sort by type
     default:
       state.filteredItems.sort((a, b) => a.type.localeCompare(b.type)); //sorting items like this: album => artist => playlist
       break;
@@ -89,9 +90,5 @@ function filteringFunc(state) {
 }
 
 export default librarySlice.reducer;
-export const {
-  addRemoveFilter,
-  setSortByIndex,
-  setFollowedItems,
-  setSearchQuery,
-} = librarySlice.actions;
+export const { addRemoveFilter, setSortBy, setFollowedItems, setSearchQuery } =
+  librarySlice.actions;

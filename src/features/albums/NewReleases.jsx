@@ -7,9 +7,11 @@ import { setPageTitle } from "../../GlobalSlice";
 function NewReleases({ all }) {
   const { isLoading, newReleases } = useNewReleases();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setPageTitle("New Releases"));
 
+  useEffect(() => {
+    //set page title when component mount and remove it when the component unmounts
+
+    dispatch(setPageTitle("New Releases"));
     return () => {
       dispatch(setPageTitle(""));
     };

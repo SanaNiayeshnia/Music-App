@@ -7,9 +7,11 @@ import { setPageTitle } from "../../GlobalSlice";
 function FeaturedPlaylists({ all }) {
   const { isLoading, featuredPlaylists } = useFeaturedPlaylists();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setPageTitle("Featured Playlists"));
 
+  useEffect(() => {
+    //set page title when component mount and remove it when the component unmounts
+
+    dispatch(setPageTitle("Featured Playlists"));
     return () => {
       dispatch(setPageTitle(""));
     };

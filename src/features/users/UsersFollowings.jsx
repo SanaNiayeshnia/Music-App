@@ -8,8 +8,9 @@ function UsersFollowings({ all }) {
   const { isLoading, followedArtists } = useFollowedArtists();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle(`Your Following`));
+    //set page title when component mount and remove it when the component unmounts
 
+    dispatch(setPageTitle(`Your Following`));
     return () => {
       dispatch(setPageTitle(""));
     };

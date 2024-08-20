@@ -1,7 +1,6 @@
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkMode } from "../GlobalSlice";
-import { TbMoonFilled, TbSunFilled, TbSunHigh } from "react-icons/tb";
+import { TbMoonFilled, TbSunFilled } from "react-icons/tb";
 
 function DarkModeToggler() {
   const { isDarkMode } = useSelector((store) => store.global);

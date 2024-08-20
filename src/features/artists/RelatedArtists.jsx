@@ -27,10 +27,11 @@ function RelatedArtists({ all = false }) {
   );
 
   useEffect(() => {
+    //set page title when component mount and remove it when the component unmounts
+
     if (all) {
       dispatch(setPageTitle(`${artist?.name}'s Fans Also Like`));
     }
-
     return () => {
       dispatch(setPageTitle(""));
     };

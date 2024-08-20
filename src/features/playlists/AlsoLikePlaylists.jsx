@@ -16,11 +16,13 @@ function AlsoLikePlaylists({ all }) {
   const { isLoading: isLoadingRelatedPlaylists, relatedPlaylists } =
     useRelatedPlaylists(artist?.genres?.at(0) || "pop");
   const dispatch = useDispatch();
+
   useEffect(() => {
+    //set page title when component mount and remove it when the component unmounts
+
     if (all) {
       dispatch(setPageTitle(`You Might Also Like`));
     }
-
     return () => {
       dispatch(setPageTitle(""));
     };

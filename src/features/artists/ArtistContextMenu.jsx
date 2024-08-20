@@ -1,27 +1,14 @@
-import {
-  TbCircleCheckFilled,
-  TbCirclePlus,
-  TbLink,
-  TbMusicPlus,
-  TbPlus,
-  TbUserMinus,
-  TbUserPlus,
-} from "react-icons/tb";
+import { TbLink, TbUserMinus, TbUserPlus } from "react-icons/tb";
 import { copyLink } from "../../utilities/helper";
 import ContextMenu from "../../ui/ContextMenu";
-import TinySpinner from "../../ui/TinySpinner";
 import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
 import useFollowArtist from "./useFollowArtist";
 import useUnfollowArtist from "./useUnfollowArtist";
 
 function ArtistContextMenu({ artist, position }) {
-  const { isLoading: isLoadingArtistFollowed, isArtistBeingFollowed } =
-    useIsArtistBeingFollowed(artist?.id);
-  const { isPending: isPendingFollow, followArtistMutate } = useFollowArtist(
-    artist?.id,
-  );
-  const { isPending: isPendingUnfollow, unfollowArtistMutate } =
-    useUnfollowArtist(artist?.id);
+  const { isArtistBeingFollowed } = useIsArtistBeingFollowed(artist?.id);
+  const { followArtistMutate } = useFollowArtist(artist?.id);
+  const { unfollowArtistMutate } = useUnfollowArtist(artist?.id);
 
   const options = [
     {

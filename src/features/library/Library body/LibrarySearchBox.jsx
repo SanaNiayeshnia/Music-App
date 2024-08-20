@@ -13,7 +13,9 @@ function LibrarySearchBox() {
   const { searchQuery, currentFilter } = useSelector((store) => store.library);
   const dispatch = useDispatch();
   const inputRef = useRef();
+
   useEffect(() => {
+    //set focus on the search input when the component mounts
     isOpen && inputRef.current.focus();
   }, [isOpen]);
 

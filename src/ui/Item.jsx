@@ -17,11 +17,11 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
   const filteredName = formatName(name, 45);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
-  const state = useMainContext();
+  const { scrollMainToTop } = useMainContext();
 
   function handleOnClick() {
     navigate(`/${type}/${item?.id}`);
-    state && state.scrollMainToTop();
+    scrollMainToTop();
   }
 
   const content = (

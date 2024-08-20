@@ -31,10 +31,11 @@ function MoreByArtist({ all }) {
   );
 
   useEffect(() => {
+    //set page title when component mount and remove it when the component unmounts
+
     if (all) {
       dispatch(setPageTitle(`More By ${album?.artists[0]?.name}`));
     }
-
     return () => {
       dispatch(setPageTitle(""));
     };

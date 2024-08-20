@@ -35,6 +35,7 @@ const AddToPlaylist = forwardRef(
         },
       });
     }
+
     function addToExistedPlaylist(id) {
       addItemsToPlaylistMutate({ playlistId: id, itemUris });
       setIsClickedOnPlaylistChildren(true, {

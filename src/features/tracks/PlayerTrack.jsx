@@ -3,7 +3,6 @@ import Skeleton from "../../ui/Skeleton";
 import { formatName } from "../../utilities/helper";
 import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
 import { useNavigate } from "react-router-dom";
-import { TbCirclePlus } from "react-icons/tb";
 import SaveTrackButton from "./SaveTrackButton";
 
 function PlayerTrack() {

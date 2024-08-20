@@ -12,6 +12,7 @@ function SearchBox() {
   const { scrollMainToTop } = useMainContext();
 
   useEffect(() => {
+    //set focus on the search input when the component mounts
     if (ref.current) ref.current.focus();
   }, []);
 

@@ -8,8 +8,9 @@ function RecentlyPlayed({ all = false }) {
   const { isLoading, recentlyPlayedItems } = useRecentlyPlayed({ all });
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle("Recently Played"));
+    //set page title when component mount and remove it when the component unmounts
 
+    dispatch(setPageTitle("Recently Played"));
     return () => {
       dispatch(setPageTitle(""));
     };

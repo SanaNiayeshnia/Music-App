@@ -8,8 +8,9 @@ function UsersTopArtists({ all }) {
   const { isLoading, usersTopArtists } = useUsersTopArtists();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle(`Your Top Artists`));
+    //set page title when component mount and remove it when the component unmounts
 
+    dispatch(setPageTitle(`Your Top Artists`));
     return () => {
       dispatch(setPageTitle(""));
     };

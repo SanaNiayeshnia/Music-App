@@ -11,8 +11,9 @@ function UsersTopTracks({ all }) {
   const { isLoading, usersTopTracks } = useUsersTopTracks();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle(`Your Top Tracks`));
+    //set page title when component mount and remove it when the component unmounts
 
+    dispatch(setPageTitle(`Your Top Tracks`));
     return () => {
       dispatch(setPageTitle(""));
     };

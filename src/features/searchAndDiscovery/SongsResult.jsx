@@ -1,6 +1,5 @@
 import Title from "../../ui/Title";
 import useMainContext from "../../ui/layout/useMainContext";
-import Track from "../tracks/Track";
 import TrackList from "../tracks/TrackList";
 
 function SongsResult({ items, all, setCurrentFilterArray }) {
@@ -10,6 +9,7 @@ function SongsResult({ items, all, setCurrentFilterArray }) {
     setCurrentFilterArray([items[0]?.type]);
     scrollMainToTop();
   }
+
   return (
     <div key={all} className="min-w-96 flex-grow">
       <div className="flex items-center justify-between">

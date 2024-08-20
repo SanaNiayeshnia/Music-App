@@ -25,10 +25,11 @@ function AppearsOn({ all }) {
   );
 
   useEffect(() => {
+    //set page title when component mount and remove it when the component unmounts
+
     if (all) {
       dispatch(setPageTitle(`${artist?.name} Appears On`));
     }
-
     return () => {
       dispatch(setPageTitle(""));
     };

@@ -21,6 +21,7 @@ function Track({
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
   const [isUsingContextMenu, setIsUsingContextMenu] = useState(false);
+  const { isDarkMode } = useSelector((store) => store.global);
   return (
     <tr
       className={`${smallScreen ? "grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}
@@ -47,7 +48,14 @@ function Track({
               />
             )}
             <img
-              src={!isLoading ? track?.album?.images?.at(0)?.url : ""}
+              src={
+                !isLoading
+                  ? track?.album?.images?.at(0)?.url ||
+                    (isDarkMode
+                      ? "/album-cover-dark.jpeg"
+                      : "/album-cover-light.jpeg")
+                  : ""
+              }
               alt={track?.name}
               onLoad={() => setIsImageLoaded(true)}
               className={`${smallScreen ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}

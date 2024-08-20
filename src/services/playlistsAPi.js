@@ -105,6 +105,21 @@ export async function unsavePlaylist(id) {
   if (res.status !== 200) throw new Error("Failed to unsave the playlist!");
 }
 
+export async function removeItemsFromPlaylist({ playlistId, itemUris }) {
+  const res = await fetch(
+    `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+    {
+      method: "DELETE",
+      headers: getRequestHeader(),
+      body: JSON.stringify({ tracks: itemUris }),
+    },
+  );
+  if (res.status !== 200)
+    throw new Error("Failed to remove items from the playlist!");
+  const data = await res.json();
+  return data;
+}
+
 //post requests
 export async function createPlaylist({ userId, playlistName }) {
   const res = await fetch(

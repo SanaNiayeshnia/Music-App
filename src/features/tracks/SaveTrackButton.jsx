@@ -15,7 +15,7 @@ function SaveTrackButton({ track, className }) {
 
   return (
     <Tooltip
-      title={isTrackSaved ? "Remove from your library" : "Save to your library"}
+      title={isTrackSaved ? "Remove from liked songs" : "Save to likes songs"}
       placement="top"
     >
       <div className="grid place-items-center">

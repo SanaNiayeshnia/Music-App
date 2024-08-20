@@ -18,6 +18,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
   const { scrollMainToTop } = useMainContext();
+  const { isDarkMode } = useSelector((store) => store.global);
 
   function handleOnClick() {
     navigate(`/${type}/${item?.id}`);
@@ -39,7 +40,14 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
         )}
 
         <img
-          src={!isLoading ? images?.at(0)?.url : ""}
+          src={
+            !isLoading
+              ? images?.at(0)?.url ||
+                (isDarkMode
+                  ? "/album-cover-dark.jpeg"
+                  : "/album-cover-light.jpeg")
+              : ""
+          }
           alt={name}
           onLoad={() => setIsImageLoaded(true)}
           className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 drop-shadow lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}

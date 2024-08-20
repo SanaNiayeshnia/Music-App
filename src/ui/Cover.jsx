@@ -10,7 +10,7 @@ function Cover({ cover, title, className }) {
 
   return (
     <div
-      className={`${className} relative flex-shrink-0 md:h-36 md:w-36 xl:h-40 xl:w-40 ${isPlayingTrackbarOpen ? "md:h-32 md:w-32 lg:h-36 lg:w-36" : "mr-[40px] lg:mr-[75px] lg:h-40 lg:w-40"}`}
+      className={`${className} relative flex-shrink-0 md:h-36 md:w-36 xl:h-44 xl:w-44 ${isPlayingTrackbarOpen ? "md:h-32 md:w-32 lg:h-40 lg:w-40" : "mr-[40px] lg:mr-[75px] lg:h-44 lg:w-44"}`}
     >
       {!isImgLoaded && (
         <Skeleton className="absolute inset-0 z-20 h-full w-full animate-none rounded" />

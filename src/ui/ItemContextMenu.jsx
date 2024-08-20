@@ -4,8 +4,10 @@ import {
   TbCirclePlus,
   TbDots,
   TbLink,
+  TbMinus,
   TbMusicPlus,
   TbPlus,
+  TbTrash,
 } from "react-icons/tb";
 import TinySpinner from "./TinySpinner";
 import { copyLink } from "../utilities/helper";
@@ -24,6 +26,7 @@ function ItemContextMenu({
   isItemSaved,
   noAddToPlaylist = false,
   setIsUsingContextMenu,
+  removeFromPlaylist,
 }) {
   const [isOpenPlaylistOpt, setIsOpenPlaylistOpt] = useState(false);
   const addToPlaylistRef = useOutsideClick(() => {
@@ -34,8 +37,16 @@ function ItemContextMenu({
 
   function handler() {}
   const options = [
+    removeFromPlaylist && {
+      title: "Remove from this playlist",
+      icon: <TbTrash />,
+      handler: removeFromPlaylist,
+      closeAfterClick: true,
+    },
     {
-      title: isItemSaved ? "Remove from your library" : "Add to your library",
+      title: isItemSaved
+        ? `Remove from ${item?.type === "track" ? "liked songs" : "library"} `
+        : `Add to ${item?.type === "track" ? "liked songs" : "library"}`,
       icon:
         isLoadingItemSaved || isPendingSave || isPendingUnsave ? (
           <TinySpinner />
@@ -53,7 +64,7 @@ function ItemContextMenu({
       closeAfterClick: true,
     },
     {
-      title: "Add to the queue",
+      title: "Add to queue",
       icon: <TbMusicPlus className="group-hover/contextli:text-blue-600" />,
       handler,
     },

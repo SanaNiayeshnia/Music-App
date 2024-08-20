@@ -5,6 +5,7 @@ function usePlaylist(id) {
   const { isLoading, data: playlist } = useQuery({
     queryKey: ["playlist", id],
     queryFn: () => getPlaylist(id),
+    enabled: Boolean(id),
   });
 
   return { isLoading, playlist };

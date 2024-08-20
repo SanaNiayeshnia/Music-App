@@ -36,6 +36,11 @@ function PlaylistPage() {
             <TrackList
               all={true}
               items={playlist?.tracks?.items?.map((item) => item?.track)}
+              playlist={{
+                id: playlist?.id,
+                owner: playlist?.owner,
+                name: playlist.name,
+              }}
             />
             <AlsoLikePlaylists />
           </PageBody>

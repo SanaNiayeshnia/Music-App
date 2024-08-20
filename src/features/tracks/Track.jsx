@@ -15,6 +15,7 @@ function Track({
   noAlbum = false,
   smallScreen = false,
   isLoading = false,
+  playlist,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -130,6 +131,7 @@ function Track({
                 setIsUsingContextMenu={setIsUsingContextMenu}
                 track={track}
                 position="left"
+                playlist={playlist}
               />
             </div>
           </td>

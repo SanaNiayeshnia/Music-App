@@ -10,6 +10,7 @@ function TrackList({
   all = false,
   max = 4,
   isLoading = false,
+  playlist = null,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
@@ -51,6 +52,7 @@ function TrackList({
                   noCover={noCover}
                   noAlbum={noAlbum}
                   noArtist={noArtist}
+                  playlist={playlist}
                 />
               ))}
       </tbody>

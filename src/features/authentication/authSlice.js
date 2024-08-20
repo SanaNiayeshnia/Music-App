@@ -8,6 +8,7 @@ const initialState = {
   expiresAt: musicApp?.expiresAt || 0,
   isAuthenticated: (musicApp?.expiresAt || 0) > Date.now(),
   isOnLine: navigator.onLine,
+  user: {},
 };
 
 const authSlice = createSlice({
@@ -37,6 +38,9 @@ const authSlice = createSlice({
     setIsOnline(state, action) {
       state.isOnLine = action.payload;
     },
+    setUser(state, action) {
+      state.user = action.payload;
+    },
     logoutAccount(state) {
       localStorage.removeItem(APP_NAME);
       state.isAuthenticated = false;
@@ -48,4 +52,5 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { setAccessToken, setIsOnline, logoutAccount } = authSlice.actions;
+export const { setAccessToken, setIsOnline, logoutAccount, setUser } =
+  authSlice.actions;

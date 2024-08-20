@@ -1,4 +1,4 @@
-import { TbLink, TbUserMinus, TbUserPlus } from "react-icons/tb";
+import { TbDots, TbLink, TbUserMinus, TbUserPlus } from "react-icons/tb";
 import { copyLink } from "../../utilities/helper";
 import ContextMenu from "../../ui/ContextMenu";
 import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
@@ -34,7 +34,11 @@ function ArtistContextMenu({ artist, position }) {
       closeAfterClick: true,
     },
   ];
-  return <ContextMenu position={position} options={options} />;
+  return (
+    <ContextMenu position={position} options={options}>
+      <TbDots className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
+    </ContextMenu>
+  );
 }
 
 export default ArtistContextMenu;

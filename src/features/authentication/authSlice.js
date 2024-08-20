@@ -37,8 +37,15 @@ const authSlice = createSlice({
     setIsOnline(state, action) {
       state.isOnLine = action.payload;
     },
+    logoutAccount(state) {
+      localStorage.removeItem(APP_NAME);
+      state.isAuthenticated = false;
+      state.accessToken = null;
+      state.refreshToken = null;
+      state.expiresAt = null;
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { setAccessToken, setIsOnline } = authSlice.actions;
+export const { setAccessToken, setIsOnline, logoutAccount } = authSlice.actions;

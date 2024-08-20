@@ -7,6 +7,7 @@ function ContextMenu({
   position = "left",
   close = false,
   setIsUsingContextMenu,
+  children,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => {
@@ -23,17 +24,19 @@ function ContextMenu({
 
   return (
     <div ref={ref} className="relative">
-      <TbDots
+      <div
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
           setIsUsingContextMenu &&
             setIsUsingContextMenu((isUsingContextMenu) => !isUsingContextMenu);
         }}
-        className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white"
-      />
+      >
+        {children}
+      </div>
+
       {isOpen && (
         <ul
-          className={`absolute z-50 shadow-md dark:shadow-gray-50/10 ${position === "right" ? "left-[150%]" : ""} ${position === "left" ? "right-[130%]" : ""} ${position === "center" ? "right-0 top-full" : "bottom-0"} min-w-48 rounded bg-white text-sm dark:bg-black`}
+          className={`absolute z-50 shadow-md dark:shadow-gray-50/10 ${position === "right" ? "left-[150%]" : ""} ${position === "left" ? "right-[130%]" : ""} ${position === "center" ? "right-0 top-[115%]" : "bottom-0"} min-w-48 rounded bg-white text-sm dark:bg-black`}
         >
           {options.map((opt, index) => (
             <li

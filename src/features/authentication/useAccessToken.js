@@ -17,7 +17,6 @@ function useAccessToken() {
   );
   const [searchParams, setSearchParams] = useSearchParams();
   const code = searchParams.get("code");
-
   let queryFunc;
 
   //check if there is a refresh token from the last time the user has been logged in

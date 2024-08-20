@@ -2,6 +2,7 @@ import ContextMenu from "./ContextMenu";
 import {
   TbCircleCheckFilled,
   TbCirclePlus,
+  TbDots,
   TbLink,
   TbMusicPlus,
   TbPlus,
@@ -84,7 +85,9 @@ function ItemContextMenu({
       options={options}
       close={isClickedOnPlaylistChildren}
       setIsUsingContextMenu={setIsUsingContextMenu}
-    />
+    >
+      <TbDots className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
+    </ContextMenu>
   );
 }
 

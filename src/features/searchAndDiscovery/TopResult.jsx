@@ -24,7 +24,7 @@ function TopResult({ item, isLoading }) {
 
   return (
     <div
-      className="min-w-96"
+      className="min-w-80 md:min-w-96"
       onClick={() => navigate(`/${item?.type}/${item?.id}`)}
     >
       <Title>Top Result</Title>

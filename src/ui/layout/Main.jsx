@@ -9,10 +9,10 @@ function Main() {
   useEffect(() => setMainRef(ref), [ref, setMainRef]);
 
   return (
-    <div className="relative w-full rounded-lg bg-white/50 shadow-lg backdrop-blur-md lg:min-w-[425px] dark:bg-black/50">
+    <div className="relative h-screen w-full rounded-lg bg-white/50 shadow-lg backdrop-blur-md md:h-auto lg:min-w-[425px] dark:bg-black/50">
       <div
         ref={ref}
-        className="scrollbar hide-scroll h-full overflow-auto px-5 pb-5 pt-[85px]"
+        className="scrollbar hide-scroll h-full overflow-auto pb-5 pl-3 pr-2 pt-[85px] md:px-5"
         onScroll={(e) => {
           setIsMainScrolled(e.target.scrollTop > 0);
         }}

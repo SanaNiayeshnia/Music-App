@@ -5,7 +5,12 @@ function RecommendedTracks({ recommendations }) {
   return (
     <div className="pb-5">
       <Title>Recommended</Title>
-      <TrackListV2 tracks={recommendations} noArtist={false} noAlbum={false} />
+      <TrackListV2
+        tracks={recommendations}
+        max={10}
+        noArtist={false}
+        noAlbum={false}
+      />
     </div>
   );
 }

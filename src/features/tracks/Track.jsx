@@ -24,7 +24,7 @@ function Track({
   const { isDarkMode } = useSelector((store) => store.global);
   return (
     <tr
-      className={`${smallScreen ? "grid-cols-[2fr_0.5fr] px-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] px-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}
+      className={`${smallScreen ? "grid-cols-[2fr_0.05fr_0.05fr] pl-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}
     >
       {!smallScreen && (
         <td className="w-3.5 text-center">
@@ -102,35 +102,36 @@ function Track({
       {!isLoading && (
         <>
           {!smallScreen && (
-            <>
-              <td
-                onClick={() => navigate(`/album/${track?.album?.id}`)}
-                className={`${isPlayingTrackbarOpen && "hidden"} cursor-pointer text-sm text-black hover:underline xl:inline-block dark:text-white`}
-              >
-                {!noAlbum && track?.album?.name}
-              </td>
-
-              <td className="text-center">
-                {!isLoading && (
-                  <SaveTrackButton
-                    className={`${isUsingContextMenu ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
-                    track={track}
-                  />
-                )}
-              </td>
-              <td className="text-center">
-                {!isLoading && (
-                  <p className="text-sm text-black dark:text-white">
-                    {formatTrackDuration(track?.duration_ms)}
-                  </p>
-                )}
-              </td>
-            </>
+            <td
+              onClick={() => navigate(`/album/${track?.album?.id}`)}
+              className={`${isPlayingTrackbarOpen && "hidden"} cursor-pointer text-sm text-black hover:underline xl:inline-block dark:text-white`}
+            >
+              {!noAlbum && track?.album?.name}
+            </td>
           )}
+
+          <td className="text-center">
+            {!isLoading && (
+              <SaveTrackButton
+                className={`${isUsingContextMenu || smallScreen ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
+                track={track}
+              />
+            )}
+          </td>
+          {!smallScreen && (
+            <td className="text-center">
+              {!isLoading && (
+                <p className="text-sm text-black dark:text-white">
+                  {formatTrackDuration(track?.duration_ms)}
+                </p>
+              )}
+            </td>
+          )}
+
           <td className="text-center">
             <div
               className={
-                isUsingContextMenu
+                isUsingContextMenu || smallScreen
                   ? "inline-block"
                   : "hidden group-hover:inline-block"
               }

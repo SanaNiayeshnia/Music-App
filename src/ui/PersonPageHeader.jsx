@@ -11,15 +11,15 @@ function PersonPageHeader({ person }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <PageHeaderWrapper background={person?.images[0]?.url}>
-      <div className="flex items-center gap-4 xl:gap-5">
+    <PageHeaderWrapper>
+      <div className="flex flex-col items-center gap-4 md:flex-row xl:gap-5">
         {person?.images?.length > 0 && !isImageLoaded && (
           <Skeleton
-            className={`relative flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 xl:h-48 xl:w-48 ${isPlayingTrackbarOpen ? "md:h-36 md:w-36 lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"}`}
+            className={`relative h-48 w-48 flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 ${isPlayingTrackbarOpen ? "lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"}`}
           />
         )}
         <img
-          className={`${!isImageLoaded && "hidden"} relative flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 xl:h-48 xl:w-48 ${isPlayingTrackbarOpen ? "md:h-36 md:w-36 lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"}`}
+          className={`${!isImageLoaded && "hidden"} md: relative h-48 w-48 flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 xl:h-48 xl:w-48 ${isPlayingTrackbarOpen ? "md:h-36 md:w-36 lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"}`}
           src={person?.images[0]?.url}
           alt={person?.type === "artist" ? person?.name : person?.display_name}
           onLoad={() => setIsImageLoaded(true)}

@@ -3,8 +3,8 @@ import {
   TbCircleCheckFilled,
   TbCirclePlus,
   TbDots,
+  TbDotsVertical,
   TbLink,
-  TbMinus,
   TbMusicPlus,
   TbPlus,
   TbTrash,
@@ -14,6 +14,7 @@ import { copyLink } from "../utilities/helper";
 import { useState } from "react";
 import AddToPlaylist from "../features/playlists/AddToPlaylist";
 import useOutsideClick from "../hooks/useOutsideClick";
+import { useSelector } from "react-redux";
 
 function ItemContextMenu({
   item,
@@ -34,6 +35,9 @@ function ItemContextMenu({
   });
   const [isClickedOnPlaylistChildren, setIsClickedOnPlaylistChildren] =
     useState(false);
+  const { isSmall } = useSelector((store) => store.global);
+  const className =
+    "min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white";
 
   function handler() {}
   const options = [
@@ -97,7 +101,11 @@ function ItemContextMenu({
       close={isClickedOnPlaylistChildren}
       setIsUsingContextMenu={setIsUsingContextMenu}
     >
-      <TbDots className="min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white" />
+      {isSmall ? (
+        <TbDotsVertical className={className} />
+      ) : (
+        <TbDots className={className} />
+      )}
     </ContextMenu>
   );
 }

@@ -42,7 +42,6 @@ export async function getUsersSavedTracks() {
   if (res.status !== 200)
     throw new Error("Failed to get the user's saved tracks!");
   const data = await res.json();
-  console.log(data);
   return data;
 }
 

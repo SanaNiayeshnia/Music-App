@@ -10,9 +10,9 @@ import ArtistContextMenu from "../features/artists/ArtistContextMenu";
 
 function PageMenu({ item }) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-5 md:justify-start">
+      <PlayButton className="order-1 min-h-14 min-w-14 md:-order-1" />
       <div className="flex items-center gap-5">
-        <PlayButton className="min-h-14 min-w-14" />
         {item?.type === "artist" ? (
           <>
             <FollowArtistButton artist={item} />

@@ -17,7 +17,7 @@ function SearchResults() {
   const [currentFilter, setCurrentFilter] = useState("");
 
   return (
-    <div className="h-[calc(100%-52px)]">
+    <div className="h-[calc(100%-52px)] pb-3">
       {isLoading ? (
         <div className="grid h-full place-items-center">
           <Spinner />

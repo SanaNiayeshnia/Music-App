@@ -4,6 +4,7 @@ import Item from "./Item";
 import NothingFound from "./NothingFound";
 import Title from "./Title";
 import ShowAll from "./ShowAll";
+import useScrollbar from "../hooks/useScrollbar";
 
 function ListContainer({
   items,
@@ -27,9 +28,11 @@ function ListContainer({
       xl: isPlayingTrackbarOpen ? 4 : 6,
       lg: isPlayingTrackbarOpen ? 3 : 4,
       md: isPlayingTrackbarOpen ? 2 : 3,
+      sm: 10,
     };
   }, [isPlayingTrackbarOpen]);
   const [screenSizeMaxItems, setScreenSizeMaxItems] = useState(6);
+  const ref = useScrollbar();
 
   useEffect(() => {
     function sliceItems() {
@@ -44,7 +47,8 @@ function ListContainer({
         setSlicedItems(items?.slice(0, maxItems.md));
         setScreenSizeMaxItems(maxItems.md);
       } else {
-        setSlicedItems(items);
+        setSlicedItems(items?.slice(0, maxItems.sm));
+        setScreenSizeMaxItems(maxItems.sm);
       }
     }
 
@@ -66,7 +70,7 @@ function ListContainer({
         setLoadingItems(items?.slice(0, maxItems.lg));
       else if (windowWidth >= 768)
         setLoadingItems(items?.slice(0, maxItems.md));
-      else setLoadingItems(items);
+      else setLoadingItems(items?.slice(0, maxItems.sm));
     }
 
     if (!all) {
@@ -92,7 +96,8 @@ function ListContainer({
       <div className="space-y-3">
         {children}
         <div
-          className={`${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid grid-rows-1 overflow-hidden py-1.5 ${className}`}
+          ref={ref}
+          className={`scrollbar hide-scroll flex max-w-96 items-stretch md:max-w-full ${isLoading ? "justify-center" : "justify-start"} overflow-auto ${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
         >
           {isLoading ? (
             loadingItems.map((item, index) => (

@@ -8,7 +8,7 @@ function ShowAll({ children, className, to }) {
     <Link
       to={to}
       onClick={scrollMainToTop}
-      className={`mt-5 cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white ${className}`}
+      className={`cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white ${className}`}
     >
       {children}
     </Link>

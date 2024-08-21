@@ -13,9 +13,11 @@ function TrackList({
   playlist = null,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
+  const { isSmall } = useSelector((store) => store.global);
+
   return (
     <table className="w-full pt-3">
-      {all && (
+      {all && !isSmall && (
         <thead className="border-b border-black/20 dark:border-white/20">
           <tr
             className={`${isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} grid w-full px-3 py-2 text-sm font-medium xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]`}
@@ -36,7 +38,6 @@ function TrackList({
           </tr>
         </thead>
       )}
-
       <tbody>
         {isLoading
           ? Array.from({ length: max }).map((item, index) => (
@@ -53,6 +54,7 @@ function TrackList({
                   noAlbum={noAlbum}
                   noArtist={noArtist}
                   playlist={playlist}
+                  smallScreen={isSmall}
                 />
               ))}
       </tbody>

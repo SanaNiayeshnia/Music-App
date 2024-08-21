@@ -8,7 +8,7 @@ function PageHeaderWrapper({ background, children, short = false }) {
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
       }}
-      className={`relative ${short ? "h-40" : "h-52 lg:h-[17rem]"} w-full rounded-lg shadow-md`}
+      className={`relative ${short ? "h-40" : "h-96 md:h-52 lg:h-[17rem]"} w-full rounded-lg shadow-md`}
     >
       <div
         className={`${short ? "dark:from-blue-600/80" : "dark:from-black/80"} absolute inset-0 rounded-lg bg-gradient-to-t from-white/80 from-[1%] brightness-125 dark:brightness-75`}

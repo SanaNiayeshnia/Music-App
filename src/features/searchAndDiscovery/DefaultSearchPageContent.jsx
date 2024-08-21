@@ -2,7 +2,7 @@ import GenreList from "./GenreList";
 
 function DefaultSearchPageContent() {
   return (
-    <div>
+    <div className="pb-3">
       <GenreList />
     </div>
   );

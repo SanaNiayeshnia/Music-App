@@ -11,7 +11,7 @@ function SongsResult({ items, all, setCurrentFilterArray }) {
   }
 
   return (
-    <div key={all} className="min-w-96 flex-grow">
+    <div key={all} className="min-w-80 flex-grow md:min-w-96">
       <div className="flex items-center justify-between">
         <Title>Songs</Title>
 

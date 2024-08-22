@@ -6,11 +6,18 @@ import TopNav from "../ui/TopNav";
 import { setPageTitle } from "../GlobalSlice";
 import { useDispatch } from "react-redux";
 import { APP_NAME } from "../utilities/constants";
+import Icon from "../ui/Icon";
 
 function HomePage() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle(APP_NAME));
+    dispatch(
+      setPageTitle(
+        <>
+          <Icon /> {APP_NAME}
+        </>,
+      ),
+    );
 
     return () => {
       dispatch(setPageTitle(""));

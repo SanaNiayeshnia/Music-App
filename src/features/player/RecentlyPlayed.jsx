@@ -23,7 +23,6 @@ function RecentlyPlayed({ all = false }) {
         showAllTo="/section/recently-played"
         alwaysShowAll
         all={all}
-        className="overflow-hidden"
         items={recentlyPlayedItems}
         isLoading={isLoading}
       />

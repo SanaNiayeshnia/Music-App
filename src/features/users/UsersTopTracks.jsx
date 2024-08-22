@@ -20,7 +20,7 @@ function UsersTopTracks({ all }) {
   }, [dispatch]);
 
   return (
-    <div className="min-w-96 flex-grow">
+    <div>
       <div className="flex items-center justify-between">
         <Title>{all ? "Your " : ""}Top Tracks</Title>
 

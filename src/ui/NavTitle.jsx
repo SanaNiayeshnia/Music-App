@@ -8,7 +8,7 @@ function NavTitle({ children, noPlayButton }) {
       {!noPlayButton && <PlayButton />}
 
       <p
-        className={`${isPlayingTrackbarOpen ? "text-base lg:text-lg xl:text-xl" : "text-lg lg:text-xl xl:text-2xl"} font-bold text-black first-letter:uppercase dark:text-white`}
+        className={`${isPlayingTrackbarOpen ? "text-base lg:text-lg xl:text-xl" : "text-lg lg:text-xl xl:text-2xl"} flex items-center gap-2 font-bold text-black first-letter:uppercase dark:text-white`}
       >
         {children}
       </p>

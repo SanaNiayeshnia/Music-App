@@ -25,8 +25,8 @@ function PersonPageHeader({ person }) {
           onLoad={() => setIsImageLoaded(true)}
         />
         {person?.images?.length === 0 && <UserAvatar size="large" />}
-        <div className="space-y-5 px-5">
-          <p className="flex items-center gap-1 text-sm text-black dark:text-white">
+        <div className="space-y-5 px-5 text-center md:text-left">
+          <p className="flex items-center justify-center gap-1 text-sm text-black md:justify-start dark:text-white">
             {person?.type === "artist" && person?.followers?.total !== null && (
               <>
                 <TbRosetteDiscountCheckFilled className="min-h-6 min-w-6 text-blue-600 drop-shadow" />

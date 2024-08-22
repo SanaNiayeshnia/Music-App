@@ -30,12 +30,12 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => !isLoading && handleOnClick()}
-      className={`${size === "large" ? "w-44 flex-col p-3 md:w-full" : "items-center p-2"} ${!isLoading && "cursor-pointer"} group flex flex-shrink-0 gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      className={`${size === "large" ? "flex-col p-3 md:w-full" : "items-center p-2"} ${!isLoading && "cursor-pointer"} group flex flex-shrink-0 gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       <div className={`${size === "large" && "relative"}`}>
         {(!isImageLoaded || isLoading) && (
           <Skeleton
-            className={`rounded shadow ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? `aspect-square h-40 w-40 md:h-full md:w-full` : "h-12 w-12 lg:h-14 lg:w-14"}`}
+            className={`rounded shadow ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? `aspect-square h-full w-full` : "h-12 w-12 lg:h-14 lg:w-14"}`}
           />
         )}
 
@@ -50,7 +50,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
           }
           alt={name}
           onLoad={() => setIsImageLoaded(true)}
-          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "h-40 w-40 md:h-full md:w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 drop-shadow lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
+          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "md:h-full md:w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 drop-shadow lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
         />
 
         {size === "large" && !isLoading && (

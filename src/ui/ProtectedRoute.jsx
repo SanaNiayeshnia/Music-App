@@ -6,9 +6,11 @@ import { useSelector } from "react-redux";
 import OfflineNotification from "./OfflineNotification";
 
 function ProtectedRoute({ children }) {
-  const { isOnLine } = useSelector((store) => store.authentication);
+  const { isOnLine, expiresAt } = useSelector((store) => store.authentication);
   const { isLoading, isAuthenticated } = useAccessToken();
   const navigate = useNavigate();
+
+  console.log("isAuthenticated:", isAuthenticated, expiresAt);
 
   useEffect(() => {
     //go to login page if the user isn't authenticated

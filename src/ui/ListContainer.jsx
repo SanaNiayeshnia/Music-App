@@ -33,6 +33,7 @@ function ListContainer({
   }, [isPlayingTrackbarOpen]);
   const [screenSizeMaxItems, setScreenSizeMaxItems] = useState(6);
   const ref = useScrollbar();
+  const { isSmall } = useSelector((store) => store.global);
 
   useEffect(() => {
     function sliceItems() {
@@ -85,7 +86,7 @@ function ListContainer({
   return (
     <>
       {!noTitle && (
-        <div className="flex items-center justify-between">
+        <div className="mb-5 flex items-center justify-between">
           <Title>{title}</Title>
           {!all && (items?.length > screenSizeMaxItems || alwaysShowAll) && (
             <ShowAll to={showAllTo}>Show all</ShowAll>
@@ -97,7 +98,7 @@ function ListContainer({
         {children}
         <div
           ref={ref}
-          className={`scrollbar hide-scroll flex max-w-96 items-stretch md:max-w-full ${isLoading ? "justify-center" : "justify-start"} overflow-auto ${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
+          className={`${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2"} scrollbar hide-scroll md:max-w-full ${isLoading ? "justify-center" : "justify-start"} ${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
         >
           {isLoading ? (
             loadingItems.map((item, index) => (

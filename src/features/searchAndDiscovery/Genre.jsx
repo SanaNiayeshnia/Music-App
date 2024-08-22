@@ -35,7 +35,7 @@ function Genre({ genre, isLoading }) {
         src={!isLoading ? genre?.cover : ""}
         alt={genre?.name}
         onLoad={() => setIsImageLoaded(true)}
-        className={`${!isImageLoaded && "hidden"} absolute -bottom-5 -right-5 aspect-square w-[7.5rem] rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110`}
+        className={`${!isImageLoaded && "hidden"} absolute -bottom-5 -right-5 aspect-square w-24 rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110 md:w-[7.5rem]`}
       />
     </div>
   );

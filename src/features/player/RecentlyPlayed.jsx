@@ -9,12 +9,13 @@ function RecentlyPlayed({ all = false }) {
   const dispatch = useDispatch();
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts
-
-    dispatch(setPageTitle("Recently Played"));
-    return () => {
-      dispatch(setPageTitle(""));
-    };
-  }, [dispatch]);
+    if (all) {
+      dispatch(setPageTitle("Recently Played"));
+      return () => {
+        dispatch(setPageTitle(""));
+      };
+    }
+  }, [dispatch, all]);
 
   return (
     <div key={`${all}-${Math.random()}`}>

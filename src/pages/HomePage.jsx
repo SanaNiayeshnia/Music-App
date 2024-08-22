@@ -1,33 +1,15 @@
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import NewReleases from "../features/albums/NewReleases";
 import RecentlyPlayed from "../features/player/RecentlyPlayed";
 import FeaturedPlaylists from "../features/playlists/FeaturedPlaylists";
 import TopNav from "../ui/TopNav";
-import { setPageTitle } from "../GlobalSlice";
-import { useDispatch } from "react-redux";
-import { APP_NAME } from "../utilities/constants";
-import Icon from "../ui/Icon";
 
 function HomePage() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      setPageTitle(
-        <>
-          <Icon /> {APP_NAME}
-        </>,
-      ),
-    );
-
-    return () => {
-      dispatch(setPageTitle(""));
-    };
-  }, [dispatch]);
-
+  const { isSmall } = useSelector((store) => store.global);
   return (
     <div>
       <TopNav />
-      <div className="space-y-8">
+      <div className={`${isSmall && "pb-[75px]"} space-y-8`}>
         <RecentlyPlayed />
         <FeaturedPlaylists />
         <NewReleases />

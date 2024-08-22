@@ -10,12 +10,13 @@ function FeaturedPlaylists({ all }) {
 
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts
-
-    dispatch(setPageTitle("Featured Playlists"));
-    return () => {
-      dispatch(setPageTitle(""));
-    };
-  }, [dispatch]);
+    if (all) {
+      dispatch(setPageTitle("Featured Playlists"));
+      return () => {
+        dispatch(setPageTitle(""));
+      };
+    }
+  }, [dispatch, all]);
 
   return (
     <div key={`${all}-${Math.random()}`}>

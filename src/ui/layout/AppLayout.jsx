@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setIsMedium, setIsSmall } from "../../GlobalSlice";
 import MainContextProvider from "./MainContextProvider";
+import BottomNav from "../BottomNav";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
@@ -23,7 +24,7 @@ function AppLayout() {
   return (
     <MainContextProvider>
       <div
-        className={` ${isPlayingTrackbarOpen ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} h-screen grid-rows-[1fr_4fr_0.5fr] gap-2 md:grid md:min-h-[635px] md:min-w-[900px] md:px-3 md:py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
+        className={`relative ${isPlayingTrackbarOpen ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} h-screen grid-rows-[1fr_4fr_0.5fr] gap-2 md:grid md:min-h-[635px] md:min-w-[900px] md:px-3 md:py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
       >
         <Sidebar />
         <Library />
@@ -34,6 +35,7 @@ function AppLayout() {
         </div>
 
         <Player />
+        <BottomNav />
       </div>
     </MainContextProvider>
   );

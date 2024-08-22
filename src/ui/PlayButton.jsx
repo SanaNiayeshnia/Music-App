@@ -1,4 +1,3 @@
-import { HiMiniPlay, HiPlay } from "react-icons/hi2";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 
 function PlayButton({ className, onClick }) {

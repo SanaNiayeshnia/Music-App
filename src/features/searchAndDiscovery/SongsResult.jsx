@@ -11,13 +11,13 @@ function SongsResult({ items, all, setCurrentFilterArray }) {
   }
 
   return (
-    <div key={all} className="min-w-80 flex-grow md:min-w-96">
-      <div className="flex items-center justify-between">
+    <div key={all} className="mt-5 min-w-80 flex-grow md:min-w-96">
+      <div className="mb-3 flex items-center justify-between">
         <Title>Songs</Title>
 
         {!all && items?.length > 4 && (
           <p
-            className="mt-5 cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
+            className="cursor-pointer text-sm font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
             onClick={handleShowAll}
           >
             Show all

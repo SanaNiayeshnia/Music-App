@@ -22,10 +22,10 @@ function AlsoLikePlaylists({ all }) {
 
     if (all) {
       dispatch(setPageTitle(`You Might Also Like`));
+      return () => {
+        dispatch(setPageTitle(""));
+      };
     }
-    return () => {
-      dispatch(setPageTitle(""));
-    };
   }, [all, artist, dispatch]);
 
   return (

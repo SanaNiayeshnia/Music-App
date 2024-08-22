@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
-import { TbDots, TbX } from "react-icons/tb";
+import { TbX } from "react-icons/tb";
 import useCurrentlyPlayingTrack from "../../../features/player/useCurrentlyPlayingTrack";
 import Skeleton from "../../Skeleton";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ function PlayingTrackbarHeader({ isScrolled }) {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   return (
     <div
-      className={`${isScrolled && "bg-white/70 shadow backdrop-blur-3xl dark:bg-black/70"} flex items-center justify-between px-3 py-6`}
+      className={`${isScrolled && "bg-white/50 shadow backdrop-blur-lg dark:bg-black/50"} flex items-center justify-between px-3 py-6`}
     >
       {isLoading ? (
         <Skeleton className="h-4 w-32" />

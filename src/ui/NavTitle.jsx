@@ -4,7 +4,7 @@ import PlayButton from "./PlayButton";
 function NavTitle({ children, noPlayButton }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   return (
-    <div className="flex items-center gap-2 px-2">
+    <div className="flex items-center gap-2">
       {!noPlayButton && <PlayButton />}
 
       <p

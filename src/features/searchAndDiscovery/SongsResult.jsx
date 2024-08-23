@@ -2,16 +2,19 @@ import Title from "../../ui/Title";
 import useMainContext from "../../ui/layout/useMainContext";
 import TrackList from "../tracks/TrackList";
 
-function SongsResult({ items, all, setCurrentFilterArray }) {
+function SongsResult({ items, all, setCurrentFilter }) {
   const { scrollMainToTop } = useMainContext();
 
   function handleShowAll() {
-    setCurrentFilterArray([items[0]?.type]);
+    setCurrentFilter(items[0]?.type);
     scrollMainToTop();
   }
 
   return (
-    <div key={all} className="mt-5 min-w-80 flex-grow md:min-w-96">
+    <div
+      key={all}
+      className={`${!all && "mt-8"} min-w-80 flex-grow md:min-w-96`}
+    >
       <div className="mb-3 flex items-center justify-between">
         <Title>Songs</Title>
 

@@ -29,7 +29,7 @@ function AppLayout() {
         <Sidebar />
         <Library />
 
-        <div className="col-start-1 col-end-[-1] row-start-1 row-end-[-1] flex gap-2 md:col-start-2">
+        <div className="col-end-[-1] row-start-1 row-end-[-1] flex gap-2 md:col-start-2">
           <Main />
           {isPlayingTrackbarOpen && <PlayingTrackBar />}
         </div>

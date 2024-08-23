@@ -20,7 +20,7 @@ function TrackList({
       {all && !isSmall && (
         <thead className="border-b border-black/20 dark:border-white/20">
           <tr
-            className={`${isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} grid w-full px-3 py-2 text-sm font-medium xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]`}
+            className={`${isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} grid w-full py-2 pl-3 text-sm font-medium xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]`}
           >
             <td className="text-gray-600 dark:text-gray-300">#</td>
             <td className="text-gray-600 dark:text-gray-300">Title</td>

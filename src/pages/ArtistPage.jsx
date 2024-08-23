@@ -12,6 +12,7 @@ import AppearsOn from "../features/artists/AppearsOn";
 import useMainContext from "../ui/layout/useMainContext";
 import PersonPageHeader from "../ui/PersonPageHeader";
 import PageMenu from "../ui/PageMenu";
+import Page from "../ui/Page";
 
 function ArtistPage() {
   const { isMainScrolled } = useMainContext();
@@ -21,7 +22,7 @@ function ArtistPage() {
     useArtistsTopTracks(id);
 
   return (
-    <div className="h-full w-full">
+    <Page>
       <TopNav>{isMainScrolled && <NavTitle>{artist?.name}</NavTitle>}</TopNav>
       {isLoadingArtist || isLoadingArtistsTopTracks ? (
         <div className="grid h-full place-items-center">
@@ -39,7 +40,7 @@ function ArtistPage() {
           </PageBody>
         </>
       )}
-    </div>
+    </Page>
   );
 }
 

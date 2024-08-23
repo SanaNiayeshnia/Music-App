@@ -1,6 +1,14 @@
-import { TbHome, TbHomeFilled } from "react-icons/tb";
+import {
+  TbBookmark,
+  TbBookmarkFilled,
+  TbHome,
+  TbHomeFilled,
+  TbUser,
+  TbUserFilled,
+} from "react-icons/tb";
 import BottomNavItem from "./BottomNavItem";
 import { useSelector } from "react-redux";
+import { RiSearch2Fill, RiSearch2Line } from "react-icons/ri";
 
 function BottomNav() {
   const { isSmall } = useSelector((store) => store.global);
@@ -19,22 +27,22 @@ function BottomNav() {
           href="/"
         />
         <BottomNavItem
-          icon={<TbHome />}
-          activeIcon={<TbHomeFilled />}
-          title="Home"
-          href="/"
+          icon={<RiSearch2Line />}
+          activeIcon={<RiSearch2Fill />}
+          title="Search"
+          href="/search"
         />{" "}
         <BottomNavItem
-          icon={<TbHome />}
-          activeIcon={<TbHomeFilled />}
-          title="Home"
-          href="/"
+          icon={<TbBookmark />}
+          activeIcon={<TbBookmarkFilled />}
+          title="Library"
+          href="/library"
         />{" "}
         <BottomNavItem
-          icon={<TbHome />}
-          activeIcon={<TbHomeFilled />}
-          title="Home"
-          href="/"
+          icon={<TbUser />}
+          activeIcon={<TbUserFilled />}
+          title="Profile"
+          href="/account"
         />
       </div>
     </div>

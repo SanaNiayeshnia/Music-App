@@ -5,6 +5,7 @@ import DefaultSearchPageContent from "../features/searchAndDiscovery/DefaultSear
 import SearchResults from "../features/searchAndDiscovery/SearchResults";
 import PageHeaderWrapper from "../ui/PageHeaderWrapper";
 import PageTitle from "../ui/PageTitle";
+import Page from "../ui/Page";
 
 function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -12,11 +13,11 @@ function SearchPage() {
   const genre = searchParams.get("genre");
 
   return (
-    <div className="h-full">
+    <Page>
       <TopNav>
         <SearchBox />
       </TopNav>
-      <div className="h-full space-y-10">
+      <div className="h-full space-y-8">
         {genre && (
           <PageHeaderWrapper
             short
@@ -27,7 +28,7 @@ function SearchPage() {
         )}
         {query || genre ? <SearchResults /> : <DefaultSearchPageContent />}
       </div>
-    </div>
+    </Page>
   );
 }
 

@@ -12,6 +12,7 @@ import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
 import useMainContext from "../ui/layout/useMainContext";
 import PageMenu from "../ui/PageMenu";
+import Page from "../ui/Page";
 
 function AlbumPage() {
   const { isMainScrolled } = useMainContext();
@@ -22,7 +23,7 @@ function AlbumPage() {
   );
 
   return (
-    <div className="h-full">
+    <Page>
       <TopNav transparent>
         {isMainScrolled && <NavTitle>{album?.name}</NavTitle>}
       </TopNav>
@@ -53,7 +54,7 @@ function AlbumPage() {
           </PageBody>
         </>
       )}
-    </div>
+    </Page>
   );
 }
 

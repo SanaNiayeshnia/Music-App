@@ -5,6 +5,7 @@ import NothingFound from "./NothingFound";
 import Title from "./Title";
 import ShowAll from "./ShowAll";
 import useScrollbar from "../hooks/useScrollbar";
+import ListTitle from "./ListTitle";
 
 function ListContainer({
   items,
@@ -86,12 +87,13 @@ function ListContainer({
   return (
     <>
       {!noTitle && (
-        <div className="mb-3 flex items-center justify-between">
-          <Title>{title}</Title>
-          {!all && (items?.length > screenSizeMaxItems || alwaysShowAll) && (
-            <ShowAll to={showAllTo}>Show all</ShowAll>
-          )}
-        </div>
+        <ListTitle
+          title={title}
+          showAllTo={showAllTo}
+          conditionForShowAll={
+            !all && (items?.length > screenSizeMaxItems || alwaysShowAll)
+          }
+        />
       )}
 
       <div className="space-y-3">

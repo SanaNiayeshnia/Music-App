@@ -10,6 +10,7 @@ import useArtist from "../features/artists/useArtist";
 import useRecommendations from "../features/tracks/useRecommendations";
 import useMainContext from "../ui/layout/useMainContext";
 import PageMenu from "../ui/PageMenu";
+import Page from "../ui/Page";
 
 function TrackPage() {
   const { isMainScrolled } = useMainContext();
@@ -22,7 +23,7 @@ function TrackPage() {
     useRecommendations(id);
 
   return (
-    <div className="h-full">
+    <Page>
       <TopNav transparent>
         {isMainScrolled && <NavTitle>{track?.name}</NavTitle>}
       </TopNav>
@@ -39,7 +40,7 @@ function TrackPage() {
           </PageBody>
         </>
       )}
-    </div>
+    </Page>
   );
 }
 

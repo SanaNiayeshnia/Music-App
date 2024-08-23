@@ -7,6 +7,7 @@ import SearchResultFilters from "./SearchResultFilters";
 import { TbMoodSad } from "react-icons/tb";
 import { useState } from "react";
 import Spinner from "../../ui/Spinner";
+import PageBody from "../../ui/PageBody";
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -17,7 +18,7 @@ function SearchResults() {
   const [currentFilter, setCurrentFilter] = useState("");
 
   return (
-    <div className="h-[calc(100%-52px)] space-y-8 pb-3">
+    <PageBody noPadding>
       {isLoading ? (
         <div className="grid h-full place-items-center">
           <Spinner />
@@ -74,7 +75,7 @@ function SearchResults() {
           )}
         </>
       )}
-    </div>
+    </PageBody>
   );
 }
 

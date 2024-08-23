@@ -1,9 +1,13 @@
 import { useSelector } from "react-redux";
 
-function PageBody({ children }) {
+function PageBody({ children, noPadding, noSpace }) {
   const { isSmall } = useSelector((store) => store.global);
   return (
-    <div className={`${isSmall && "pb-[75px]"} space-y-8 pt-8`}>{children}</div>
+    <div
+      className={`${isSmall && "pb-[75px]"} ${!noPadding && "pt-8"} ${!noSpace && "space-y-8"} `}
+    >
+      {children}
+    </div>
   );
 }
 

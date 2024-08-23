@@ -5,6 +5,7 @@ import HeaderType from "./HeaderType";
 import PageHeaderWrapper from "./PageHeaderWrapper";
 import PageTitle from "./PageTitle";
 import { Tooltip } from "@mui/material";
+import { useSelector } from "react-redux";
 
 function PageHeader({ item, artist }) {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function PageHeader({ item, artist }) {
     0,
   );
   const { hour, min, sec } = getTrackDuration(totalDuration);
+  const isDarkMode = useSelector((store) => store.global.isDarkMode);
 
   const info =
     type === "album" ? (
@@ -70,7 +72,12 @@ function PageHeader({ item, artist }) {
           <div className="flex items-center gap-1">
             {artistPic && (
               <img
-                src={artistPic}
+                src={
+                  artistPic ||
+                  (isDarkMode
+                    ? "/album-cover-dark.jpeg"
+                    : "/album-cover-white.jpeg")
+                }
                 alt={title}
                 className="h-6 w-6 rounded-full drop-shadow"
               />

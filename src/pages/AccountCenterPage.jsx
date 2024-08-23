@@ -9,6 +9,7 @@ import UsersFollowings from "../features/users/UsersFollowings";
 import { setPageTitle } from "../GlobalSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Page from "../ui/Page";
 
 function AccountCenterPage() {
   const { isLoading: isLoadingUser, user } = useCurrentUser();
@@ -22,7 +23,7 @@ function AccountCenterPage() {
   }, [dispatch, user]);
 
   return (
-    <div className="h-full w-full">
+    <Page>
       <TopNav />
       {isLoadingUser ? (
         <div className="grid h-full place-items-center">
@@ -38,7 +39,7 @@ function AccountCenterPage() {
           </PageBody>
         </>
       )}
-    </div>
+    </Page>
   );
 }
 

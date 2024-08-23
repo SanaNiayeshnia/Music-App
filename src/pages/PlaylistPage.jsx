@@ -10,6 +10,7 @@ import Spinner from "../ui/Spinner";
 import useUser from "../features/users/useUser";
 import useMainContext from "../ui/layout/useMainContext";
 import PageMenu from "../ui/PageMenu";
+import Page from "../ui/Page";
 
 function PlaylistPage() {
   const { isMainScrolled } = useMainContext();
@@ -20,7 +21,7 @@ function PlaylistPage() {
   );
 
   return (
-    <div className="h-full">
+    <Page>
       <TopNav transparent>
         {isMainScrolled && <NavTitle>{playlist?.name}</NavTitle>}
       </TopNav>
@@ -46,7 +47,7 @@ function PlaylistPage() {
           </PageBody>
         </>
       )}
-    </div>
+    </Page>
   );
 }
 

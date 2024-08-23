@@ -6,6 +6,7 @@ import TrackList from "../tracks/TrackList";
 import useUsersTopTracks from "./useUsersTopTracks";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";
+import ListTitle from "../../ui/ListTitle";
 
 function UsersTopTracks({ all }) {
   const { isLoading, usersTopTracks } = useUsersTopTracks();
@@ -21,13 +22,11 @@ function UsersTopTracks({ all }) {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <Title>{all ? "Your " : ""}Top Tracks</Title>
-
-        {!all && usersTopTracks?.length > 4 && (
-          <ShowAll to="top/tracks">Show all</ShowAll>
-        )}
-      </div>
+      <ListTitle
+        showAllTo="top/tracks"
+        title={(all ? "Your " : "") + "Top Tracks"}
+        conditionForShowAll={!all && usersTopTracks?.length > 4}
+      />
       {usersTopTracks?.length === 0 && <NothingFound />}
       <TrackList items={usersTopTracks} all={all} isLoading={isLoading} />
     </div>

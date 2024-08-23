@@ -3,7 +3,7 @@ import { APP_NAME } from "../utilities/constants";
 
 function IconLogo({ className, noTitle }) {
   return (
-    <Link className="flex items-center gap-1.5" to="/">
+    <Link className="flex flex-shrink-0 items-center gap-1.5" to="/">
       <img
         className={`${className} h-10 w-10`}
         src="/icon.png"

@@ -5,6 +5,7 @@ import DefaultSearchPageContent from "../features/searchAndDiscovery/DefaultSear
 import SearchResults from "../features/searchAndDiscovery/SearchResults";
 import Page from "../ui/Page";
 import PageBody from "../ui/PageBody";
+import IconLogo from "../ui/IconLogo";
 
 function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -14,6 +15,7 @@ function SearchPage() {
   return (
     <Page>
       <TopNav>
+        <IconLogo noTitle />
         <SearchBox />
       </TopNav>
       {query || genre ? <SearchResults /> : <DefaultSearchPageContent />}

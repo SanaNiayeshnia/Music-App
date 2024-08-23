@@ -7,8 +7,9 @@ import SearchResultFilters from "./SearchResultFilters";
 import { TbMoodSad } from "react-icons/tb";
 import { useState } from "react";
 import Spinner from "../../ui/Spinner";
+import PageHeaderWrapper from "../../ui/PageHeaderWrapper";
+import PageTitle from "../../ui/PageTitle";
 import PageBody from "../../ui/PageBody";
-import { useSelector } from "react-redux";
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -17,10 +18,9 @@ function SearchResults() {
     searchParams.get("genre"),
   );
   const [currentFilter, setCurrentFilter] = useState("");
-  const { isSmall } = useSelector((store) => store.global);
 
   return (
-    <div className={`h-full ${isSmall && "pb-[75px]"} space-y-8`}>
+    <PageBody noPadding className="h-full">
       {isLoading ? (
         <div className="grid h-full place-items-center">
           <Spinner />
@@ -32,23 +32,29 @@ function SearchResults() {
         </div>
       ) : (
         <>
+          {searchParams.has("genre") && (
+            <PageHeaderWrapper
+              short
+              className="text-3xl font-bold first-letter:uppercase"
+            >
+              <PageTitle>{searchParams.get("genre")} Genre</PageTitle>
+            </PageHeaderWrapper>
+          )}
           <SearchResultFilters
             currentFilter={currentFilter}
             setCurrentFilter={setCurrentFilter}
             searchResult={searchResult}
           />
-          <div className="flex flex-wrap gap-3">
-            {currentFilter === "" && (
-              <TopResult item={searchResult?.topResult} isLoading={isLoading} />
-            )}
-            {(currentFilter === "" || currentFilter === "track") && (
-              <SongsResult
-                items={searchResult?.tracks?.items}
-                all={currentFilter === "track"}
-                setCurrentFilter={setCurrentFilter}
-              />
-            )}
-          </div>
+          {currentFilter === "" && (
+            <TopResult item={searchResult?.topResult} isLoading={isLoading} />
+          )}
+          {(currentFilter === "" || currentFilter === "track") && (
+            <SongsResult
+              items={searchResult?.tracks?.items}
+              all={currentFilter === "track"}
+              setCurrentFilter={setCurrentFilter}
+            />
+          )}
           {(currentFilter === "" || currentFilter === "artist") && (
             <ResultList
               title="Artists"
@@ -77,7 +83,7 @@ function SearchResults() {
           )}
         </>
       )}
-    </div>
+    </PageBody>
   );
 }
 

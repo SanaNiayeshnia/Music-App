@@ -1,10 +1,11 @@
+import PageBody from "../../ui/PageBody";
 import GenreList from "./GenreList";
 
 function DefaultSearchPageContent() {
   return (
-    <div className="pb-3">
+    <PageBody noPadding>
       <GenreList />
-    </div>
+    </PageBody>
   );
 }
 

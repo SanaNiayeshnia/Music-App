@@ -3,11 +3,13 @@ import LibrarySearchBox from "./LibrarySearchBox";
 import LibrarySorting from "./LibrarySorting";
 import { useSelector } from "react-redux";
 import LibraryFilters from "./LibraryFilters";
+import LibraryContextProvider from "../LibraryContextProvider";
 
 function LibraryBody() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
+
   return (
-    <>
+    <LibraryContextProvider>
       <div
         className={`${
           isPlayingTrackbarOpen ? "md:hidden" : "md:inline-block"
@@ -20,7 +22,7 @@ function LibraryBody() {
         </div>
       </div>
       <LibraryList />
-    </>
+    </LibraryContextProvider>
   );
 }
 

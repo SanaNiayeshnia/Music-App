@@ -2,12 +2,17 @@ import { useSelector } from "react-redux";
 import useScrollbar from "../../../hooks/useScrollbar";
 import Item from "../../../ui/Item";
 import useFollowedItems from "../useFollowedItems";
+import useLibraryContext from "../useLibraryContext";
+import { useEffect } from "react";
 
 function LibraryList() {
   const ref = useScrollbar();
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const { isLoading, filteredItems } = useFollowedItems();
-
+  const { setLibraryRef } = useLibraryContext();
+  useEffect(() => {
+    setLibraryRef(ref);
+  }, [ref, setLibraryRef]);
   return (
     <div
       className={`${isPlayingTrackbarOpen && "md:justify-center"} scrollbar hide-scroll h-full overflow-auto pb-3 pl-3 pr-2`}

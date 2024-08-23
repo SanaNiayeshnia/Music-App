@@ -8,6 +8,7 @@ import { TbMoodSad } from "react-icons/tb";
 import { useState } from "react";
 import Spinner from "../../ui/Spinner";
 import PageBody from "../../ui/PageBody";
+import { useSelector } from "react-redux";
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -16,9 +17,10 @@ function SearchResults() {
     searchParams.get("genre"),
   );
   const [currentFilter, setCurrentFilter] = useState("");
+  const { isSmall } = useSelector((store) => store.global);
 
   return (
-    <PageBody noPadding>
+    <div className={`h-full ${isSmall && "pb-[75px]"} space-y-8`}>
       {isLoading ? (
         <div className="grid h-full place-items-center">
           <Spinner />
@@ -75,7 +77,7 @@ function SearchResults() {
           )}
         </>
       )}
-    </PageBody>
+    </div>
   );
 }
 

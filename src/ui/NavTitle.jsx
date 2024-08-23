@@ -1,16 +1,19 @@
-import { useSelector } from "react-redux";
 import PlayButton from "./PlayButton";
+import { formatName } from "../utilities/helper";
+import { useSelector } from "react-redux";
 
 function NavTitle({ children, noPlayButton }) {
-  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
+  const { isSmall } = useSelector((store) => store.global);
   return (
     <div className="flex items-center gap-2">
       {!noPlayButton && <PlayButton />}
 
       <p
-        className={`${isPlayingTrackbarOpen ? "text-base lg:text-lg xl:text-xl" : "text-lg lg:text-xl xl:text-2xl"} flex items-center gap-2 font-bold text-black first-letter:uppercase dark:text-white`}
+        className={`flex items-center gap-2 text-2xl font-bold text-black first-letter:uppercase dark:text-white`}
       >
-        {children}
+        {children?.length > (isSmall ? 30 : 40)
+          ? formatName(children, 20)
+          : children}
       </p>
     </div>
   );

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { APP_NAME } from "../utilities/constants";
 
-function Icon({ className, noTitle }) {
+function IconLogo({ className, noTitle }) {
   return (
     <Link className="flex items-center gap-1.5" to="/">
       <img
@@ -18,4 +18,4 @@ function Icon({ className, noTitle }) {
   );
 }
 
-export default Icon;
+export default IconLogo;

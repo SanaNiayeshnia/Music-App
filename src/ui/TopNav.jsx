@@ -4,12 +4,12 @@ import UserAvatar from "../features/users/UserAvatar";
 import useMainContext from "./layout/useMainContext";
 import { useSelector } from "react-redux";
 import NavTitle from "./NavTitle";
-import Icon from "./Icon";
 import { useLocation } from "react-router-dom";
+import IconLogo from "./IconLogo";
 
 function TopNav({ children }) {
   const { isMainScrolled } = useMainContext();
-  const { pageTitle } = useSelector((store) => store.global);
+  const { pageTitle, isSmall } = useSelector((store) => store.global);
   const loc = useLocation();
   const isSearchPage = loc.pathname.includes("/search");
   const isHomePage = Boolean(loc.pathname === "/");
@@ -21,17 +21,17 @@ function TopNav({ children }) {
       <div className="flex min-h-[52px] items-center gap-2">
         <NavigationArrows />
         {children}
-        {!isMainScrolled && !isSearchPage && <Icon />}
+        {!isMainScrolled && !isSearchPage && <IconLogo />}
 
         {pageTitle && isMainScrolled && (
           <NavTitle noPlayButton> {pageTitle}</NavTitle>
         )}
-        {isHomePage && isMainScrolled && <Icon />}
+        {isHomePage && isMainScrolled && <IconLogo />}
       </div>
 
       <div className="flex items-center gap-2">
         <DarkModeToggler />
-        <UserAvatar />
+        {!isSmall && <UserAvatar />}
       </div>
     </div>
   );

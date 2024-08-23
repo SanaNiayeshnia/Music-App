@@ -49,7 +49,7 @@ function TrackList({
                 <Track
                   track={item}
                   index={index + 1}
-                  key={item?.id}
+                  key={index}
                   noCover={noCover}
                   noAlbum={noAlbum}
                   noArtist={noArtist}

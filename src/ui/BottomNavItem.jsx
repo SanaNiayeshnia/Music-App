@@ -1,15 +1,18 @@
 import { NavLink } from "react-router-dom";
 import useMainContext from "./layout/useMainContext";
 
-function BottomNavItem({ icon, title, href, activeIcon }) {
+function BottomNavItem({ icon, title, href, activeIcon, onClick }) {
   const { scrollMainToTop } = useMainContext();
 
   return (
     <NavLink
       to={href}
-      onClick={() => scrollMainToTop()}
+      onClick={() => {
+        onClick && onClick();
+        scrollMainToTop();
+      }}
       className={({ isActive }) =>
-        `group flex cursor-pointer flex-col items-center gap-1 duration-300 *:text-gray-900 *:duration-100 first:*:min-h-6 first:*:min-w-6 *:dark:text-white ${isActive ? "font-semibold first:*:text-blue-600" : "hover:pl-1"} `
+        `group flex cursor-pointer flex-col items-center gap-1 duration-300 *:text-gray-900 *:duration-100 first:*:min-h-6 first:*:min-w-6 *:dark:text-white ${isActive ? "font-semibold first:*:text-blue-600" : "transition-transform hover:scale-105"} `
       }
     >
       {({ isActive }) => (

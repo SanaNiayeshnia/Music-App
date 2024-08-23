@@ -7,11 +7,13 @@ import {
   TbUserFilled,
 } from "react-icons/tb";
 import BottomNavItem from "./BottomNavItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RiSearch2Fill, RiSearch2Line } from "react-icons/ri";
+import { setQuery } from "../features/searchAndDiscovery/searchSlice";
 
 function BottomNav() {
   const { isSmall } = useSelector((store) => store.global);
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -31,13 +33,14 @@ function BottomNav() {
           activeIcon={<RiSearch2Fill />}
           title="Search"
           href="/search"
-        />{" "}
+          onClick={() => dispatch(setQuery(""))}
+        />
         <BottomNavItem
           icon={<TbBookmark />}
           activeIcon={<TbBookmarkFilled />}
           title="Library"
           href="/library"
-        />{" "}
+        />
         <BottomNavItem
           icon={<TbUser />}
           activeIcon={<TbUserFilled />}

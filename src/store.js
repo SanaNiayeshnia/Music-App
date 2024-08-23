@@ -3,6 +3,7 @@ import playbackReducer from "./features/player/PlaybackSlice";
 import globalReducer from "./GlobalSlice";
 import authReducer from "./features/authentication/authSlice";
 import libraryReducer from "./features/library/librarySlice";
+import searchReducer from "./features/searchAndDiscovery/searchSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     playback: playbackReducer,
     authentication: authReducer,
     library: libraryReducer,
+    search: searchReducer,
   },
 });
 

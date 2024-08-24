@@ -22,7 +22,7 @@ function Genre({ genre, isLoading }) {
       {isLoading || !isImageLoaded ? (
         <>
           <Skeleton className="h-5 w-20" />
-          <Skeleton className="absolute -bottom-5 -right-5 aspect-square h-[7.5rem] w-[7.5rem] rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110" />
+          <Skeleton className="absolute -bottom-5 -right-5 aspect-square h-24 w-24 rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110 md:h-[7.5rem] md:w-[7.5rem]" />
         </>
       ) : (
         <>

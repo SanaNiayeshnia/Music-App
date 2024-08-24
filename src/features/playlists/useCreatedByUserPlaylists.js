@@ -6,7 +6,7 @@ function useCreatedByUserPlaylists() {
     useSavedPlaylists();
   const { isLoading: isLoadingUser, user } = useCurrentUser();
   const playlists = savedPlaylists?.filter(
-    (savedPlaylist) => savedPlaylist?.owner?.id === user.id,
+    (savedPlaylist) => savedPlaylist?.owner?.id === user?.id,
   );
   return { isLoading: isLoadingSavedPlaylists || isLoadingUser, playlists };
 }

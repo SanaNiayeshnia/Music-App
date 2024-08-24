@@ -4,7 +4,6 @@ import TopNav from "../ui/TopNav";
 import DefaultSearchPageContent from "../features/searchAndDiscovery/DefaultSearchPageContent";
 import SearchResults from "../features/searchAndDiscovery/SearchResults";
 import Page from "../ui/Page";
-import PageBody from "../ui/PageBody";
 import IconLogo from "../ui/IconLogo";
 
 function SearchPage() {

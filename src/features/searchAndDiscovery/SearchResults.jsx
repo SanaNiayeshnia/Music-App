@@ -20,9 +20,9 @@ function SearchResults() {
   const [currentFilter, setCurrentFilter] = useState("");
 
   return (
-    <PageBody noPadding className="h-full">
+    <>
       {isLoading ? (
-        <div className="grid h-full place-items-center">
+        <div className="grid h-[calc(100%-52px)] place-items-center">
           <Spinner />
         </div>
       ) : !isLoading && error ? (
@@ -31,7 +31,7 @@ function SearchResults() {
           <TbMoodSad className="h-7 w-7 text-blue-600 duration-100" />
         </div>
       ) : (
-        <>
+        <PageBody noPadding>
           {searchParams.has("genre") && (
             <PageHeaderWrapper
               short
@@ -81,9 +81,9 @@ function SearchResults() {
               setCurrentFilter={setCurrentFilter}
             />
           )}
-        </>
+        </PageBody>
       )}
-    </PageBody>
+    </>
   );
 }
 

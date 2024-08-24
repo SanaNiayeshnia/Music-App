@@ -4,6 +4,7 @@ import Item from "../../../ui/Item";
 import useFollowedItems from "../useFollowedItems";
 import useLibraryContext from "../useLibraryContext";
 import { useEffect } from "react";
+import NothingFound from "../../../ui/NothingFound";
 
 function LibraryList() {
   const ref = useScrollbar();
@@ -15,16 +16,22 @@ function LibraryList() {
   }, [ref, setLibraryRef]);
   return (
     <div
-      className={`${isPlayingTrackbarOpen && "md:justify-center"} scrollbar hide-scroll h-full overflow-auto pb-3 pl-3 pr-2`}
+      className={`${isPlayingTrackbarOpen && "md:justify-center"} scrollbar hide-scroll h-full overflow-auto pb-3 md:pl-3 md:pr-2`}
       ref={ref}
     >
-      {isLoading
-        ? Array.from({ length: 6 }).map(() => {
-            return <Item key={Math.random()} isLoading={true} size="small" />;
-          })
-        : filteredItems?.map((item) => (
-            <Item key={item.id} item={item} size="small" />
-          ))}
+      {isLoading ? (
+        Array.from({ length: 6 }).map(() => {
+          return <Item key={Math.random()} isLoading={true} size="small" />;
+        })
+      ) : !isLoading && filteredItems?.length > 0 ? (
+        filteredItems?.map((item) => (
+          <Item key={item.id} item={item} size="small" />
+        ))
+      ) : (
+        <div className="px-2">
+          <NothingFound />
+        </div>
+      )}
     </div>
   );
 }

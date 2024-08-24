@@ -14,7 +14,7 @@ function PageNotFound() {
             <TbMoodSad className="h-10 w-10 text-black duration-100 dark:text-white" />
           </p>
           <NavLink
-            className="rounded-full bg-blue-600 px-3 py-2 text-xl text-white"
+            className="rounded-full bg-blue-600 px-3 py-2 text-lg text-white"
             to="/"
           >
             Go Home

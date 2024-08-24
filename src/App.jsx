@@ -30,6 +30,7 @@ import AccountCenterPage from "./pages/AccountCenterPage";
 import UsersTopTracks from "./features/users/UsersTopTracks";
 import UsersTopArtists from "./features/users/UsersTopArtists";
 import UsersFollowings from "./features/users/UsersFollowings";
+import LibraryPage from "./pages/LibraryPage";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -40,7 +41,7 @@ const client = new QueryClient({
 });
 
 function App() {
-  const { isDarkMode } = useSelector((store) => store.global);
+  const { isDarkMode, isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -96,6 +97,7 @@ function App() {
               }
             >
               <Route index element={<HomePage />} />
+              {isSmall && <Route path="library" element={<LibraryPage />} />}
               <Route path="account" element={<AccountCenterPage />} />
               <Route
                 path="account/top/tracks"

@@ -139,3 +139,23 @@ body {
 .scrollbar.app-scrollbar::-webkit-scrollbar-thumb {
   background-color: #2563eb !important;
 }
+
+/*media queries*/
+@media screen and (max-width: 768px) {
+  @keyframes open-searchbox {
+    from {
+      width: 0;
+    }
+    to {
+      width: 12rem;
+    }
+  }
+  @keyframes close-searchbox {
+    from {
+      width: 12rem;
+    }
+    to {
+      width: 0rem;
+    }
+  }
+}

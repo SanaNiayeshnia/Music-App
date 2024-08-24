@@ -22,14 +22,14 @@ function LibrarySearchBox() {
   return (
     <div
       ref={ref}
-      className={`${isOpen && "bg-white/50 shadow dark:bg-black/50"} ${!isPlayingTrackbarOpen && isMedium && "max-w-24 lg:max-w-52"} flex items-center gap-1 rounded-md py-1`}
+      className={`${isOpen && "bg-white/50 shadow dark:bg-black/50"} flex items-center gap-1 rounded-md py-1`}
     >
       <RiSearch2Line
         onClick={() => setIsOpen(true)}
         className={`min-h-7 min-w-7 rounded-full p-1 text-black duration-100 dark:text-white ${!isOpen && "cursor-pointer hover:bg-white/50 hover:shadow dark:hover:bg-black/50"}`}
       />
       <div
-        className={`${isOpen && "animation-open-searchbox w-36 opacity-100"} ${!isOpen && "animation-close-searchbox cursor-default"} mr-2 flex items-center gap-2 opacity-0`}
+        className={`${isOpen && "animation-open-searchbox w-48 opacity-100 md:w-36"} ${!isOpen && "animation-close-searchbox cursor-default"} mr-2 flex items-center gap-2 opacity-0`}
       >
         <input
           type="text"

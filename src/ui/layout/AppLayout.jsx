@@ -14,7 +14,9 @@ function AppLayout() {
   const dispatch = useDispatch();
   useEffect(() => {
     function handleResize() {
-      dispatch(setIsMedium(window.innerWidth < 1024));
+      dispatch(
+        setIsMedium(window.innerWidth < 1024 && window.innerWidth > 768),
+      );
       dispatch(setIsSmall(window.innerWidth < 768));
     }
     window.addEventListener("resize", handleResize);

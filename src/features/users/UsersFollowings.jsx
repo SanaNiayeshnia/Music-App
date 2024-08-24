@@ -9,12 +9,13 @@ function UsersFollowings({ all }) {
   const dispatch = useDispatch();
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts
-
-    dispatch(setPageTitle(`Your Following`));
+    if (all) {
+      dispatch(setPageTitle(`Your Following`));
+    }
     return () => {
       dispatch(setPageTitle(""));
     };
-  }, [dispatch]);
+  }, [dispatch, all]);
 
   return (
     <div key={`${all}-${Math.random()}`}>

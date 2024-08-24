@@ -6,25 +6,25 @@ import PersonPageHeader from "../ui/PersonPageHeader";
 import UsersTopTracks from "../features/users/UsersTopTracks";
 import UsersTopArtists from "../features/users/UsersTopArtists";
 import UsersFollowings from "../features/users/UsersFollowings";
-import { setPageTitle } from "../GlobalSlice";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+
 import Page from "../ui/Page";
+import IconLogo from "../ui/IconLogo";
+import useMainContext from "../ui/layout/useMainContext";
+import NavTitle from "../ui/NavTitle";
 
 function AccountCenterPage() {
   const { isLoading: isLoadingUser, user } = useCurrentUser();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setPageTitle(user?.display_name));
-
-    return () => {
-      dispatch(setPageTitle(""));
-    };
-  }, [dispatch, user]);
+  const { isMainScrolled } = useMainContext();
 
   return (
     <Page>
-      <TopNav />
+      <TopNav>
+        {isMainScrolled && (
+          <NavTitle noPlayButton>
+            <IconLogo noTitle /> {user?.display_name}
+          </NavTitle>
+        )}
+      </TopNav>
       {isLoadingUser ? (
         <div className="grid h-full place-items-center">
           <Spinner />

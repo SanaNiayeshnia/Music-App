@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useLogout from "./useLogout";
 import useMainContext from "../../ui/layout/useMainContext";
 
-function UserContextMenu({ children }) {
+function UserContextMenu({ children, position = "center" }) {
   const navigate = useNavigate();
   const { logout } = useLogout();
   const { scrollMainToTop } = useMainContext();
@@ -28,7 +28,7 @@ function UserContextMenu({ children }) {
   ];
 
   return (
-    <ContextMenu options={options} position="center">
+    <ContextMenu options={options} position={position}>
       {children}
     </ContextMenu>
   );

@@ -9,12 +9,13 @@ function UsersTopArtists({ all }) {
   const dispatch = useDispatch();
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts
-
-    dispatch(setPageTitle(`Your Top Artists`));
+    if (all) {
+      dispatch(setPageTitle(`Your Top Artists`));
+    }
     return () => {
       dispatch(setPageTitle(""));
     };
-  }, [dispatch]);
+  }, [dispatch, all]);
 
   return (
     <div key={`${all}-${Math.random()}`}>

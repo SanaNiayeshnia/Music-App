@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import NothingFound from "../../ui/NothingFound";
-import ShowAll from "../../ui/ShowAll";
-import Title from "../../ui/Title";
 import TrackList from "../tracks/TrackList";
 import useUsersTopTracks from "./useUsersTopTracks";
 import { useDispatch } from "react-redux";
@@ -13,12 +11,13 @@ function UsersTopTracks({ all }) {
   const dispatch = useDispatch();
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts
-
-    dispatch(setPageTitle(`Your Top Tracks`));
+    if (all) {
+      dispatch(setPageTitle(`Your Top Tracks`));
+    }
     return () => {
       dispatch(setPageTitle(""));
     };
-  }, [dispatch]);
+  }, [dispatch, all]);
 
   return (
     <div>

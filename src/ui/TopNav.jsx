@@ -6,12 +6,14 @@ import { useSelector } from "react-redux";
 import NavTitle from "./NavTitle";
 import { useLocation } from "react-router-dom";
 import IconLogo from "./IconLogo";
+import LogoutButton from "../features/authentication/LogoutButton";
 
 function TopNav({ children }) {
   const { isMainScrolled } = useMainContext();
   const { pageTitle, isSmall } = useSelector((store) => store.global);
   const loc = useLocation();
   const isSearchPage = loc.pathname.includes("/search");
+  const isAccountPage = loc.pathname.includes("/account");
   const isHomePage = Boolean(loc.pathname === "/");
 
   return (
@@ -32,6 +34,7 @@ function TopNav({ children }) {
       <div className="flex items-center gap-2">
         <DarkModeToggler />
         {!isSmall && <UserAvatar />}
+        {isSmall && isAccountPage && <LogoutButton />}
       </div>
     </div>
   );

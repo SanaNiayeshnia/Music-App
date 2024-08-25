@@ -10,7 +10,7 @@ function TrackListV2({ tracks, max = 5, noArtist = true, noAlbum = true }) {
     <div>
       <table className="w-full">
         <tbody>
-          {[...(isSeeMoreOpen ? tracks : tracks.slice(0, max))].map(
+          {[...(isSeeMoreOpen ? tracks : tracks?.slice(0, max))].map(
             (track, index) => (
               <Track
                 key={track.id}

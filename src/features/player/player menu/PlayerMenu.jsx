@@ -45,7 +45,11 @@ function PlayerMenu() {
 
       <VolumeHandler />
       <TbArrowsDiagonal
-        onClick={() => dispatch(toggleIsFullScreenPlayingTrack())}
+        onClick={() =>
+          currentlyPlayingTrack
+            ? dispatch(toggleIsFullScreenPlayingTrack())
+            : null
+        }
         className={`${currentlyPlayingTrack && "cursor-pointer hover:text-blue-600"} min-h-5 min-w-5 text-black duration-100 dark:text-white`}
       />
     </div>

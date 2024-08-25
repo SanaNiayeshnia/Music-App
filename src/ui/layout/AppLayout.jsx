@@ -11,7 +11,9 @@ import BottomNav from "../BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 
 function AppLayout() {
-  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
+  const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(
+    (store) => store.playback,
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     function handleResize() {
@@ -27,7 +29,7 @@ function AppLayout() {
   return (
     <MainContextProvider>
       <div
-        className={`relative ${isPlayingTrackbarOpen ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} h-screen grid-rows-[1fr_4fr_0.5fr] gap-2 md:grid md:min-h-[635px] md:min-w-[900px] md:px-3 md:py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
+        className={`relative ${isPlayingTrackbarOpen ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} ${!isFullScreenPlayingTrackOpen && "md:min-w-[900px]"} h-screen min-h-[650px] grid-rows-[1fr_4fr_0.5fr] gap-2 overflow-hidden md:grid md:px-3 md:py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
       >
         <Sidebar />
         <Library />

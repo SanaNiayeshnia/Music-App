@@ -15,10 +15,10 @@ const AddToPlaylist = forwardRef(
       playlist.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()),
     );
     const itemUris =
-      item.type === "track"
-        ? [item.uri]
-        : item.type === "album"
-          ? item.tracks.items.map((item) => item.uri)
+      item?.type === "track"
+        ? [item?.uri]
+        : item?.type === "album"
+          ? item?.tracks?.items?.map((item) => item.uri)
           : "";
 
     const { createPlaylistMutate } = useCreatePlaylist(item?.name, itemUris);

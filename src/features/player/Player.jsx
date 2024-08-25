@@ -1,14 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlayerTrack from "../tracks/PlayerTrack";
 import PlaybackController from "./playback controller/PlaybackController";
 import PlayerMenu from "./player menu/PlayerMenu";
 import useCurrentlyPlayingTrack from "./useCurrentlyPlayingTrack";
+import { toggleIsFullScreenPlayingTrack } from "./PlaybackSlice";
 
 function Player() {
   const { isSmall } = useSelector((store) => store.global);
   const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const dispatch = useDispatch();
+
   return isSmall && currentlyPlayingTrack ? (
-    <div className="absolute bottom-20 mb-2 flex w-full justify-center px-3">
+    <div
+      className="absolute bottom-20 mb-2 flex w-full cursor-pointer justify-center px-3"
+      onClick={() => dispatch(toggleIsFullScreenPlayingTrack())}
+    >
       <div className="w-full rounded bg-blue-600/60 px-3 py-2 shadow backdrop-blur-lg">
         <PlayerTrack />
       </div>

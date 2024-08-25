@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useSelector } from "react-redux";
+import Cover from "../../ui/Cover";
 
 function PlayerTrack({ fullScreen }) {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
@@ -20,23 +21,38 @@ function PlayerTrack({ fullScreen }) {
 
   return (
     <div
-      className={`${!currentlyPlayingTrack && "opacity-50"} ${fullScreen ? "w-10/12" : "md:w-60"} flex items-center justify-between gap-4`}
+      className={`${!currentlyPlayingTrack && "opacity-50"} ${!fullScreen && "gap-4 md:w-60"} flex items-center justify-between`}
     >
       <div
-        className={`${fullScreen && isSmall && "flex-col"} flex items-center gap-4`}
+        className={`${fullScreen && isSmall && "flex-col"} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
       >
-        {(isLoading || !isImageLoaded) && (
-          <Skeleton
-            className={`${fullScreen ? "h-80 w-80 md:h-96 md:w-96" : "h-11 w-11 md:h-14 md:w-14"} aspect-square flex-shrink-0 rounded shadow`}
-          />
-        )}
-        <img
-          key={currentlyPlayingTrack?.id}
-          className={`${!isImageLoaded && "hidden"} ${fullScreen ? "h-80 w-80 md:h-96 md:w-96" : "h-11 w-11 md:h-14 md:w-14"} aspect-square flex-shrink-0 rounded shadow`}
-          src={!isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""}
-          alt={currentlyPlayingTrack?.name}
-          onLoad={() => setIsImageLoaded(true)}
-        />
+        <div className="flex-shrink-0">
+          {fullScreen ? (
+            <Cover
+              cover={
+                !isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""
+              }
+              title={currentlyPlayingTrack?.name}
+            />
+          ) : (
+            <>
+              {(isLoading || !isImageLoaded) && (
+                <Skeleton
+                  className={`aspect-square h-11 w-11 flex-shrink-0 rounded shadow md:h-14 md:w-14`}
+                />
+              )}
+              <img
+                key={currentlyPlayingTrack?.id}
+                className={`${!isImageLoaded && "hidden"} aspect-square h-11 w-11 flex-shrink-0 rounded shadow md:h-14 md:w-14`}
+                src={
+                  !isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""
+                }
+                alt={currentlyPlayingTrack?.name}
+                onLoad={() => setIsImageLoaded(true)}
+              />
+            </>
+          )}
+        </div>
 
         <div
           className={`${!isLoading && !currentlyPlayingTrack && "w-16"} ${fullScreen ? "gap-2" : "gap-1"} flex flex-col justify-end leading-4`}
@@ -50,12 +66,12 @@ function PlayerTrack({ fullScreen }) {
             <>
               <p
                 onClick={() => navigate(`/track/${currentlyPlayingTrack?.id}`)}
-                className={`${fullScreen ? "text-3xl font-bold" : "text-sm font-medium md:w-40"} cursor-pointer text-white hover:underline md:text-black md:dark:text-white`}
+                className={`${fullScreen ? "text-xl font-bold leading-8 md:text-3xl md:leading-10" : "text-sm font-medium md:w-40"} cursor-pointer ${fullScreen ? "text-black dark:text-white" : "text-white md:text-black md:dark:text-white"} hover:underline`}
               >
-                {formatName(currentlyPlayingTrack?.name, fullScreen ? 45 : 35)}
+                {formatName(currentlyPlayingTrack?.name, fullScreen ? 50 : 35)}
               </p>
               <p
-                className={`${fullScreen ? "text-2xl font-semibold" : "text-[0.8rem]"} cursor-pointer text-gray-300 md:text-gray-600 md:dark:text-gray-300`}
+                className={`${fullScreen ? "text-lg font-semibold md:text-2xl" : "text-[0.8rem]"} cursor-pointer ${fullScreen ? "text-black/70 dark:text-white/70" : "text-white/80 md:text-gray-600 md:dark:text-gray-300"} `}
               >
                 {currentlyPlayingTrack?.artists?.map((artist, index) => (
                   <span

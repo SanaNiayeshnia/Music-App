@@ -28,6 +28,7 @@ function ItemContextMenu({
   noAddToPlaylist = false,
   setIsUsingContextMenu,
   removeFromPlaylist,
+  smallScreen,
 }) {
   const [isOpenPlaylistOpt, setIsOpenPlaylistOpt] = useState(false);
   const addToPlaylistRef = useOutsideClick(() => {
@@ -38,7 +39,6 @@ function ItemContextMenu({
   const { isSmall } = useSelector((store) => store.global);
   const className =
     "min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white";
-
   function handler() {}
   const options = [
     removeFromPlaylist && {
@@ -94,6 +94,7 @@ function ItemContextMenu({
       closeAfterClick: true,
     },
   ].filter(Boolean);
+
   return (
     <ContextMenu
       position={position}
@@ -101,7 +102,7 @@ function ItemContextMenu({
       close={isClickedOnPlaylistChildren}
       setIsUsingContextMenu={setIsUsingContextMenu}
     >
-      {isSmall ? (
+      {isSmall || smallScreen ? (
         <TbDotsVertical className={className} />
       ) : (
         <TbDots className={className} />

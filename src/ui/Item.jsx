@@ -100,11 +100,22 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
                 ) : (
                   <>
                     {type}
-                    {type === "playlist"
-                      ? " • " + item?.owner?.display_name
-                      : type === "album"
-                        ? " • " + artists[0]?.name
-                        : ""}
+                    {type === "playlist" ? (
+                      " • " + item?.owner?.display_name
+                    ) : type === "album" ? (
+                      <>
+                        {" "}
+                        •{" "}
+                        <span
+                          className="cursor-pointer hover:underline"
+                          onClick={() => navigate(`/artist/${artists[0]?.id}`)}
+                        >
+                          {artists[0]?.name}
+                        </span>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </>
                 )}
               </p>

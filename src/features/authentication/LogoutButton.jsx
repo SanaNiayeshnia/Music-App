@@ -6,7 +6,7 @@ function LogoutButton() {
   return (
     <TbLogout
       onClick={logout}
-      className="h-7 w-7 text-black hover:text-blue-600 dark:text-white"
+      className="h-7 w-7 text-black duration-100 hover:text-blue-600 dark:text-white"
     />
   );
 }

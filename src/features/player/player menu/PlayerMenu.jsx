@@ -1,5 +1,9 @@
 import VolumeHandler from "./VolumeHandler";
-import { togglePlayingTrackBar, toggleQueueBar } from "../PlaybackSlice";
+import {
+  toggleIsFullScreenPlayingTrack,
+  togglePlayingTrackBar,
+  toggleQueueBar,
+} from "../PlaybackSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { TbArrowsDiagonal, TbPlaylist } from "react-icons/tb";
 import { BiAlbum } from "react-icons/bi";
@@ -41,6 +45,7 @@ function PlayerMenu() {
 
       <VolumeHandler />
       <TbArrowsDiagonal
+        onClick={() => dispatch(toggleIsFullScreenPlayingTrack())}
         className={`${currentlyPlayingTrack && "cursor-pointer hover:text-blue-600"} min-h-5 min-w-5 text-black duration-100 dark:text-white`}
       />
     </div>

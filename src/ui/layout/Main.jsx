@@ -12,7 +12,7 @@ function Main() {
 
   return (
     <div
-      className={`${!isSmall && "rounded-lg"} relative h-screen w-full bg-white/50 shadow-lg backdrop-blur-md md:h-auto lg:min-w-[425px] dark:bg-black/50`}
+      className={`${!isSmall && "rounded-lg"} relative h-screen w-full overflow-hidden bg-white/50 shadow-lg backdrop-blur-md md:h-auto lg:min-w-[425px] dark:bg-black/50`}
     >
       <div
         ref={ref}

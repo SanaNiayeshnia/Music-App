@@ -6,18 +6,17 @@ import { RiSearch2Line } from "react-icons/ri";
 import { setSearchQuery } from "../librarySlice";
 
 function LibrarySearchBox() {
-  const { isMedium } = useSelector((store) => store.global);
-  const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
   const { searchQuery, currentFilter } = useSelector((store) => store.library);
+  const { isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();
   const inputRef = useRef();
 
   useEffect(() => {
     //set focus on the search input when the component mounts
-    isOpen && inputRef.current.focus();
-  }, [isOpen]);
+    isOpen && !isSmall && inputRef.current.focus();
+  }, [isOpen, isSmall]);
 
   return (
     <div

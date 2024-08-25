@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { setIsMedium, setIsSmall } from "../../GlobalSlice";
 import MainContextProvider from "./MainContextProvider";
 import BottomNav from "../BottomNav";
+import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
@@ -38,6 +39,7 @@ function AppLayout() {
 
         <Player />
         <BottomNav />
+        <FullScreenPlayingTrack />
       </div>
     </MainContextProvider>
   );

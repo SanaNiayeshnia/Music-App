@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
+import useCurrentlyPlayingTrack from "../features/player/useCurrentlyPlayingTrack";
 
 function PageBody({ children, noPadding, noSpace, className }) {
-  const { isSmall } = useSelector((store) => store.global);
+  const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  console.log(currentlyPlayingTrack);
   return (
     <div
-      className={`${isSmall && "pb-[160px]"} ${!noPadding && "pt-8"} ${!noSpace && "space-y-8"} ${className}`}
+      className={`${currentlyPlayingTrack ? "pb-[160px]" : "pb-[90px]"} md:pb-0 ${!noPadding && "pt-8"} ${!noSpace && "space-y-8"} ${className}`}
     >
       {children}
     </div>

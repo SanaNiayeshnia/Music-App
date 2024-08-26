@@ -2,12 +2,12 @@ import Library from "../../features/library/Library";
 import Player from "../../features/player/Player";
 import PlayingTrackBar from "./playingTrackBar/PlayingTrackBar";
 import Sidebar from "./sidebar/Sidebar";
-import Main from "./Main";
+import Main from "./main/Main";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setIsMedium, setIsSmall } from "../../GlobalSlice";
-import MainContextProvider from "./MainContextProvider";
-import BottomNav from "../BottomNav";
+import MainContextProvider from "./main/MainContextProvider";
+import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 
 function AppLayout() {

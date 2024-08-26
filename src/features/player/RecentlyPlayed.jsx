@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ListContainer from "../../ui/ListContainer";
-import useRecentlyPlayed from "./useRecentlyPlayed";
+import useRecentlyPlayed from "./hooks/useRecentlyPlayed";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";
 

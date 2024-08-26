@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import PlayerTrack from "../tracks/PlayerTrack";
-import PlaybackController from "./playback controller/PlaybackController";
-import PlayerMenu from "./player menu/PlayerMenu";
-import useCurrentlyPlayingTrack from "./useCurrentlyPlayingTrack";
+import PlaybackController from "./playbackController/PlaybackController";
+import PlayerMenu from "./playerMenu/PlayerMenu";
+import useCurrentlyPlayingTrack from "./hooks/useCurrentlyPlayingTrack";
 import { toggleIsFullScreenPlayingTrack } from "./PlaybackSlice";
 
 function Player() {

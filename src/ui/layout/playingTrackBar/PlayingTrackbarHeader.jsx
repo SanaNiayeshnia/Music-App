@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
 import { TbX } from "react-icons/tb";
-import useCurrentlyPlayingTrack from "../../../features/player/useCurrentlyPlayingTrack";
+import useCurrentlyPlayingTrack from "../../../features/player/hooks/useCurrentlyPlayingTrack";
 import Skeleton from "../../Skeleton";
 import { useNavigate } from "react-router-dom";
 import TrackContextMenu from "../../../features/tracks/TrackContextMenu";

@@ -1,6 +1,6 @@
-import useSaveAlbum from "./useSaveAlbum";
-import useUnsaveAlbum from "./useUnsaveAlbum";
-import useIsAlbumSaved from "./useIsAlbumSaved";
+import useSaveAlbum from "./hooks/useSaveAlbum";
+import useUnsaveAlbum from "./hooks/useUnsaveAlbum";
+import useIsAlbumSaved from "./hooks/useIsAlbumSaved";
 import ItemContextMenu from "../../ui/ItemContextMenu";
 
 function AlbumContextMenu({ album, position }) {

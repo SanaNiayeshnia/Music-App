@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
 import { formatName } from "../utilities/helper";
 import { useNavigate } from "react-router-dom";
-import useMainContext from "./layout/useMainContext";
+import useMainContext from "./layout/Main/useMainContext";
 
 function Item({ item = {}, size, isLoading = false, discography = false }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -44,13 +44,13 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
             !isLoading
               ? images?.at(0)?.url ||
                 (isDarkMode
-                  ? "/album-cover-dark.jpeg"
-                  : "/album-cover-light.jpeg")
+                  ? "/images/covers/album-cover-dark.jpeg"
+                  : "images/covers/album-cover-light.jpeg")
               : ""
           }
           alt={name}
           onLoad={() => setIsImageLoaded(true)}
-          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "md:h-full md:w-full" : "max-h-12 min-h-12 min-w-12 max-w-12 drop-shadow lg:max-h-14 lg:min-h-14 lg:min-w-14 lg:max-w-14"}`}
+          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "md:h-full md:w-full" : "h-12 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
         />
 
         {size === "large" && !isLoading && (

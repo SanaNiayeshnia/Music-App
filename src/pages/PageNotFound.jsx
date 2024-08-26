@@ -1,6 +1,6 @@
 import { TbMoodSad } from "react-icons/tb";
-import Page from "../ui/Page";
-import TopNav from "../ui/TopNav";
+import Page from "../ui/layout/page/Page";
+import TopNav from "../ui/layout/topNav/TopNav";
 import { NavLink } from "react-router-dom";
 
 function PageNotFound() {

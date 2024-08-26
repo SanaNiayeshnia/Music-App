@@ -7,9 +7,9 @@ import {
 } from "react-icons/tb";
 import { copyLink } from "../../utilities/helper";
 import ContextMenu from "../../ui/ContextMenu";
-import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
-import useFollowArtist from "./useFollowArtist";
-import useUnfollowArtist from "./useUnfollowArtist";
+import useIsArtistBeingFollowed from "./hooks/useIsArtistBeingFollowed";
+import useFollowArtist from "./hooks/useFollowArtist";
+import useUnfollowArtist from "./hooks/useUnfollowArtist";
 import { useSelector } from "react-redux";
 
 function ArtistContextMenu({ artist, position }) {

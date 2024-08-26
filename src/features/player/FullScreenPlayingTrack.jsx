@@ -1,17 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import PlayerTrack from "../tracks/PlayerTrack";
-import Controls from "./playback controller/Controls";
-import SongSlider from "./playback controller/SongSlider";
-import VolumeHandler from "./player menu/VolumeHandler";
+import Controls from "./playbackController/Controls";
+import SongSlider from "./playbackController/SongSlider";
+import VolumeHandler from "./playerMenu/VolumeHandler";
 import SaveTrackButton from "../tracks/SaveTrackButton";
-import {
-  TbArrowDown,
-  TbArrowsDiagonalMinimize2,
-  TbChevronDown,
-} from "react-icons/tb";
+import { TbArrowsDiagonalMinimize2, TbChevronDown } from "react-icons/tb";
 import { toggleIsFullScreenPlayingTrack } from "./PlaybackSlice";
-import IconLogo from "../../ui/IconLogo";
-import useCurrentlyPlayingTrack from "./useCurrentlyPlayingTrack";
+import IconLogo from "../../ui/layout/topNav/IconLogo";
+import useCurrentlyPlayingTrack from "./hooks/useCurrentlyPlayingTrack";
 import TrackContextMenu from "../tracks/TrackContextMenu";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +31,7 @@ function FullScreenPlayingTrack() {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className={`${isFullScreenPlayingTrackOpen ? "inset-0 opacity-100" : "left-0 right-0 top-full opacity-0 md:inset-0 md:hidden"} absolute z-40 transition-all duration-500`}
+      className={`${isFullScreenPlayingTrackOpen ? "inset-0 opacity-100" : "left-0 right-0 top-full opacity-0 md:inset-0 md:hidden"} absolute z-40 transition-all`}
     >
       <div className="absolute inset-0 z-50 grid place-items-center bg-white/50 px-8 backdrop-blur-lg dark:bg-black/50">
         <div className="flex w-11/12 items-center justify-between">

@@ -14,7 +14,7 @@ import AlbumPage from "./pages/AlbumPage";
 import TrackPage from "./pages/TrackPage";
 import PlaylistPage from "./pages/PlaylistPage";
 import LoginPage from "./pages/LoginPage";
-import ProtectedRoute from "./ui/ProtectedRoute";
+import ProtectedRoute from "./ui/layout/page/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import { setIsOnline } from "./features/authentication/authSlice";
 import SectionPage from "./pages/SectionPage";

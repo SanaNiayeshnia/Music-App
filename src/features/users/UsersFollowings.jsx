@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ListContainer from "../../ui/ListContainer";
-import useFollowedArtists from "../artists/useFollowedArtists";
+import useFollowedArtists from "../artists/hooks/useFollowedArtists";
 import { setPageTitle } from "../../GlobalSlice";
 import { useDispatch } from "react-redux";
 

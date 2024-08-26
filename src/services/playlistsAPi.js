@@ -81,7 +81,7 @@ export async function getLikedSongsPlaylist() {
     public: false,
     id: "LikedSongs",
     owner: { id: user.id, display_name: user.display_name, type: "user" },
-    images: [{ url: "/heart-folder.jpg" }],
+    images: [{ url: "/images/covers/heart-folder.jpg" }],
   };
 
   return likedSongsPlaylist;

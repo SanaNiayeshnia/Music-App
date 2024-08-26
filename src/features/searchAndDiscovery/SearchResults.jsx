@@ -2,14 +2,14 @@ import { useSearchParams } from "react-router-dom";
 import ResultList from "./ResultList";
 import SongsResult from "./SongsResult";
 import TopResult from "./TopResult";
-import useSearchResult from "./useSearchResult";
+import useSearchResult from "./hooks/useSearchResult";
 import SearchResultFilters from "./SearchResultFilters";
 import { TbMoodSad } from "react-icons/tb";
 import { useState } from "react";
 import Spinner from "../../ui/Spinner";
-import PageHeaderWrapper from "../../ui/PageHeaderWrapper";
-import PageTitle from "../../ui/PageTitle";
-import PageBody from "../../ui/PageBody";
+import PageHeaderWrapper from "../../ui/layout/page/PageHeaderWrapper";
+import PageBody from "../../ui/layout/page/PageBody";
+import PageTitle from "../../ui/layout/page/PageTitle";
 
 function SearchResults() {
   const [searchParams] = useSearchParams();

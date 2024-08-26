@@ -1,6 +1,6 @@
 import Skeleton from "../../ui/Skeleton";
 import UserContextMenu from "./UserContextMenu";
-import useCurrentUser from "./useCurrentUser";
+import useCurrentUser from "../authentication/hooks/useCurrentUser";
 import { useSelector } from "react-redux";
 
 function UserAvatar({ size }) {

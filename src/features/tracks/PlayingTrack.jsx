@@ -1,4 +1,4 @@
-import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
+import useCurrentlyPlayingTrack from "../player/hooks/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

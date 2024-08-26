@@ -1,18 +1,18 @@
-import NavTitle from "../ui/NavTitle";
+import NavTitle from "../ui/layout/topNav/NavTitle";
 import Discography from "../features/artists/Discography";
 import Popular from "../features/artists/Popular";
-import TopNav from "../ui/TopNav";
-import PageBody from "../ui/PageBody";
-import useArtist from "../features/artists/useArtist";
+import TopNav from "../ui/layout/topNav/TopNav";
+import PageBody from "../ui/layout/page/PageBody";
+import useArtist from "../features/artists/hooks/useArtist";
 import { useParams } from "react-router-dom";
 import Spinner from "../ui/Spinner";
-import useArtistsTopTracks from "../features/artists/useArtistsTopTracks";
+import useArtistsTopTracks from "../features/artists/hooks/useArtistsTopTracks";
 import RelatedArtists from "../features/artists/RelatedArtists";
 import AppearsOn from "../features/artists/AppearsOn";
-import useMainContext from "../ui/layout/useMainContext";
-import PersonPageHeader from "../ui/PersonPageHeader";
-import PageMenu from "../ui/PageMenu";
-import Page from "../ui/Page";
+import useMainContext from "../ui/layout/Main/useMainContext";
+import PersonPageHeader from "../ui/layout/page/PersonPageHeader";
+import PageMenu from "../ui/layout/page/PageMenu";
+import Page from "../ui/layout/page/Page";
 
 function ArtistPage() {
   const { isMainScrolled } = useMainContext();

@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import ListContainer from "../../ui/ListContainer";
-import usePlaylist from "./usePlaylist";
-import useRelatedPlaylists from "./useRelatedPlaylists";
-import useArtist from "../artists/useArtist";
+import usePlaylist from "./hooks/usePlaylist";
+import useRelatedPlaylists from "./hooks/useRelatedPlaylists";
+import useArtist from "../artists/hooks/useArtist";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";

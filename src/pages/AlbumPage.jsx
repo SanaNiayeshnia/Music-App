@@ -1,18 +1,18 @@
-import NavTitle from "../ui/NavTitle";
-import TopNav from "../ui/TopNav";
-import PageBody from "../ui/PageBody";
+import NavTitle from "../ui/layout/topNav/NavTitle";
+import TopNav from "../ui/layout/topNav/TopNav";
+import PageBody from "../ui/layout/page/PageBody";
 import License from "../features/albums/License";
 import MoreByArtist from "../features/artists/MoreByArtist";
-import PageHeader from "../ui/PageHeader";
+import PageHeader from "../ui/layout/page/PageHeader";
 import TrackList from "../features/tracks/TrackList";
-import useAlbum from "../features/albums/useAlbum";
+import useAlbum from "../features/albums/hooks/useAlbum";
 import { useParams } from "react-router-dom";
-import useArtist from "../features/artists/useArtist";
+import useArtist from "../features/artists/hooks/useArtist";
 import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
-import useMainContext from "../ui/layout/useMainContext";
-import PageMenu from "../ui/PageMenu";
-import Page from "../ui/Page";
+import useMainContext from "../ui/layout/Main/useMainContext";
+import PageMenu from "../ui/layout/page/PageMenu";
+import Page from "../ui/layout/page/Page";
 
 function AlbumPage() {
   const { isMainScrolled } = useMainContext();

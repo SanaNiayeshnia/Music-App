@@ -1,8 +1,8 @@
 import { TbLogout, TbUser } from "react-icons/tb";
 import ContextMenu from "../../ui/ContextMenu";
 import { useNavigate } from "react-router-dom";
-import useLogout from "./useLogout";
-import useMainContext from "../../ui/layout/useMainContext";
+import useLogout from "../authentication/hooks/useLogout";
+import useMainContext from "../../ui/layout/Main/useMainContext";
 
 function UserContextMenu({ children, position = "center" }) {
   const navigate = useNavigate();

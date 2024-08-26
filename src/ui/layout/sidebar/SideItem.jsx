@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import useMainContext from "../useMainContext";
+import useMainContext from "../Main/useMainContext";
 
 function SideItem({ icon, title, href, activeIcon, onClick }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);

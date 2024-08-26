@@ -1,6 +1,6 @@
 import ListContainer from "../../ui/ListContainer";
 import Title from "../../ui/Title";
-import useMainContext from "../../ui/layout/useMainContext";
+import useMainContext from "../../ui/layout/Main/useMainContext";
 
 function ResultList({ title, items, all, setCurrentFilter }) {
   const { scrollMainToTop } = useMainContext();

@@ -1,9 +1,9 @@
 import { Tooltip } from "@mui/material";
 import TinySpinner from "../../ui/TinySpinner";
 import { TbCircleCheckFilled, TbCirclePlus } from "react-icons/tb";
-import useIsPlaylistSaved from "./useIsPlaylistSaved";
-import useSavePlaylist from "./useSavePlaylist";
-import useUnsavePlaylist from "./useUnsavePlaylist";
+import useIsPlaylistSaved from "./hooks/useIsPlaylistSaved";
+import useSavePlaylist from "./hooks/useSavePlaylist";
+import useUnsavePlaylist from "./hooks/useUnsavePlaylist";
 
 function SavePlaylistButton({ playlist }) {
   const { isPlaylistSaved } = useIsPlaylistSaved(playlist.id);

@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import ListContainer from "../../ui/ListContainer";
-import useArtistsDiscography from "./useArtistsDiscography";
+import useArtistsDiscography from "./hooks/useArtistsDiscography";
 import { useEffect, useState } from "react";
-import useArtist from "./useArtist";
+import useArtist from "./hooks/useArtist";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";
 import DiscographyFilters from "./DiscographyFilters";

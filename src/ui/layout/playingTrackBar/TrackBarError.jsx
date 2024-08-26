@@ -1,5 +1,5 @@
 import { TbMoodSad } from "react-icons/tb";
-import useCurrentUser from "../../../features/users/useCurrentUser";
+import useCurrentUser from "../../../features/authentication/hooks/useCurrentUser";
 
 function TrackBarError() {
   const { user } = useCurrentUser();

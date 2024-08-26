@@ -1,10 +1,10 @@
 import LibraryBody from "../features/library/Library body/LibraryBody";
-import IconLogo from "../ui/IconLogo";
-import NavTitle from "../ui/NavTitle";
-import Page from "../ui/Page";
-import PageBody from "../ui/PageBody";
-import TopNav from "../ui/TopNav";
-import useMainContext from "../ui/layout/useMainContext";
+import IconLogo from "../ui/layout/topNav/IconLogo";
+import NavTitle from "../ui/layout/topNav/NavTitle";
+import Page from "../ui/layout/page/Page";
+import PageBody from "../ui/layout/page/PageBody";
+import TopNav from "../ui/layout/topNav/TopNav";
+import useMainContext from "../ui/layout/Main/useMainContext";
 
 function LibraryPage() {
   const { isMainScrolled } = useMainContext();

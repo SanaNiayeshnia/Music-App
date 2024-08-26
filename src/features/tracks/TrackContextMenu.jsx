@@ -1,10 +1,9 @@
-import useSaveTrack from "./useSaveTrack";
-import useUnsaveTrack from "./useUnsaveTrack";
-import useIsTrackSaved from "./useIsTrackSaved";
-
+import useSaveTrack from "./hooks/useSaveTrack";
+import useUnsaveTrack from "./hooks/useUnsaveTrack";
+import useIsTrackSaved from "./hooks/useIsTrackSaved";
 import ItemContextMenu from "../../ui/ItemContextMenu";
 import { useSelector } from "react-redux";
-import useRemoveItemsFromPlaylist from "../playlists/useRemoveItemsFromPlaylist";
+import useRemoveItemsFromPlaylist from "../playlists/hooks/useRemoveItemsFromPlaylist";
 
 function TrackContextMenu({
   track,

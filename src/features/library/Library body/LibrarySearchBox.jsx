@@ -15,7 +15,7 @@ function LibrarySearchBox() {
 
   useEffect(() => {
     //set focus on the search input when the component mounts
-    isOpen && !isSmall && inputRef.current.focus();
+    if (isOpen && isSmall == false) inputRef.current.focus();
   }, [isOpen, isSmall]);
 
   return (

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
-import useRelatedArtists from "./useRelatedArtists";
+import useRelatedArtists from "./hooks/useRelatedArtists";
 import ListContainer from "../../ui/ListContainer";
-import useArtist from "./useArtist";
+import useArtist from "./hooks/useArtist";
 import { useEffect } from "react";
 import { setPageTitle } from "../../GlobalSlice";
 import { useDispatch } from "react-redux";

@@ -9,13 +9,13 @@ export default defineConfig({
     VitePWA({
       manifest: {
         name: APP_NAME,
-        short_name: APP_NAME,
+        short_name: APP_NAME.trim(),
         description: "This is a music app!",
         theme_color: "#2563eb",
         display: "standalone",
         icons: [
           {
-            src: "/icon.png",
+            src: "/images/icons/icon.png",
             sizes: "512x512",
             type: "image/png",
           },

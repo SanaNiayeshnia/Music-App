@@ -1,6 +1,6 @@
-import useIsPlaylistSaved from "./useIsPlaylistSaved";
-import useSavePlaylist from "./useSavePlaylist";
-import useUnsavePlaylist from "./useUnsavePlaylist";
+import useIsPlaylistSaved from "./hooks/useIsPlaylistSaved";
+import useSavePlaylist from "./hooks/useSavePlaylist";
+import useUnsavePlaylist from "./hooks/useUnsavePlaylist";
 import ItemContextMenu from "../../ui/ItemContextMenu";
 
 function PlaylistContextMenu({ position, playlist }) {

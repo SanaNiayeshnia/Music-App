@@ -17,14 +17,14 @@
 }
 
 body {
-  background-image: url(/bg-light.jpeg);
+  background-image: url(/images/backgrounds/bg-light.jpeg);
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
 }
 :root.dark body {
-  background-image: url(/bg-dark.jpeg);
+  background-image: url(/images/backgrounds/bg-dark.jpeg);
 }
 
 /*animations*/

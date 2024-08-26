@@ -1,8 +1,8 @@
 import { TbCircleCheckFilled } from "react-icons/tb";
-import useAddItemsToPlaylist from "./useAddItemsToPlaylist";
-import usePlaylist from "./usePlaylist";
+import useAddItemsToPlaylist from "./hooks/useAddItemsToPlaylist";
+import usePlaylist from "./hooks/usePlaylist";
 import { Tooltip } from "@mui/material";
-import useRemoveItemsFromPlaylist from "./useRemoveItemsFromPlaylist";
+import useRemoveItemsFromPlaylist from "./hooks/useRemoveItemsFromPlaylist";
 
 function AddToPlaylistItem({
   playlistId,

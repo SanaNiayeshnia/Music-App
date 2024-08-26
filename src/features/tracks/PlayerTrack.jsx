@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { formatName } from "../../utilities/helper";
-import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
+import useCurrentlyPlayingTrack from "../player/hooks/useCurrentlyPlayingTrack";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
 import { TbPlayerPlayFilled } from "react-icons/tb";
@@ -65,7 +65,10 @@ function PlayerTrack({ fullScreen }) {
           ) : (
             <>
               <p
-                onClick={() => navigate(`/track/${currentlyPlayingTrack?.id}`)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(`/track/${currentlyPlayingTrack?.id}`);
+                }}
                 className={`${fullScreen ? "text-xl font-bold leading-8 md:text-3xl md:leading-10" : "text-sm font-medium md:w-40"} cursor-pointer ${fullScreen ? "text-black dark:text-white" : "text-white md:text-black md:dark:text-white"} hover:underline`}
               >
                 {formatName(currentlyPlayingTrack?.name, fullScreen ? 50 : 35)}
@@ -75,7 +78,10 @@ function PlayerTrack({ fullScreen }) {
               >
                 {currentlyPlayingTrack?.artists?.map((artist, index) => (
                   <span
-                    onClick={() => navigate(`/artist/${artist?.id}`)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/artist/${artist?.id}`);
+                    }}
                     className="hover:underline"
                     key={artist?.id}
                   >

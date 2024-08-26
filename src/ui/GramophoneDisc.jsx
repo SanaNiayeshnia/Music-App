@@ -18,7 +18,8 @@ function GramophoneDisc({ image, title, className }) {
             )}
             <img
               src={
-                image || `/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`
+                image ||
+                `/images/covers/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`
               }
               alt={title}
               onLoad={() => setIsImgLoaded(true)}

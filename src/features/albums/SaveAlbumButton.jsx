@@ -1,9 +1,9 @@
 import { Tooltip } from "@mui/material";
 import TinySpinner from "../../ui/TinySpinner";
 import { TbCircleCheckFilled, TbCirclePlus } from "react-icons/tb";
-import useSaveAlbum from "./useSaveAlbum";
-import useIsAlbumSaved from "./useIsAlbumSaved";
-import useUnsaveAlbum from "./useUnsaveAlbum";
+import useSaveAlbum from "./hooks/useSaveAlbum";
+import useIsAlbumSaved from "./hooks/useIsAlbumSaved";
+import useUnsaveAlbum from "./hooks/useUnsaveAlbum";
 
 function SaveAlbumButton({ album }) {
   const { isAlbumSaved } = useIsAlbumSaved(album.id);

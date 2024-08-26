@@ -1,16 +1,16 @@
-import TopNav from "../ui/TopNav";
-import NavTitle from "../ui/NavTitle";
-import PageBody from "../ui/PageBody";
+import TopNav from "../ui/layout/topNav/TopNav";
+import NavTitle from "../ui/layout/topNav/NavTitle";
+import PageBody from "../ui/layout/page/PageBody";
 import RecommendedTracks from "../features/tracks/RecommendedTracks";
-import PageHeader from "../ui/PageHeader";
+import PageHeader from "../ui/layout/page/PageHeader";
 import { useParams } from "react-router-dom";
-import useTrack from "../features/tracks/useTrack";
+import useTrack from "../features/tracks/hooks/useTrack";
 import Spinner from "../ui/Spinner";
-import useArtist from "../features/artists/useArtist";
-import useRecommendations from "../features/tracks/useRecommendations";
-import useMainContext from "../ui/layout/useMainContext";
-import PageMenu from "../ui/PageMenu";
-import Page from "../ui/Page";
+import useArtist from "../features/artists/hooks/useArtist";
+import useRecommendations from "../features/tracks/hooks/useRecommendations";
+import useMainContext from "../ui/layout/Main/useMainContext";
+import PageMenu from "../ui/layout/page/PageMenu";
+import Page from "../ui/layout/page/Page";
 
 function TrackPage() {
   const { isMainScrolled } = useMainContext();

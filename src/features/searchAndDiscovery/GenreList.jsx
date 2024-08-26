@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Genre from "./Genre";
 import Title from "../../ui/Title";
-import useAvailableGenres from "./useAvailableGenres";
+import useAvailableGenres from "./hooks/useAvailableGenres";
 
 function GenreList() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);

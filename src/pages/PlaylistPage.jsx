@@ -1,16 +1,16 @@
-import NavTitle from "../ui/NavTitle";
-import PageHeader from "../ui/PageHeader";
-import TopNav from "../ui/TopNav";
-import PageBody from "../ui/PageBody";
+import NavTitle from "../ui/layout/topNav/NavTitle";
+import PageHeader from "../ui/layout/page/PageHeader";
+import TopNav from "../ui/layout/topNav/TopNav";
+import PageBody from "../ui/layout/page/PageBody";
 import AlsoLikePlaylists from "../features/playlists/AlsoLikePlaylists";
 import TrackList from "../features/tracks/TrackList";
 import { useParams } from "react-router-dom";
-import usePlaylist from "../features/playlists/usePlaylist";
+import usePlaylist from "../features/playlists/hooks/usePlaylist";
 import Spinner from "../ui/Spinner";
-import useUser from "../features/users/useUser";
-import useMainContext from "../ui/layout/useMainContext";
-import PageMenu from "../ui/PageMenu";
-import Page from "../ui/Page";
+import useUser from "../features/users/hooks/useUser";
+import useMainContext from "../ui/layout/Main/useMainContext";
+import PageMenu from "../ui/layout/page/PageMenu";
+import Page from "../ui/layout/page/Page";
 
 function PlaylistPage() {
   const { isMainScrolled } = useMainContext();

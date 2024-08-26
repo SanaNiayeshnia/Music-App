@@ -1,7 +1,7 @@
-import useIsArtistBeingFollowed from "./useIsArtistBeingFollowed";
+import useIsArtistBeingFollowed from "./hooks/useIsArtistBeingFollowed";
 import Button from "../../ui/Button";
-import useFollowArtist from "./useFollowArtist";
-import useUnfollowArtist from "./useUnfollowArtist";
+import useFollowArtist from "./hooks/useFollowArtist";
+import useUnfollowArtist from "./hooks/useUnfollowArtist";
 import TinySpinner from "../../ui/TinySpinner";
 
 function FollowArtistButton({ artist }) {

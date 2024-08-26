@@ -52,8 +52,8 @@ function Track({
                 !isLoading
                   ? track?.album?.images?.at(0)?.url ||
                     (isDarkMode
-                      ? "/album-cover-dark.jpeg"
-                      : "/album-cover-light.jpeg")
+                      ? "/images/covers/album-cover-dark.jpeg"
+                      : "/images/covers/album-cover-light.jpeg")
                   : ""
               }
               alt={track?.name}

@@ -1,6 +1,6 @@
-import useCurrentlyPlayingTrack from "../player/useCurrentlyPlayingTrack";
+import useCurrentlyPlayingTrack from "../player/hooks/useCurrentlyPlayingTrack";
 import Skeleton from "../../ui/Skeleton";
-import useArtist from "./useArtist";
+import useArtist from "./hooks/useArtist";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopularityHearts from "../../ui/PopularityHearts";

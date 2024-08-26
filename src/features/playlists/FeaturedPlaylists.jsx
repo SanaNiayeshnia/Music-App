@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ListContainer from "../../ui/ListContainer";
-import useFeaturedPlaylists from "./useFeaturedPlaylists";
+import useFeaturedPlaylists from "./hooks/useFeaturedPlaylists";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";
 

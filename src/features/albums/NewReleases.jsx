@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ListContainer from "../../ui/ListContainer";
-import useNewReleases from "./useNewReleases";
+import useNewReleases from "./hooks/useNewReleases";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";
 

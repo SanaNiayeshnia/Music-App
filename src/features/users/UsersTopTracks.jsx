@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import NothingFound from "../../ui/NothingFound";
 import TrackList from "../tracks/TrackList";
-import useUsersTopTracks from "./useUsersTopTracks";
+import useUsersTopTracks from "./hooks/useUsersTopTracks";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";
 import ListTitle from "../../ui/ListTitle";

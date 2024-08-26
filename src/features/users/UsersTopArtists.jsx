@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import ListContainer from "../../ui/ListContainer";
-import useUsersTopArtists from "./useUsersTopArtists";
+import useUsersTopArtists from "./hooks/useUsersTopArtists";
 import { useEffect } from "react";
 import { setPageTitle } from "../../GlobalSlice";
 

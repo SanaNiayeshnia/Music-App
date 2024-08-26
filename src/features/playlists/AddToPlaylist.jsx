@@ -1,10 +1,8 @@
 import { forwardRef, useState } from "react";
 import SearchForPlaylists from "./SearchForPlaylists";
-import { TbCircleCheckFilled, TbPlus } from "react-icons/tb";
-import useCreatedByUserPlaylists from "./useCreatedByUserPlaylists";
-import useCreatePlaylist from "./useCreatePlaylist";
-import TinySpinner from "../../ui/TinySpinner";
-import useAddItemsToPlaylist from "./useAddItemsToPlaylist";
+import { TbPlus } from "react-icons/tb";
+import useCreatedByUserPlaylists from "./hooks/useCreatedByUserPlaylists";
+import useCreatePlaylist from "./hooks/useCreatePlaylist";
 import AddToPlaylistItem from "./AddToPlaylistItem";
 
 const AddToPlaylist = forwardRef(

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import useMainContext from "./layout/useMainContext";
+import useMainContext from "./layout/Main/useMainContext";
 
 function ShowAll({ children, className, to }) {
   const { scrollMainToTop } = useMainContext();

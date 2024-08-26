@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addRemoveFilter } from "../librarySlice";
 import Filters from "../../../ui/Filters";
-import useLibraryContext from "../useLibraryContext";
+import useLibraryContext from "../hooks/useLibraryContext";
 
 function LibraryFilters() {
   const dispatch = useDispatch();

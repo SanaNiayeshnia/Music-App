@@ -1,8 +1,7 @@
 import { Tooltip } from "@mui/material";
-
-import useIsTrackSaved from "./useIsTrackSaved";
-import useSaveTrack from "./useSaveTrack";
-import useUnsaveTrack from "./useUnsaveTrack";
+import useIsTrackSaved from "./hooks/useIsTrackSaved";
+import useSaveTrack from "./hooks/useSaveTrack";
+import useUnsaveTrack from "./hooks/useUnsaveTrack";
 import TinySpinner from "../../ui/TinySpinner";
 import { RiHeart3Fill, RiHeartAdd2Line } from "react-icons/ri";
 

@@ -5,7 +5,7 @@ import PlayingTrackbarHeader from "./PlayingTrackbarHeader";
 import useScrollbar from "../../../hooks/useScrollbar";
 import QueueBar from "../../../features/player/queue/QueueBar";
 import { useState } from "react";
-import useCurrentlyPlayingTrack from "../../../features/player/useCurrentlyPlayingTrack";
+import useCurrentlyPlayingTrack from "../../../features/player/hooks/useCurrentlyPlayingTrack";
 import TrackBarError from "./TrackBarError";
 
 function PlayingTrackBar() {

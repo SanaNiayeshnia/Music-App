@@ -1,16 +1,15 @@
-import useCurrentUser from "../features/users/useCurrentUser";
-import PageBody from "../ui/PageBody";
+import useCurrentUser from "../features/authentication/hooks/useCurrentUser";
+import PageBody from "../ui/layout/page/PageBody";
 import Spinner from "../ui/Spinner";
-import TopNav from "../ui/TopNav";
-import PersonPageHeader from "../ui/PersonPageHeader";
+import TopNav from "../ui/layout/topNav/TopNav";
+import PersonPageHeader from "../ui/layout/page/PersonPageHeader";
 import UsersTopTracks from "../features/users/UsersTopTracks";
 import UsersTopArtists from "../features/users/UsersTopArtists";
 import UsersFollowings from "../features/users/UsersFollowings";
-
-import Page from "../ui/Page";
-import IconLogo from "../ui/IconLogo";
-import useMainContext from "../ui/layout/useMainContext";
-import NavTitle from "../ui/NavTitle";
+import Page from "../ui/layout/page/Page";
+import IconLogo from "../ui/layout/topNav/IconLogo";
+import useMainContext from "../ui/layout/Main/useMainContext";
+import NavTitle from "../ui/layout/topNav/NavTitle";
 
 function AccountCenterPage() {
   const { isLoading: isLoadingUser, user } = useCurrentUser();

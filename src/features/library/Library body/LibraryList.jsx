@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import useScrollbar from "../../../hooks/useScrollbar";
 import Item from "../../../ui/Item";
-import useFollowedItems from "../useFollowedItems";
-import useLibraryContext from "../useLibraryContext";
+import useFollowedItems from "../hooks/useFollowedItems";
+import useLibraryContext from "../hooks/useLibraryContext";
 import { useEffect } from "react";
 import NothingFound from "../../../ui/NothingFound";
 

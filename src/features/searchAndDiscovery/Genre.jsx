@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { useSearchParams } from "react-router-dom";
-import useMainContext from "../../ui/layout/useMainContext";
+import useMainContext from "../../ui/layout/Main/useMainContext";
 
 function Genre({ genre, isLoading }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);

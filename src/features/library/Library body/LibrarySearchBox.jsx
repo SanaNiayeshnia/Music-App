@@ -15,7 +15,7 @@ function LibrarySearchBox() {
 
   useEffect(() => {
     //set focus on the search input when the component mounts
-    if (isOpen && isSmall == false) inputRef.current.focus();
+    if (isOpen && !isSmall) inputRef.current.focus();
   }, [isOpen, isSmall]);
 
   return (
@@ -34,7 +34,7 @@ function LibrarySearchBox() {
           type="text"
           placeholder={`search in ${currentFilter ? currentFilter + "s" : "your library"}`}
           ref={inputRef}
-          autoFocus
+          autoFocus={isSmall ? false : true}
           value={searchQuery}
           onChange={(e) => dispatch(setSearchQuery(e.target.value))}
           className={`w-full bg-transparent text-sm placeholder:text-xs placeholder:text-gray-600 focus:border-0 focus:outline-0 dark:placeholder:text-white/50`}

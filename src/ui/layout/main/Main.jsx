@@ -16,7 +16,7 @@ function Main() {
     >
       <div
         ref={ref}
-        className="scrollbar hide-scroll h-full overflow-auto pb-5 pl-3 pr-2 pt-[90px] md:px-5"
+        className="scrollbar hide-scroll h-full overflow-auto px-3 pt-[90px] md:px-5 md:pl-3 md:pr-2"
         onScroll={(e) => {
           setIsMainScrolled(e.target.scrollTop > 0);
         }}

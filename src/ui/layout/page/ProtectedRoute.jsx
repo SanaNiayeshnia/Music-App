@@ -9,8 +9,14 @@ function ProtectedRoute({ children }) {
   const { isOnLine, expiresAt } = useSelector((store) => store.authentication);
   const { isLoading, isAuthenticated } = useAccessToken();
   const navigate = useNavigate();
+  const local = new Date(expiresAt);
 
-  console.log("isAuthenticated:", isAuthenticated, expiresAt);
+  console.log(
+    "isAuthenticated:",
+    isAuthenticated,
+    expiresAt,
+    local.toLocaleString(),
+  );
 
   useEffect(() => {
     //go to login page if the user isn't authenticated

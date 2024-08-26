@@ -7,7 +7,6 @@ function useSaveAlbum(id) {
   const { isPending, mutate: saveAlbumMutate } = useMutation({
     mutationKey: ["save-album", id],
     mutationFn: () => saveAlbum(id),
-
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["is-album-saved", id] });
       queryClient.invalidateQueries({ queryKey: ["saved-albums"] });

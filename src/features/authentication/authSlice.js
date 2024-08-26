@@ -3,10 +3,11 @@ import { APP_NAME } from "../../utilities/constants";
 const musicApp = JSON.parse(localStorage.getItem(APP_NAME)) || {};
 
 const initialState = {
-  accessToken: musicApp?.spotifyAccessToken || "",
-  refreshToken: musicApp?.spotifyRefreshToken || "",
-  expiresAt: musicApp?.expiresAt || 0,
-  isAuthenticated: (musicApp?.expiresAt || 0) > Date.now(),
+  accessToken: musicApp?.spotifyAccessToken || null,
+  refreshToken: musicApp?.spotifyRefreshToken || null,
+  expiresAt: musicApp?.expiresAt || null,
+  isAuthenticated:
+    Boolean(musicApp?.expiresAt) && (musicApp?.expiresAt || 0) > Date.now(),
   isOnLine: navigator.onLine,
   user: {},
 };

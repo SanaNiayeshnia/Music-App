@@ -1,6 +1,6 @@
 import VolumeHandler from "./VolumeHandler";
 import {
-  toggleIsFullScreenPlayingTrack,
+  setIsFullScreenPlayingTrack,
   togglePlayingTrackBar,
   toggleQueueBar,
 } from "../PlaybackSlice";
@@ -19,7 +19,7 @@ function PlayerMenu() {
 
   return (
     <div
-      className={`${!currentlyPlayingTrack && "opacity-50"} hidden w-60 items-center justify-between gap-3 md:flex`}
+      className={`${!currentlyPlayingTrack && "opacity-50"} hidden items-center justify-between gap-3 md:flex md:w-72`}
     >
       <Tooltip title="Currently playing view" placement="top">
         <div>
@@ -47,7 +47,7 @@ function PlayerMenu() {
       <TbArrowsDiagonal
         onClick={() =>
           currentlyPlayingTrack
-            ? dispatch(toggleIsFullScreenPlayingTrack())
+            ? dispatch(setIsFullScreenPlayingTrack(true))
             : null
         }
         className={`${currentlyPlayingTrack && "cursor-pointer hover:text-blue-600"} min-h-5 min-w-5 text-black duration-100 dark:text-white`}

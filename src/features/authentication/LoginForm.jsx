@@ -27,10 +27,13 @@ function LoginForm() {
         <Logo />
         <div className="space-y-5 text-center">
           <p className="text-justify text-black dark:text-white">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus,
-            officia? Dignissimos accusamus architecto, facere rem natus aliquam
-            nostrum ab explicabo reiciendis at corrupti earum ex nam possimus
-            perferendis
+            Welcome to your ultimate music discovery app, powered by Spotify!
+            Explore millions of playlists, albums, artists, and tracks—all in
+            one place. Whether you're here to find new favorites or enjoy your
+            go-to hits, we've got you covered. Premium users can dive even
+            deeper by streaming songs directly within the app. Ready to begin
+            your musical journey? Log in with your Spotify account to get
+            started!
           </p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import SongSlider from "./playbackController/SongSlider";
 import VolumeHandler from "./playerMenu/VolumeHandler";
 import SaveTrackButton from "../tracks/SaveTrackButton";
 import { TbArrowsDiagonalMinimize2, TbChevronDown } from "react-icons/tb";
-import { toggleIsFullScreenPlayingTrack } from "./PlaybackSlice";
+import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
 import IconLogo from "../../ui/layout/topNav/IconLogo";
 import useCurrentlyPlayingTrack from "./hooks/useCurrentlyPlayingTrack";
 import TrackContextMenu from "../tracks/TrackContextMenu";
@@ -20,7 +20,7 @@ function FullScreenPlayingTrack() {
   const navigate = useNavigate();
   const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   function close() {
-    dispatch(toggleIsFullScreenPlayingTrack());
+    dispatch(setIsFullScreenPlayingTrack(false));
   }
 
   return (

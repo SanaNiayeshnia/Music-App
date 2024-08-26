@@ -45,7 +45,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
               ? images?.at(0)?.url ||
                 (isDarkMode
                   ? "/images/covers/album-cover-dark.jpeg"
-                  : "images/covers/album-cover-light.jpeg")
+                  : "/images/covers/album-cover-light.jpeg")
               : ""
           }
           alt={name}

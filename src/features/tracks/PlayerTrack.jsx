@@ -5,14 +5,16 @@ import useCurrentlyPlayingTrack from "../player/hooks/useCurrentlyPlayingTrack";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
 import { TbPlayerPlayFilled } from "react-icons/tb";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cover from "../../ui/Cover";
+import { setIsFullScreenPlayingTrack } from "../player/PlaybackSlice";
 
 function PlayerTrack({ fullScreen }) {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
   const { isSmall } = useSelector((store) => store.global);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
@@ -21,7 +23,7 @@ function PlayerTrack({ fullScreen }) {
 
   return (
     <div
-      className={`${!currentlyPlayingTrack && "opacity-50"} ${!fullScreen && "gap-4 md:w-60"} flex items-center justify-between`}
+      className={`${!currentlyPlayingTrack && "opacity-50"} ${!fullScreen && "gap-4 md:w-72"} flex items-center justify-between`}
     >
       <div
         className={`${fullScreen && isSmall && "flex-col"} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
@@ -33,6 +35,7 @@ function PlayerTrack({ fullScreen }) {
                 !isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""
               }
               title={currentlyPlayingTrack?.name}
+              size="large"
             />
           ) : (
             <>
@@ -67,6 +70,7 @@ function PlayerTrack({ fullScreen }) {
               <p
                 onClick={(e) => {
                   e.stopPropagation();
+                  dispatch(setIsFullScreenPlayingTrack(false));
                   navigate(`/track/${currentlyPlayingTrack?.id}`);
                 }}
                 className={`${fullScreen ? "text-xl font-bold leading-8 md:text-3xl md:leading-10" : "text-sm font-medium md:w-40"} cursor-pointer ${fullScreen ? "text-black dark:text-white" : "text-white md:text-black md:dark:text-white"} hover:underline`}
@@ -80,6 +84,7 @@ function PlayerTrack({ fullScreen }) {
                   <span
                     onClick={(e) => {
                       e.stopPropagation();
+                      dispatch(setIsFullScreenPlayingTrack(false));
                       navigate(`/artist/${artist?.id}`);
                     }}
                     className="hover:underline"

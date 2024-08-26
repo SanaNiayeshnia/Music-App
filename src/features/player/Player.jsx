@@ -3,7 +3,7 @@ import PlayerTrack from "../tracks/PlayerTrack";
 import PlaybackController from "./playbackController/PlaybackController";
 import PlayerMenu from "./playerMenu/PlayerMenu";
 import useCurrentlyPlayingTrack from "./hooks/useCurrentlyPlayingTrack";
-import { toggleIsFullScreenPlayingTrack } from "./PlaybackSlice";
+import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
 
 function Player() {
   const { isSmall } = useSelector((store) => store.global);
@@ -13,7 +13,7 @@ function Player() {
   return isSmall && currentlyPlayingTrack ? (
     <div
       className="absolute bottom-20 mb-2 flex w-full cursor-pointer justify-center px-3"
-      onClick={() => dispatch(toggleIsFullScreenPlayingTrack())}
+      onClick={() => dispatch(setIsFullScreenPlayingTrack(true))}
     >
       <div className="w-full rounded bg-blue-600/60 px-3 py-2 shadow backdrop-blur-lg">
         <PlayerTrack />

@@ -9,6 +9,7 @@ import { setIsMedium, setIsSmall } from "../../GlobalSlice";
 import MainContextProvider from "./main/MainContextProvider";
 import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
+import { togglePlayingTrackBar } from "../../features/player/PlaybackSlice";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(
@@ -21,10 +22,13 @@ function AppLayout() {
         setIsMedium(window.innerWidth < 1024 && window.innerWidth > 768),
       );
       dispatch(setIsSmall(window.innerWidth < 768));
+      window.innerWidth < 768 &&
+        isPlayingTrackbarOpen &&
+        dispatch(togglePlayingTrackBar());
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [dispatch]);
+  }, [dispatch, isPlayingTrackbarOpen]);
 
   return (
     <MainContextProvider>

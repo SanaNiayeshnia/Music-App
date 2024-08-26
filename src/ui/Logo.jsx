@@ -6,10 +6,7 @@ function Logo() {
 
   return (
     <div>
-      <Cover
-        image={`/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`}
-        className="-ml-8 h-52 w-52 md:ml-auto"
-      />
+      <Cover image={`/album-cover-${isDarkMode ? "dark" : "light"}.jpeg`} />
     </div>
   );
 }

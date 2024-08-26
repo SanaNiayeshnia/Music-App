@@ -17,8 +17,8 @@ const playbackSlice = createSlice({
       state.isPlayingTrackbarOpen = true;
       state.isQueueBarOpen = !state.isQueueBarOpen;
     },
-    toggleIsFullScreenPlayingTrack(state) {
-      state.isFullScreenPlayingTrackOpen = !state.isFullScreenPlayingTrackOpen;
+    setIsFullScreenPlayingTrack(state, action) {
+      state.isFullScreenPlayingTrackOpen = action.payload;
     },
   },
 });
@@ -27,5 +27,5 @@ export default playbackSlice.reducer;
 export const {
   togglePlayingTrackBar,
   toggleQueueBar,
-  toggleIsFullScreenPlayingTrack,
+  setIsFullScreenPlayingTrack,
 } = playbackSlice.actions;

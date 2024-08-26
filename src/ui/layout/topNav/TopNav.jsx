@@ -1,7 +1,7 @@
 import DarkModeToggler from "./DarkModeToggler";
 import NavigationArrows from "./NavigationArrows";
 import UserAvatar from "../../../features/users/UserAvatar";
-import useMainContext from "../Main/useMainContext";
+import useMainContext from "../main/useMainContext";
 import { useSelector } from "react-redux";
 import NavTitle from "./NavTitle";
 import { useLocation } from "react-router-dom";

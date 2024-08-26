@@ -10,12 +10,17 @@ import MainContextProvider from "./main/MainContextProvider";
 import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 import { togglePlayingTrackBar } from "../../features/player/PlaybackSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,
   );
+  const { isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();
+  const loc = useLocation();
+  const isOnLibraryPage = loc.pathname.includes("/library");
+  const navigate = useNavigate();
   useEffect(() => {
     function handleResize() {
       dispatch(
@@ -29,6 +34,11 @@ function AppLayout() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [dispatch, isPlayingTrackbarOpen]);
+
+  // useEffect(() => {
+  //   //redirect to main page if the user trys to access to the library page and they are not using a small screen device
+  //   !isSmall && isOnLibraryPage && navigate("/");
+  // }, [isSmall, isOnLibraryPage, navigate]);
 
   return (
     <MainContextProvider>

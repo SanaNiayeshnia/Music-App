@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Track from "./Track";
-import { useSelector } from "react-redux";
 
 function TrackListV2({ tracks, max = 5, noArtist = true, noAlbum = true }) {
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState(false);
-  const { isSmall } = useSelector((store) => store.global);
 
   return (
     <div>
@@ -18,7 +16,6 @@ function TrackListV2({ tracks, max = 5, noArtist = true, noAlbum = true }) {
                 track={track}
                 noArtist={noArtist}
                 noAlbum={noAlbum}
-                smallScreen={isSmall}
               />
             ),
           )}

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -97,7 +97,12 @@ function App() {
               }
             >
               <Route index element={<HomePage />} />
-              {isSmall && <Route path="library" element={<LibraryPage />} />}
+              <Route
+                path="library"
+                element={
+                  isSmall ? <LibraryPage /> : <Navigate replace to="/" />
+                }
+              />
               <Route path="account" element={<AccountCenterPage />} />
               <Route
                 path="account/top/tracks"

@@ -54,7 +54,6 @@ function TrackList({
                   noAlbum={noAlbum}
                   noArtist={noArtist}
                   playlist={playlist}
-                  smallScreen={isSmall}
                 />
               ))}
       </tbody>

@@ -30,7 +30,7 @@ function PlayingTrackbarHeader({ isScrolled }) {
       )}
 
       <div className="flex items-center gap-2">
-        <div className={`${!currentlyPlayingTrack && "hidden"}`}>
+        <div className={`${!currentlyPlayingTrack && "hidden"} relative z-50`}>
           <TrackContextMenu track={currentlyPlayingTrack} position="center" />
         </div>
         <TbX

@@ -35,7 +35,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
       <div className={`${size === "large" && "relative"}`}>
         {(!isImageLoaded || isLoading) && (
           <Skeleton
-            className={`rounded shadow ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? `aspect-square h-full w-full` : "h-12 w-12 lg:h-14 lg:w-14"}`}
+            className={`rounded shadow ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? `aspect-square h-full w-full` : "h-14 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
           />
         )}
 
@@ -50,7 +50,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
           }
           alt={name}
           onLoad={() => setIsImageLoaded(true)}
-          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "md:h-full md:w-full" : "h-12 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
+          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "md:h-full md:w-full" : "h-14 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
         />
 
         {size === "large" && !isLoading && (

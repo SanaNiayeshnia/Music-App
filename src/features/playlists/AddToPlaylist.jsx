@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import SearchForPlaylists from "./SearchForPlaylists";
 import { TbPlus } from "react-icons/tb";
 import useCreatedByUserPlaylists from "./hooks/useCreatedByUserPlaylists";
@@ -21,6 +21,11 @@ const AddToPlaylist = forwardRef(
 
     const { createPlaylistMutate } = useCreatePlaylist(item?.name, itemUris);
 
+    useEffect(() => {
+      //set isClickedOnPlayingChildren to default value (false) on mount
+      setIsClickedOnPlaylistChildren(false);
+    }, [setIsClickedOnPlaylistChildren]);
+
     function addToNewPlaylist() {
       createPlaylistMutate(null, {
         onSettled: () => {
@@ -33,7 +38,7 @@ const AddToPlaylist = forwardRef(
       <div
         ref={ref}
         onClick={(e) => e.stopPropagation()}
-        className={`absolute left-0 top-full z-50 w-56 overflow-hidden rounded bg-white text-sm shadow-md dark:bg-black dark:shadow-gray-50/10`}
+        className={`absolute left-0 top-full z-40 w-56 overflow-hidden rounded bg-white text-sm shadow-md dark:bg-black dark:shadow-gray-50/10`}
       >
         <div className="px-3 py-2">
           <SearchForPlaylists

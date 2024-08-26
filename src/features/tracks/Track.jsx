@@ -13,7 +13,7 @@ function Track({
   noCover = false,
   noArtist = false,
   noAlbum = false,
-  smallScreen = false,
+  noIndex = false,
   isLoading = false,
   playlist,
 }) {
@@ -24,9 +24,9 @@ function Track({
   const { isDarkMode, isSmall } = useSelector((store) => store.global);
   return (
     <tr
-      className={`${smallScreen ? "grid-cols-[2fr_0.05fr_0.05fr] pl-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}
+      className={`${isSmall ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr] pl-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}
     >
-      {!smallScreen && !isSmall && (
+      {!noIndex && (
         <td className="w-3.5 text-center">
           <span
             className={`${!isLoading && "group-hover:hidden"} text-black dark:text-white`}
@@ -44,7 +44,7 @@ function Track({
           <div className="relative flex-shrink-0">
             {(!isImageLoaded || isLoading) && (
               <Skeleton
-                className={`${smallScreen || isSmall ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} aspect-square rounded shadow`}
+                className={`${isSmall ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} aspect-square rounded shadow`}
               />
             )}
             <img
@@ -58,9 +58,9 @@ function Track({
               }
               alt={track?.name}
               onLoad={() => setIsImageLoaded(true)}
-              className={`${smallScreen || isSmall ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}
+              className={`${isSmall ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}
             />
-            {smallScreen && (
+            {isSmall && (
               <TbPlayerPlayFilled className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 cursor-pointer text-base text-white duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
             )}
           </div>
@@ -101,7 +101,7 @@ function Track({
       </td>
       {!isLoading && (
         <>
-          {!smallScreen && (
+          {!isSmall && (
             <td
               onClick={() => navigate(`/album/${track?.album?.id}`)}
               className={`${isPlayingTrackbarOpen && "hidden"} cursor-pointer text-sm text-black hover:underline xl:inline-block dark:text-white`}
@@ -113,12 +113,12 @@ function Track({
           <td className="text-center">
             {!isLoading && (
               <SaveTrackButton
-                className={`${isUsingContextMenu || smallScreen ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
+                className={`${isUsingContextMenu || isSmall ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
                 track={track}
               />
             )}
           </td>
-          {!smallScreen && (
+          {!isSmall && (
             <td className="text-center">
               {!isLoading && (
                 <p className="text-sm text-black dark:text-white">
@@ -131,7 +131,7 @@ function Track({
           <td className="text-center">
             <div
               className={
-                isUsingContextMenu || smallScreen
+                isUsingContextMenu || isSmall
                   ? "inline-block"
                   : "hidden group-hover:inline-block"
               }
@@ -141,7 +141,7 @@ function Track({
                 track={track}
                 position="left"
                 playlist={playlist}
-                smallScreen={smallScreen}
+                smallScreen={isSmall}
               />
             </div>
           </td>

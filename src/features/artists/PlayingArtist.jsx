@@ -41,7 +41,6 @@ function PlayingArtist() {
           </>
         )}
       </div>
-
       <div className="space-y-3 px-5 py-4">
         {isLoadingTrack || isLoadingArtist ? (
           <Skeleton className="h-4 w-24 rounded-sm" />

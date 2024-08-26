@@ -1,4 +1,3 @@
-import { TbDots } from "react-icons/tb";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useEffect, useState } from "react";
 
@@ -36,7 +35,7 @@ function ContextMenu({
 
       {isOpen && (
         <ul
-          className={`absolute z-50 shadow-md dark:shadow-gray-50/10 ${position === "right" ? "left-[150%]" : ""} ${position === "left" ? "right-[130%]" : ""} ${position === "center" ? "right-0 top-[115%]" : "bottom-0"} min-w-48 rounded bg-white text-sm dark:bg-black`}
+          className={`absolute z-40 shadow-md dark:shadow-gray-50/10 ${position === "right" ? "left-[150%]" : ""} ${position === "left" ? "right-[130%]" : ""} ${position === "center" ? "right-0 top-[115%]" : "bottom-0"} min-w-48 rounded bg-white text-sm dark:bg-black`}
         >
           {options.map((opt, index) => (
             <li

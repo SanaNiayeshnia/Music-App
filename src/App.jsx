@@ -31,6 +31,7 @@ import UsersTopTracks from "./features/users/UsersTopTracks";
 import UsersTopArtists from "./features/users/UsersTopArtists";
 import UsersFollowings from "./features/users/UsersFollowings";
 import LibraryPage from "./pages/LibraryPage";
+import CategoryPage from "./pages/CategoryPage";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -103,6 +104,7 @@ function App() {
                   isSmall ? <LibraryPage /> : <Navigate replace to="/" />
                 }
               />
+              <Route path="category/:id" element={<CategoryPage />} />
               <Route path="account" element={<AccountCenterPage />} />
               <Route
                 path="account/top/tracks"

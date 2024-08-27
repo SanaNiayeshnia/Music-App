@@ -1,10 +1,10 @@
 import PageBody from "../../ui/layout/page/PageBody";
-import GenreList from "./GenreList";
+import CategoryList from "./CategoryList";
 
 function DefaultSearchPageContent() {
   return (
     <PageBody noPadding>
-      <GenreList />
+      <CategoryList />
     </PageBody>
   );
 }

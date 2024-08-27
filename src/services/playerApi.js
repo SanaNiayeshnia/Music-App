@@ -2,7 +2,7 @@ import { getRequestHeader } from "../utilities/helper";
 
 export async function getRecentlyPlayed(all = false) {
   const res = await fetch(
-    "https://api.spotify.com/v1/me/player/recently-played?limit=50",
+    "https://api.spotify.com/v1/me/player/recently-played?limit=50&locale=en_US",
     { headers: getRequestHeader() },
   );
   if (res.status !== 200)

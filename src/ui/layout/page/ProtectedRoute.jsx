@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import OfflineNotification from "../../OfflineNotification";
 
 function ProtectedRoute({ children }) {
-  const { isOnLine, expiresAt } = useSelector((store) => store.authentication);
+  const { isOnLine, expiresAt, accessToken } = useSelector(
+    (store) => store.authentication,
+  );
   const { isLoading, isAuthenticated } = useAccessToken();
   const navigate = useNavigate();
   const local = new Date(expiresAt);
@@ -16,6 +18,7 @@ function ProtectedRoute({ children }) {
     isAuthenticated,
     expiresAt,
     local.toLocaleString(),
+    accessToken,
   );
 
   useEffect(() => {

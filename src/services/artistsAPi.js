@@ -2,7 +2,8 @@ import { getRequestHeader } from "../utilities/helper";
 
 //get requests
 export async function getFollowedArtists() {
-  let url = "https://api.spotify.com/v1/me/following?type=artist&limit=50";
+  let url =
+    "https://api.spotify.com/v1/me/following?type=artist&limit=50&locale=en_US";
 
   const res = await fetch(url, {
     headers: getRequestHeader(),
@@ -20,9 +21,12 @@ export async function getFollowedArtists() {
 }
 
 export async function getArtist(id) {
-  const res = await fetch(`https://api.spotify.com/v1/artists?ids=${id}`, {
-    headers: getRequestHeader(),
-  });
+  const res = await fetch(
+    `https://api.spotify.com/v1/artists?ids=${id}&locale=en_US`,
+    {
+      headers: getRequestHeader(),
+    },
+  );
   if (res.status !== 200) throw new Error("Failed to get the artist info!");
 
   const data = await res.json();
@@ -32,7 +36,7 @@ export async function getArtist(id) {
 
 export async function getArtistsDiscography(id) {
   const res = await fetch(
-    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single&limit=50`,
+    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single&limit=50&locale=en_US`,
     {
       headers: getRequestHeader(),
     },
@@ -46,7 +50,7 @@ export async function getArtistsDiscography(id) {
 
 export async function getArtistsTopTracks(id) {
   const res = await fetch(
-    `https://api.spotify.com/v1/artists/${id}/top-tracks`,
+    `https://api.spotify.com/v1/artists/${id}/top-tracks?locale=en_US`,
     {
       headers: getRequestHeader(),
     },
@@ -60,7 +64,7 @@ export async function getArtistsTopTracks(id) {
 
 export async function getRelatedArtists(id) {
   const res = await fetch(
-    `https://api.spotify.com/v1/artists/${id}/related-artists`,
+    `https://api.spotify.com/v1/artists/${id}/related-artists?locale=en_US`,
     {
       headers: getRequestHeader(),
     },
@@ -73,7 +77,7 @@ export async function getRelatedArtists(id) {
 
 export async function getAppearsOn(id) {
   const res = await fetch(
-    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=appears_on&limit=50`,
+    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=appears_on&limit=50&locale=en_US`,
     {
       headers: getRequestHeader(),
     },

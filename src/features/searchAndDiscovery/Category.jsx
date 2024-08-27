@@ -1,16 +1,15 @@
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
-import { useSearchParams } from "react-router-dom";
 import useMainContext from "../../ui/layout/Main/useMainContext";
+import { useNavigate } from "react-router-dom";
 
-function Genre({ genre, isLoading }) {
+function Category({ category, isLoading }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
   const { scrollMainToTop } = useMainContext();
+  const navigate = useNavigate();
 
   function handleOnClick() {
-    searchParams.set("genre", genre?.name);
-    setSearchParams(searchParams);
+    navigate(`/category/${category?.id}`);
     scrollMainToTop();
   }
 
@@ -19,21 +18,20 @@ function Genre({ genre, isLoading }) {
       onClick={handleOnClick}
       className="group relative flex min-h-36 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/50"
     >
-      {isLoading || !isImageLoaded ? (
-        <>
-          <Skeleton className="h-5 w-20" />
-          <Skeleton className="absolute -bottom-5 -right-5 aspect-square h-24 w-24 rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110 md:h-[7.5rem] md:w-[7.5rem]" />
-        </>
+      {isLoading ? (
+        <Skeleton className="h-5 w-20" />
       ) : (
-        <>
-          <p className="text-lg font-bold text-black first-letter:uppercase dark:text-white">
-            {genre?.name}
-          </p>
-        </>
+        <p className="text-lg font-bold text-black first-letter:uppercase dark:text-white">
+          {category?.name}
+        </p>
+      )}
+
+      {!isImageLoaded && (
+        <Skeleton className="absolute -bottom-5 -right-5 aspect-square h-24 w-24 rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110 md:h-[7.5rem] md:w-[7.5rem]" />
       )}
       <img
-        src={!isLoading ? genre?.cover : ""}
-        alt={genre?.name}
+        src={!isLoading ? category?.icons[0]?.url : ""}
+        alt={category?.name}
         onLoad={() => setIsImageLoaded(true)}
         className={`${!isImageLoaded && "hidden"} absolute -bottom-5 -right-5 aspect-square w-24 rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110 md:w-[7.5rem]`}
       />
@@ -41,4 +39,4 @@ function Genre({ genre, isLoading }) {
   );
 }
 
-export default Genre;
+export default Category;

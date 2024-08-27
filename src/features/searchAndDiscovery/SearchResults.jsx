@@ -15,7 +15,6 @@ function SearchResults() {
   const [searchParams] = useSearchParams();
   const { isLoading, searchResult, error } = useSearchResult(
     searchParams.get("q"),
-    searchParams.get("genre"),
   );
   const [currentFilter, setCurrentFilter] = useState("");
 
@@ -32,14 +31,6 @@ function SearchResults() {
         </div>
       ) : (
         <PageBody noPadding>
-          {searchParams.has("genre") && (
-            <PageHeaderWrapper
-              short
-              className="text-3xl font-bold first-letter:uppercase"
-            >
-              <PageTitle>{searchParams.get("genre")} Genre</PageTitle>
-            </PageHeaderWrapper>
-          )}
           <SearchResultFilters
             currentFilter={currentFilter}
             setCurrentFilter={setCurrentFilter}

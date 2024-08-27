@@ -2,9 +2,12 @@ import { getRequestHeader } from "../utilities/helper";
 
 //get requests
 export async function getSavedAlbums() {
-  const res = await fetch("https://api.spotify.com/v1/me/albums?limit=50", {
-    headers: getRequestHeader(),
-  });
+  const res = await fetch(
+    "https://api.spotify.com/v1/me/albums?limit=50&locale=en_US",
+    {
+      headers: getRequestHeader(),
+    },
+  );
   if (res.status !== 200) throw new Error("Failed to get the saved albums!");
   const data = await res.json();
 
@@ -16,9 +19,12 @@ export async function getSavedAlbums() {
 }
 
 export async function getAlbum(id) {
-  const res = await fetch(`https://api.spotify.com/v1/albums/${id}`, {
-    headers: getRequestHeader(),
-  });
+  const res = await fetch(
+    `https://api.spotify.com/v1/albums/${id}?locale=en_US`,
+    {
+      headers: getRequestHeader(),
+    },
+  );
   if (res.status !== 200) throw new Error("Failed to get the album!");
   const data = await res.json();
   return data;
@@ -39,7 +45,7 @@ export async function checkUsersSavedAlbums(id) {
 
 export async function getNewReleases() {
   const res = await fetch(
-    `https://api.spotify.com/v1/browse/new-releases?limit=50`,
+    `https://api.spotify.com/v1/browse/new-releases?limit=50&locale=en_US`,
     {
       headers: getRequestHeader(),
     },

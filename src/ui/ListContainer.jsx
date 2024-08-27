@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Item from "./Item";
-import NothingFound from "./NothingFound";
-import Title from "./Title";
-import ShowAll from "./ShowAll";
+
 import useScrollbar from "../hooks/useScrollbar";
 import ListTitle from "./ListTitle";
 

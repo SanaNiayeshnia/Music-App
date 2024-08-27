@@ -10,9 +10,12 @@ export async function getUser(id) {
 }
 
 export async function getUsersTopTracks() {
-  const res = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=50`, {
-    headers: getRequestHeader(),
-  });
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/top/tracks?limit=50&locale=en_US`,
+    {
+      headers: getRequestHeader(),
+    },
+  );
   if (res.status !== 200)
     throw new Error("Failed to get the user's top tracks!");
   const data = await res.json();
@@ -21,7 +24,7 @@ export async function getUsersTopTracks() {
 
 export async function getUsersTopArtists() {
   const res = await fetch(
-    `https://api.spotify.com/v1/me/top/artists?limit=50`,
+    `https://api.spotify.com/v1/me/top/artists?limit=50&locale=en_US`,
     {
       headers: getRequestHeader(),
     },

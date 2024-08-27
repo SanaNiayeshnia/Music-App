@@ -9,7 +9,6 @@ import IconLogo from "../ui/layout/topNav/IconLogo";
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.has("q");
-  const genre = searchParams.has("genre");
 
   return (
     <Page>
@@ -17,7 +16,7 @@ function SearchPage() {
         <IconLogo noTitle />
         <SearchBox />
       </TopNav>
-      {query || genre ? <SearchResults /> : <DefaultSearchPageContent />}
+      {query ? <SearchResults /> : <DefaultSearchPageContent />}
     </Page>
   );
 }

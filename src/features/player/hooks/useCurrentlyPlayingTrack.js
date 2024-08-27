@@ -3,13 +3,13 @@ import { getCurrentlyPlaingTrack } from "../../../services/playerApi";
 import { useSelector } from "react-redux";
 
 function useCurrentlyPlayingTrack() {
-  const { accessToken } = useSelector((store) => store.authentication);
+  const { isAuthenticated } = useSelector((store) => store.authentication);
 
   const { isLoading, data: currentlyPlayingTrack } = useQuery({
     queryKey: ["currently-playing-track"],
     queryFn: getCurrentlyPlaingTrack,
     staleTime: 1000,
-    enabled: Boolean(accessToken),
+    enabled: Boolean(isAuthenticated),
   });
 
   return { isLoading, currentlyPlayingTrack };

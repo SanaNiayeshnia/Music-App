@@ -4,9 +4,12 @@ import { getUsersSavedTracks } from "./tracksApi";
 
 //get requests
 export async function getSavedPlaylists() {
-  const res = await fetch("https://api.spotify.com/v1/me/playlists?limit=50", {
-    headers: getRequestHeader(),
-  });
+  const res = await fetch(
+    "https://api.spotify.com/v1/me/playlists?limit=50&locale=en_US",
+    {
+      headers: getRequestHeader(),
+    },
+  );
   if (res.status !== 200) throw new Error("Failed to get the saved playlists!");
   const data = await res.json();
 
@@ -21,9 +24,12 @@ export async function getPlaylist(id) {
   let data;
   if (id === "LikedSongs") data = await getLikedSongsPlaylist();
   else {
-    const res = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
-      headers: getRequestHeader(),
-    });
+    const res = await fetch(
+      `https://api.spotify.com/v1/playlists/${id}?locale=en_US`,
+      {
+        headers: getRequestHeader(),
+      },
+    );
     if (res.status !== 200)
       throw new Error("Failed to get the saved playlists!");
     data = await res.json();
@@ -34,7 +40,7 @@ export async function getPlaylist(id) {
 
 export async function getRelatedPlaylists(genre) {
   const res = await fetch(
-    `https://api.spotify.com/v1/search?query=genre:"${genre}"&type=playlist&limit=50`,
+    `https://api.spotify.com/v1/search?query=genre:"${genre}"&type=playlist&limit=50&locale=en_US`,
     {
       headers: getRequestHeader(),
     },
@@ -59,7 +65,7 @@ export async function checkUsersSavedPlaylists(id) {
 
 export async function getFeaturedPlaylists() {
   const res = await fetch(
-    `https://api.spotify.com/v1/browse/featured-playlists?limit=50`,
+    `https://api.spotify.com/v1/browse/featured-playlists?limit=50&locale=en_US`,
     {
       headers: getRequestHeader(),
     },
@@ -85,6 +91,21 @@ export async function getLikedSongsPlaylist() {
   };
 
   return likedSongsPlaylist;
+}
+
+export async function getCategoriesPlaylists(id) {
+  const res = await fetch(
+    `
+    https://api.spotify.com/v1/browse/categories/${id}/playlists?locale=en_US`,
+    {
+      headers: getRequestHeader(),
+    },
+  );
+  if (res.status !== 200)
+    throw new Error("Failed to get the category's playlists!");
+  const data = await res.json();
+  console.log(data);
+  return data?.playlists?.items;
 }
 
 //put requests

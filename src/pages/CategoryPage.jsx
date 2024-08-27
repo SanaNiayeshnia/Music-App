@@ -10,6 +10,7 @@ import PageHeaderWrapper from "../ui/layout/page/PageHeaderWrapper";
 import PageTitle from "../ui/layout/page/PageTitle";
 import ListContainer from "../ui/ListContainer";
 import useCategory from "../features/searchAndDiscovery/hooks/useCategory";
+import IconLogo from "../ui/layout/topNav/IconLogo";
 
 function CategoryPage() {
   const { isMainScrolled } = useMainContext();
@@ -20,7 +21,14 @@ function CategoryPage() {
 
   return (
     <Page>
-      <TopNav>{isMainScrolled && <NavTitle></NavTitle>}</TopNav>
+      <TopNav>
+        {isMainScrolled && (
+          <NavTitle noPlayButton>
+            <IconLogo noTitle />
+            {category?.name}
+          </NavTitle>
+        )}
+      </TopNav>
       {isLoadingCategory || isLoadingCategorysPlaylists ? (
         <div className="grid h-full place-items-center">
           <Spinner />

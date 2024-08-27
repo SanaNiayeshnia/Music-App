@@ -1,5 +1,6 @@
-import { TbBookmark, TbPlus } from "react-icons/tb";
+import { TbBookmark } from "react-icons/tb";
 import { useSelector } from "react-redux";
+import CreateNewPlaylistButton from "../playlists/CreateNewPlaylistButton";
 
 function LibraryHeader() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
@@ -18,9 +19,7 @@ function LibraryHeader() {
           library
         </span>
       </div>
-      <TbPlus
-        className={`${isPlayingTrackbarOpen && "md:hidden"} min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black hover:bg-white/40 hover:shadow lg:inline-block dark:text-white dark:hover:bg-black/40`}
-      />
+      <CreateNewPlaylistButton />
     </div>
   );
 }

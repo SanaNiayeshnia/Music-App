@@ -4,20 +4,25 @@ import { useEffect } from "react";
 function useScrollbar() {
   const ref = useRef();
   useEffect(() => {
-    function showHideScrollBar() {
-      ref?.current?.classList.toggle("hide-scroll");
+    function showScrollBar() {
+      ref?.current?.classList.remove("hide-scroll");
+      ref?.current?.classList.add("show-scroll");
+    }
+    function hideScrollBar() {
+      ref?.current?.classList.add("hide-scroll");
+      ref?.current?.classList.remove("show-scroll");
     }
 
-    ref?.current?.addEventListener("mouseenter", showHideScrollBar);
-    ref?.current?.addEventListener("mouseleave", showHideScrollBar);
-    ref?.current?.addEventListener("touchstart", showHideScrollBar);
-    ref?.current?.addEventListener("touchend", showHideScrollBar);
+    ref?.current?.addEventListener("mouseenter", showScrollBar);
+    ref?.current?.addEventListener("mouseleave", hideScrollBar);
+    ref?.current?.addEventListener("touchstart", showScrollBar);
+    ref?.current?.addEventListener("touchend", hideScrollBar);
 
     return () => {
-      ref?.current?.removeEventListener("mouseenter", showHideScrollBar);
-      ref?.current?.removeEventListener("mouseleave", showHideScrollBar);
-      ref?.current?.removeEventListener("touchstart", showHideScrollBar);
-      ref?.current?.removeEventListener("touchend", showHideScrollBar);
+      ref?.current?.removeEventListener("mouseenter", showScrollBar);
+      ref?.current?.removeEventListener("mouseleave", hideScrollBar);
+      ref?.current?.removeEventListener("touchstart", showScrollBar);
+      ref?.current?.removeEventListener("touchend", hideScrollBar);
     };
   }, []);
 

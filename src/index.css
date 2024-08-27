@@ -8,6 +8,7 @@
     outline-color 0.3s,
     color 0.3s,
     margin 0.3s,
+    filter 0.3s,
     padding 0.3s;
 }
 
@@ -122,7 +123,7 @@ body {
   scroll-behavior: smooth;
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
+.scrollbar.show-scroll::-webkit-scrollbar-thumb {
   background-color: #2563eb;
   transition: all 0.3s;
   border-radius: 0.5rem;

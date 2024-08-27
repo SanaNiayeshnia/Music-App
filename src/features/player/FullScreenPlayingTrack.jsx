@@ -31,7 +31,7 @@ function FullScreenPlayingTrack() {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className={`${isFullScreenPlayingTrackOpen ? "inset-0 opacity-100" : "left-0 right-0 top-full opacity-0 md:inset-0 md:hidden"} absolute z-40 transition-all`}
+      className={`${isFullScreenPlayingTrackOpen ? "inset-0 opacity-100" : "left-0 right-0 top-full opacity-0 md:inset-0 md:hidden"} absolute z-50 transition-all`}
     >
       <div className="absolute inset-0 z-50 grid place-items-center bg-white/50 px-8 backdrop-blur-lg dark:bg-black/50">
         <div className="flex w-11/12 items-center justify-between">

@@ -19,7 +19,7 @@ function Controls() {
   }
 
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center gap-5">
       <TbArrowsShuffle
         className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105"} text-2xl text-black transition-all duration-100 dark:text-white`}
       />

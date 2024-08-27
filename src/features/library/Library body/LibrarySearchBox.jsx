@@ -7,7 +7,7 @@ import { setSearchQuery } from "../librarySlice";
 
 function LibrarySearchBox() {
   const [isOpen, setIsOpen] = useState(false);
-  const ref = useOutsideClick(() => setIsOpen(false));
+  const ref = useOutsideClick(() => (!searchQuery ? setIsOpen(false) : null));
   const { searchQuery, currentFilter } = useSelector((store) => store.library);
   const { isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();

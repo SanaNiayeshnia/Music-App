@@ -9,7 +9,7 @@ function MadeForYou() {
 
   return (
     <ListContainer
-      title="Made For you"
+      title="Made For You"
       items={categorysPlaylists}
       isLoading={isLoadingCategories || isLoadingCategorysPlaylists}
       showAllTo={`category/${categories?.at(0)?.id}`}

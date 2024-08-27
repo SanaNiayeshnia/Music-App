@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useCategoriesPlaylists from "../features/playlists/hooks/useCategoriesPlaylists";
+import useCategorysPlaylists from "../features/playlists/hooks/useCategorysPlaylists";
 import Spinner from "../ui/Spinner";
 import useMainContext from "../ui/layout/Main/useMainContext";
 import Page from "../ui/layout/page/Page";
@@ -15,9 +15,9 @@ function CategoryPage() {
   const { isMainScrolled } = useMainContext();
   const { id } = useParams();
   const { isLoading: isLoadingCategory, category } = useCategory(id);
-  const { isLoading: isLoadingCategorysPlaylists, categoriesPlaylists } =
-    useCategoriesPlaylists(id);
-  console.log(categoriesPlaylists);
+  const { isLoading: isLoadingCategorysPlaylists, categorysPlaylists } =
+    useCategorysPlaylists(id);
+
   return (
     <Page>
       <TopNav>{isMainScrolled && <NavTitle></NavTitle>}</TopNav>
@@ -35,7 +35,7 @@ function CategoryPage() {
           </PageHeaderWrapper>
           <PageBody>
             <ListContainer
-              items={categoriesPlaylists}
+              items={categorysPlaylists}
               isLoading={isLoadingCategorysPlaylists}
               noTitle
               all={true}

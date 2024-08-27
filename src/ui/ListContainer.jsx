@@ -98,16 +98,16 @@ function ListContainer({
         {children}
         <div
           ref={ref}
-          className={`${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2"} scrollbar hide-scroll md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
+          className={`${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2 sm:grid-cols-3"} scrollbar hide-scroll md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
         >
           {isLoading
             ? loadingItems.map((item, index) => (
                 <Item key={index} isLoading={true} size="large" />
               ))
             : !isLoading && slicedItems?.length > 0
-              ? slicedItems?.map((item) => (
+              ? slicedItems?.map((item, index) => (
                   <Item
-                    key={item.id}
+                    key={index}
                     item={item}
                     size="large"
                     discography={discography}

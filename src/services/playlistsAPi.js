@@ -93,7 +93,7 @@ export async function getLikedSongsPlaylist() {
   return likedSongsPlaylist;
 }
 
-export async function getCategoriesPlaylists(id) {
+export async function getCategorysPlaylists(id) {
   const res = await fetch(
     `
     https://api.spotify.com/v1/browse/categories/${id}/playlists?locale=en_US`,

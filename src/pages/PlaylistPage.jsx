@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import usePlaylist from "../features/playlists/hooks/usePlaylist";
 import Spinner from "../ui/Spinner";
 import useUser from "../features/users/hooks/useUser";
-import useMainContext from "../ui/layout/Main/useMainContext";
+import useMainContext from "../ui/layout/main/useMainContext";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";
 

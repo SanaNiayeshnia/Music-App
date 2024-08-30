@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import TopNav from "../ui/layout/topNav/TopNav";
 import PageBody from "../ui/layout/page/PageBody";
 import IconLogo from "../ui/layout/topNav/IconLogo";
-import useMainContext from "../ui/layout/Main/useMainContext";
+import useMainContext from "../ui/layout/main/useMainContext";
 import Page from "../ui/layout/page/Page";
 
 function SectionPage({ children }) {

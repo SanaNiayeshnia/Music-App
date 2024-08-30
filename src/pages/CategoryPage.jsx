@@ -1,13 +1,11 @@
 import { useParams } from "react-router-dom";
 import useCategorysPlaylists from "../features/playlists/hooks/useCategorysPlaylists";
 import Spinner from "../ui/Spinner";
-import useMainContext from "../ui/layout/Main/useMainContext";
+import useMainContext from "../ui/layout/main/useMainContext";
 import Page from "../ui/layout/page/Page";
 import PageBody from "../ui/layout/page/PageBody";
 import NavTitle from "../ui/layout/topNav/NavTitle";
 import TopNav from "../ui/layout/topNav/TopNav";
-import PageHeaderWrapper from "../ui/layout/page/PageHeaderWrapper";
-import PageTitle from "../ui/layout/page/PageTitle";
 import ListContainer from "../ui/ListContainer";
 import useCategory from "../features/searchAndDiscovery/hooks/useCategory";
 import IconLogo from "../ui/layout/topNav/IconLogo";

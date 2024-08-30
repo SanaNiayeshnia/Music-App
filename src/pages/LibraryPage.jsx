@@ -4,7 +4,7 @@ import NavTitle from "../ui/layout/topNav/NavTitle";
 import Page from "../ui/layout/page/Page";
 import PageBody from "../ui/layout/page/PageBody";
 import TopNav from "../ui/layout/topNav/TopNav";
-import useMainContext from "../ui/layout/Main/useMainContext";
+import useMainContext from "../ui/layout/main/useMainContext";
 
 function LibraryPage() {
   const { isMainScrolled } = useMainContext();

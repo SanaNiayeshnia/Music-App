@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import useArtist from "../features/artists/hooks/useArtist";
 import { formatDate } from "../utilities/helper";
 import Spinner from "../ui/Spinner";
-import useMainContext from "../ui/layout/Main/useMainContext";
+import useMainContext from "../ui/layout/main/useMainContext";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";
 

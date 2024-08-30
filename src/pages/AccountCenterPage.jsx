@@ -8,7 +8,7 @@ import UsersTopArtists from "../features/users/UsersTopArtists";
 import UsersFollowings from "../features/users/UsersFollowings";
 import Page from "../ui/layout/page/Page";
 import IconLogo from "../ui/layout/topNav/IconLogo";
-import useMainContext from "../ui/layout/Main/useMainContext";
+import useMainContext from "../ui/layout/main/useMainContext";
 import NavTitle from "../ui/layout/topNav/NavTitle";
 
 function AccountCenterPage() {

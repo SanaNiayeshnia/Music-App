@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { RiSearch2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import useMainContext from "../../ui/layout/Main/useMainContext";
+import useMainContext from "../../ui/layout/main/useMainContext";
 import { setQuery } from "./searchSlice";
 
 function SearchBox() {

@@ -76,7 +76,7 @@ function App() {
           toastOptions={{
             success: { duration: 3000 },
             error: { duration: 5000 },
-            duration: 2000,
+            duration: 3000,
             style: {
               fontSize: "1rem",
               padding: "1rem 0.5rem",

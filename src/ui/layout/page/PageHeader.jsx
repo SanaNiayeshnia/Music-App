@@ -67,8 +67,10 @@ function PageHeader({ item, artist }) {
     );
   return (
     <PageHeaderWrapper background={background}>
-      <div className="flex flex-col items-center gap-4 md:flex-row xl:gap-5">
-        <Cover cover={cover} title={title} />
+      <div className="flex flex-col gap-4 md:flex-row md:items-center xl:gap-5">
+        <div className="grid place-items-center">
+          <Cover cover={cover} title={title} />
+        </div>
         <div className={`flex-grow space-y-3 lg:space-y-4`}>
           <HeaderType>{type}</HeaderType>
           <PageTitle>{title}</PageTitle>

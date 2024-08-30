@@ -9,8 +9,10 @@ const AddToPlaylist = forwardRef(
   ({ item, setIsClickedOnPlaylistChildren }, ref) => {
     const { playlists } = useCreatedByUserPlaylists();
     const [searchQuery, setSearchQuery] = useState("");
-    const filteredPlaylists = playlists.filter((playlist) =>
-      playlist.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()),
+    const filteredPlaylists = playlists.filter(
+      (playlist) =>
+        playlist.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()) &&
+        playlist?.id !== "LikedSongs",
     );
     const itemUris =
       item?.type === "track"
@@ -19,7 +21,10 @@ const AddToPlaylist = forwardRef(
           ? item?.tracks?.items?.map((item) => item.uri)
           : "";
 
-    const { createPlaylistMutate } = useCreatePlaylist(item?.name, itemUris);
+    const { createPlaylistMutate } = useCreatePlaylist({
+      name: item?.name,
+      uris: itemUris,
+    });
 
     useEffect(() => {
       //set isClickedOnPlayingChildren to default value (false) on mount
@@ -54,7 +59,9 @@ const AddToPlaylist = forwardRef(
           <span className="text-black dark:text-white"> New playlist</span>
         </p>
         {[
-          ...(searchQuery === "" ? playlists.slice(0, 3) : filteredPlaylists),
+          ...(searchQuery === ""
+            ? playlists.slice(0, 3).filter((p) => p.id !== "LikedSongs")
+            : filteredPlaylists),
         ].map((playlist) => (
           <AddToPlaylistItem
             key={playlist?.id}

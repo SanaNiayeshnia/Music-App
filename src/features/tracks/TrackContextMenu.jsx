@@ -10,7 +10,6 @@ function TrackContextMenu({
   position,
   setIsUsingContextMenu,
   playlist,
-  smallScreen,
 }) {
   const { isLoading: isLoadingTrackSaved, isTrackSaved } = useIsTrackSaved(
     track?.id,
@@ -41,7 +40,6 @@ function TrackContextMenu({
       position={position}
       setIsUsingContextMenu={setIsUsingContextMenu}
       removeFromPlaylist={doesPlaylistBelongsToUser ? removeFromPlaylist : null}
-      smallScreen={smallScreen}
     />
   );
 }

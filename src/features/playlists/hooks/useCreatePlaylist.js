@@ -4,7 +4,7 @@ import useCurrentUser from "../../authentication/hooks/useCurrentUser";
 import toast from "react-hot-toast";
 import useAddItemsToPlaylist from "./useAddItemsToPlaylist";
 
-function useCreatePlaylist(playlistName, uris) {
+function useCreatePlaylist({ name, uris, isPublic = false }) {
   const { user } = useCurrentUser();
   const queryClient = useQueryClient();
   const { addItemsToPlaylistMutate } = useAddItemsToPlaylist();
@@ -14,23 +14,25 @@ function useCreatePlaylist(playlistName, uris) {
     mutate: createPlaylistMutate,
     data: playlist,
   } = useMutation({
-    mutationKey: ["create-playlist", playlistName],
-    mutationFn: () => createPlaylist({ userId: user.id, playlistName }),
+    mutationKey: ["create-playlist", name],
+    mutationFn: () => createPlaylist({ userId: user?.id, name, isPublic }),
     onSuccess: (data) => {
       if (uris) {
         addItemsToPlaylistMutate(
-          { playlistId: data.id, itemUris: uris },
+          { playlistId: data?.id, itemUris: uris },
           {
             onSuccess: () => {
-              queryClient.invalidateQueries(["playlist", data.id]);
-              queryClient.invalidateQueries(["saved-playlists"]);
+              queryClient.invalidateQueries({
+                queryKey: ["playlist", data?.id],
+              });
+              queryClient.invalidateQueries({ queryKey: ["saved-playlists"] });
               toast("Playlist created");
             },
           },
         );
       } else {
-        queryClient.invalidateQueries(["saved-playlists"]);
-        toast(`Playlist ${playlistName} created`);
+        queryClient.invalidateQueries({ queryKey: ["saved-playlists"] });
+        toast(`Playlist ${name} created`);
       }
     },
   });

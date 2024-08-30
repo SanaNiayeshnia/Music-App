@@ -6,7 +6,7 @@ import Logo from "../../ui/Logo";
 function LoginForm() {
   const RESPONSE_TYPE = "code";
   const scope =
-    "user-follow-read user-library-read playlist-read-private user-read-recently-played user-read-playback-state user-read-currently-playing user-library-modify user-follow-modify playlist-modify-public playlist-modify-private user-top-read";
+    "user-follow-read user-library-read playlist-read-private user-read-recently-played user-read-playback-state user-read-currently-playing user-library-modify user-follow-modify playlist-modify-public playlist-modify-private ugc-image-upload user-top-read";
   const navigate = useNavigate();
   const { refreshToken } = useSelector((store) => store.authentication);
 

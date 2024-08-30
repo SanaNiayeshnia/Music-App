@@ -7,6 +7,7 @@ function UserAvatar({ size }) {
   const { isLoading, user } = useCurrentUser();
   const firstLetterOfUserName = user?.display_name?.slice(0, 1) || "";
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
+  console.log("user: ", user);
   const content = (
     <div
       className={`${size == "large" ? `relative h-48 w-48 flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 xl:h-48 xl:w-48 ${isPlayingTrackbarOpen ? "md:h-36 md:w-36 lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"}` : "h-9 w-9 cursor-pointer"} overflow-hidden rounded-full border-4 border-blue-600 shadow-md`}

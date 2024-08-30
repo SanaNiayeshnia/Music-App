@@ -6,6 +6,7 @@ import {
   TbDotsVertical,
   TbLink,
   TbMusicPlus,
+  TbPencil,
   TbPlus,
   TbTrash,
 } from "react-icons/tb";
@@ -15,6 +16,8 @@ import { useState } from "react";
 import AddToPlaylist from "../features/playlists/AddToPlaylist";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useSelector } from "react-redux";
+import Modal from "./Modal";
+import CreateEditNewPlaylistForm from "../features/playlists/CreateEditNewPlaylistForm";
 
 function ItemContextMenu({
   item,
@@ -28,7 +31,7 @@ function ItemContextMenu({
   noAddToPlaylist = false,
   setIsUsingContextMenu,
   removeFromPlaylist,
-  smallScreen,
+  doesPlaylistBelongsToUser = false,
 }) {
   const [isOpenPlaylistOpt, setIsOpenPlaylistOpt] = useState(false);
   const addToPlaylistRef = useOutsideClick(() => {
@@ -39,7 +42,10 @@ function ItemContextMenu({
   const { isSmall } = useSelector((store) => store.global);
   const className =
     "min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   function handler() {}
+
   const options = [
     removeFromPlaylist && {
       title: "Remove from this playlist",
@@ -87,6 +93,12 @@ function ItemContextMenu({
       handler: () =>
         setIsOpenPlaylistOpt((isOpenPlaylistOpt) => !isOpenPlaylistOpt),
     },
+    doesPlaylistBelongsToUser && {
+      title: "Edit playlist",
+      icon: <TbPencil className="group-hover/contextli:text-blue-600" />,
+      handler: () => setIsModalOpen(true),
+      closeAfterClick: true,
+    },
     {
       title: "Copy the link",
       icon: <TbLink className="group-hover/contextli:text-blue-600" />,
@@ -96,18 +108,31 @@ function ItemContextMenu({
   ].filter(Boolean);
 
   return (
-    <ContextMenu
-      position={position}
-      options={options}
-      close={isClickedOnPlaylistChildren}
-      setIsUsingContextMenu={setIsUsingContextMenu}
-    >
-      {isSmall || smallScreen ? (
-        <TbDotsVertical className={className} />
-      ) : (
-        <TbDots className={className} />
-      )}
-    </ContextMenu>
+    <>
+      <ContextMenu
+        position={position}
+        options={options}
+        close={isClickedOnPlaylistChildren}
+        setIsUsingContextMenu={setIsUsingContextMenu}
+      >
+        {isSmall ? (
+          <TbDotsVertical className={className} />
+        ) : (
+          <TbDots className={className} />
+        )}
+      </ContextMenu>
+      <Modal
+        title="Edit playlist"
+        isForm
+        isOpen={isModalOpen}
+        closeHandler={() => setIsModalOpen(false)}
+      >
+        <CreateEditNewPlaylistForm
+          setIsModalOpen={setIsModalOpen}
+          playlistIdToEdit={item?.type === "playlist" ? item?.id : null}
+        />
+      </Modal>
+    </>
   );
 }
 

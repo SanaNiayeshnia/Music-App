@@ -1,7 +1,7 @@
 import { Switch } from "@mui/material";
 import FormFieldContainer from "./FormFieldContainer";
 
-function SwitchInput({ title, label, id }) {
+function SwitchInput({ title, label, id, register, watchedValue }) {
   return (
     <FormFieldContainer title={title}>
       <label htmlFor={id} className="pl-2 text-sm font-medium text-blue-600">
@@ -9,6 +9,7 @@ function SwitchInput({ title, label, id }) {
       </label>
       <Switch
         id={id}
+        checked={watchedValue}
         sx={{
           "& .MuiSwitch-track": {
             backgroundColor: "#94a3b8",
@@ -20,6 +21,7 @@ function SwitchInput({ title, label, id }) {
             backgroundColor: "#2563eb",
           },
         }}
+        {...register(id)}
       />
     </FormFieldContainer>
   );

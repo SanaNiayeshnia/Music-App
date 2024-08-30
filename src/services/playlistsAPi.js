@@ -1,6 +1,7 @@
 import { getRequestHeader } from "../utilities/helper";
 import { getCurrentUser } from "./authenticationApi";
 import { getUsersSavedTracks } from "./tracksApi";
+import imageCompression from "browser-image-compression";
 
 //get requests
 export async function getSavedPlaylists() {
@@ -104,7 +105,6 @@ export async function getCategorysPlaylists(id) {
   if (res.status !== 200)
     throw new Error("Failed to get the category's playlists!");
   const data = await res.json();
-  console.log(data);
   return data?.playlists?.items;
 }
 
@@ -115,6 +115,46 @@ export async function savePlaylist(id) {
     { method: "PUT", headers: getRequestHeader() },
   );
   if (res.status !== 200) throw new Error("Failed to save the playlist!");
+}
+
+export async function addPlaylistCover({ playlistId, image }) {
+  let imgFile = image;
+  if (image.size > 256 * 1024) {
+    const options = {
+      maxSizeMB: 0.25, // Maximum size in MB
+      maxWidthOrHeight: 1024, // Max width or height in pixels
+      useWebWorker: true, // Use web workers for faster compression
+    };
+    imgFile = await imageCompression(image, options);
+  }
+  const reader = new FileReader();
+  reader.readAsDataURL(imgFile);
+  reader.onload = async () => {
+    const base64Image = reader.result.split(",")[1];
+    const res = await fetch(
+      `https://api.spotify.com/v1/playlists/${playlistId}/images`,
+      {
+        method: "PUT",
+        headers: { ...getRequestHeader(), "Content-Type": "image/jpeg" },
+        body: base64Image,
+      },
+    );
+    if (res.status !== 202)
+      throw new Error("Failed to add playlist cover image!");
+    return { playlistId };
+  };
+}
+
+export async function editPlaylist({ playlistId, name, isPublic }) {
+  const res = await fetch(
+    `https://api.spotify.com/v1/playlists/${playlistId}`,
+    {
+      method: "PUT",
+      headers: { ...getRequestHeader(), "Content-Type": "application/json" },
+      body: JSON.stringify({ name, public: isPublic }),
+    },
+  );
+  if (res.status !== 200) throw new Error("Failed to update the playlist!");
 }
 
 //delete requests
@@ -142,13 +182,13 @@ export async function removeItemsFromPlaylist({ playlistId, itemUris }) {
 }
 
 //post requests
-export async function createPlaylist({ userId, playlistName }) {
+export async function createPlaylist({ userId, name, isPublic }) {
   const res = await fetch(
     `https://api.spotify.com/v1/users/${userId}/playlists`,
     {
       method: "POST",
       headers: { ...getRequestHeader(), "Content-Type": "application/json" },
-      body: JSON.stringify({ name: playlistName }),
+      body: JSON.stringify({ name, public: isPublic }),
     },
   );
   if (res.status !== 201) throw new Error("Failed to create the playlist!");

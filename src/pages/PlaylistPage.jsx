@@ -40,7 +40,7 @@ function PlaylistPage() {
               playlist={{
                 id: playlist?.id,
                 owner: playlist?.owner,
-                name: playlist.name,
+                name: playlist?.name,
               }}
             />
             <AlsoLikePlaylists />

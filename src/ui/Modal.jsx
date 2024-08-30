@@ -22,7 +22,10 @@ function Modal({
             onClick={closeHandler}
           />
         </div>
-        <div className="grid min-h-36 place-items-center px-3 py-2">
+        <div
+          key={Math.random()}
+          className="grid min-h-36 place-items-center px-3 py-2"
+        >
           {children}
         </div>
       </div>

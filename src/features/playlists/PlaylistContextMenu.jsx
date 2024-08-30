@@ -2,6 +2,7 @@ import useIsPlaylistSaved from "./hooks/useIsPlaylistSaved";
 import useSavePlaylist from "./hooks/useSavePlaylist";
 import useUnsavePlaylist from "./hooks/useUnsavePlaylist";
 import ItemContextMenu from "../../ui/ItemContextMenu";
+import useCurrentUser from "../authentication/hooks/useCurrentUser";
 
 function PlaylistContextMenu({ position, playlist }) {
   const { isLoading: isLoadingPlaylistSaved, isPlaylistSaved } =
@@ -11,6 +12,9 @@ function PlaylistContextMenu({ position, playlist }) {
   );
   const { isPending: isPendingUnsave, unsavePlaylistMutate } =
     useUnsavePlaylist(playlist?.id);
+
+  const { user } = useCurrentUser();
+  const doesPlaylistBelongsToUser = user?.id === playlist?.owner?.id;
 
   return (
     <ItemContextMenu
@@ -23,6 +27,7 @@ function PlaylistContextMenu({ position, playlist }) {
       item={playlist}
       position={position}
       noAddToPlaylist
+      doesPlaylistBelongsToUser={doesPlaylistBelongsToUser}
     />
   );
 }

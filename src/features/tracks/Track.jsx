@@ -141,7 +141,6 @@ function Track({
                 track={track}
                 position="left"
                 playlist={playlist}
-                smallScreen={isSmall}
               />
             </div>
           </td>

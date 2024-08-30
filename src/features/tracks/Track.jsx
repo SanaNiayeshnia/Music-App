@@ -1,4 +1,4 @@
-import { TbDots, TbPlayerPlayFilled } from "react-icons/tb";
+import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useSelector } from "react-redux";
 import { formatTrackDuration } from "../../utilities/helper";
 import { useState } from "react";

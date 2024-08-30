@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
-import useMainContext from "../../ui/layout/Main/useMainContext";
+import useMainContext from "../../ui/layout/main/useMainContext";
 import { useNavigate } from "react-router-dom";
 
 function Category({ category, isLoading }) {

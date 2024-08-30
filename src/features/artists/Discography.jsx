@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ListContainer from "../../ui/ListContainer";
 import useArtistsDiscography from "./hooks/useArtistsDiscography";
 import { useEffect, useState } from "react";

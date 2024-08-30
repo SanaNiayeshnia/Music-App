@@ -1,7 +1,7 @@
 import { TbHome, TbHomeFilled } from "react-icons/tb";
 import SideItem from "./SideItem";
 import { RiSearch2Fill, RiSearch2Line } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setQuery } from "../../../features/searchAndDiscovery/searchSlice";
 function Sidebar() {
   const dispatch = useDispatch();

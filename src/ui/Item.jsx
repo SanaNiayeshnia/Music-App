@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
 import { formatName } from "../utilities/helper";
 import { useNavigate } from "react-router-dom";
-import useMainContext from "./layout/Main/useMainContext";
+import useMainContext from "./layout/main/useMainContext";
 
 function Item({ item = {}, size, isLoading = false, discography = false }) {
   const [isHovered, setIsHovered] = useState(false);

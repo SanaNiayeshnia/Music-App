@@ -1,5 +1,5 @@
 import Title from "../../ui/Title";
-import useMainContext from "../../ui/layout/Main/useMainContext";
+import useMainContext from "../../ui/layout/main/useMainContext";
 import TrackList from "../tracks/TrackList";
 
 function SongsResult({ items, all, setCurrentFilter }) {

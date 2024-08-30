@@ -12,7 +12,7 @@ import AppearsOn from "../features/artists/AppearsOn";
 import PersonPageHeader from "../ui/layout/page/PersonPageHeader";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";
-import useMainContext from "../ui/layout/Main/useMainContext";
+import useMainContext from "../ui/layout/main/useMainContext";
 
 function ArtistPage() {
   const { isMainScrolled } = useMainContext();

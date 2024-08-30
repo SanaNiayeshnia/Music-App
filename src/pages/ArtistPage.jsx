@@ -9,10 +9,10 @@ import Spinner from "../ui/Spinner";
 import useArtistsTopTracks from "../features/artists/hooks/useArtistsTopTracks";
 import RelatedArtists from "../features/artists/RelatedArtists";
 import AppearsOn from "../features/artists/AppearsOn";
-import useMainContext from "../ui/layout/Main/useMainContext";
 import PersonPageHeader from "../ui/layout/page/PersonPageHeader";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";
+import useMainContext from "../ui/layout/Main/useMainContext";
 
 function ArtistPage() {
   const { isMainScrolled } = useMainContext();

@@ -5,16 +5,16 @@ import SwitchInput from "../../ui/Form/SwitchInput";
 import { useForm, useWatch } from "react-hook-form";
 import useCreatePlaylist from "./hooks/useCreatePlaylist";
 import { useNavigate } from "react-router-dom";
-import useAddPlaylistCover from "./hooks/useAddPlaylistCover";
 import useUpdatePlaylist from "./hooks/useUpdatePlaylist";
 import TinySpinner from "../../ui/TinySpinner";
 import usePlaylist from "./hooks/usePlaylist";
+import useCurrentUser from "../authentication/hooks/useCurrentUser";
+import toast from "react-hot-toast";
 
 function CreateEditNewPlaylistForm({
   setIsModalOpen,
   playlistIdToEdit = null,
 }) {
-  console.log(playlistIdToEdit);
   const isEditSession = Boolean(playlistIdToEdit);
   const { playlist: playlistToEdit } = usePlaylist(playlistIdToEdit);
   const initialState = isEditSession
@@ -35,19 +35,21 @@ function CreateEditNewPlaylistForm({
     defaultValues: initialState,
   });
   const watchedValues = useWatch({ control: control });
-  const {
-    isPending: isPendingCreate,
-    createPlaylistMutate,
-    playlist: createdPlaylist,
-  } = useCreatePlaylist({
-    name: watchedValues?.name,
-    isPublic: watchedValues?.visibility,
-  });
+  const { isPending: isPendingCreate, createPlaylistMutate } =
+    useCreatePlaylist();
   const { isPending: isPendingEdit, updatePlaylistMutate } = useUpdatePlaylist(
     playlistToEdit?.id,
   );
-  const { addPlaylistCoverMutate } = useAddPlaylistCover(createdPlaylist?.id);
+  const { user } = useCurrentUser();
   const navigate = useNavigate();
+
+  function checkIfFieldsHasChanged() {
+    return (
+      watchedValues?.cover !== initialState.cover ||
+      watchedValues?.name !== initialState.name ||
+      watchedValues?.visibility !== initialState.visibility
+    );
+  }
 
   function onSubmit(data) {
     isEditSession
@@ -56,6 +58,7 @@ function CreateEditNewPlaylistForm({
             playlistId: playlistToEdit?.id,
             name: data?.name,
             isPublic: data?.visibility,
+            image: data?.cover ? data?.cover[0] : null,
           },
           {
             onSettled: () => {
@@ -64,21 +67,29 @@ function CreateEditNewPlaylistForm({
             },
           },
         )
-      : createPlaylistMutate(null, {
-          onSuccess: (createData) =>
-            //if user chose an image, add it to the playlist
-            data?.cover
-              ? addPlaylistCoverMutate({
-                  playlistId: createData?.id,
-                  image: data?.cover[0],
-                })
-              : null,
-          onSettled: (createData) => {
-            setIsModalOpen(false);
-            navigate(`/playlist/${createData?.id}`);
-            reset();
+      : createPlaylistMutate(
+          {
+            userId: user?.id,
+            name: data?.name,
+            isPublic: data?.visibility,
+            image: data?.cover ? data?.cover[0] : null,
           },
-        });
+          {
+            onSuccess: () => {
+              toast(`Playlist ${data?.name} was created`);
+              data?.cover &&
+                toast(
+                  "It may takes a few moments for the cover image to be uploaded",
+                  { duration: 5000 },
+                );
+            },
+            onSettled: (createData) => {
+              setIsModalOpen(false);
+              navigate(`/playlist/${createData?.id}`);
+              reset();
+            },
+          },
+        );
   }
 
   return (
@@ -125,7 +136,7 @@ function CreateEditNewPlaylistForm({
           >
             Cancel
           </FormButton>
-          <FormButton type="primary">
+          <FormButton disabled={!checkIfFieldsHasChanged()} type="primary">
             {(isPendingCreate || isPendingEdit) && (
               <TinySpinner className="text-white" />
             )}{" "}

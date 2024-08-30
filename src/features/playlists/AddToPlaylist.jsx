@@ -4,6 +4,11 @@ import { TbPlus } from "react-icons/tb";
 import useCreatedByUserPlaylists from "./hooks/useCreatedByUserPlaylists";
 import useCreatePlaylist from "./hooks/useCreatePlaylist";
 import AddToPlaylistItem from "./AddToPlaylistItem";
+import useAddItemsToPlaylist from "./hooks/useAddItemsToPlaylist";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import useCurrentUser from "../authentication/hooks/useCurrentUser";
+import toast from "react-hot-toast";
 
 const AddToPlaylist = forwardRef(
   ({ item, setIsClickedOnPlaylistChildren }, ref) => {
@@ -21,10 +26,11 @@ const AddToPlaylist = forwardRef(
           ? item?.tracks?.items?.map((item) => item.uri)
           : "";
 
-    const { createPlaylistMutate } = useCreatePlaylist({
-      name: item?.name,
-      uris: itemUris,
-    });
+    const { createPlaylistMutate } = useCreatePlaylist();
+    const { addItemsToPlaylistMutate } = useAddItemsToPlaylist();
+    const { user } = useCurrentUser();
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
 
     useEffect(() => {
       //set isClickedOnPlayingChildren to default value (false) on mount
@@ -32,11 +38,31 @@ const AddToPlaylist = forwardRef(
     }, [setIsClickedOnPlaylistChildren]);
 
     function addToNewPlaylist() {
-      createPlaylistMutate(null, {
-        onSettled: () => {
-          setIsClickedOnPlaylistChildren(true);
+      createPlaylistMutate(
+        { userId: user?.id, name: item?.name, isPublic: false },
+        {
+          onSuccess: (data) => {
+            toast(`Playlist ${item?.name} created`);
+            addItemsToPlaylistMutate(
+              { playlistId: data?.id, itemUris },
+              {
+                onSuccess: () => {
+                  queryClient.invalidateQueries({
+                    queryKey: ["playlist", data?.id],
+                  });
+                  queryClient.invalidateQueries({
+                    queryKey: ["saved-playlists"],
+                  });
+                },
+              },
+            );
+          },
+          onSettled: (data) => {
+            navigate(`/playlist/${data?.id}`);
+            setIsClickedOnPlaylistChildren(true);
+          },
         },
-      });
+      );
     }
 
     return (

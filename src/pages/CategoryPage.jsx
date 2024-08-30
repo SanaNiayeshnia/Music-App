@@ -11,6 +11,7 @@ import PageTitle from "../ui/layout/page/PageTitle";
 import ListContainer from "../ui/ListContainer";
 import useCategory from "../features/searchAndDiscovery/hooks/useCategory";
 import IconLogo from "../ui/layout/topNav/IconLogo";
+import ShortPageHeader from "../ui/layout/page/ShortPageHeader";
 
 function CategoryPage() {
   const { isMainScrolled } = useMainContext();
@@ -35,12 +36,7 @@ function CategoryPage() {
         </div>
       ) : (
         <>
-          <PageHeaderWrapper
-            short
-            className="text-3xl font-bold first-letter:uppercase"
-          >
-            <PageTitle>{category?.name} Category</PageTitle>
-          </PageHeaderWrapper>
+          <ShortPageHeader title={category?.name + " Category"} />
           <PageBody>
             <ListContainer
               items={categorysPlaylists}

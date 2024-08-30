@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ListContainer from "../../ui/ListContainer";
 import useArtistsDiscography from "./hooks/useArtistsDiscography";
 import { useEffect, useState } from "react";
@@ -46,7 +46,7 @@ function Discography({ all }) {
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts
     if (all) {
-      dispatch(setPageTitle(`${artist?.name}'s Discography`));
+      dispatch(setPageTitle([""]));
     }
 
     return () => {

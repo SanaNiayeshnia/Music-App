@@ -4,6 +4,7 @@ import Item from "./Item";
 
 import useScrollbar from "../hooks/useScrollbar";
 import ListTitle from "./ListTitle";
+import ShortPageHeader from "./layout/page/ShortPageHeader";
 
 function ListContainer({
   items,
@@ -85,16 +86,22 @@ function ListContainer({
   return (
     <>
       {!noTitle && (isLoading || slicedItems?.length > 0) && (
-        <ListTitle
-          title={title}
-          showAllTo={showAllTo}
-          conditionForShowAll={
-            !all && (items?.length > screenSizeMaxItems || alwaysShowAll)
-          }
-        />
+        <>
+          {!all ? (
+            <ListTitle
+              title={title}
+              showAllTo={showAllTo}
+              conditionForShowAll={
+                items?.length > screenSizeMaxItems || alwaysShowAll
+              }
+            />
+          ) : (
+            <ShortPageHeader title={title} />
+          )}
+        </>
       )}
 
-      <div className="space-y-3">
+      <div className={`space-y-3 ${all && "mt-8"}`}>
         {children}
         <div
           ref={ref}

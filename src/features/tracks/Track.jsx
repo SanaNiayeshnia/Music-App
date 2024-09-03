@@ -22,7 +22,6 @@ function Track({
   const navigate = useNavigate();
   const [isUsingContextMenu, setIsUsingContextMenu] = useState(false);
   const { isDarkMode, isSmall } = useSelector((store) => store.global);
-  console.log(track);
   return (
     <tr
       className={`${isSmall ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr] pl-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}

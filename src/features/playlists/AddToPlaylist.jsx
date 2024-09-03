@@ -39,7 +39,7 @@ const AddToPlaylist = forwardRef(
 
     function addToNewPlaylist() {
       createPlaylistMutate(
-        { userId: user?.id, name: item?.name, isPublic: false },
+        { userId: user?.id, name: item?.name },
         {
           onSuccess: (data) => {
             toast(`Playlist ${item?.name} created`);

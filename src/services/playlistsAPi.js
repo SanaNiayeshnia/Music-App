@@ -144,13 +144,13 @@ export async function addPlaylistCover({ playlistId, image }) {
   };
 }
 
-export async function editPlaylist({ playlistId, name, isPublic, image }) {
+export async function editPlaylist({ playlistId, name, image }) {
   const res = await fetch(
     `https://api.spotify.com/v1/playlists/${playlistId}`,
     {
       method: "PUT",
       headers: { ...getRequestHeader(), "Content-Type": "application/json" },
-      body: JSON.stringify({ name, public: isPublic }),
+      body: JSON.stringify({ name }),
     },
   );
   if (res.status !== 200) throw new Error("Failed to update the playlist!");
@@ -184,13 +184,13 @@ export async function removeItemsFromPlaylist({ playlistId, itemUris }) {
 }
 
 //post requests
-export async function createPlaylist({ userId, name, isPublic, image }) {
+export async function createPlaylist({ userId, name, image }) {
   const res = await fetch(
     `https://api.spotify.com/v1/users/${userId}/playlists`,
     {
       method: "POST",
       headers: { ...getRequestHeader(), "Content-Type": "application/json" },
-      body: JSON.stringify({ name, public: isPublic }),
+      body: JSON.stringify({ name }),
     },
   );
   if (res.status !== 201) throw new Error("Failed to create the playlist!");

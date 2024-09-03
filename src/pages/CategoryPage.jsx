@@ -37,7 +37,9 @@ function CategoryPage() {
           <ShortPageHeader title={category?.name + " Category"} />
           <PageBody noPadding>
             <ListContainer
-              items={categorysPlaylists}
+              items={categorysPlaylists.filter(
+                (p) => !p.name.toLowerCase().includes("podcast"),
+              )}
               isLoading={isLoadingCategorysPlaylists}
               noTitle
               all={true}

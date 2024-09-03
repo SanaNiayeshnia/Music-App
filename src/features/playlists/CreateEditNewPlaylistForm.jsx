@@ -50,14 +50,12 @@ function CreateEditNewPlaylistForm({
       watchedValues?.visibility !== initialState.visibility
     );
   }
-
   function onSubmit(data) {
     isEditSession
       ? updatePlaylistMutate(
           {
             playlistId: playlistToEdit?.id,
             name: data?.name,
-            isPublic: data?.visibility,
             image: data?.cover ? data?.cover[0] : null,
           },
           {
@@ -71,7 +69,6 @@ function CreateEditNewPlaylistForm({
           {
             userId: user?.id,
             name: data?.name,
-            isPublic: data?.visibility,
             image: data?.cover ? data?.cover[0] : null,
           },
           {
@@ -118,13 +115,6 @@ function CreateEditNewPlaylistForm({
           </p>
         </div>
 
-        <SwitchInput
-          title="Visibility"
-          label="Public"
-          id="visibility"
-          register={register}
-          watchedValue={watchedValues?.visibility}
-        />
         <div className="flex justify-end gap-3">
           <FormButton
             type="secondary"

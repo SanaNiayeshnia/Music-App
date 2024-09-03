@@ -29,17 +29,15 @@ function AlsoLikePlaylists({ all }) {
   }, [all, artist, dispatch]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        all={all}
-        title="You Might Also Like"
-        showAllTo="might-also-like"
-        isLoading={
-          isLoadingPlaylist || isLoadingRelatedPlaylists || isLoadingArtist
-        }
-        items={relatedPlaylists}
-      />
-    </div>
+    <ListContainer
+      all={all}
+      title="You Might Also Like"
+      showAllTo="might-also-like"
+      isLoading={
+        isLoadingPlaylist || isLoadingRelatedPlaylists || isLoadingArtist
+      }
+      items={relatedPlaylists}
+    />
   );
 }
 

@@ -19,15 +19,13 @@ function NewReleases({ all }) {
   }, [dispatch, all]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        title="New Releases"
-        showAllTo="/section/new-releases"
-        isLoading={isLoading}
-        all={all}
-        items={newReleases}
-      />
-    </div>
+    <ListContainer
+      title="New Releases"
+      showAllTo="/section/new-releases"
+      isLoading={isLoading}
+      all={all}
+      items={newReleases}
+    />
   );
 }
 

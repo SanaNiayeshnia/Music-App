@@ -36,15 +36,13 @@ function AppearsOn({ all }) {
   }, [all, artist, dispatch]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        title={title}
-        showAllTo="appears-on"
-        all={all}
-        isLoading={isLoadingArtist || isLoadingAppearsOn}
-        items={appearsOn}
-      />
-    </div>
+    <ListContainer
+      title={title}
+      showAllTo="appears-on"
+      all={all}
+      isLoading={isLoadingArtist || isLoadingAppearsOn}
+      items={appearsOn}
+    />
   );
 }
 

@@ -15,7 +15,7 @@ function CreateNewPlaylistButton() {
         <div>
           <TbPlus
             onClick={() => setIsModalOpen(true)}
-            className={`${isPlayingTrackbarOpen && "md:hidden"} min-h-7 min-w-7 cursor-pointer rounded-full p-1 text-black hover:bg-white/40 hover:shadow lg:inline-block dark:text-white dark:hover:bg-black/40`}
+            className={`${isPlayingTrackbarOpen && "md:hidden"} min-h-8 min-w-8 cursor-pointer rounded-full p-1 text-black hover:bg-white/40 hover:shadow md:min-h-7 md:min-w-7 lg:inline-block dark:text-white dark:hover:bg-black/40`}
           />
         </div>
       </Tooltip>

@@ -36,7 +36,11 @@ function PlaylistPage() {
             <PageMenu item={playlist} />
             <TrackList
               all={true}
-              items={playlist?.tracks?.items?.map((item) => item?.track)}
+              items={playlist?.tracks?.items
+                ?.map((item) =>
+                  item?.track?.type === "track" ? item?.track : null,
+                )
+                .filter(Boolean)}
               playlist={{
                 id: playlist?.id,
                 owner: playlist?.owner,

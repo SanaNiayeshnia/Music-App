@@ -39,6 +39,7 @@ export async function getCurrentUser() {
   const res = await fetch("https://api.spotify.com/v1/me", {
     headers: getRequestHeader(),
   });
+
   if (res.status !== 200)
     throw new Error("Failed to get the current user info!");
   const data = await res.json();

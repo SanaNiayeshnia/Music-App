@@ -38,15 +38,13 @@ function RelatedArtists({ all = false }) {
   }, [all, artist, dispatch]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        title={title}
-        showAllTo="fans-also-like"
-        all={all}
-        isLoading={isLoadingArtist || isLoadingRelatedArtists}
-        items={relatedArtists}
-      />
-    </div>
+    <ListContainer
+      title={title}
+      showAllTo="fans-also-like"
+      all={all}
+      isLoading={isLoadingArtist || isLoadingRelatedArtists}
+      items={relatedArtists}
+    />
   );
 }
 

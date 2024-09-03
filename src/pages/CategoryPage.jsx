@@ -35,7 +35,7 @@ function CategoryPage() {
       ) : (
         <>
           <ShortPageHeader title={category?.name + " Category"} />
-          <PageBody>
+          <PageBody noPadding>
             <ListContainer
               items={categorysPlaylists}
               isLoading={isLoadingCategorysPlaylists}

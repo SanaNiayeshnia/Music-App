@@ -55,28 +55,26 @@ function Discography({ all }) {
   }, [all, artist, dispatch]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        title={title}
-        showAllTo="discography"
-        all={all}
-        isLoading={isLoadingArtist || isLoadingDiscography}
-        items={filteredArtistsDiscography}
-        discography
-      >
-        {
-          //add filters component when nothing's loading
-          !isLoadingArtist &&
-            !isLoadingDiscography &&
-            artistsDiscography?.length > 0 && (
-              <DiscographyFilters
-                setCurrentFilter={setCurrentFilter}
-                currentFilter={currentFilter}
-              />
-            )
-        }
-      </ListContainer>
-    </div>
+    <ListContainer
+      title={title}
+      showAllTo="discography"
+      all={all}
+      isLoading={isLoadingArtist || isLoadingDiscography}
+      items={filteredArtistsDiscography}
+      discography
+    >
+      {
+        //add filters component when nothing's loading
+        !isLoadingArtist &&
+          !isLoadingDiscography &&
+          artistsDiscography?.length > 0 && (
+            <DiscographyFilters
+              setCurrentFilter={setCurrentFilter}
+              currentFilter={currentFilter}
+            />
+          )
+      }
+    </ListContainer>
   );
 }
 

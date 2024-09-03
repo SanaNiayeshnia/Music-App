@@ -18,16 +18,14 @@ function RecentlyPlayed({ all = false }) {
   }, [dispatch, all]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        title="Recently Played"
-        showAllTo="/section/recently-played"
-        alwaysShowAll
-        all={all}
-        items={recentlyPlayedItems}
-        isLoading={isLoading}
-      />
-    </div>
+    <ListContainer
+      title="Recently Played"
+      showAllTo="/section/recently-played"
+      alwaysShowAll={!isLoading}
+      all={all}
+      items={recentlyPlayedItems}
+      isLoading={isLoading}
+    />
   );
 }
 

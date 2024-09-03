@@ -18,15 +18,13 @@ function UsersFollowings({ all }) {
   }, [dispatch, all]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        all={all}
-        isLoading={isLoading}
-        items={followedArtists}
-        title={`${all ? "Your " : ""}Following`}
-        showAllTo="following"
-      />
-    </div>
+    <ListContainer
+      all={all}
+      isLoading={isLoading}
+      items={followedArtists}
+      title={`${all ? "Your " : ""}Following`}
+      showAllTo="following"
+    />
   );
 }
 

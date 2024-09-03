@@ -42,16 +42,14 @@ function MoreByArtist({ all }) {
   }, [all, album, dispatch]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        title={title}
-        showAllTo="more-by-artist"
-        all={all}
-        isLoading={isLoadingAlbum || isLoadingDicography}
-        items={filteredArtistsDiscography}
-        discography
-      />
-    </div>
+    <ListContainer
+      title={title}
+      showAllTo="more-by-artist"
+      all={all}
+      isLoading={isLoadingAlbum || isLoadingDicography}
+      items={filteredArtistsDiscography}
+      discography
+    />
   );
 }
 

@@ -53,6 +53,8 @@ function ListContainer({
       }
     }
 
+    if (all) setSlicedItems(items);
+
     if (!all) {
       //Change the displayed items count based on window width
       sliceItems();
@@ -84,46 +86,48 @@ function ListContainer({
   }, [all, items, maxItems]);
 
   return (
-    <>
-      {!noTitle && (isLoading || slicedItems?.length > 0) && (
-        <>
-          {!all ? (
-            <ListTitle
-              title={title}
-              showAllTo={showAllTo}
-              conditionForShowAll={
-                items?.length > screenSizeMaxItems || alwaysShowAll
-              }
-            />
-          ) : (
-            <ShortPageHeader title={title} />
-          )}
-        </>
-      )}
+    (isLoading || slicedItems?.length > 0) && (
+      <div>
+        {!noTitle && (
+          <>
+            {!all ? (
+              <ListTitle
+                title={title}
+                showAllTo={showAllTo}
+                conditionForShowAll={
+                  items?.length > screenSizeMaxItems || alwaysShowAll
+                }
+              />
+            ) : (
+              <ShortPageHeader title={title} />
+            )}
+          </>
+        )}
 
-      <div className={`space-y-3 ${all && "mt-8"}`}>
-        {children}
-        <div
-          ref={ref}
-          className={`${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2 sm:grid-cols-3"} scrollbar hide-scroll md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
-        >
-          {isLoading
-            ? loadingItems.map((item, index) => (
-                <Item key={index} isLoading={true} size="large" />
-              ))
-            : !isLoading && slicedItems?.length > 0
-              ? slicedItems?.map((item, index) => (
-                  <Item
-                    key={index}
-                    item={item}
-                    size="large"
-                    discography={discography}
-                  />
+        <div className={`space-y-3 ${all && "mt-8"}`}>
+          {children}
+          <div
+            ref={ref}
+            className={`${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2 sm:grid-cols-3"} scrollbar hide-scroll md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
+          >
+            {isLoading
+              ? loadingItems.map((item, index) => (
+                  <Item key={index} isLoading={true} size="large" />
                 ))
-              : ""}
+              : !isLoading && slicedItems?.length > 0
+                ? slicedItems?.map((item, index) => (
+                    <Item
+                      key={index}
+                      item={item}
+                      size="large"
+                      discography={discography}
+                    />
+                  ))
+                : ""}
+          </div>
         </div>
       </div>
-    </>
+    )
   );
 }
 

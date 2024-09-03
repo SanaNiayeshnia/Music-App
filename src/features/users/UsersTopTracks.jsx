@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import NothingFound from "../../ui/NothingFound";
 import TrackList from "../tracks/TrackList";
 import useUsersTopTracks from "./hooks/useUsersTopTracks";
 import { useDispatch } from "react-redux";
@@ -20,15 +19,16 @@ function UsersTopTracks({ all }) {
   }, [dispatch, all]);
 
   return (
-    <div>
-      <ListTitle
-        showAllTo="top/tracks"
-        title={(all ? "Your " : "") + "Top Tracks"}
-        conditionForShowAll={!all && usersTopTracks?.length > 4}
-      />
-      {usersTopTracks?.length === 0 && <NothingFound />}
-      <TrackList items={usersTopTracks} all={all} isLoading={isLoading} />
-    </div>
+    (isLoading || usersTopTracks?.length > 0) && (
+      <div>
+        <ListTitle
+          showAllTo="top/tracks"
+          title={(all ? "Your " : "") + "Top Tracks"}
+          conditionForShowAll={!all && usersTopTracks?.length > 4}
+        />
+        <TrackList items={usersTopTracks} all={all} isLoading={isLoading} />
+      </div>
+    )
   );
 }
 

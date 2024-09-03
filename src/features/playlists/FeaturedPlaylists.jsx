@@ -19,15 +19,13 @@ function FeaturedPlaylists({ all }) {
   }, [dispatch, all]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        title="Featured Playlists"
-        showAllTo="/section/featured-playlists"
-        isLoading={isLoading}
-        all={all}
-        items={featuredPlaylists}
-      />
-    </div>
+    <ListContainer
+      title="Featured Playlists"
+      showAllTo="/section/featured-playlists"
+      isLoading={isLoading}
+      all={all}
+      items={featuredPlaylists}
+    />
   );
 }
 

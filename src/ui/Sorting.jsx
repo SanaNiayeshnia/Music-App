@@ -16,7 +16,7 @@ function Sorting({ options, handler }) {
     >
       {sortBy}
       <TbList
-        className={`${isOpen ? "text-blue-600" : "text-black group-hover:text-blue-600 dark:text-white"} min-h-5 min-w-5 rounded-full duration-100`}
+        className={`${isOpen ? "text-blue-600" : "text-black group-hover:text-blue-600 dark:text-white"} min-h-6 min-w-6 rounded-full duration-100 md:min-h-5 md:min-w-5`}
       />
       {isOpen && (
         <ul className="absolute right-0 top-[150%] min-w-40 rounded bg-white py-2 text-sm shadow-md dark:bg-black dark:shadow-gray-50/10">

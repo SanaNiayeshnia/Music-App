@@ -25,7 +25,7 @@ function LibrarySearchBox() {
     >
       <RiSearch2Line
         onClick={() => setIsOpen(true)}
-        className={`min-h-7 min-w-7 rounded-full p-1 text-black duration-100 dark:text-white ${!isOpen && "cursor-pointer hover:bg-white/50 hover:shadow dark:hover:bg-black/50"}`}
+        className={`min-h-8 min-w-8 rounded-full p-1 text-black duration-100 md:min-h-7 md:min-w-7 dark:text-white ${!isOpen && "cursor-pointer hover:bg-white/50 hover:shadow dark:hover:bg-black/50"}`}
       />
       <div
         className={`${isOpen && "animation-open-searchbox w-48 opacity-100 md:w-36"} ${!isOpen && "animation-close-searchbox cursor-default"} mr-2 flex items-center gap-2 opacity-0`}

@@ -18,15 +18,13 @@ function UsersTopArtists({ all }) {
   }, [dispatch, all]);
 
   return (
-    <div key={`${all}-${Math.random()}`}>
-      <ListContainer
-        all={all}
-        isLoading={isLoading}
-        items={usersTopArtists}
-        title={`${all ? "Your " : ""} Top Artists`}
-        showAllTo="top/artists"
-      />
-    </div>
+    <ListContainer
+      all={all}
+      isLoading={isLoading}
+      items={usersTopArtists}
+      title={`${all ? "Your " : ""} Top Artists`}
+      showAllTo="top/artists"
+    />
   );
 }
 

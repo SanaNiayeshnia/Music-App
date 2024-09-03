@@ -10,7 +10,9 @@ function MadeForYou() {
   return (
     <ListContainer
       title="Made For You"
-      items={categorysPlaylists}
+      items={categorysPlaylists?.filter(
+        (p) => !p.name.toLowerCase().includes("podcast"),
+      )}
       isLoading={isLoadingCategories || isLoadingCategorysPlaylists}
       showAllTo={`category/${categories?.at(0)?.id}`}
     />

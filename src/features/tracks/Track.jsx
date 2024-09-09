@@ -28,13 +28,17 @@ function Track({
     >
       {!noIndex && (
         <td className="w-3.5 text-center">
-          <span
-            className={`${!isLoading && "group-hover:hidden"} text-black dark:text-white`}
-          >
-            {index ? index : track?.track_number}
-          </span>
-          {!isLoading && (
-            <TbPlayerPlayFilled className="hidden cursor-pointer text-sm text-black duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
+          {isLoading ? (
+            <Skeleton className="h-3 w-3 rounded-sm" />
+          ) : (
+            <>
+              <span
+                className={`${!isLoading && "group-hover:hidden"} text-black dark:text-white`}
+              >
+                {index ? index : track?.track_number}
+              </span>
+              <TbPlayerPlayFilled className="hidden cursor-pointer text-sm text-black duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
+            </>
           )}
         </td>
       )}
@@ -99,53 +103,56 @@ function Track({
           )}
         </div>
       </td>
-      {!isLoading && (
-        <>
-          {!isSmall && (
-            <td
-              onClick={() => navigate(`/album/${track?.album?.id}`)}
-              className={`${isPlayingTrackbarOpen && "hidden"} cursor-pointer text-sm text-black hover:underline xl:inline-block dark:text-white`}
-            >
-              {!noAlbum && track?.album?.name}
-            </td>
-          )}
 
-          <td className="text-center">
-            {!isLoading && (
-              <SaveTrackButton
-                className={`${isUsingContextMenu || isSmall ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
-                track={track}
-              />
-            )}
-          </td>
-          {!isSmall && (
-            <td className="text-center">
-              {!isLoading && (
-                <p className="text-sm text-black dark:text-white">
-                  {formatTrackDuration(track?.duration_ms)}
-                </p>
-              )}
-            </td>
-          )}
-
-          <td className="text-center">
-            <div
-              className={
-                isUsingContextMenu || isSmall
-                  ? "inline-block"
-                  : "hidden group-hover:inline-block"
-              }
-            >
-              <TrackContextMenu
-                setIsUsingContextMenu={setIsUsingContextMenu}
-                track={track}
-                position="left"
-                playlist={playlist}
-              />
-            </div>
-          </td>
-        </>
+      {!isSmall && (
+        <td
+          onClick={() => navigate(`/album/${track?.album?.id}`)}
+          className={`${isPlayingTrackbarOpen && "hidden"} cursor-pointer text-sm text-black hover:underline xl:inline-block dark:text-white`}
+        >
+          {isLoading && <Skeleton className="h-3 w-20 rounded-sm" />}
+          {!noAlbum && track?.album?.name}
+        </td>
       )}
+
+      <td className="text-center">
+        {!isLoading && (
+          <SaveTrackButton
+            className={`${isUsingContextMenu || isSmall ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
+            track={track}
+          />
+        )}
+      </td>
+
+      {!isSmall && (
+        <td className="flex items-center justify-center">
+          {isLoading ? (
+            <Skeleton className="h-3 w-5 rounded-sm" />
+          ) : (
+            <p className="text-sm text-black dark:text-white">
+              {formatTrackDuration(track?.duration_ms)}
+            </p>
+          )}
+        </td>
+      )}
+
+      <td className="text-center">
+        {!isLoading && (
+          <div
+            className={
+              isUsingContextMenu || isSmall
+                ? "inline-block"
+                : "hidden group-hover:inline-block"
+            }
+          >
+            <TrackContextMenu
+              setIsUsingContextMenu={setIsUsingContextMenu}
+              track={track}
+              position="left"
+              playlist={playlist}
+            />
+          </div>
+        )}
+      </td>
     </tr>
   );
 }

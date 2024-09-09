@@ -31,11 +31,23 @@ export async function getPlaylist(id) {
         headers: getRequestHeader(),
       },
     );
-    if (res.status !== 200)
-      throw new Error("Failed to get the saved playlists!");
+    if (res.status !== 200) throw new Error("Failed to get the playlist!");
     data = await res.json();
   }
 
+  return data;
+}
+
+export async function getPlaylistItems({ pageParam = null, playlistId }) {
+  const url =
+    pageParam ||
+    `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=15`;
+
+  const res = await fetch(url, {
+    headers: getRequestHeader(),
+  });
+  if (res.status !== 200) throw new Error("Failed to get the playlist items!");
+  const data = await res.json();
   return data;
 }
 
@@ -46,7 +58,8 @@ export async function getRelatedPlaylists(genre) {
       headers: getRequestHeader(),
     },
   );
-  if (res.status !== 200) throw new Error("Failed to get the saved playlists!");
+  if (res.status !== 200)
+    throw new Error("Failed to get the related playlists!");
   const data = await res.json();
   return data?.playlists?.items;
 }

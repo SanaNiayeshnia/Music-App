@@ -1,9 +1,11 @@
 import Track from "./Track";
 import { useSelector } from "react-redux";
 import { TbClock } from "react-icons/tb";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useMemo } from "react";
 
 function TrackList({
-  items = {},
+  items = [],
   noCover = false,
   noAlbum = false,
   noArtist = false,
@@ -11,9 +13,22 @@ function TrackList({
   max = 4,
   isLoading = false,
   playlist = null,
+  fetchNextPage = null,
+  hasNextPage = false,
+  isFetching,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const { isSmall } = useSelector((store) => store.global);
+  const itemsToShow = useMemo(
+    () => items?.slice(0, all ? items?.length : max),
+    [all, max, items],
+  );
+  const { ref: endRef, inView } = useInView();
+
+  useEffect(() => {
+    //when the user scrolls to the end, fetch next page items
+    if (inView && hasNextPage && !isLoading && !isFetching) fetchNextPage();
+  }, [inView, fetchNextPage, isLoading, isFetching, hasNextPage]);
 
   return (
     (isLoading || items?.length > 0) && (
@@ -40,24 +55,30 @@ function TrackList({
           </thead>
         )}
         <tbody>
-          {isLoading
-            ? Array.from({ length: max }).map((item, index) => (
-                <Track index={index + 1} key={index} isLoading={isLoading} />
-              ))
-            : items
-                ?.slice(0, all ? items?.length : max)
-                .map((item, index) => (
-                  <Track
-                    track={item}
-                    index={index + 1}
-                    key={index}
-                    noCover={noCover}
-                    noAlbum={noAlbum}
-                    noArtist={noArtist}
-                    playlist={playlist}
-                  />
-                ))}
+          {!isLoading &&
+            itemsToShow?.map((item, index) => (
+              <>
+                <Track
+                  track={item}
+                  index={index + 1}
+                  key={index}
+                  noCover={noCover}
+                  noAlbum={noAlbum}
+                  noArtist={noArtist}
+                  playlist={playlist}
+                />
+                {index === itemsToShow?.length - 1 && (
+                  <tr ref={endRef} key={index}></tr>
+                )}
+              </>
+            ))}
         </tbody>
+        <tfoot>
+          {(hasNextPage || isLoading) &&
+            Array.from({ length: max }).map((item, index) => (
+              <Track key={index} isLoading={true} />
+            ))}
+        </tfoot>
       </table>
     )
   );

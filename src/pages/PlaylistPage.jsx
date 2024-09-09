@@ -11,6 +11,7 @@ import useUser from "../features/users/hooks/useUser";
 import useMainContext from "../ui/layout/main/useMainContext";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";
+import PlaylistItems from "../features/playlists/PlaylistItems";
 
 function PlaylistPage() {
   const { isMainScrolled } = useMainContext();
@@ -34,19 +35,7 @@ function PlaylistPage() {
           <PageHeader item={playlist} artist={owner} />
           <PageBody>
             <PageMenu item={playlist} />
-            <TrackList
-              all={true}
-              items={playlist?.tracks?.items
-                ?.map((item) =>
-                  item?.track?.type === "track" ? item?.track : null,
-                )
-                .filter(Boolean)}
-              playlist={{
-                id: playlist?.id,
-                owner: playlist?.owner,
-                name: playlist?.name,
-              }}
-            />
+            <PlaylistItems id={id} />
             <AlsoLikePlaylists />
           </PageBody>
         </>

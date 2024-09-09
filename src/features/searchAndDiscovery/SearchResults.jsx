@@ -34,18 +34,21 @@ function SearchResults() {
             setCurrentFilter={setCurrentFilter}
             searchResult={searchResult}
           />
-          <div className="flex flex-wrap gap-8">
-            {currentFilter === "" && (
-              <TopResult item={searchResult?.topResult} isLoading={isLoading} />
-            )}
-            {(currentFilter === "" || currentFilter === "track") && (
+          {(currentFilter === "" || currentFilter === "track") && (
+            <div className="flex flex-wrap gap-8">
+              {currentFilter === "" && (
+                <TopResult
+                  item={searchResult?.topResult}
+                  isLoading={isLoading}
+                />
+              )}
               <SongsResult
                 items={searchResult?.tracks?.items}
                 all={currentFilter === "track"}
                 setCurrentFilter={setCurrentFilter}
               />
-            )}
-          </div>
+            </div>
+          )}
 
           {(currentFilter === "" || currentFilter === "artist") && (
             <ResultList

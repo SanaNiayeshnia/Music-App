@@ -41,7 +41,6 @@ function ProtectedRoute({ children }) {
     );
 
   if (!isLoading && isAuthenticated) return children;
-  else null;
 }
 
 export default ProtectedRoute;

@@ -20,7 +20,7 @@ function BottomNav() {
       className={`${isSmall ? "flex" : "hidden"} absolute bottom-2 z-50 w-full justify-center px-3`}
     >
       <div
-        className={`${isSmall ? "flex" : "hidden"} w-full items-center justify-around gap-10 rounded-full bg-white/50 px-5 py-3 shadow backdrop-blur-lg dark:bg-black/50`}
+        className={`${isSmall ? "flex" : "hidden"} w-full items-center justify-around gap-5 rounded-full bg-white/50 px-5 py-3 shadow backdrop-blur-lg sm:gap-10 dark:bg-black/50`}
       >
         <BottomNavItem
           icon={<TbHome />}

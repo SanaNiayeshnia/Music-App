@@ -9,6 +9,7 @@ import NothingFound from "../../../ui/NothingFound";
 function LibraryList() {
   const ref = useScrollbar();
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
+  const { isSmall } = useSelector((store) => store.global);
   const { isLoading, filteredItems } = useFollowedItems();
   const { setLibraryRef } = useLibraryContext();
   useEffect(() => {
@@ -20,7 +21,7 @@ function LibraryList() {
       ref={ref}
     >
       {isLoading ? (
-        Array.from({ length: 6 }).map(() => {
+        Array.from({ length: isSmall ? 8 : 6 }).map(() => {
           return <Item key={Math.random()} isLoading={true} size="small" />;
         })
       ) : !isLoading && filteredItems?.length > 0 ? (

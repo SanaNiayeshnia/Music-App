@@ -1,7 +1,6 @@
 import FormButton from "../../ui/Form/FormButton";
 import ImageInput from "../../ui/Form/ImageInput";
 import TextInput from "../../ui/Form/TextInput";
-import SwitchInput from "../../ui/Form/SwitchInput";
 import { useForm, useWatch } from "react-hook-form";
 import useCreatePlaylist from "./hooks/useCreatePlaylist";
 import { useNavigate } from "react-router-dom";

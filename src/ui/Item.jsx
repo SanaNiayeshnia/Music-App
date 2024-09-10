@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import FloatingPlayButton from "./FloatingPlayButton";
 import { Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -7,7 +7,10 @@ import { formatName } from "../utilities/helper";
 import { useNavigate } from "react-router-dom";
 import useMainContext from "./layout/main/useMainContext";
 
-function Item({ item = {}, size, isLoading = false, discography = false }) {
+const Item = forwardRef(function Item(
+  { item = {}, size, isLoading = false, discography = false },
+  ref,
+) {
   const [isHovered, setIsHovered] = useState(false);
   const { isMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
@@ -27,6 +30,7 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
 
   const content = (
     <div
+      ref={ref}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => !isLoading && handleOnClick()}
@@ -108,7 +112,11 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
                         •{" "}
                         <span
                           className="cursor-pointer hover:underline"
-                          onClick={() => navigate(`/artist/${artists[0]?.id}`)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            scrollMainToTop();
+                            navigate(`/artist/${artists[0]?.id}`);
+                          }}
                         >
                           {artists[0]?.name}
                         </span>
@@ -133,6 +141,6 @@ function Item({ item = {}, size, isLoading = false, discography = false }) {
   ) : (
     content
   );
-}
+});
 
 export default Item;

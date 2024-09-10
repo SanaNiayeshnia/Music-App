@@ -1,16 +1,34 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getArtistsDiscography } from "../../../services/artistsAPi";
 import { useSelector } from "react-redux";
 
-function useArtistsDiscography(id) {
+function useArtistsDiscography(artistId) {
   const { accessToken } = useSelector((store) => store.authentication);
 
-  const { isLoading, data: artistsDiscography } = useQuery({
-    queryKey: ["artists-Discography", id],
-    queryFn: () => getArtistsDiscography(id),
+  const {
+    isLoading,
+    data,
+    isFetching,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["artists-Discography", artistId],
+    queryFn: ({ pageParam = null }) =>
+      getArtistsDiscography({ pageParam, artistId }),
+    getNextPageParam: (lastPage) => lastPage.next,
     enabled: Boolean(accessToken),
   });
-  return { isLoading, artistsDiscography };
+  const artistsDiscography = data?.pages?.flatMap((page) => page?.items);
+
+  return {
+    isLoading,
+    artistsDiscography,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  };
 }
 
 export default useArtistsDiscography;

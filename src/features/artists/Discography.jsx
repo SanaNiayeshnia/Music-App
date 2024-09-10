@@ -9,13 +9,15 @@ import DiscographyFilters from "./DiscographyFilters";
 
 function Discography({ all }) {
   const { id } = useParams();
-  const { isLoading: isLoadingDiscography, artistsDiscography } =
-    useArtistsDiscography(id);
+  const {
+    isLoading: isLoadingDiscography,
+    artistsDiscography,
+    fetchNextPage,
+    isFetching,
+    hasNextPage,
+  } = useArtistsDiscography(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
   const [currentFilter, setCurrentFilter] = useState("");
-  const [filteredArtistsDiscography, setFilteredArtistsDiscography] = useState(
-    [],
-  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,22 +33,15 @@ function Discography({ all }) {
     </>
   );
 
-  useEffect(() => {
-    //filter artist's discography based on current filter
-    if (artistsDiscography) {
-      setFilteredArtistsDiscography(
-        artistsDiscography.filter((item) => currentFilter === item.album_type),
-      );
-      //set filtered artist's discography to the original artist's discography if current filter was empty
-      if (currentFilter === "")
-        setFilteredArtistsDiscography(artistsDiscography);
-    }
-  }, [currentFilter, artistsDiscography]);
+  //filter artist's discography based on current filter
+  const filteredArtistsDiscography = currentFilter
+    ? artistsDiscography?.filter((item) => item.album_type === currentFilter)
+    : artistsDiscography;
 
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts
     if (all) {
-      dispatch(setPageTitle([""]));
+      dispatch(setPageTitle(`${artist?.name}'s Discography`));
     }
 
     return () => {
@@ -62,6 +57,9 @@ function Discography({ all }) {
       isLoading={isLoadingArtist || isLoadingDiscography}
       items={filteredArtistsDiscography}
       discography
+      fetchNextPage={fetchNextPage}
+      isFetching={isFetching}
+      hasNextPage={hasNextPage}
     >
       {
         //add filters component when nothing's loading

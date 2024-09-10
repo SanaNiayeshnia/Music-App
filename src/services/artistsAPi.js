@@ -34,18 +34,19 @@ export async function getArtist(id) {
   return data.artists[0];
 }
 
-export async function getArtistsDiscography(id) {
-  const res = await fetch(
-    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single&limit=50&locale=en_US`,
-    {
-      headers: getRequestHeader(),
-    },
-  );
+export async function getArtistsDiscography({ pageParam: nextUrl, artistId }) {
+  const url =
+    nextUrl ||
+    `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&limit=12&locale=en_US`;
+
+  const res = await fetch(url, {
+    headers: getRequestHeader(),
+  });
   if (res.status !== 200) throw new Error("Failed to get the artist info!");
 
   const data = await res.json();
 
-  return data?.items;
+  return data;
 }
 
 export async function getArtistsTopTracks(id) {

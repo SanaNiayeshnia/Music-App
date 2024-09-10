@@ -4,7 +4,6 @@ import PageBody from "../ui/layout/page/PageBody";
 import License from "../features/albums/License";
 import MoreByArtist from "../features/artists/MoreByArtist";
 import PageHeader from "../ui/layout/page/PageHeader";
-import TrackList from "../features/tracks/TrackList";
 import useAlbum from "../features/albums/hooks/useAlbum";
 import { useParams } from "react-router-dom";
 import useArtist from "../features/artists/hooks/useArtist";
@@ -13,6 +12,7 @@ import Spinner from "../ui/Spinner";
 import useMainContext from "../ui/layout/main/useMainContext";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";
+import AlbumItems from "../features/albums/AlbumItems";
 
 function AlbumPage() {
   const { isMainScrolled } = useMainContext();
@@ -34,15 +34,7 @@ function AlbumPage() {
           <PageHeader item={album} artist={artist} />
           <PageBody>
             <PageMenu item={album} />
-            <TrackList
-              all={true}
-              items={album?.tracks?.items?.map((item) => {
-                return { ...item, album };
-              })}
-              noCover
-              noAlbum
-              extra="stream"
-            />
+            <AlbumItems id={id} />
             <License
               release={formatDate(album?.release_date)}
               copyright={album?.copyrights[0]?.text}

@@ -9,8 +9,13 @@ import { useDispatch } from "react-redux";
 function MoreByArtist({ all }) {
   const { id } = useParams();
   const { isLoading: isLoadingAlbum, album } = useAlbum(id);
-  const { isLoading: isLoadingDicography, artistsDiscography } =
-    useArtistsDiscography(album?.artists[0]?.id);
+  const {
+    isLoading: isLoadingDicography,
+    artistsDiscography,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+  } = useArtistsDiscography(album?.artists[0]?.id);
   const filteredArtistsDiscography = all
     ? artistsDiscography
     : artistsDiscography?.filter((item) => item?.id !== album?.id);
@@ -49,6 +54,9 @@ function MoreByArtist({ all }) {
       isLoading={isLoadingAlbum || isLoadingDicography}
       items={filteredArtistsDiscography}
       discography
+      fetchNextPage={fetchNextPage}
+      isFetching={isFetching}
+      hasNextPage={hasNextPage}
     />
   );
 }

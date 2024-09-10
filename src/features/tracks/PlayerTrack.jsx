@@ -39,7 +39,9 @@ function PlayerTrack({ fullScreen }) {
             />
           ) : (
             <>
-              {(isLoading || !isImageLoaded) && (
+              {(isLoading ||
+                (!isImageLoaded &&
+                  currentlyPlayingTrack?.album?.images[0]?.url)) && (
                 <Skeleton
                   className={`aspect-square h-11 w-11 flex-shrink-0 rounded shadow md:h-14 md:w-14`}
                 />

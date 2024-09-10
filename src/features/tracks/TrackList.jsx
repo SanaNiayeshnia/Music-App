@@ -57,23 +57,19 @@ function TrackList({
         <tbody>
           {!isLoading &&
             itemsToShow?.map((item, index) => (
-              <>
-                <Track
-                  track={item}
-                  index={index + 1}
-                  key={index}
-                  noCover={noCover}
-                  noAlbum={noAlbum}
-                  noArtist={noArtist}
-                  playlist={playlist}
-                />
-                {index === itemsToShow?.length - 1 && (
-                  <tr ref={endRef} key={index}></tr>
-                )}
-              </>
+              <Track
+                track={item}
+                index={index + 1}
+                key={index}
+                noCover={noCover}
+                noAlbum={noAlbum}
+                noArtist={noArtist}
+                playlist={playlist}
+              />
             ))}
         </tbody>
         <tfoot>
+          <tr ref={endRef}></tr>
           {(hasNextPage || isLoading) &&
             Array.from({ length: max }).map((item, index) => (
               <Track key={index} isLoading={true} />

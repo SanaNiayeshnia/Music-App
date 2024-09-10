@@ -76,18 +76,19 @@ export async function getRelatedArtists(id) {
   return data?.artists;
 }
 
-export async function getAppearsOn(id) {
-  const res = await fetch(
-    `https://api.spotify.com/v1/artists/${id}/albums?include_groups=appears_on&limit=50&locale=en_US`,
-    {
-      headers: getRequestHeader(),
-    },
-  );
+export async function getAppearsOn({ pageParam: nextUrl, artistId }) {
+  const url =
+    nextUrl ||
+    `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=appears_on&limit=12&locale=en_US`;
+
+  const res = await fetch(url, {
+    headers: getRequestHeader(),
+  });
   if (res.status !== 200)
     throw new Error("Failed to get the artist's appears on items!");
   const data = await res.json();
 
-  return data?.items;
+  return data;
 }
 
 export async function checkUsersFollowedArtists(id) {

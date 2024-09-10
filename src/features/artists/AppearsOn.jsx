@@ -8,7 +8,13 @@ import { useDispatch } from "react-redux";
 
 function AppearsOn({ all }) {
   const { id } = useParams();
-  const { isLoading: isLoadingAppearsOn, appearsOn } = useArtistsAppearsOn(id);
+  const {
+    isLoading: isLoadingAppearsOn,
+    appearsOn,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+  } = useArtistsAppearsOn(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,6 +48,9 @@ function AppearsOn({ all }) {
       all={all}
       isLoading={isLoadingArtist || isLoadingAppearsOn}
       items={appearsOn}
+      isFetching={isFetching}
+      hasNextPage={hasNextPage}
+      fetchNextPage={fetchNextPage}
     />
   );
 }

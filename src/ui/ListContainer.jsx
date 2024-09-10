@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import useScrollbar from "../hooks/useScrollbar";
 import ListTitle from "./ListTitle";
 import ShortPageHeader from "./layout/page/ShortPageHeader";
+import Skeleton from "./Skeleton";
 
 function ListContainer({
   items,
@@ -40,8 +41,6 @@ function ListContainer({
   const ref = useScrollbar();
   const { isSmall } = useSelector((store) => store.global);
   const { ref: endRef, inView } = useInView();
-
-  console.log(inView);
 
   useEffect(() => {
     function sliceItems() {
@@ -99,8 +98,6 @@ function ListContainer({
       fetchNextPage();
   }, [inView, hasNextPage, isFetching, isLoading, fetchNextPage, all]);
 
-  console.log(hasNextPage, isLoading);
-
   return (
     (isLoading || slicedItems?.length > 0) && (
       <div>
@@ -111,7 +108,8 @@ function ListContainer({
                 title={title}
                 showAllTo={showAllTo}
                 conditionForShowAll={
-                  items?.length > screenSizeMaxItems || alwaysShowAll
+                  items?.length > screenSizeMaxItems ||
+                  (alwaysShowAll && !isLoading)
                 }
               />
             ) : (

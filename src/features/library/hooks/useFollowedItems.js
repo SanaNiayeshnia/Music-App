@@ -2,32 +2,73 @@ import { useEffect } from "react";
 import useSavedAlbums from "../../albums/hooks/useSavedAlbums";
 import useFollowedArtists from "../../artists/hooks/useFollowedArtists";
 import useSavedPlaylists from "../../playlists/hooks/useSavedPlaylists";
-import { useDispatch, useSelector } from "react-redux";
-import { setFollowedItems } from "../librarySlice";
+import { useSelector } from "react-redux";
 
 function useFollowedItems() {
-  const { isLoading: isLoadingArtists, followedArtists } = useFollowedArtists();
-  const { isLoading: isLoadingAlbums, savedAlbums } = useSavedAlbums();
-  const { isLoading: isLoadingPlaylists, savedPlaylists } = useSavedPlaylists();
-  const dispatch = useDispatch();
-  const { followedItems, filteredItems } = useSelector(
+  const {
+    isLoading: isLoadingArtists,
+    followedArtists,
+    hasNextPage: hasNextArtistPage,
+    fetchNextPage: fetchNextArtist,
+  } = useFollowedArtists();
+  const {
+    isLoading: isLoadingAlbums,
+    savedAlbums,
+    hasNextPage: hasNextAlbumPage,
+    fetchNextPage: fetchNextALbum,
+  } = useSavedAlbums();
+  const {
+    isLoading: isLoadingPlaylists,
+    savedPlaylists,
+    hasNextPage: hasNextPlaylistPage,
+    fetchNextPage: fetchNextPlaylist,
+  } = useSavedPlaylists();
+  const { currentFilter, sortBy, searchQuery } = useSelector(
     (store) => store.library,
   );
 
-  useEffect(() => {
-    //put all the followed items into a single array
-    const items = [
-      ...(followedArtists || []),
-      ...(savedAlbums || []),
-      ...(savedPlaylists || []),
-    ];
+  const followedItems = [...followedArtists, ...savedAlbums, ...savedPlaylists];
+  //filter items by their type
+  const filteredItemsByType = currentFilter
+    ? followedItems?.filter((item) => item.type === currentFilter)
+    : followedItems;
+  //sort items
+  const sortedItems = filteredItemsByType.sort((a, b) => {
+    return sortBy === "A-Z"
+      ? a.name.localeCompare(b.name)
+      : sortBy === "Z-A"
+        ? b.name.localeCompare(a.name)
+        : "";
+  });
+  //filter items by the search query string
+  const pattern = new RegExp(searchQuery, "i");
+  const filteredItemsByQuery = sortedItems.filter((item) =>
+    pattern.test(item.name),
+  );
 
-    dispatch(setFollowedItems(items));
-  }, [followedArtists, savedAlbums, savedPlaylists, dispatch]);
+  useEffect(() => {
+    //fetch artists till there are no more
+    if (hasNextArtistPage) fetchNextArtist();
+  }, [hasNextArtistPage, fetchNextArtist]);
+
+  useEffect(() => {
+    //fetch albums till there are no more
+
+    if (hasNextAlbumPage) fetchNextALbum();
+  }, [hasNextAlbumPage, fetchNextALbum]);
+
+  useEffect(() => {
+    //fetch playlists till there are no more
+    if (hasNextPlaylistPage) fetchNextPlaylist();
+  }, [hasNextPlaylistPage, fetchNextPlaylist]);
 
   const isLoading = isLoadingAlbums || isLoadingPlaylists || isLoadingArtists;
 
-  return { isLoading, followedItems, filteredItems };
+  return {
+    isLoading,
+    followedItems,
+    filteredItems: filteredItemsByQuery,
+  };
 }
 
 export default useFollowedItems;

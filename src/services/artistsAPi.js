@@ -1,9 +1,10 @@
 import { getRequestHeader } from "../utilities/helper";
 
 //get requests
-export async function getFollowedArtists() {
-  let url =
-    "https://api.spotify.com/v1/me/following?type=artist&limit=50&locale=en_US";
+export async function getFollowedArtists({ pageParam: nextUrl }) {
+  const url =
+    nextUrl ||
+    "https://api.spotify.com/v1/me/following?type=artist&limit=10&locale=en_US";
 
   const res = await fetch(url, {
     headers: getRequestHeader(),
@@ -13,11 +14,12 @@ export async function getFollowedArtists() {
 
   const data = await res.json();
 
-  return {
-    artists: data?.artists?.items,
-    count: data?.artists?.total,
-    next: data?.artists?.next,
-  };
+  return data?.artists;
+  // return {
+  //   artists: data?.artists?.items,
+  //   count: data?.artists?.total,
+  //   next: data?.artists?.next,
+  // };
 }
 
 export async function getArtist(id) {

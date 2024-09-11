@@ -1,13 +1,13 @@
 import { getRequestHeader } from "../utilities/helper";
 
 //get requests
-export async function getSavedAlbums() {
-  const res = await fetch(
-    "https://api.spotify.com/v1/me/albums?limit=50&locale=en_US",
-    {
-      headers: getRequestHeader(),
-    },
-  );
+export async function getSavedAlbums({ pageParam: nextUrl }) {
+  const url =
+    nextUrl || "https://api.spotify.com/v1/me/albums?limit=30&locale=en_US";
+
+  const res = await fetch(url, {
+    headers: getRequestHeader(),
+  });
   if (res.status !== 200) throw new Error("Failed to get the saved albums!");
   const data = await res.json();
 

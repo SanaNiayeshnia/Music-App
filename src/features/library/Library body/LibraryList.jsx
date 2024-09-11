@@ -15,6 +15,7 @@ function LibraryList() {
   useEffect(() => {
     setLibraryRef(ref);
   }, [ref, setLibraryRef]);
+
   return (
     <div
       className={`${isPlayingTrackbarOpen && "md:justify-center"} scrollbar hide-scroll h-full overflow-auto pb-3 md:pl-3 md:pr-2`}

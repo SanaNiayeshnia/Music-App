@@ -4,13 +4,12 @@ import { getUsersSavedTracks } from "./tracksApi";
 import imageCompression from "browser-image-compression";
 
 //get requests
-export async function getSavedPlaylists() {
-  const res = await fetch(
-    "https://api.spotify.com/v1/me/playlists?limit=50&locale=en_US",
-    {
-      headers: getRequestHeader(),
-    },
-  );
+export async function getSavedPlaylists({ pageParam: nextUrl }) {
+  const url =
+    nextUrl || "https://api.spotify.com/v1/me/playlists?limit=30&locale=en_US";
+  const res = await fetch(url, {
+    headers: getRequestHeader(),
+  });
   if (res.status !== 200) throw new Error("Failed to get the saved playlists!");
   const data = await res.json();
 
@@ -18,7 +17,7 @@ export async function getSavedPlaylists() {
   const likedSongsPlaylist = await getLikedSongsPlaylist();
   const allSavedPlaylists = [...data?.items, likedSongsPlaylist];
 
-  return { playlists: allSavedPlaylists, count: data?.total, next: data?.next };
+  return { playlists: allSavedPlaylists, next: data?.next };
 }
 
 export async function getPlaylist(id) {

@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getSavedPlaylists } from "../../../services/playlistsAPi";
+import { useEffect } from "react";
 
 function useSavedPlaylists() {
   const { isLoading, data, isFetching, hasNextPage, fetchNextPage } =
@@ -10,13 +11,19 @@ function useSavedPlaylists() {
     });
 
   const savedPlaylists = data?.pages.flatMap((page) => page.playlists) || [];
+
+  const nextUrl = data?.pages[data?.pages.length - 1]?.next;
+  useEffect(() => {
+    //fetch playlists till there are no more
+    if (hasNextPage) fetchNextPage();
+  }, [hasNextPage, fetchNextPage, nextUrl]);
+
   return {
     isLoading,
     savedPlaylists,
     isFetching,
     hasNextPage,
     fetchNextPage,
-    next: data?.pages[data?.pages.length - 1]?.next,
   };
 }
 

@@ -1,31 +1,12 @@
-import { useEffect } from "react";
 import useSavedAlbums from "../../albums/hooks/useSavedAlbums";
 import useFollowedArtists from "../../artists/hooks/useFollowedArtists";
 import useSavedPlaylists from "../../playlists/hooks/useSavedPlaylists";
 import { useSelector } from "react-redux";
 
 function useFollowedItems() {
-  const {
-    isLoading: isLoadingArtists,
-    followedArtists,
-    hasNextPage: hasNextArtistPage,
-    fetchNextPage: fetchNextArtist,
-    next: nextArtist,
-  } = useFollowedArtists();
-  const {
-    isLoading: isLoadingAlbums,
-    savedAlbums,
-    hasNextPage: hasNextAlbumPage,
-    fetchNextPage: fetchNextALbum,
-    next: nextAlbum,
-  } = useSavedAlbums();
-  const {
-    isLoading: isLoadingPlaylists,
-    savedPlaylists,
-    hasNextPage: hasNextPlaylistPage,
-    fetchNextPage: fetchNextPlaylist,
-    next: nextPlaylist,
-  } = useSavedPlaylists();
+  const { isLoading: isLoadingArtists, followedArtists } = useFollowedArtists();
+  const { isLoading: isLoadingAlbums, savedAlbums } = useSavedAlbums();
+  const { isLoading: isLoadingPlaylists, savedPlaylists } = useSavedPlaylists();
   const { currentFilter, sortBy, searchQuery } = useSelector(
     (store) => store.library,
   );
@@ -48,22 +29,6 @@ function useFollowedItems() {
   const filteredItemsByQuery = sortedItems.filter((item) =>
     pattern.test(item.name),
   );
-
-  useEffect(() => {
-    //fetch artists till there are no more
-    if (hasNextArtistPage) fetchNextArtist();
-  }, [hasNextArtistPage, fetchNextArtist, nextArtist]);
-
-  useEffect(() => {
-    //fetch albums till there are no more
-
-    if (hasNextAlbumPage) fetchNextALbum();
-  }, [hasNextAlbumPage, fetchNextALbum, nextAlbum]);
-
-  useEffect(() => {
-    //fetch playlists till there are no more
-    if (hasNextPlaylistPage) fetchNextPlaylist();
-  }, [hasNextPlaylistPage, fetchNextPlaylist, nextPlaylist]);
 
   const isLoading = isLoadingAlbums || isLoadingPlaylists || isLoadingArtists;
 

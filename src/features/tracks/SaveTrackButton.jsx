@@ -16,6 +16,7 @@ function SaveTrackButton({ track, className }) {
     <Tooltip
       title={isTrackSaved ? "Remove from liked songs" : "Save to likes songs"}
       placement="top"
+      PopperProps={{ disablePortal: true }}
     >
       <div className="grid place-items-center">
         {isPendingSave || isPendingUnsave ? (

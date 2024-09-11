@@ -15,7 +15,7 @@ function PlayingTrackbarHeader({ isScrolled }) {
       className={`${isScrolled && "bg-white/50 shadow backdrop-blur-lg dark:bg-black/50"} flex items-center justify-between px-3 py-6`}
     >
       {isLoading ? (
-        <Skeleton className="h-4 w-32" />
+        <Skeleton className="h-4 w-32 rounded-sm" />
       ) : (
         <p
           className="cursor-pointer text-sm font-semibold text-black hover:underline dark:text-white"

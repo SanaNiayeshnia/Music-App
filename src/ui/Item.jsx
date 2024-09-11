@@ -135,7 +135,18 @@ const Item = forwardRef(function Item(
   );
 
   return isMedium && isPlayingTrackbarOpen && size === "small" ? (
-    <Tooltip title={name} placement="right">
+    <Tooltip
+      title={name}
+      placement="right"
+      PopperProps={{
+        sx: {
+          "&[data-popper-reference-hidden]": {
+            visibility: "hidden",
+            "pointer-events": "none",
+          },
+        },
+      }}
+    >
       {content}
     </Tooltip>
   ) : (

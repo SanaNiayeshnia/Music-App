@@ -10,7 +10,11 @@ function PopularityHearts({ popularity }) {
     5 - (popularityFilledHeartsCount + popularityHalfHeartsCount);
 
   return (
-    <Tooltip title={`popularity: ${popularity}%`} placement="left">
+    <Tooltip
+      title={`popularity: ${popularity}%`}
+      placement="left"
+      PopperProps={{ disablePortal: true }}
+    >
       <div className="absolute bottom-4 right-4 flex items-center justify-end gap-1">
         {Array.from({
           length: popularityFilledHeartsCount,

@@ -10,17 +10,12 @@ import MainContextProvider from "./main/MainContextProvider";
 import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 import { togglePlayingTrackBar } from "../../features/player/PlaybackSlice";
-import { useLocation, useNavigate } from "react-router-dom";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,
   );
-  const { isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();
-  const loc = useLocation();
-  const isOnLibraryPage = loc.pathname.includes("/library");
-  const navigate = useNavigate();
   useEffect(() => {
     function handleResize() {
       dispatch(

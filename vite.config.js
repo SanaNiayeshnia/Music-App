@@ -10,9 +10,14 @@ export default defineConfig({
       manifest: {
         name: APP_NAME,
         short_name: APP_NAME.trim(),
-        description: "This is a music app!",
+        description: "A music app powered by spotify api!",
         theme_color: "#2563eb",
+        background_color: "#ffffff",
         display: "standalone",
+        start_url: "/",
+        orientation: "portrait",
+        dir: "ltr",
+
         icons: [
           {
             src: "/images/icons/icon.png",
@@ -20,6 +25,7 @@ export default defineConfig({
             type: "image/png",
           },
         ],
+        display_override: ["fullscreen", "standalone"],
       },
       registerType: "autoUpdate", //automatically update the service worker
       devOptions: {

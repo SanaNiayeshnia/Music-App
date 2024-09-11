@@ -22,13 +22,13 @@ export async function getRecentlyPlayed(all = false) {
   else {
     const hrefs = uniqueItemsArray
       .map((item) => item?.context?.href)
-      .filter((item) => item); //only get the hrefs which are not a falsey value like null or undefined
+      .filter((item) => item); //only get the hrefs which are not a falsy value like null or undefined
 
     const hrefsSet = new Set(hrefs); //a set of context hrefs of recently played items (href of playlists/albums)
     let contextItems = await Promise.all(
       [...hrefsSet].map(async (href) => {
         //fetch each item data
-        const itemRes = await fetch(href, {
+        const itemRes = await fetch(href + "?locale=en_US", {
           headers: getRequestHeader(),
         });
 

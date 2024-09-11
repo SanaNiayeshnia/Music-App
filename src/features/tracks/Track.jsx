@@ -54,7 +54,7 @@ function Track({
             <img
               src={
                 !isLoading
-                  ? track?.album?.images?.at(0)?.url ||
+                  ? track?.album?.images?.at(2)?.url ||
                     (isDarkMode
                       ? "/images/covers/album-cover-dark.jpeg"
                       : "/images/covers/album-cover-light.jpeg")

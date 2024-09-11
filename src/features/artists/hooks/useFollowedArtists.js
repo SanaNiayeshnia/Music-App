@@ -13,22 +13,12 @@ function useFollowedArtists() {
 
   const followedArtists = data?.pages?.flatMap((page) => page.items) || [];
 
-  useEffect(() => {
-    if (hasNextPage && data) {
-      const lastPage = data?.pages[data?.pages.length - 1];
-      console.log(lastPage.next);
-      queryClient.prefetchQuery({
-        queryKey: ["followed-artists", lastPage.next],
-        queryFn: () => getFollowedArtists({ pageParam: lastPage.next }),
-      });
-    }
-  }, [hasNextPage, data, queryClient]);
-
   return {
     isLoading,
     followedArtists,
     isFetching,
     hasNextPage,
+    next: data?.pages[data?.pages.length - 1]?.next,
     fetchNextPage,
   };
 }

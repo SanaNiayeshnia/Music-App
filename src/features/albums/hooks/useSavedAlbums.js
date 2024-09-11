@@ -10,7 +10,15 @@ function useSavedAlbums() {
     });
 
   const savedAlbums = data?.pages?.flatMap((page) => page.albums) || [];
-  return { isLoading, savedAlbums, isFetching, hasNextPage, fetchNextPage };
+  console.log(data?.pages[data?.pages.length - 1]);
+  return {
+    isLoading,
+    savedAlbums,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+    next: data?.pages[data?.pages.length - 1]?.next,
+  };
 }
 
 export default useSavedAlbums;

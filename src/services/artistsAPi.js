@@ -4,7 +4,7 @@ import { getRequestHeader } from "../utilities/helper";
 export async function getFollowedArtists({ pageParam: nextUrl }) {
   const url =
     nextUrl ||
-    "https://api.spotify.com/v1/me/following?type=artist&limit=10&locale=en_US";
+    "https://api.spotify.com/v1/me/following?type=artist&limit=30&locale=en_US";
 
   const res = await fetch(url, {
     headers: getRequestHeader(),

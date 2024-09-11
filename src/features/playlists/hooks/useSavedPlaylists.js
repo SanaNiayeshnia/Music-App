@@ -10,7 +10,14 @@ function useSavedPlaylists() {
     });
 
   const savedPlaylists = data?.pages.flatMap((page) => page.playlists) || [];
-  return { isLoading, savedPlaylists, isFetching, hasNextPage, fetchNextPage };
+  return {
+    isLoading,
+    savedPlaylists,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+    next: data?.pages[data?.pages.length - 1]?.next,
+  };
 }
 
 export default useSavedPlaylists;

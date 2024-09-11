@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentFilter: "",
-  sortBy: "",
+  sortBy: "A-Z",
   searchQuery: "",
   followedItems: [],
   filteredItems: [],

@@ -10,18 +10,21 @@ function useFollowedItems() {
     followedArtists,
     hasNextPage: hasNextArtistPage,
     fetchNextPage: fetchNextArtist,
+    next: nextArtist,
   } = useFollowedArtists();
   const {
     isLoading: isLoadingAlbums,
     savedAlbums,
     hasNextPage: hasNextAlbumPage,
     fetchNextPage: fetchNextALbum,
+    next: nextAlbum,
   } = useSavedAlbums();
   const {
     isLoading: isLoadingPlaylists,
     savedPlaylists,
     hasNextPage: hasNextPlaylistPage,
     fetchNextPage: fetchNextPlaylist,
+    next: nextPlaylist,
   } = useSavedPlaylists();
   const { currentFilter, sortBy, searchQuery } = useSelector(
     (store) => store.library,
@@ -49,18 +52,18 @@ function useFollowedItems() {
   useEffect(() => {
     //fetch artists till there are no more
     if (hasNextArtistPage) fetchNextArtist();
-  }, [hasNextArtistPage, fetchNextArtist]);
+  }, [hasNextArtistPage, fetchNextArtist, nextArtist]);
 
   useEffect(() => {
     //fetch albums till there are no more
 
     if (hasNextAlbumPage) fetchNextALbum();
-  }, [hasNextAlbumPage, fetchNextALbum]);
+  }, [hasNextAlbumPage, fetchNextALbum, nextAlbum]);
 
   useEffect(() => {
     //fetch playlists till there are no more
     if (hasNextPlaylistPage) fetchNextPlaylist();
-  }, [hasNextPlaylistPage, fetchNextPlaylist]);
+  }, [hasNextPlaylistPage, fetchNextPlaylist, nextPlaylist]);
 
   const isLoading = isLoadingAlbums || isLoadingPlaylists || isLoadingArtists;
 

@@ -5,7 +5,6 @@ import { useInView } from "react-intersection-observer";
 import useScrollbar from "../hooks/useScrollbar";
 import ListTitle from "./ListTitle";
 import ShortPageHeader from "./layout/page/ShortPageHeader";
-import Skeleton from "./Skeleton";
 
 function ListContainer({
   items,
@@ -33,7 +32,7 @@ function ListContainer({
     return {
       xl: isPlayingTrackbarOpen ? 4 : 6,
       lg: isPlayingTrackbarOpen ? 3 : 4,
-      md: isPlayingTrackbarOpen ? 2 : 3,
+      md: isPlayingTrackbarOpen ? 3 : 3,
       sm: 10,
     };
   }, [isPlayingTrackbarOpen]);

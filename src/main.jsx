@@ -5,11 +5,14 @@ import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store.js";
 import { ErrorBoundary } from "react-error-boundary";
-import AccessDenied from "./ui/error/AccessDenied.jsx";
+import ErrorFallBack from "./ui/error/ErrorFallBack.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ErrorBoundary FallbackComponent={AccessDenied}>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallBack}
+      onReset={() => window.location.replace("/")}
+    >
       <Provider store={store}>
         <App />
       </Provider>

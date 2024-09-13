@@ -27,13 +27,13 @@ function Category({ category, isLoading }) {
       )}
 
       {!isImageLoaded && (
-        <Skeleton className="absolute -bottom-5 -right-5 aspect-square h-24 w-24 rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110 md:h-[7.5rem] md:w-[7.5rem]" />
+        <Skeleton className="absolute -bottom-8 -right-5 aspect-square h-24 w-24 rotate-[15deg] rounded-md shadow-md transition-all group-hover:scale-110 md:h-[7.5rem] md:w-[7.5rem]" />
       )}
       <img
         src={!isLoading ? category?.icons[0]?.url : ""}
         alt={category?.name}
         onLoad={() => setIsImageLoaded(true)}
-        className={`${!isImageLoaded && "hidden"} absolute -bottom-5 -right-5 aspect-square w-24 rotate-[15deg] rounded-md shadow-md filter transition-all group-hover:scale-110 md:w-[7.5rem] dark:brightness-150`}
+        className={`${!isImageLoaded && "hidden"} absolute -bottom-8 -right-5 aspect-square w-24 rotate-[15deg] rounded-md shadow-md filter transition-all group-hover:scale-110 md:w-[7.5rem] dark:brightness-150`}
       />
     </div>
   );

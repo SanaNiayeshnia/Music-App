@@ -32,7 +32,6 @@ import UsersTopArtists from "./features/users/UsersTopArtists";
 import UsersFollowings from "./features/users/UsersFollowings";
 import LibraryPage from "./pages/LibraryPage";
 import CategoryPage from "./pages/CategoryPage";
-import AccessDeniedPage from "./ui/error/AccessDenied";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -99,7 +98,6 @@ function App() {
               }
             >
               <Route index element={<HomePage />} />
-              <Route path="access-denied" element={<AccessDeniedPage />} />
               <Route
                 path="library"
                 element={

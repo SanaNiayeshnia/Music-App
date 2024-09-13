@@ -11,7 +11,7 @@ function TrackBarError() {
         <TbMoodSad className="h-5 w-5 text-blue-600 duration-100" />
       </p>
       <div className="text-center text-sm font-medium">
-        {user.product === "premium" ? (
+        {user?.product === "premium" ? (
           <p className="text-black dark:text-white">Start by playing a song.</p>
         ) : (
           <p className="text-black dark:text-white">

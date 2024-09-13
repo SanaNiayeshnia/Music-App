@@ -34,7 +34,7 @@ const Item = forwardRef(function Item(
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => !isLoading && handleOnClick()}
-      className={`${size === "large" ? "flex-col p-3 md:w-full" : "items-center p-2"} ${!isLoading && "cursor-pointer"} group flex flex-shrink-0 gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
+      className={` ${size === "large" ? "flex-col p-3 md:w-full" : "items-center p-2"} ${!isLoading && "cursor-pointer"} group flex flex-shrink-0 gap-3 rounded-md hover:bg-white/40 hover:shadow dark:hover:bg-black/40`}
     >
       <div className={`${size === "large" && "relative"}`}>
         {(!isImageLoaded || isLoading) && (

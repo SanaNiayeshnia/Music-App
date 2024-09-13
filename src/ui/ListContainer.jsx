@@ -99,7 +99,7 @@ function ListContainer({
 
   return (
     (isLoading || slicedItems?.length > 0) && (
-      <div>
+      <div className="min-h-80">
         {!noTitle && (
           <>
             {!all ? (
@@ -117,11 +117,11 @@ function ListContainer({
           </>
         )}
 
-        <div className={`space-y-3 ${all && "mt-8"}`}>
+        <div className={`space-y-3 ${all && "mt-8"} `}>
           {children}
           <div
             ref={ref}
-            className={`${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2 sm:grid-cols-3"} scrollbar hide-scroll md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
+            className={` ${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2 sm:grid-cols-3"} scrollbar hide-scroll md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
           >
             {!isLoading &&
               slicedItems?.length > 0 &&

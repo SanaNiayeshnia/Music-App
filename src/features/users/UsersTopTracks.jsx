@@ -20,7 +20,7 @@ function UsersTopTracks({ all }) {
 
   return (
     (isLoading || usersTopTracks?.length > 0) && (
-      <div>
+      <div className="min-h-80">
         <ListTitle
           showAllTo="top/tracks"
           title={(all ? "Your " : "") + "Top Tracks"}

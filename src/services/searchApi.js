@@ -59,7 +59,7 @@ export async function getSearchResult(query) {
     controller = new AbortController();
 
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${query}&type=track,album,artist,playlist&limit=30`,
+      `https://api.spotify.com/v1/search?q=${query}&type=track,album,artist,playlist&limit=30&locale=en_US`,
       {
         signal: controller.signal,
         headers: getRequestHeader(),

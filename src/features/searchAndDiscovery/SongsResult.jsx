@@ -13,7 +13,7 @@ function SongsResult({ items, all, setCurrentFilter }) {
   return (
     <div
       key={all}
-      className={`${!all && "mt-8"} min-w-80 flex-grow md:min-w-96`}
+      className={`${!all && "mt-8"} min-h-80 min-w-80 flex-grow md:min-w-96`}
     >
       <div className="mb-3 flex items-center justify-between">
         <Title>Songs</Title>

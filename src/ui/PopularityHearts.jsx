@@ -10,29 +10,31 @@ function PopularityHearts({ popularity }) {
     5 - (popularityFilledHeartsCount + popularityHalfHeartsCount);
 
   return (
-    <Tooltip
-      title={`popularity: ${popularity}%`}
-      placement="left"
-      PopperProps={{ disablePortal: true }}
-    >
-      <div className="absolute bottom-4 right-4 flex items-center justify-end gap-1">
-        {Array.from({
-          length: popularityFilledHeartsCount,
-        }).map((heart, index) => (
-          <BsHeartFill key={index} className="text-white drop-shadow" />
-        ))}
-        {Array.from({
-          length: popularityHalfHeartsCount,
-        }).map((heart, index) => (
-          <BsHeartHalf key={index} className="text-white drop-shadow" />
-        ))}
-        {Array.from({
-          length: popularityEmptyHeartsCount,
-        }).map((heart, index) => (
-          <BsHeart key={index} className="text-white drop-shadow" />
-        ))}
-      </div>
-    </Tooltip>
+    <div className="z-50">
+      <Tooltip
+        title={`popularity: ${popularity}%`}
+        placement="left"
+        PopperProps={{ disablePortal: true }}
+      >
+        <div className="absolute bottom-4 right-4 flex items-center justify-end gap-1">
+          {Array.from({
+            length: popularityFilledHeartsCount,
+          }).map((heart, index) => (
+            <BsHeartFill key={index} className="text-white drop-shadow" />
+          ))}
+          {Array.from({
+            length: popularityHalfHeartsCount,
+          }).map((heart, index) => (
+            <BsHeartHalf key={index} className="text-white drop-shadow" />
+          ))}
+          {Array.from({
+            length: popularityEmptyHeartsCount,
+          }).map((heart, index) => (
+            <BsHeart key={index} className="text-white drop-shadow" />
+          ))}
+        </div>
+      </Tooltip>
+    </div>
   );
 }
 

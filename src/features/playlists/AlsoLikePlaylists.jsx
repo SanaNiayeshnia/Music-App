@@ -11,7 +11,7 @@ function AlsoLikePlaylists({ all }) {
   const { id } = useParams();
   const { isLoading: isLoadingPlaylist, playlist } = usePlaylist(id);
   const { isLoading: isLoadingArtist, artist } = useArtist(
-    playlist?.tracks?.items[0]?.track?.artists[0]?.id,
+    playlist?.tracks?.items?.at(0)?.track?.artists[0]?.id,
   );
   const { isLoading: isLoadingRelatedPlaylists, relatedPlaylists } =
     useRelatedPlaylists(artist?.genres?.at(0) || "pop");

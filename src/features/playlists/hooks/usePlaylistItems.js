@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPlaylistItems } from "../../../services/playlistsAPi";
+import { getUsersSavedTracks } from "../../../services/tracksApi";
 
 function usePlaylistItems(playlistId) {
   const {
@@ -12,7 +13,9 @@ function usePlaylistItems(playlistId) {
   } = useInfiniteQuery({
     queryKey: ["playlist-items", playlistId],
     queryFn: ({ pageParam = null }) =>
-      getPlaylistItems({ pageParam, playlistId }),
+      playlistId == "LikedSongs"
+        ? getUsersSavedTracks({ pageParam })
+        : getPlaylistItems({ pageParam, playlistId }),
     getNextPageParam: (lastPage) => lastPage.next || null,
   });
 

@@ -38,13 +38,12 @@ export async function checkUsersSavedTracks(id) {
   return data[0];
 }
 
-export async function getUsersSavedTracks() {
-  const res = await fetch(
-    `https://api.spotify.com/v1/me/tracks?limit=50&locale=en_US`,
-    {
-      headers: getRequestHeader(),
-    },
-  );
+export async function getUsersSavedTracks({ pageParam: nextUrl }) {
+  const url =
+    nextUrl || `https://api.spotify.com/v1/me/tracks?limit=25&locale=en_US`;
+  const res = await fetch(url, {
+    headers: getRequestHeader(),
+  });
   if (res.status !== 200)
     throw new Error("Failed to get the user's saved tracks!");
   const data = await res.json();

@@ -13,11 +13,7 @@ export async function getSavedPlaylists({ pageParam: nextUrl }) {
   if (res.status !== 200) throw new Error("Failed to get the saved playlists!");
   const data = await res.json();
 
-  //add likedSongsPlaylist to the saved playlists
-  const likedSongsPlaylist = await getLikedSongsPlaylist();
-  const allSavedPlaylists = [...data?.items, likedSongsPlaylist];
-
-  return { playlists: allSavedPlaylists, next: data?.next };
+  return { playlists: data?.items, next: data?.next };
 }
 
 export async function getPlaylist(id) {
@@ -90,11 +86,8 @@ export async function getFeaturedPlaylists() {
 }
 
 export async function getLikedSongsPlaylist() {
-  const { items: likedSongsPlaylistTracks, total } =
-    await getUsersSavedTracks();
   const user = await getCurrentUser();
   const likedSongsPlaylist = {
-    tracks: { items: [...likedSongsPlaylistTracks], total },
     type: "playlist",
     name: "Liked Songs",
     public: false,
@@ -102,7 +95,6 @@ export async function getLikedSongsPlaylist() {
     owner: { id: user.id, display_name: user.display_name, type: "user" },
     images: [{ url: "/images/covers/heart-folder.jpg" }],
   };
-
   return likedSongsPlaylist;
 }
 

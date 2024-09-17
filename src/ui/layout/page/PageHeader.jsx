@@ -16,7 +16,7 @@ function PageHeader({ item, artist }) {
   const background =
     type !== "playlist"
       ? artist?.images?.at(0)?.url
-      : item?.tracks?.items[0]?.track?.album?.images?.at(0)?.url;
+      : item?.tracks?.items?.at(0)?.track?.album?.images?.at(0)?.url;
   const title = item?.name;
   const cover =
     type !== "track"

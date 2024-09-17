@@ -31,7 +31,7 @@ function SaveTrackButton({ track, className }) {
             ) : (
               <RiHeart3Fill
                 onClick={unsaveTrackMutate}
-                className={`${className} cursor-pointer text-blue-600 duration-100 hover:scale-105`}
+                className={`${className} cursor-pointer text-blue-600 duration-100 hover:scale-105 dark:text-white dark:hover:text-blue-600`}
               />
             )}
           </>

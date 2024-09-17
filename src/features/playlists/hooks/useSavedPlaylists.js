@@ -19,7 +19,6 @@ function useSavedPlaylists() {
   ].filter(Boolean);
 
   const nextUrl = data?.pages[data?.pages.length - 1]?.next;
-  console.log(savedPlaylists);
   useEffect(() => {
     //fetch playlists till there are no more
     if (hasNextPage) fetchNextPage();

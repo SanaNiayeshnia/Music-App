@@ -1,12 +1,11 @@
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useSelector } from "react-redux";
 import { formatTrackDuration } from "../../utilities/helper";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
 import TrackContextMenu from "./TrackContextMenu";
-import { useInView } from "react-intersection-observer";
 
 function Track({
   track,
@@ -23,15 +22,10 @@ function Track({
   const navigate = useNavigate();
   const [isUsingContextMenu, setIsUsingContextMenu] = useState(false);
   const { isDarkMode, isSmall } = useSelector((store) => store.global);
-  const { ref, inView } = useInView();
-  const [isViewed, setIsViewed] = useState(false);
-  useEffect(() => {
-    if (inView) setIsViewed(inView);
-  }, [inView, setIsViewed]);
+
   return (
     <tr
-      ref={ref}
-      className={`${isSmall ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr] pl-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"}`}
+      className={`${isSmall ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr] pl-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : `${!isLoading && "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"} `}`}
     >
       {!noIndex && (
         <td className="w-3.5 text-center">
@@ -126,7 +120,6 @@ function Track({
           <SaveTrackButton
             className={`${isUsingContextMenu || isSmall ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
             track={track}
-            enabled={isViewed}
           />
         )}
       </td>

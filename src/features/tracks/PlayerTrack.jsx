@@ -109,7 +109,6 @@ function PlayerTrack({ fullScreen }) {
             <SaveTrackButton
               className={`min-h-5 min-w-5 ${isSmall && "text-white hover:text-white"}`}
               track={currentlyPlayingTrack}
-              enabled={true}
             />
             <TbPlayerPlayFilled className="min-h-5 min-w-5 text-white md:hidden" />
           </>

@@ -64,7 +64,6 @@ function PlayingTrack() {
           <SaveTrackButton
             className="min-h-5 min-w-5"
             track={currentlyPlayingTrack}
-            enabled={true}
           />
         )}
       </div>

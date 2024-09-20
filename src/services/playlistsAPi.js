@@ -1,6 +1,5 @@
 import { getRequestHeader } from "../utilities/helper";
 import { getCurrentUser } from "./authenticationApi";
-import { getUsersSavedTracks } from "./tracksApi";
 import imageCompression from "browser-image-compression";
 
 //get requests
@@ -36,7 +35,7 @@ export async function getPlaylist(id) {
 export async function getPlaylistItems({ pageParam = null, playlistId }) {
   const url =
     pageParam ||
-    `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=50`;
+    `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=25`;
 
   const res = await fetch(url, {
     headers: getRequestHeader(),

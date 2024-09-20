@@ -22,11 +22,7 @@ function PageMenu({ item }) {
           </>
         ) : item?.type === "track" ? (
           <>
-            <SaveTrackButton
-              className="min-h-7 min-w-7"
-              track={item}
-              enabled={true}
-            />
+            <SaveTrackButton className="min-h-7 min-w-7" track={item} />
             <TrackContextMenu position="right" track={item} />
           </>
         ) : item?.type === "album" ? (

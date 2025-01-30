@@ -7,7 +7,7 @@ function useArtistsTopTracks(id) {
     queryFn: () => getArtistsTopTracks(id),
   });
 
-  return { isLoading, artistsTopTracks };
+  return { isLoading, artistsTopTracks: artistsTopTracks || [] };
 }
 
 export default useArtistsTopTracks;

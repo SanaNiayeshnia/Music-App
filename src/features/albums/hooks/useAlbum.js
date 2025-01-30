@@ -5,6 +5,7 @@ function useAlbum(id) {
   const { isLoading, data: album } = useQuery({
     queryKey: ["album", id],
     queryFn: () => getAlbum(id),
+    enabled: Boolean(id),
   });
   return {
     isLoading,

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRecentlyPlayed } from "../../../services/playerApi";
 
-function useRecentlyPlayed({ all = false }) {
+function useRecentlyPlayed() {
   const { isLoading, data: recentlyPlayedItems } = useQuery({
-    queryKey: [`recently-played`, { all }],
-    queryFn: () => getRecentlyPlayed(all),
+    queryKey: [`recently-played`],
+    queryFn: getRecentlyPlayed,
   });
 
   return { isLoading, recentlyPlayedItems };

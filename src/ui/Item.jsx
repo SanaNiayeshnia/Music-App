@@ -6,6 +6,8 @@ import Skeleton from "./Skeleton";
 import { formatName } from "../utilities/helper";
 import { useNavigate } from "react-router-dom";
 import useMainContext from "./layout/main/useMainContext";
+import usePlaylist from "../features/playlists/hooks/usePlaylist";
+import useAlbum from "../features/albums/hooks/useAlbum";
 
 const Item = forwardRef(function Item(
   { item = {}, size, isLoading = false, discography = false },
@@ -22,6 +24,14 @@ const Item = forwardRef(function Item(
   const navigate = useNavigate();
   const { scrollMainToTop } = useMainContext();
   const { isDarkMode } = useSelector((store) => store.global);
+  const contextType = item?.context?.type;
+  const { isLoading: isLoadingContextPlaylist, playlist: contextPlaylist } =
+    usePlaylist(
+      contextType === "playlist" ? item?.context?.uri?.split(":")[2] : null,
+    );
+  const { isLoading: isLoadingContextAlbum, album: contextAlbum } = useAlbum(
+    contextType === "album" ? item?.context?.uri?.split(":")[2] : null,
+  );
 
   function handleOnClick() {
     navigate(`/${type}/${item?.id}`);
@@ -85,6 +95,28 @@ const Item = forwardRef(function Item(
               </p>
             ) : (
               <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">
+                {contextPlaylist?.name || contextAlbum?.name ? (
+                  <>
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(
+                          contextType === "playlist"
+                            ? `/playlist/${contextPlaylist?.id}`
+                            : contextType === "album"
+                              ? `/album/${contextAlbum?.id}`
+                              : "",
+                        );
+                      }}
+                      className="hover:underline"
+                    >
+                      {contextPlaylist?.name || contextAlbum?.name}
+                    </span>
+                    {" • "}
+                  </>
+                ) : (
+                  ""
+                )}
                 {size === "large" && (type === "track" || type === "album") ? (
                   artists?.map((artist, index) => (
                     <span

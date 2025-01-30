@@ -8,7 +8,7 @@ function useCategorysPlaylists(id) {
     enabled: Boolean(id),
   });
 
-  return { isLoading, categorysPlaylists };
+  return { isLoading, categorysPlaylists: categorysPlaylists || [] };
 }
 
 export default useCategorysPlaylists;

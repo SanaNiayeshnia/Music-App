@@ -36,7 +36,7 @@ function ArtistPage() {
             <Popular artistsTopTracks={artistsTopTracks} />
             <Discography />
             <AppearsOn />
-            <RelatedArtists />
+            {/* <RelatedArtists /> */}
           </PageBody>
         </>
       )}

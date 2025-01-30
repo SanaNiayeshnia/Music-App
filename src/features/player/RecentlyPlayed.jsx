@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../GlobalSlice";
 
 function RecentlyPlayed({ all = false }) {
-  const { isLoading, recentlyPlayedItems } = useRecentlyPlayed({ all });
+  const { isLoading, recentlyPlayedItems } = useRecentlyPlayed();
   console.log("recently-played", recentlyPlayedItems);
 
   const dispatch = useDispatch();

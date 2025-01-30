@@ -19,6 +19,7 @@ function ListContainer({
   fetchNextPage = null,
   hasNextPage = false,
   isFetching = false,
+  hasContext = false,
   children,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);

@@ -10,6 +10,8 @@ function RelatedArtists({ all = false }) {
   const { id } = useParams();
   const { isLoading: isLoadingRelatedArtists, relatedArtists } =
     useRelatedArtists(id);
+  console.log(relatedArtists);
+
   const { isLoading: isLoadingArtist, artist } = useArtist(id);
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ function useRecommendations(id) {
     queryKey: ["recommendation", id],
     queryFn: () => getRecommendations(id),
   });
-  return { isLoading, recommendations };
+  return { isLoading, recommendation: recommendations || [] };
 }
 
 export default useRecommendations;

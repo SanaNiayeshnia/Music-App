@@ -12,8 +12,8 @@ function HomePage() {
       <TopNav />
       <PageBody noPadding>
         <RecentlyPlayed />
-        <MadeForYou />
-        <FeaturedPlaylists />
+        {/* <MadeForYou /> */}
+        {/* <FeaturedPlaylists /> */}
         <NewReleases />
       </PageBody>
     </Page>

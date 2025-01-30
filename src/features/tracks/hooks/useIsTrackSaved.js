@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { checkUsersSavedTracks } from "../../../services/tracksApi";
-import useSavedTracks from "./useSavedTracks";
 
 function useIsTrackSaved(id) {
   // const { isLoading, savedTracks } = useSavedTracks();
@@ -10,7 +9,6 @@ function useIsTrackSaved(id) {
     queryFn: () => checkUsersSavedTracks(id),
     enabled: Boolean(id),
   });
-  console.log(isTrackSaved);
   return { isLoading, isTrackSaved };
 }
 

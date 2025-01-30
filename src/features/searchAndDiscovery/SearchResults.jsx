@@ -14,6 +14,7 @@ function SearchResults() {
   const { isLoading, searchResult, error } = useSearchResult(
     searchParams.get("q"),
   );
+
   const [currentFilter, setCurrentFilter] = useState("");
 
   return (
@@ -53,7 +54,7 @@ function SearchResults() {
           {(currentFilter === "" || currentFilter === "artist") && (
             <ResultList
               title="Artists"
-              items={searchResult?.artists?.items}
+              items={searchResult?.artists?.items?.filter(Boolean)}
               all={currentFilter === "artist"}
               setCurrentFilter={setCurrentFilter}
             />
@@ -62,7 +63,7 @@ function SearchResults() {
           {(currentFilter === "" || currentFilter === "album") && (
             <ResultList
               title="Albums"
-              items={searchResult?.albums?.items}
+              items={searchResult?.albums?.items?.filter(Boolean)}
               all={currentFilter === "album"}
               setCurrentFilter={setCurrentFilter}
             />
@@ -71,7 +72,7 @@ function SearchResults() {
           {(currentFilter === "" || currentFilter === "playlist") && (
             <ResultList
               title="Playlists"
-              items={searchResult?.playlists?.items}
+              items={searchResult?.playlists?.items?.filter(Boolean)}
               all={currentFilter === "playlist"}
               setCurrentFilter={setCurrentFilter}
             />

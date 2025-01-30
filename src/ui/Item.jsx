@@ -14,7 +14,7 @@ const Item = forwardRef(function Item(
   const [isHovered, setIsHovered] = useState(false);
   const { isMedium } = useSelector((store) => store.global);
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
-  const { name, type } = item;
+  const { name, type } = item || {};
   const artists = item?.artists || [];
   const images = type === "track" ? item?.album?.images : item?.images;
   const filteredName = formatName(name, 45);

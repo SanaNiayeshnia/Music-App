@@ -4,8 +4,11 @@ import useCategories from "./hooks/useCategories";
 
 function MadeForYou() {
   const { isLoading: isLoadingCategories, categories } = useCategories();
+
   const { isLoading: isLoadingCategorysPlaylists, categorysPlaylists } =
     useCategorysPlaylists(categories?.at(0)?.id);
+
+  console.log(categories, categorysPlaylists);
 
   return (
     <ListContainer

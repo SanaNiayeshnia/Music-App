@@ -8,6 +8,7 @@ export async function getRecentlyPlayed(all = false) {
   if (res.status !== 200)
     throw new Error("Failed to get the recently played items!");
   const data = await res.json(); //list of individual tracks that has been played
+  console.log(data);
 
   const uniqueItemsMap = new Map();
   data?.items?.forEach((item) => {
@@ -16,21 +17,29 @@ export async function getRecentlyPlayed(all = false) {
     }
   });
   const uniqueItemsArray = Array.from(uniqueItemsMap.values());
+
   const allTracks = uniqueItemsArray.map((item) => item.track);
+  console.log(allTracks);
+
   if (all)
     return allTracks; //return all the individual tracks
   else {
     const hrefs = uniqueItemsArray
       .map((item) => item?.context?.href)
-      .filter((item) => item); //only get the hrefs which are not a falsy value like null or undefined
+      .filter(Boolean); //only get the hrefs which are not a falsy value like null or undefined
 
     const hrefsSet = new Set(hrefs); //a set of context hrefs of recently played items (href of playlists/albums)
+    console.log(hrefsSet);
+
     let contextItems = await Promise.all(
-      [...hrefsSet].map(async (href) => {
+      [...hrefsSet]?.map(async (href) => {
         //fetch each item data
+
         const itemRes = await fetch(href + "?locale=en_US", {
           headers: getRequestHeader(),
         });
+
+        console.log(itemRes);
 
         if (itemRes.status !== 200) {
           throw new Error("Failed to get the recently played items!");

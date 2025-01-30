@@ -22,6 +22,7 @@ function Track({
   const navigate = useNavigate();
   const [isUsingContextMenu, setIsUsingContextMenu] = useState(false);
   const { isDarkMode, isSmall } = useSelector((store) => store.global);
+  console.log("track", track);
 
   return (
     <tr

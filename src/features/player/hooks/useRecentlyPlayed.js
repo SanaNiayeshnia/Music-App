@@ -6,6 +6,7 @@ function useRecentlyPlayed({ all = false }) {
     queryKey: [`recently-played`, { all }],
     queryFn: () => getRecentlyPlayed(all),
   });
+
   return { isLoading, recentlyPlayedItems };
 }
 

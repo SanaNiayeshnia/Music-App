@@ -6,6 +6,8 @@ import { setPageTitle } from "../../GlobalSlice";
 
 function RecentlyPlayed({ all = false }) {
   const { isLoading, recentlyPlayedItems } = useRecentlyPlayed({ all });
+  console.log("recently-played", recentlyPlayedItems);
+
   const dispatch = useDispatch();
   useEffect(() => {
     //set page title when component mount and remove it when the component unmounts

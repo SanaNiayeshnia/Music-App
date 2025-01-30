@@ -19,15 +19,15 @@ function TrackPage() {
   const { isLoading: isLoadingArtist, artist } = useArtist(
     track?.artists[0]?.id,
   );
-  const { isLoading: isLoadingRecommendation, recommendations } =
-    useRecommendations(id);
+  // const { isLoading: isLoadingRecommendation, recommendations } =
+  //   useRecommendations(id);
 
   return (
     <Page>
       <TopNav transparent>
         {isMainScrolled && <NavTitle>{track?.name}</NavTitle>}
       </TopNav>
-      {isLoadingArtist || isLoadingTrack || isLoadingRecommendation ? (
+      {isLoadingArtist || isLoadingTrack ? (
         <div className="grid h-full place-items-center">
           <Spinner />
         </div>
@@ -36,7 +36,7 @@ function TrackPage() {
           <PageHeader item={track} artist={artist} />
           <PageBody>
             <PageMenu item={track} />
-            <RecommendedTracks recommendations={recommendations} />
+            {/* <RecommendedTracks recommendations={recommendations} /> */}
           </PageBody>
         </>
       )}

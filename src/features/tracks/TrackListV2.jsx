@@ -4,6 +4,8 @@ import Track from "./Track";
 function TrackListV2({ tracks, max = 5, noArtist = true, noAlbum = true }) {
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState(false);
 
+  console.log(tracks, tracks?.alice(0, max));
+
   return (
     <div>
       <table className="w-full">

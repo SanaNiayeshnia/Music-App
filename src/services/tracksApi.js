@@ -14,6 +14,8 @@ export async function getTrack(id) {
 }
 
 export async function getRecommendations(trackId) {
+  console.log("trackId", trackId);
+
   const res = await fetch(
     `https://api.spotify.com/v1/recommendations?seed_tracks=${trackId}&limit=10&locale=en_US`,
     {

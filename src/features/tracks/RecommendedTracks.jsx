@@ -1,7 +1,7 @@
 import ListTitle from "../../ui/ListTitle";
 import TrackListV2 from "./TrackListV2";
 
-function RecommendedTracks({ recommendations }) {
+function RecommendedTracks({ recommendations = [], isLoading = fasle }) {
   return (
     <div className="pb-5">
       <ListTitle conditionForShowAll={false} title="Recommended" />
@@ -10,6 +10,7 @@ function RecommendedTracks({ recommendations }) {
         max={10}
         noArtist={false}
         noAlbum={false}
+        isLoading={isLoading}
       />
     </div>
   );

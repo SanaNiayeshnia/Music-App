@@ -6,6 +6,7 @@ function TrackListV2({
   max = 5,
   noArtist = true,
   noAlbum = true,
+  isLoading = false,
 }) {
   const [isSeeMoreOpen, setIsSeeMoreOpen] = useState(false);
 
@@ -13,17 +14,22 @@ function TrackListV2({
     <div>
       <table className="w-full">
         <tbody>
-          {[...(isSeeMoreOpen ? tracks : tracks?.slice(0, max))].map(
-            (track, index) => (
-              <Track
-                key={track.id}
-                index={index + 1}
-                track={track}
-                noArtist={noArtist}
-                noAlbum={noAlbum}
-              />
-            ),
-          )}
+          {isLoading
+            ? Array.from({ length: 10 })?.map((item, index) => (
+                <Track key={index} isLoading={true} />
+              ))
+            : [...(isSeeMoreOpen ? tracks : tracks?.slice(0, max))].map(
+                (track, index) => (
+                  <Track
+                    key={track.id}
+                    index={index + 1}
+                    track={track}
+                    noArtist={noArtist}
+                    noAlbum={noAlbum}
+                    isLoading={isLoading}
+                  />
+                ),
+              )}
         </tbody>
       </table>
       {tracks?.length > max && (

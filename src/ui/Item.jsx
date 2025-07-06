@@ -62,7 +62,7 @@ const Item = forwardRef(function Item(
           }
           alt={name}
           onLoad={() => setIsImageLoaded(true)}
-          className={`${!isImageLoaded && "hidden"} aspect-square shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "md:h-full md:w-full" : "h-14 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
+          className={`${!isImageLoaded && "hidden"} aspect-square object-cover shadow transition-all group-hover:scale-105 ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? "md:h-full md:w-full" : "h-14 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
         />
 
         {size === "large" && !isLoading && (

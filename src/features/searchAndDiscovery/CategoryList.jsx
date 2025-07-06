@@ -13,7 +13,7 @@ function CategoryList({ all = false }) {
   return (
     <div>
       <div className="flex justify-between gap-4">
-        <Title>Browse all</Title>
+        <Title>Browse all categories</Title>
         {!all && !isLoading && <ShowAll to="/search">Show all</ShowAll>}
       </div>
       {all ? (

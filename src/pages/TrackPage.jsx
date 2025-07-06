@@ -11,6 +11,7 @@ import useRecommendations from "../features/tracks/hooks/useRecommendations";
 import useMainContext from "../ui/layout/main/useMainContext";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";
+import useArtistsTopTracks from "../features/artists/hooks/useArtistsTopTracks";
 
 function TrackPage() {
   const { isMainScrolled } = useMainContext();
@@ -19,9 +20,8 @@ function TrackPage() {
   const { isLoading: isLoadingArtist, artist } = useArtist(
     track?.artists[0]?.id,
   );
-  // const { isLoading: isLoadingRecommendation, recommendations } =
-  //   useRecommendations(id);
-
+  const { isLoading: isLoadingArtistsTopTracks, artistsTopTracks } =
+    useArtistsTopTracks(track?.artists?.[0]?.id);
   return (
     <Page>
       <TopNav transparent>
@@ -36,7 +36,12 @@ function TrackPage() {
           <PageHeader item={track} artist={artist} />
           <PageBody>
             <PageMenu item={track} />
-            {/* <RecommendedTracks recommendations={recommendations} /> */}
+            <RecommendedTracks
+              recommendations={artistsTopTracks?.filter(
+                (item) => item.id !== id,
+              )}
+              isLoading={isLoadingArtistsTopTracks}
+            />
           </PageBody>
         </>
       )}

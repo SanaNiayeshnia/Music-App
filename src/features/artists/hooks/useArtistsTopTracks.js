@@ -5,6 +5,7 @@ function useArtistsTopTracks(id) {
   const { isLoading, data: artistsTopTracks } = useQuery({
     queryKey: ["artists-top-track", id],
     queryFn: () => getArtistsTopTracks(id),
+    enabled: Boolean(id),
   });
 
   return { isLoading, artistsTopTracks: artistsTopTracks || [] };

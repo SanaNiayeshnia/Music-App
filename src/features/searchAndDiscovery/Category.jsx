@@ -16,7 +16,7 @@ function Category({ category, isLoading }) {
   return (
     <div
       onClick={handleOnClick}
-      className="group relative flex min-h-36 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/50"
+      className="group relative flex min-h-36 max-w-60 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/50"
     >
       {isLoading ? (
         <Skeleton className="h-5 w-20" />

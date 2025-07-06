@@ -4,7 +4,7 @@ import CategoryList from "./CategoryList";
 function DefaultSearchPageContent() {
   return (
     <PageBody noPadding>
-      <CategoryList />
+      <CategoryList all />
     </PageBody>
   );
 }

@@ -80,7 +80,7 @@ function Track({
             <>
               <p
                 onClick={() => navigate(`/track/${track?.id}`)}
-                className="cursor-pointer text-sm font-medium text-black hover:underline dark:text-white"
+                className="line-clamp-2 cursor-pointer text-sm font-medium text-black hover:underline dark:text-white"
               >
                 {track?.name}
               </p>

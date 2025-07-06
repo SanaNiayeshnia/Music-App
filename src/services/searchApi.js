@@ -37,7 +37,7 @@ export async function getCategories() {
   );
   if (res.status !== 200) throw new Error("Failed to get the categories!");
   const data = await res.json();
-  return data?.categories?.items;
+  return data?.categories?.items?.slice(2);
 }
 
 export async function getCategory(id) {

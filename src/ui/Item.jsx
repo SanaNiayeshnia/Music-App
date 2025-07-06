@@ -3,7 +3,6 @@ import FloatingPlayButton from "./FloatingPlayButton";
 import { Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
-import { formatName } from "../utilities/helper";
 import { useNavigate } from "react-router-dom";
 import useMainContext from "./layout/main/useMainContext";
 import usePlaylist from "../features/playlists/hooks/usePlaylist";
@@ -19,7 +18,6 @@ const Item = forwardRef(function Item(
   const { name, type } = item || {};
   const artists = item?.artists || [];
   const images = type === "track" ? item?.album?.images : item?.images;
-  const filteredName = formatName(name, 45);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
   const { scrollMainToTop } = useMainContext();
@@ -86,8 +84,8 @@ const Item = forwardRef(function Item(
           </div>
         ) : (
           <div className="flex flex-col justify-between gap-1">
-            <p className="font-medium text-black dark:text-white">
-              {filteredName}
+            <p className="line-clamp-2 font-medium text-black dark:text-white">
+              {name}
             </p>
             {discography ? (
               <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">

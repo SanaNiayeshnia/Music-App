@@ -30,7 +30,7 @@ function CategoryList({ all = false }) {
         </div>
       ) : (
         <Swiper
-          spaceBetween={20}
+          spaceBetween={25}
           slidesPerView={"auto"}
           breakpoints={{
             0: { slidesPerView: 1.5 },

@@ -15,8 +15,14 @@ function CategoryPage() {
   const { isMainScrolled } = useMainContext();
   const { id } = useParams();
   const { isLoading: isLoadingCategory, category } = useCategory(id);
-  const { isLoading: isLoadingCategorysPlaylists, categorysPlaylists } =
-    useCategorysPlaylists(id);
+  const {
+    isLoading: isLoadingCategorysPlaylists,
+    categorysPlaylists,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useCategorysPlaylists(category?.name);
 
   return (
     <Page>
@@ -37,12 +43,13 @@ function CategoryPage() {
           <ShortPageHeader title={category?.name + " Category"} />
           <PageBody noPadding>
             <ListContainer
-              items={categorysPlaylists.filter(
-                (p) => !p.name.toLowerCase().includes("podcast"),
-              )}
+              items={categorysPlaylists}
               isLoading={isLoadingCategorysPlaylists}
               noTitle
               all={true}
+              fetchNextPage={fetchNextPage}
+              isFetching={isFetching || isFetchingNextPage}
+              hasNextPage={hasNextPage}
             />
           </PageBody>
         </>

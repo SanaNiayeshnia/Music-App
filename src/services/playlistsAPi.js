@@ -97,18 +97,17 @@ export async function getLikedSongsPlaylist() {
   return likedSongsPlaylist;
 }
 
-export async function getCategorysPlaylists(id) {
-  const res = await fetch(
-    `
-    https://api.spotify.com/v1/browse/categories/${id}/playlists?locale=en_US`,
-    {
-      headers: getRequestHeader(),
-    },
-  );
+export async function getCategorysPlaylists({ name, pageParam: nextUrl }) {
+  const url =
+    nextUrl ||
+    `https://api.spotify.com/v1/search?q=${name}&type=playlist&limit=50&&locale=en_US`;
+  const res = await fetch(url, {
+    headers: getRequestHeader(),
+  });
   if (res.status !== 200)
     throw new Error("Failed to get the category's playlists!");
   const data = await res.json();
-  return data?.playlists?.items;
+  return data;
 }
 
 //put requests

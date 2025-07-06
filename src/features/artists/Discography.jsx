@@ -63,7 +63,8 @@ function Discography({ all }) {
     >
       {
         //add filters component when nothing's loading
-        !isLoadingArtist &&
+        all &&
+          !isLoadingArtist &&
           !isLoadingDiscography &&
           artistsDiscography?.length > 0 && (
             <DiscographyFilters

@@ -14,7 +14,7 @@ function CategoryList({ all = false }) {
     <div>
       <div className="flex justify-between gap-4">
         <Title>Browse all</Title>
-        {!all && <ShowAll to="/search">Show all</ShowAll>}
+        {!all && !isLoading && <ShowAll to="/search">Show all</ShowAll>}
       </div>
       {all ? (
         <div
@@ -45,11 +45,17 @@ function CategoryList({ all = false }) {
           loop={true}
           className="mt-7"
         >
-          {items?.map((cat, index) => (
-            <SwiperSlide key={index} className="max-w-60">
-              <Category category={cat} />
-            </SwiperSlide>
-          ))}
+          {isLoading
+            ? Array.from({ length: 12 }).map((cat, index) => (
+                <SwiperSlide key={index} className="max-w-60">
+                  <Category isLoading={true} />
+                </SwiperSlide>
+              ))
+            : items?.map((cat, index) => (
+                <SwiperSlide key={index} className="max-w-60">
+                  <Category category={cat} />
+                </SwiperSlide>
+              ))}
         </Swiper>
       )}
     </div>

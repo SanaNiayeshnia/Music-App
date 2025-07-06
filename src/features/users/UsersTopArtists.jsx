@@ -23,7 +23,7 @@ function UsersTopArtists({ all }) {
       isLoading={isLoading}
       items={usersTopArtists}
       title={`${all ? "Your " : ""} Top Artists`}
-      showAllTo="top/artists"
+      showAllTo="/account/top/artists"
     />
   );
 }

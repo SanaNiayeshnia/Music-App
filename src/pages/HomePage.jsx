@@ -6,6 +6,7 @@ import Page from "../ui/layout/page/Page";
 import PageBody from "../ui/layout/page/PageBody";
 import MadeForYou from "../features/searchAndDiscovery/MadeForYou";
 import CategoryList from "../features/searchAndDiscovery/CategoryList";
+import UsersTopArtists from "../features/users/UsersTopArtists";
 
 function HomePage() {
   return (
@@ -15,8 +16,9 @@ function HomePage() {
         <RecentlyPlayed />
         {/* <MadeForYou /> */}
         {/* <FeaturedPlaylists /> */}
-        <CategoryList />
         <NewReleases />
+        <UsersTopArtists />
+        <CategoryList />
       </PageBody>
     </Page>
   );

@@ -24,19 +24,6 @@ export function formatTrackDuration(duration) {
   return formattedDuration;
 }
 
-export function formatName(name, length = 25) {
-  //if the name length was more than 25 char, cut it and add "..."
-  const formattedName =
-    name?.length > length
-      ? name
-          ?.slice(0, length)
-          .split(" ")
-          .slice(0, name?.slice(0, length)?.split(" ")?.length - 1)
-          .join(" ") + "..."
-      : name;
-  return formattedName;
-}
-
 export function formatDate(date = new Date()) {
   const options = { year: "numeric", month: "short", day: "numeric" };
   const formatter = new Intl.DateTimeFormat("en-US", options);

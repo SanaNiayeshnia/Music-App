@@ -10,11 +10,14 @@ import MainContextProvider from "./main/MainContextProvider";
 import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 import { togglePlayingTrackBar } from "../../features/player/PlaybackSlice";
+import useCurrentlyPlayingTrack from "../../features/player/hooks/useCurrentlyPlayingTrack";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,
   );
+  const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+
   const dispatch = useDispatch();
   useEffect(() => {
     function handleResize() {
@@ -30,11 +33,6 @@ function AppLayout() {
     return () => window.removeEventListener("resize", handleResize);
   }, [dispatch, isPlayingTrackbarOpen]);
 
-  // useEffect(() => {
-  //   //redirect to main page if the user trys to access to the library page and they are not using a small screen device
-  //   !isSmall && isOnLibraryPage && navigate("/");
-  // }, [isSmall, isOnLibraryPage, navigate]);
-
   return (
     <MainContextProvider>
       <div
@@ -48,7 +46,7 @@ function AppLayout() {
           {isPlayingTrackbarOpen && <PlayingTrackBar />}
         </div>
 
-        <Player />
+        {currentlyPlayingTrack?.id && <Player />}
         <BottomNav />
         <FullScreenPlayingTrack />
       </div>

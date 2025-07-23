@@ -3,7 +3,7 @@ import GramophoneDisc from "./GramophoneDisc";
 import { useState } from "react";
 import Skeleton from "./Skeleton";
 
-function Cover({ cover, title, size = "medium", className }) {
+function Cover({ cover, title, size = "medium", spinDisc = false, className }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const { isDarkMode } = useSelector((store) => store.global);
@@ -27,7 +27,7 @@ function Cover({ cover, title, size = "medium", className }) {
       <div
         className={` ${isPlayingTrackbarOpen && size === "medium" ? "left-0" : "left-20 md:left-14 lg:left-20"} ${size === "large" && "left-20 md:left-24 lg:left-28"} absolute top-0 z-10 grid h-full w-full place-items-center p-1`}
       >
-        <GramophoneDisc image={cover} title={title} />
+        <GramophoneDisc image={cover} title={title} spin={spinDisc} />
       </div>
     </div>
   );

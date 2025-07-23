@@ -36,6 +36,7 @@ function PlayerTrack({ fullScreen }) {
               }
               title={currentlyPlayingTrack?.name}
               size="large"
+              spinDisc
             />
           ) : (
             <>

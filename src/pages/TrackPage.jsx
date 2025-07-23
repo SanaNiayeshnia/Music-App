@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import useTrack from "../features/tracks/hooks/useTrack";
 import Spinner from "../ui/Spinner";
 import useArtist from "../features/artists/hooks/useArtist";
-import useRecommendations from "../features/tracks/hooks/useRecommendations";
 import useMainContext from "../ui/layout/main/useMainContext";
 import PageMenu from "../ui/layout/page/PageMenu";
 import Page from "../ui/layout/page/Page";

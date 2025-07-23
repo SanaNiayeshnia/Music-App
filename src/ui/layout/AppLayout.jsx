@@ -4,7 +4,7 @@ import PlayingTrackBar from "./playingTrackBar/PlayingTrackBar";
 import Sidebar from "./sidebar/Sidebar";
 import Main from "./main/Main";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { setIsMedium, setIsSmall } from "../../GlobalSlice";
 import MainContextProvider from "./main/MainContextProvider";
 import BottomNav from "./bottomNav/BottomNav";
@@ -17,7 +17,7 @@ function AppLayout() {
     (store) => store.playback,
   );
   const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
-
+  const layoutRef = useRef();
   const dispatch = useDispatch();
   useEffect(() => {
     function handleResize() {
@@ -28,14 +28,28 @@ function AppLayout() {
       window.innerWidth < 768 &&
         isPlayingTrackbarOpen &&
         dispatch(togglePlayingTrackBar());
+
+      if (window.innerWidth < 640) {
+        if (layoutRef.current.requestFullscreen) {
+          layoutRef.current.requestFullscreen();
+        } else if (layoutRef.current.webkitRequestFullscreen) {
+          layoutRef.current.webkitRequestFullscreen(); // Safari
+        } else if (layoutRef.current.msRequestFullscreen) {
+          layoutRef.current.msRequestFullscreen(); // IE11
+        }
+      }
     }
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.exitFullscreen();
+    };
   }, [dispatch, isPlayingTrackbarOpen]);
 
   return (
     <MainContextProvider>
       <div
+        ref={layoutRef}
         className={`relative ${isPlayingTrackbarOpen ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} ${!isFullScreenPlayingTrackOpen && "md:min-w-[900px]"} h-screen min-h-[650px] grid-rows-[1fr_4fr_0.5fr] gap-2 overflow-hidden md:grid md:px-3 md:py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
       >
         <Sidebar />

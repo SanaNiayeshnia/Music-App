@@ -27,7 +27,7 @@ function FullScreenPlayingTrack() {
   const containerRef = useRef();
 
   useEffect(() => {
-    if (isFullScreenPlayingTrackOpen) {
+    if (isFullScreenPlayingTrackOpen && !isSmall) {
       if (containerRef.current.requestFullscreen) {
         containerRef.current.requestFullscreen();
       } else if (containerRef.current.webkitRequestFullscreen) {
@@ -38,7 +38,7 @@ function FullScreenPlayingTrack() {
     } else {
       document.exitFullscreen();
     }
-  }, [isFullScreenPlayingTrackOpen]);
+  }, [isFullScreenPlayingTrackOpen, isSmall]);
 
   return (
     <div

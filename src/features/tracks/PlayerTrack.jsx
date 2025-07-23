@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Cover from "../../ui/Cover";
 import { setIsFullScreenPlayingTrack } from "../player/PlaybackSlice";
 
-function PlayerTrack({ fullScreen }) {
+function PlayerTrack({ fullScreen = false }) {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();

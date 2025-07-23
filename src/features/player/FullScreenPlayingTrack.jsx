@@ -10,6 +10,7 @@ import IconLogo from "../../ui/layout/topNav/IconLogo";
 import useCurrentlyPlayingTrack from "./hooks/useCurrentlyPlayingTrack";
 import TrackContextMenu from "../tracks/TrackContextMenu";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 function FullScreenPlayingTrack() {
   const { isFullScreenPlayingTrackOpen } = useSelector(
@@ -23,6 +24,22 @@ function FullScreenPlayingTrack() {
     dispatch(setIsFullScreenPlayingTrack(false));
   }
 
+  const containerRef = useRef();
+
+  useEffect(() => {
+    if (isFullScreenPlayingTrackOpen) {
+      if (containerRef.current.requestFullscreen) {
+        containerRef.current.requestFullscreen();
+      } else if (containerRef.current.webkitRequestFullscreen) {
+        containerRef.current.webkitRequestFullscreen(); // Safari
+      } else if (containerRef.current.msRequestFullscreen) {
+        containerRef.current.msRequestFullscreen(); // IE11
+      }
+    } else {
+      document.exitFullscreen();
+    }
+  }, [isFullScreenPlayingTrackOpen]);
+
   return (
     <div
       style={{
@@ -31,9 +48,10 @@ function FullScreenPlayingTrack() {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className={`${isFullScreenPlayingTrackOpen ? "inset-0 opacity-100" : "left-0 right-0 top-full opacity-0 md:inset-0 md:hidden"} absolute z-50 transition-all`}
+      className={`${isFullScreenPlayingTrackOpen ? "translate-y-0" : "translate-y-full"} fixed inset-0 z-50 transition-all duration-300`}
+      ref={containerRef}
     >
-      <div className="absolute inset-0 z-50 grid place-items-center bg-white/50 px-8 backdrop-blur-lg dark:bg-black/50">
+      <div className="absolute inset-0 grid place-items-center bg-white/50 px-8 backdrop-blur-lg dark:bg-black/50">
         <div className="flex w-11/12 items-center justify-between">
           <TbChevronDown
             onClick={close}

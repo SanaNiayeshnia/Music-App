@@ -14,8 +14,6 @@ export async function getTrack(id) {
 }
 
 export async function getRecommendations(trackId) {
-  console.log("trackId", trackId);
-
   const res = await fetch(
     `https://api.spotify.com/v1/recommendations?seed_tracks=${trackId}&limit=10&locale=en_US`,
     {
@@ -37,7 +35,6 @@ export async function checkUsersSavedTracks(id) {
   if (res.status !== 200)
     throw new Error("Failed to check if the track is saved!");
   const data = await res.json();
-  console.log(data);
   return data?.at(0);
 }
 

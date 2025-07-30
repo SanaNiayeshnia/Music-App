@@ -6,7 +6,6 @@ import { setPageTitle } from "../../GlobalSlice";
 
 function RecentlyPlayed({ all = false }) {
   const { isLoading, recentlyPlayedItems } = useRecentlyPlayed();
-  console.log("recently-played", recentlyPlayedItems);
 
   const dispatch = useDispatch();
   useEffect(() => {

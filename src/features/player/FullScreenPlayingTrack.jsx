@@ -36,7 +36,7 @@ function FullScreenPlayingTrack() {
         containerRef.current.msRequestFullscreen(); // IE11
       }
     } else {
-      document.exitFullscreen();
+      document?.exitFullscreen();
     }
   }, [isFullScreenPlayingTrackOpen, isSmall]);
 

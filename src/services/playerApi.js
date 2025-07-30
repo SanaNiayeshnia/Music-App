@@ -8,7 +8,6 @@ export async function getRecentlyPlayed(all = false) {
   if (res.status !== 200)
     throw new Error("Failed to get the recently played items!");
   const data = await res.json(); //list of individual tracks that has been played
-  console.log(data);
 
   const uniqueItemsMap = new Map();
   data?.items?.forEach((item) => {

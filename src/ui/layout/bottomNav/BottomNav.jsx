@@ -7,20 +7,19 @@ import {
   TbUserFilled,
 } from "react-icons/tb";
 import BottomNavItem from "./BottomNavItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { RiSearch2Fill, RiSearch2Line } from "react-icons/ri";
 import { setQuery } from "../../../features/searchAndDiscovery/searchSlice";
 
 function BottomNav() {
-  const { isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();
 
   return (
     <div
-      className={`${isSmall ? "flex" : "hidden"} absolute bottom-2 z-50 w-full justify-center px-3`}
+      className={`absolute bottom-2 z-50 flex w-full justify-center px-3 md:hidden`}
     >
       <div
-        className={`${isSmall ? "flex" : "hidden"} w-full items-center justify-around gap-5 rounded-full bg-white/50 px-5 py-3 shadow backdrop-blur-lg sm:gap-10 dark:bg-black/50`}
+        className={`flex w-full items-center justify-around gap-5 rounded-full bg-white/50 px-5 py-3 shadow backdrop-blur-lg sm:gap-10 md:hidden dark:bg-black/50`}
       >
         <BottomNavItem
           icon={<TbHome />}

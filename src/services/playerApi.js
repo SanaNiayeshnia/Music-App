@@ -37,8 +37,6 @@ export async function getCurrentlyPlaingTrack() {
   const playlistRes = await fetch(data?.context?.href, {
     headers: getRequestHeader(),
   });
-  if (playlistRes.status !== 200)
-    throw new Error("Failed to get the currently playing track!");
   const playlistData = await playlistRes.json();
   context = { ...context, name: playlistData?.name, id: playlistData?.id };
   return { ...data?.item, context };

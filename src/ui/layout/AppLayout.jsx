@@ -46,7 +46,7 @@ function AppLayout() {
           {isPlayingTrackbarOpen && <PlayingTrackBar />}
         </div>
 
-        <Player />
+        {currentlyPlayingTrack?.id && <Player />}
         <BottomNav />
         <FullScreenPlayingTrack />
       </div>

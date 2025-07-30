@@ -115,11 +115,8 @@ function ItemContextMenu({
         close={isClickedOnPlaylistChildren}
         setIsUsingContextMenu={setIsUsingContextMenu}
       >
-        {isSmall ? (
-          <TbDotsVertical className={className} />
-        ) : (
-          <TbDots className={className} />
-        )}
+        <TbDotsVertical className={`${className} block md:hidden`} />
+        <TbDots className={`${className} hidden md:block`} />
       </ContextMenu>
       <Modal
         title="Edit playlist"

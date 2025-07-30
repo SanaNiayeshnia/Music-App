@@ -23,7 +23,9 @@ function Player() {
           volume: 0.5,
         });
 
-        dispatch(setPlayer(player));
+        console.log(player);
+
+        // dispatch(setPlayer(player));
 
         player.addListener("ready", ({ device_id }) => {
           console.log("Ready with Device ID:", device_id);

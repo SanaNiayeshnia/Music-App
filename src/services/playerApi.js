@@ -49,3 +49,14 @@ export async function getQueue() {
   const data = await res.json();
   return data.item;
 }
+
+export async function play(id) {
+  await fetch("https://api.spotify.com/v1/me/player/play", {
+    method: "PUT",
+    headers: getRequestHeader(),
+    body: JSON.stringify({
+      // device_id: deviceId,
+      uris: ["spotify:track:4uLU6hMCjMI75M1A2tKUQC"], // sample track
+    }),
+  });
+}

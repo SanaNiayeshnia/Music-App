@@ -9,7 +9,7 @@ import usePlaylist from "../features/playlists/hooks/usePlaylist";
 import useAlbum from "../features/albums/hooks/useAlbum";
 
 const Item = forwardRef(function Item(
-  { item = {}, size, isLoading = false, discography = false },
+  { item = {}, size, isLoading = false, discography = false, rounded = false },
   ref,
 ) {
   const [isHovered, setIsHovered] = useState(false);
@@ -47,7 +47,7 @@ const Item = forwardRef(function Item(
       <div className={`${size === "large" && "relative"}`}>
         {(!isImageLoaded || isLoading) && (
           <Skeleton
-            className={`rounded shadow ${type === "artist" ? "rounded-full" : "rounded"} ${size === "large" ? `aspect-square h-full w-full` : "h-14 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
+            className={`rounded shadow ${type === "artist" || rounded ? "rounded-full" : "rounded"} ${size === "large" ? `aspect-square h-full w-full` : "h-14 w-14 drop-shadow md:h-12 md:w-12 lg:h-14 lg:w-14"}`}
           />
         )}
 

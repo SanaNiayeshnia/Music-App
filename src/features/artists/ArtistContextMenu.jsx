@@ -10,13 +10,11 @@ import ContextMenu from "../../ui/ContextMenu";
 import useIsArtistBeingFollowed from "./hooks/useIsArtistBeingFollowed";
 import useFollowArtist from "./hooks/useFollowArtist";
 import useUnfollowArtist from "./hooks/useUnfollowArtist";
-import { useSelector } from "react-redux";
 
 function ArtistContextMenu({ artist, position }) {
   const { isArtistBeingFollowed } = useIsArtistBeingFollowed(artist?.id);
   const { followArtistMutate } = useFollowArtist(artist?.id);
   const { unfollowArtistMutate } = useUnfollowArtist(artist?.id);
-  const { isSmall } = useSelector((store) => store.global);
   const className =
     "min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white";
 
@@ -46,11 +44,8 @@ function ArtistContextMenu({ artist, position }) {
   ];
   return (
     <ContextMenu position={position} options={options}>
-      {isSmall ? (
-        <TbDotsVertical className={className} />
-      ) : (
-        <TbDots className={className} />
-      )}
+      <TbDotsVertical className={`${className} block md:hidden`} />
+      <TbDots className={`${className} hidden md:block`} />
     </ContextMenu>
   );
 }

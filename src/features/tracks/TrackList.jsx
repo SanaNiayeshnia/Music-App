@@ -18,7 +18,6 @@ function TrackList({
   isFetching,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
-  const { isSmall } = useSelector((store) => store.global);
   const itemsToShow = useMemo(
     () => items?.slice(0, all ? items?.length : max),
     [all, max, items],
@@ -33,8 +32,8 @@ function TrackList({
   return (
     (isLoading || items?.length > 0) && (
       <table className="w-full pt-3">
-        {all && !isSmall && (
-          <thead className="border-b border-black/20 dark:border-white/20">
+        {all && (
+          <thead className="hidden border-b border-black/20 md:table-header-group dark:border-white/20">
             <tr
               className={`${isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} grid w-full py-2 pl-3 text-sm font-medium xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]`}
             >

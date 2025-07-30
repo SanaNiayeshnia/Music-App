@@ -4,7 +4,7 @@ import useUsersTopArtists from "./hooks/useUsersTopArtists";
 import { useEffect } from "react";
 import { setPageTitle } from "../../GlobalSlice";
 
-function UsersTopArtists({ all }) {
+function UsersTopArtists({ autoPlay = false, all }) {
   const { isLoading, usersTopArtists } = useUsersTopArtists();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,6 +24,8 @@ function UsersTopArtists({ all }) {
       items={usersTopArtists}
       title={`${all ? "Your " : ""} Top Artists`}
       showAllTo="/account/top/artists"
+      rounded
+      autoPlay={autoPlay}
     />
   );
 }

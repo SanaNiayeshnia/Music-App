@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Item from "./Item";
 import { useInView } from "react-intersection-observer";
@@ -7,9 +7,11 @@ import ListTitle from "./ListTitle";
 import ShortPageHeader from "./layout/page/ShortPageHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Autoplay } from "swiper/modules";
 
 function ListContainer({
   items,
+  rounded = false,
   title,
   showAllTo,
   className,
@@ -21,13 +23,13 @@ function ListContainer({
   fetchNextPage = null,
   hasNextPage = false,
   isFetching = false,
+  autoPlay = false,
   children,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   // const [slicedItems, setSlicedItems] = useState(items);
   const loadingItems = Array.from({ length: 12 });
   const ref = useScrollbar();
-  const { isSmall } = useSelector((store) => store.global);
   const { ref: endRef, inView } = useInView();
 
   useEffect(() => {
@@ -61,6 +63,8 @@ function ListContainer({
             slidesPerView={"auto"}
             loop={true}
             className="mt-7"
+            autoplay={autoPlay ? { delay: 3000 } : false}
+            modules={[Autoplay]}
           >
             {isLoading
               ? loadingItems.map((item, index) => (
@@ -79,7 +83,7 @@ function ListContainer({
             {children}
             <div
               ref={ref}
-              className={` ${!all && isSmall ? "flex max-w-full items-stretch overflow-auto *:w-44" : "grid grid-cols-2 sm:grid-cols-3"} scrollbar hide-scroll md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
+              className={`scrollbar hide-scroll grid grid-cols-2 sm:grid-cols-3 md:max-w-full ${isPlayingTrackbarOpen ? "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"} grid-rows-1 py-1.5 md:grid md:overflow-hidden ${className}`}
             >
               {!isLoading &&
                 items?.length > 0 &&
@@ -94,7 +98,12 @@ function ListContainer({
                 ))}
               {((isFetching && all) || isLoading) &&
                 loadingItems.map((item, index) => (
-                  <Item key={index} isLoading={true} size="large" />
+                  <Item
+                    key={index}
+                    isLoading={true}
+                    size="large"
+                    rounded={rounded}
+                  />
                 ))}
             </div>
           </div>

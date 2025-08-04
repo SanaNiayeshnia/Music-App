@@ -6,7 +6,7 @@ function NavTitle({ children, noPlayButton }) {
       {!noPlayButton && <PlayButton />}
 
       <p
-        className={`w-full max-w-[10rem] overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-black first-letter:uppercase sm:max-w-xs dark:text-white`}
+        className={`flex w-full max-w-[10rem] items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-black first-letter:uppercase sm:max-w-xs dark:text-white`}
       >
         {children}
       </p>

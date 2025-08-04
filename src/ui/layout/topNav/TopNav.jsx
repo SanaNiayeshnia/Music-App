@@ -9,7 +9,7 @@ import LogoutButton from "../../../features/authentication/LogoutButton";
 
 function TopNav({ children }) {
   const { isMainScrolled } = useMainContext();
-  const { pageTitle, isSmall } = useSelector((store) => store.global);
+  const { pageTitle } = useSelector((store) => store.global);
   const loc = useLocation();
   const isSearchPage = loc.pathname.includes("/search");
   const isAccountPage = loc.pathname.includes("/account");
@@ -31,8 +31,10 @@ function TopNav({ children }) {
 
       <div className="flex items-center gap-2">
         <DarkModeToggler />
-        {!isSmall && <UserAvatar />}
-        {isSmall && isAccountPage && <LogoutButton />}
+        <div className="hidden md:block">
+          <UserAvatar />
+        </div>
+        {isAccountPage && <LogoutButton />}
       </div>
     </div>
   );

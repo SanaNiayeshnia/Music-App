@@ -16,6 +16,7 @@ function SearchForPlaylists({ searchQuery, setSearchQuery }) {
           type="text"
           placeholder="search in your library"
           autoFocus={isSmall ? false : true}
+          autoComplete="off"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className={`w-full bg-transparent text-sm placeholder:text-xs placeholder:text-gray-600 focus:border-0 focus:outline-0 dark:placeholder:text-white/50`}

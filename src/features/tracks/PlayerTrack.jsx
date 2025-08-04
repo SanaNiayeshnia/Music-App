@@ -4,7 +4,7 @@ import useCurrentlyPlayingTrack from "../player/hooks/useCurrentlyPlayingTrack";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
 import { TbPlayerPlayFilled } from "react-icons/tb";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Cover from "../../ui/Cover";
 import { setIsFullScreenPlayingTrack } from "../player/PlaybackSlice";
 
@@ -12,7 +12,6 @@ function PlayerTrack({ fullScreen = false }) {
   const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
-  const { isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +24,7 @@ function PlayerTrack({ fullScreen = false }) {
       className={`${!currentlyPlayingTrack && "opacity-50"} ${!fullScreen && "gap-4 md:w-72"} flex items-center justify-between`}
     >
       <div
-        className={`${fullScreen && isSmall && "flex-col"} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
+        className={`${fullScreen ? "flex-col md:flex-row" : ""} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
       >
         <div className="flex-shrink-0">
           {fullScreen ? (
@@ -107,7 +106,7 @@ function PlayerTrack({ fullScreen = false }) {
         {currentlyPlayingTrack?.name && !fullScreen && (
           <>
             <SaveTrackButton
-              className={`min-h-5 min-w-5 ${isSmall && "text-white hover:text-white"}`}
+              className={`min-h-5 min-w-5 text-white hover:text-white md:text-black md:hover:text-blue-600`}
               track={currentlyPlayingTrack}
             />
             <TbPlayerPlayFilled className="min-h-5 min-w-5 text-white md:hidden" />

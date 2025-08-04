@@ -21,11 +21,11 @@ function Track({
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
   const [isUsingContextMenu, setIsUsingContextMenu] = useState(false);
-  const { isDarkMode, isSmall } = useSelector((store) => store.global);
+  const { isDarkMode } = useSelector((store) => store.global);
 
   return (
     <tr
-      className={`${isSmall ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr] pl-2" : isPlayingTrackbarOpen ? "grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]" : "grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid items-center gap-1 rounded-md py-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : `${!isLoading && "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"} `}`}
+      className={`${isPlayingTrackbarOpen ? "md:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "md:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid grid-cols-[0.5fr_4fr_0.5fr_0.5fr] items-center gap-1 rounded-md py-2 pl-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : `${!isLoading && "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"} `}`}
     >
       {!noIndex && (
         <td className="w-3.5 text-center">
@@ -49,7 +49,7 @@ function Track({
           <div className="relative flex-shrink-0">
             {(!isImageLoaded || isLoading) && (
               <Skeleton
-                className={`${isSmall ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} aspect-square rounded shadow`}
+                className={`aspect-square h-14 w-14 rounded shadow group-hover:brightness-75 md:h-10 md:w-10`}
               />
             )}
             <img
@@ -63,11 +63,9 @@ function Track({
               }
               alt={track?.name}
               onLoad={() => setIsImageLoaded(true)}
-              className={`${isSmall ? "h-14 w-14 group-hover:brightness-75" : "h-10 w-10"} ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}
+              className={`h-14 w-14 group-hover:brightness-75 md:h-10 md:w-10 ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}
             />
-            {isSmall && (
-              <TbPlayerPlayFilled className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 cursor-pointer text-base text-white duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
-            )}
+            <TbPlayerPlayFilled className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-base text-white duration-100 hover:text-blue-600 group-hover:inline-block md:hidden dark:text-white" />
           </div>
         )}
         <div>
@@ -105,44 +103,40 @@ function Track({
         </div>
       </td>
 
-      {!isSmall && (
-        <td
-          onClick={() => navigate(`/album/${track?.album?.id}`)}
-          className={`${isPlayingTrackbarOpen && "hidden"} cursor-pointer text-sm text-black hover:underline xl:inline-block dark:text-white`}
-        >
-          {isLoading && <Skeleton className="h-3 w-20 rounded-sm" />}
-          {!noAlbum && track?.album?.name}
-        </td>
-      )}
+      <td
+        onClick={() => navigate(`/album/${track?.album?.id}`)}
+        className={`${!isPlayingTrackbarOpen ? "md:[display:-webkit-box]" : ""} line-clamp-2 hidden cursor-pointer text-ellipsis text-sm text-black hover:underline dark:text-white`}
+      >
+        {isLoading && <Skeleton className="h-3 w-20 rounded-sm" />}
+        {!noAlbum && track?.album?.name}
+      </td>
 
       <td className="text-center">
         {!isLoading && (
           <SaveTrackButton
-            className={`${isUsingContextMenu || isSmall ? "inline-block" : "hidden group-hover:inline-block"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
+            className={`${isUsingContextMenu ? "inline-block" : "group-hover:inline-block md:hidden"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
             track={track}
           />
         )}
       </td>
 
-      {!isSmall && (
-        <td className="flex items-center justify-center">
-          {isLoading ? (
-            <Skeleton className="h-3 w-5 rounded-sm" />
-          ) : (
-            <p className="text-sm text-black dark:text-white">
-              {formatTrackDuration(track?.duration_ms)}
-            </p>
-          )}
-        </td>
-      )}
+      <td className="hidden items-center justify-center md:flex">
+        {isLoading ? (
+          <Skeleton className="h-3 w-5 rounded-sm" />
+        ) : (
+          <p className="text-sm text-black dark:text-white">
+            {formatTrackDuration(track?.duration_ms)}
+          </p>
+        )}
+      </td>
 
       <td className="text-center">
         {!isLoading && (
           <div
             className={
-              isUsingContextMenu || isSmall
+              isUsingContextMenu
                 ? "inline-block"
-                : "hidden group-hover:inline-block"
+                : "group-hover:inline-block md:hidden"
             }
           >
             <TrackContextMenu

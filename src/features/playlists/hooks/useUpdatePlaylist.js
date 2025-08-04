@@ -11,8 +11,10 @@ function useUpdatePlaylist(playlistId) {
       toast("It may takes a few moments for the playlist to be updated", {
         duration: 5000,
       });
-      queryClient.invalidateQueries({ queryKey: ["saved-playlists"] });
-      queryClient.invalidateQueries({ queryKey: ["playlist", playlistId] });
+      setTimeout(() => {
+        queryClient.invalidateQueries(["saved-playlists"]);
+        queryClient.invalidateQueries(["playlist", playlistId]);
+      }, 5000);
     },
   });
   return { isPending, updatePlaylistMutate };

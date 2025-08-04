@@ -15,7 +15,6 @@ import { copyLink } from "../utilities/helper";
 import { useState } from "react";
 import AddToPlaylist from "../features/playlists/AddToPlaylist";
 import useOutsideClick from "../hooks/useOutsideClick";
-import { useSelector } from "react-redux";
 import Modal from "./Modal";
 import CreateEditNewPlaylistForm from "../features/playlists/CreateEditNewPlaylistForm";
 
@@ -39,7 +38,6 @@ function ItemContextMenu({
   });
   const [isClickedOnPlaylistChildren, setIsClickedOnPlaylistChildren] =
     useState(false);
-  const { isSmall } = useSelector((store) => store.global);
   const className =
     "min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white";
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -63,9 +63,11 @@ function Track({
               }
               alt={track?.name}
               onLoad={() => setIsImageLoaded(true)}
-              className={`h-14 w-14 group-hover:brightness-75 md:h-10 md:w-10 ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}
+              className={`h-14 w-14 group-hover:brightness-75 md:h-10 md:w-10 md:group-hover:brightness-100 ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}
             />
-            <TbPlayerPlayFilled className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-base text-white duration-100 hover:text-blue-600 group-hover:inline-block md:hidden dark:text-white" />
+            {!isLoading && (
+              <TbPlayerPlayFilled className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-base text-white duration-100 hover:text-blue-600 group-hover:inline-block md:hidden md:group-hover:hidden dark:text-white" />
+            )}
           </div>
         )}
         <div>
@@ -83,7 +85,7 @@ function Track({
                 {track?.name}
               </p>
               {!noArtist && (
-                <p className="cursor-pointer text-sm text-gray-600 dark:text-gray-300">
+                <p className="line-clamp-1 cursor-pointer text-sm text-gray-600 dark:text-gray-300">
                   {track?.artists?.map((artist, index) => (
                     <span
                       onClick={() => navigate(`/artist/${artist?.id}`)}

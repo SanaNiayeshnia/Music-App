@@ -7,7 +7,8 @@ import ListTitle from "./ListTitle";
 import ShortPageHeader from "./layout/page/ShortPageHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
+import { TbChevronRight } from "react-icons/tb";
 
 function ListContainer({
   items,
@@ -31,6 +32,7 @@ function ListContainer({
   const loadingItems = Array.from({ length: 12 });
   const ref = useScrollbar();
   const { ref: endRef, inView } = useInView();
+  const uniqueId = `custom-next-${new Date().getTime()}`;
 
   useEffect(() => {
     //fetch new items when the user reachs the end of the page
@@ -40,7 +42,7 @@ function ListContainer({
 
   return (
     (isLoading || items?.length > 0) && (
-      <div className="min-h-80">
+      <div className={`relative min-h-80 ${!all ? "pr-3" : ""}`}>
         {!noTitle && (
           <>
             {!all ? (
@@ -57,6 +59,15 @@ function ListContainer({
           </>
         )}
 
+        {!all && (
+          <div
+            id={uniqueId}
+            className="absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 dark:border-white dark:bg-black/50"
+          >
+            <TbChevronRight className="text-xl text-white transition-all duration-300 dark:text-white" />
+          </div>
+        )}
+
         {!all ? (
           <Swiper
             spaceBetween={10}
@@ -64,7 +75,10 @@ function ListContainer({
             loop={true}
             className="mt-7"
             autoplay={autoPlay ? { delay: 3000 } : false}
-            modules={[Autoplay]}
+            modules={[Autoplay, Navigation]}
+            navigation={{
+              nextEl: `#${uniqueId}`,
+            }}
           >
             {isLoading
               ? loadingItems.map((item, index) => (

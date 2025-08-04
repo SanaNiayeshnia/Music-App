@@ -19,9 +19,10 @@ function AccountCenterPage() {
     <Page>
       <TopNav>
         {isMainScrolled && (
-          <NavTitle noPlayButton>
-            <IconLogo noTitle /> {user?.display_name}
-          </NavTitle>
+          <>
+            <IconLogo noTitle />
+            <NavTitle noPlayButton>{user?.display_name}</NavTitle>
+          </>
         )}
       </TopNav>
       {isLoadingUser ? (

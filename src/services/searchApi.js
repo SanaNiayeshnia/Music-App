@@ -59,14 +59,13 @@ export async function getSearchResult(query) {
     controller = new AbortController();
 
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${query}&type=track,album,artist,playlist&limit=30&locale=en_US`,
+      `https://api.spotify.com/v1/search?q=${query}&type=track,album,artist,playlist&limit=50&locale=en_US`,
       {
         signal: controller.signal,
         headers: getRequestHeader(),
       },
     );
-    if (res.status !== 200)
-      throw new Error("Failed to get the available genres!");
+    if (res.status !== 200) throw new Error("Failed to get the results!");
     const data = await res.json();
     const topResult =
       (data?.artists?.items[0]?.name.toLowerCase().startsWith(query) &&

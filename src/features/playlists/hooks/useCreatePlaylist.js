@@ -12,9 +12,7 @@ function useCreatePlaylist() {
     mutationKey: ["create-playlist"],
     mutationFn: createPlaylist,
     onSuccess: () => {
-      setTimeout(() => {
-        queryClient.invalidateQueries(["saved-playlists"]);
-      }, 5000);
+      queryClient.invalidateQueries(["saved-playlists"]);
     },
   });
   return { isPending, createPlaylistMutate, playlist };

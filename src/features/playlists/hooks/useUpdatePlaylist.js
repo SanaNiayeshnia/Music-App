@@ -8,13 +8,11 @@ function useUpdatePlaylist(playlistId) {
     mutationKey: ["update-playlist"],
     mutationFn: editPlaylist,
     onSuccess: () => {
-      toast("It may takes a few moments for the playlist to be updated", {
+      toast("It may takes a few moments for the playlist cover to be updated", {
         duration: 5000,
       });
-      setTimeout(() => {
-        queryClient.invalidateQueries(["saved-playlists"]);
-        queryClient.invalidateQueries(["playlist", playlistId]);
-      }, 5000);
+      queryClient.invalidateQueries(["saved-playlists"]);
+      queryClient.invalidateQueries(["playlist", playlistId]);
     },
   });
   return { isPending, updatePlaylistMutate };

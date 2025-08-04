@@ -9,11 +9,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import useCurrentUser from "../authentication/hooks/useCurrentUser";
 import toast from "react-hot-toast";
+import TinySpinner from "../../ui/TinySpinner";
 
 const AddToPlaylist = forwardRef(
   ({ item, setIsClickedOnPlaylistChildren }, ref) => {
-    const { playlists } = useCreatedByUserPlaylists();
+    const { isLoading, playlists } = useCreatedByUserPlaylists();
     const [searchQuery, setSearchQuery] = useState("");
+    const defaultPlaylists = playlists
+      .slice(0, 3)
+      .filter((p) => p.id !== "LikedSongs");
     const filteredPlaylists = playlists.filter(
       (playlist) =>
         playlist.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()) &&
@@ -84,18 +88,21 @@ const AddToPlaylist = forwardRef(
           <TbPlus className="min-h-6 min-w-6 text-black duration-100 group-hover/new:text-blue-600 dark:text-white" />
           <span className="text-black dark:text-white"> New playlist</span>
         </p>
-        {[
-          ...(searchQuery === ""
-            ? playlists.slice(0, 3).filter((p) => p.id !== "LikedSongs")
-            : filteredPlaylists),
-        ].map((playlist) => (
-          <AddToPlaylistItem
-            key={playlist?.id}
-            playlistId={playlist?.id}
-            setIsClickedOnPlaylistChildren={setIsClickedOnPlaylistChildren}
-            item={item}
-          />
-        ))}
+
+        {isLoading ? (
+          <TinySpinner />
+        ) : (
+          [...(searchQuery === "" ? defaultPlaylists : filteredPlaylists)].map(
+            (playlist) => (
+              <AddToPlaylistItem
+                key={playlist?.id}
+                playlistId={playlist?.id}
+                setIsClickedOnPlaylistChildren={setIsClickedOnPlaylistChildren}
+                item={item}
+              />
+            ),
+          )
+        )}
       </div>
     );
   },

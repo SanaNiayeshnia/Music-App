@@ -34,11 +34,11 @@ function Track({
           ) : (
             <>
               <span
-                className={`${!isLoading && "group-hover:hidden"} text-black dark:text-white`}
+                className={`${!isLoading && "md:group-hover:hidden"} text-black dark:text-white`}
               >
                 {index ? index : track?.track_number}
               </span>
-              <TbPlayerPlayFilled className="hidden cursor-pointer text-sm text-black duration-100 hover:text-blue-600 group-hover:inline-block dark:text-white" />
+              <TbPlayerPlayFilled className="hidden cursor-pointer text-sm text-black duration-100 hover:text-blue-600 md:group-hover:inline-block dark:text-white" />
             </>
           )}
         </td>

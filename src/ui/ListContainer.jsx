@@ -62,7 +62,7 @@ function ListContainer({
         {!all && (
           <div
             id={uniqueId}
-            className="absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 dark:border-white dark:bg-black/50"
+            className={`absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
           >
             <TbChevronRight className="text-xl text-white transition-all duration-300 dark:text-white" />
           </div>

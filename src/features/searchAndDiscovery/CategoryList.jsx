@@ -5,17 +5,28 @@ import useCategories from "./hooks/useCategories";
 import ShowAll from "../../ui/ShowAll";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { TbChevronRight } from "react-icons/tb";
+import { Navigation } from "swiper/modules";
 
 function CategoryList({ all = false }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const { isLoading, categories } = useCategories();
   const items = all ? categories : categories?.slice(0, 6);
   return (
-    <div>
+    <div className={`relative w-full overflow-hidden ${!all ? "pr-3" : ""}`}>
       <div className="flex justify-between gap-4">
         <Title>Browse all categories</Title>
         {!all && !isLoading && <ShowAll to="/search">Show all</ShowAll>}
       </div>
+
+      {!all && (
+        <div
+          id="categorySwiper"
+          className={`absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
+        >
+          <TbChevronRight className="text-xl text-white transition-all duration-300 dark:text-white" />
+        </div>
+      )}
       {all ? (
         <div
           className={`grid-cols-2 ${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"} mt-5 grid grid-rows-1 items-center gap-5 overflow-hidden`}
@@ -44,6 +55,8 @@ function CategoryList({ all = false }) {
           }}
           loop={true}
           className="mt-7"
+          navigation={{ nextEl: "#categorySwiper" }}
+          modules={[Navigation]}
         >
           {isLoading
             ? Array.from({ length: 12 }).map((cat, index) => (
@@ -52,7 +65,7 @@ function CategoryList({ all = false }) {
                 </SwiperSlide>
               ))
             : items?.map((cat, index) => (
-                <SwiperSlide key={index} className="max-w-60">
+                <SwiperSlide key={index} className="">
                   <Category category={cat} />
                 </SwiperSlide>
               ))}

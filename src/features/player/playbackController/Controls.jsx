@@ -26,7 +26,7 @@ function Controls() {
       <TbPlayerSkipBackFilled
         className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105"} text-2xl text-black transition-all duration-100 dark:text-white`}
       />
-      <PlayButton className="text-3xl" onClick={handlePlay} />
+      <PlayButton className="text-3xl" onClick={handlePlay} uri="" />
       <TbPlayerSkipForwardFilled
         className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105"} text-2xl text-black transition-all duration-100 dark:text-white`}
       />

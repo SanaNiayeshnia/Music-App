@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { getRequestHeader } from "../utilities/helper";
 
 export async function getRecentlyPlayed(all = false) {
@@ -50,13 +51,18 @@ export async function getQueue() {
   return data.item;
 }
 
-export async function play(id) {
-  await fetch("https://api.spotify.com/v1/me/player/play", {
-    method: "PUT",
-    headers: getRequestHeader(),
-    body: JSON.stringify({
-      // device_id: deviceId,
-      uris: ["spotify:track:4uLU6hMCjMI75M1A2tKUQC"], // sample track
-    }),
-  });
+export async function play(uri) {
+  try {
+    await fetch("https://api.spotify.com/v1/me/player/play", {
+      method: "PUT",
+      headers: getRequestHeader(),
+      body: JSON.stringify({
+        // device_id: deviceId,
+        uris: [uri],
+      }),
+    });
+  } catch (error) {
+    toast.error(error?.response?.data?.reason);
+    // throw new Error(error);
+  }
 }

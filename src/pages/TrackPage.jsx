@@ -24,7 +24,7 @@ function TrackPage() {
   return (
     <Page>
       <TopNav transparent>
-        {isMainScrolled && <NavTitle>{track?.name}</NavTitle>}
+        {isMainScrolled && <NavTitle uri={track?.uri}>{track?.name}</NavTitle>}
       </TopNav>
       {isLoadingArtist || isLoadingTrack ? (
         <div className="grid h-full place-items-center">

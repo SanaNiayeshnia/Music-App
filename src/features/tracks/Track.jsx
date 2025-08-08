@@ -6,6 +6,7 @@ import Skeleton from "../../ui/Skeleton";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
 import TrackContextMenu from "./TrackContextMenu";
+import usePlay from "../player/hooks/usePlay";
 
 function Track({
   track,
@@ -23,6 +24,12 @@ function Track({
   const [isUsingContextMenu, setIsUsingContextMenu] = useState(false);
   const { isDarkMode } = useSelector((store) => store.global);
 
+  const { isPending: isPendingPlay, playMutate } = usePlay();
+
+  function playTrack() {
+    playMutate(track?.uri);
+  }
+
   return (
     <tr
       className={`${isPlayingTrackbarOpen ? "md:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "md:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid grid-cols-[0.5fr_4fr_0.5fr_0.5fr] items-center gap-1 rounded-md py-2 pl-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : `${!isLoading && "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"} `}`}
@@ -38,7 +45,10 @@ function Track({
               >
                 {index ? index : track?.track_number}
               </span>
-              <TbPlayerPlayFilled className="hidden cursor-pointer text-sm text-black duration-100 hover:text-blue-600 md:group-hover:inline-block dark:text-white" />
+              <TbPlayerPlayFilled
+                onClick={playTrack}
+                className="hidden cursor-pointer text-sm text-black duration-100 hover:text-blue-600 md:group-hover:inline-block dark:text-white"
+              />
             </>
           )}
         </td>
@@ -66,7 +76,10 @@ function Track({
               className={`h-14 w-14 group-hover:brightness-75 md:h-10 md:w-10 md:group-hover:brightness-100 ${!isImageLoaded && "hidden"} aspect-square rounded shadow`}
             />
             {!isLoading && (
-              <TbPlayerPlayFilled className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-base text-white duration-100 hover:text-blue-600 group-hover:inline-block md:hidden md:group-hover:hidden dark:text-white" />
+              <TbPlayerPlayFilled
+                onClick={playTrack}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-base text-white duration-100 hover:text-blue-600 group-hover:inline-block md:hidden md:group-hover:hidden dark:text-white"
+              />
             )}
           </div>
         )}

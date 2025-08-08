@@ -11,6 +11,7 @@ import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 import { togglePlayingTrackBar } from "../../features/player/PlaybackSlice";
 import useCurrentlyPlayingTrack from "../../features/player/hooks/useCurrentlyPlayingTrack";
+import PlayerContextProvider from "../../contexts/player/PlayerContextProvider";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(
@@ -35,21 +36,23 @@ function AppLayout() {
 
   return (
     <MainContextProvider>
-      <div
-        className={`relative ${isPlayingTrackbarOpen ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} ${!isFullScreenPlayingTrackOpen && "md:min-w-[900px]"} h-screen min-h-[650px] grid-rows-[1fr_4fr_0.5fr] gap-2 overflow-hidden md:grid md:px-3 md:py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
-      >
-        <Sidebar />
-        <Library />
+      <PlayerContextProvider>
+        <div
+          className={`relative ${isPlayingTrackbarOpen ? "md:grid-cols-[87px_auto]" : "md:grid-cols-[1.6fr_4fr]"} ${!isFullScreenPlayingTrackOpen && "md:min-w-[900px]"} h-screen min-h-[650px] grid-rows-[1fr_4fr_0.5fr] gap-2 overflow-hidden md:grid md:px-3 md:py-2 lg:grid-cols-[1.6fr_4fr] xl:grid-cols-[1.3fr_4fr]`}
+        >
+          <Sidebar />
+          <Library />
 
-        <div className="col-end-[-1] row-start-1 row-end-[-1] flex gap-2 overflow-hidden md:col-start-2">
-          <Main />
-          {isPlayingTrackbarOpen && <PlayingTrackBar />}
+          <div className="col-end-[-1] row-start-1 row-end-[-1] flex gap-2 overflow-hidden md:col-start-2">
+            <Main />
+            {isPlayingTrackbarOpen && <PlayingTrackBar />}
+          </div>
+
+          {currentlyPlayingTrack?.id && <Player />}
+          <BottomNav />
+          <FullScreenPlayingTrack />
         </div>
-
-        {currentlyPlayingTrack?.id && <Player />}
-        <BottomNav />
-        <FullScreenPlayingTrack />
-      </div>
+      </PlayerContextProvider>
     </MainContextProvider>
   );
 }

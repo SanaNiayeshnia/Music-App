@@ -67,7 +67,9 @@ function TopResult({ item, isLoading }) {
             </>
           )}
 
-          {!isLoading && <FloatingPlayButton isHovered={isHovered} />}
+          {!isLoading && (
+            <FloatingPlayButton isHovered={isHovered} uri={item?.uri} />
+          )}
         </div>
       </div>
     </div>

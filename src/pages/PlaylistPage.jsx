@@ -24,7 +24,9 @@ function PlaylistPage() {
   return (
     <Page>
       <TopNav transparent>
-        {isMainScrolled && <NavTitle>{playlist?.name}</NavTitle>}
+        {isMainScrolled && (
+          <NavTitle uri={playlist?.uri}>{playlist?.name}</NavTitle>
+        )}
       </TopNav>
       {isLoadingPlaylist || isLoadingOwner ? (
         <div className="grid h-[calc(100%-52px)] place-items-center">

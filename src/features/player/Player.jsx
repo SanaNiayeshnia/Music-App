@@ -1,19 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import PlayerTrack from "../tracks/PlayerTrack";
 import PlaybackController from "./playbackController/PlaybackController";
 import PlayerMenu from "./playerMenu/PlayerMenu";
-import {
-  changePlayerState,
-  setDeviceId,
-  setIsFullScreenPlayingTrack,
-  setPlayer,
-} from "./PlaybackSlice";
 import { useEffect } from "react";
 import { APP_NAME } from "../../utilities/constants";
+import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 
 function Player() {
-  const dispatch = useDispatch();
   const { accessToken } = useSelector((store) => store.authentication);
+  const { dispatch } = usePlayerContext();
+
   useEffect(() => {
     const loadSpotifyPlayer = () => {
       if (window.Spotify) {
@@ -25,19 +21,20 @@ function Player() {
 
         console.log(player);
 
-        // dispatch(setPlayer(player));
+        dispatch({ type: "setPlayer", payload: player });
 
         player.addListener("ready", ({ device_id }) => {
           console.log("Ready with Device ID:", device_id);
-          dispatch(setDeviceId(device_id));
+          dispatch({ type: "setDeviceId", payload: device_id });
         });
 
         player.addListener("player_state_changed", (state) => {
           if (!state) return;
           console.log(state);
 
-          dispatch(
-            changePlayerState({
+          dispatch({
+            type: "changePlayerState",
+            payload: {
               trackInfo: {
                 name: state.track_window.current_track.name,
                 artists: state.track_window.current_track.artists
@@ -49,8 +46,8 @@ function Player() {
               paused: state.paused,
               position: state.position,
               duration: state.duration,
-            }),
-          );
+            },
+          });
         });
 
         player.connect();

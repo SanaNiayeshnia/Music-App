@@ -24,7 +24,9 @@ function AlbumPage() {
 
   return (
     <Page>
-      <TopNav>{isMainScrolled && <NavTitle>{album?.name}</NavTitle>}</TopNav>
+      <TopNav>
+        {isMainScrolled && <NavTitle uri={album?.uri}>{album?.name}</NavTitle>}
+      </TopNav>
       {isLoadingAlbum || isLoadingArtist ? (
         <div className="grid h-[calc(100%-52px)] place-items-center">
           <Spinner className="h-24 w-24" />

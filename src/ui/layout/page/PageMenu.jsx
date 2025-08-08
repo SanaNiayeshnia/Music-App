@@ -12,7 +12,10 @@ function PageMenu({ item }) {
   return (
     <div className="flex items-center justify-between gap-5 md:justify-start">
       {(item?.type !== "playlist" || item?.tracks?.total > 0) && (
-        <PlayButton className="order-1 min-h-14 min-w-14 md:-order-1" />
+        <PlayButton
+          className="order-1 min-h-14 min-w-14 md:-order-1"
+          uri={item?.uri}
+        />
       )}
       <div className="flex items-center gap-5">
         {item?.type === "artist" ? (

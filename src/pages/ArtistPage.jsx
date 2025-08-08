@@ -23,7 +23,11 @@ function ArtistPage() {
 
   return (
     <Page>
-      <TopNav>{isMainScrolled && <NavTitle>{artist?.name}</NavTitle>}</TopNav>
+      <TopNav>
+        {isMainScrolled && (
+          <NavTitle uri={artist?.uri}>{artist?.name}</NavTitle>
+        )}
+      </TopNav>
       {isLoadingArtist || isLoadingArtistsTopTracks ? (
         <div className="grid h-full place-items-center">
           <Spinner />

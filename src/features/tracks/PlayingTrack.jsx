@@ -43,7 +43,7 @@ function PlayingTrack() {
               >
                 {currentlyPlayingTrack?.name}
               </p>
-              <p className="cursor-pointer text-gray-600 dark:text-gray-300">
+              <p className="line-clamp-3 cursor-pointer text-gray-600 dark:text-gray-300">
                 {currentlyPlayingTrack?.artists?.map((artist, index) => (
                   <span
                     onClick={() => navigate(`/artist/${artist?.id}`)}

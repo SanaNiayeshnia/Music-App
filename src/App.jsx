@@ -78,7 +78,7 @@ function App() {
             error: { duration: 5000 },
             duration: 3000,
             style: {
-              fontSize: "1rem",
+              fontSize: "15px",
               padding: "1rem 0.5rem",
               backgroundColor: "white",
               color: "balck",

@@ -13,7 +13,7 @@ function CategoryList({ all = false }) {
   const { isLoading, categories } = useCategories();
   const items = all ? categories : categories?.slice(0, 6);
   return (
-    <div className={`relative w-full overflow-hidden ${!all ? "pr-3" : ""}`}>
+    <div className={`relative w-full overflow-hidden ${!all ? "md:pr-3" : ""}`}>
       <div className="flex justify-between gap-4">
         <Title>Browse all categories</Title>
         {!all && !isLoading && <ShowAll to="/search">Show all</ShowAll>}
@@ -22,7 +22,7 @@ function CategoryList({ all = false }) {
       {!all && (
         <div
           id="categorySwiper"
-          className={`absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
+          className={`absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 md:block dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
         >
           <TbChevronRight className="text-xl text-white transition-all duration-300 dark:text-white" />
         </div>
@@ -41,13 +41,13 @@ function CategoryList({ all = false }) {
         </div>
       ) : (
         <Swiper
-          spaceBetween={25}
+          spaceBetween={15}
           slidesPerView={"auto"}
           breakpoints={{
             0: { slidesPerView: 1.5 },
             400: { slidesPerView: 2 },
             640: { slidesPerView: 2 },
-            768: { slidesPerView: 2.5 },
+            768: { slidesPerView: 2.5, spaceBetween: 25 },
             1024: {
               slidesPerView: 3,
             },

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import Item from "./Item";
 import { useInView } from "react-intersection-observer";
@@ -7,6 +7,7 @@ import ListTitle from "./ListTitle";
 import ShortPageHeader from "./layout/page/ShortPageHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { TbChevronRight } from "react-icons/tb";
 
@@ -34,6 +35,9 @@ function ListContainer({
   const { ref: endRef, inView } = useInView();
   const uniqueId = `custom-next-${new Date().getTime()}`;
 
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
   useEffect(() => {
     //fetch new items when the user reachs the end of the page
     if (inView && hasNextPage && !isFetching && !isLoading && all)
@@ -42,7 +46,7 @@ function ListContainer({
 
   return (
     (isLoading || items?.length > 0) && (
-      <div className={`relative min-h-80 ${!all ? "pr-3" : ""}`}>
+      <div className={`relative min-h-80 ${!all ? "md:pr-3" : ""}`}>
         {!noTitle && (
           <>
             {!all ? (
@@ -62,7 +66,7 @@ function ListContainer({
         {!all && (
           <div
             id={uniqueId}
-            className={`absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
+            className={`absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 md:inline-block dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
           >
             <TbChevronRight className="text-xl text-white transition-all duration-300 dark:text-white" />
           </div>
@@ -70,7 +74,7 @@ function ListContainer({
 
         {!all ? (
           <Swiper
-            spaceBetween={10}
+            spaceBetween={5}
             slidesPerView={"auto"}
             loop={true}
             className="mt-7"
@@ -79,6 +83,12 @@ function ListContainer({
             navigation={{
               nextEl: `#${uniqueId}`,
             }}
+            breakpoints={{
+              768: {
+                spaceBetween: 10,
+              },
+            }}
+            watchOverflow={true}
           >
             {isLoading
               ? loadingItems.map((item, index) => (

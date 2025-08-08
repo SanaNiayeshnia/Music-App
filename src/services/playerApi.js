@@ -53,7 +53,7 @@ export async function getQueue() {
 
 export async function play(uri) {
   try {
-    await fetch("https://api.spotify.com/v1/me/player/play", {
+    const res = await fetch("https://api.spotify.com/v1/me/player/play", {
       method: "PUT",
       headers: getRequestHeader(),
       body: JSON.stringify({
@@ -61,8 +61,15 @@ export async function play(uri) {
         uris: [uri],
       }),
     });
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(
+        errorData?.error?.reason === "PREMIUM_REQUIRED"
+          ? "You need to have a premium account in order to play a song!"
+          : "You can't play tracks currently!",
+      );
+    }
   } catch (error) {
-    toast.error(error?.response?.data?.reason);
-    // throw new Error(error);
+    throw new Error(error);
   }
 }

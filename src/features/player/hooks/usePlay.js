@@ -7,10 +7,7 @@ function usePlay() {
     mutationKey: ["play"],
     mutationFn: play,
     onError: (error) => {
-      if (error?.response?.data?.reason === "PREMIUM_REQUIRED")
-        toast.error(
-          "You need to have a premium account in order to play a song!",
-        );
+      toast.error(error?.message);
     },
   });
   return { isPending, playMutate };

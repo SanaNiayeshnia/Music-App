@@ -9,12 +9,21 @@ function ErrorFallBack({ error, resetErrorBoundary }) {
           <TbMoodSad className="h-6 w-6 text-black duration-100 dark:text-white" />
         </p>
         <p className="text-blue-600">Error: "{error?.message}"</p>
-        <button
-          onClick={resetErrorBoundary}
-          className="mt-2 rounded-full bg-blue-600 px-3 py-1 text-white"
-        >
-          Go Home
-        </button>
+        <div className="flex items-center justify-center gap-2">
+          <button
+            onClick={() => window.location.replace("/")}
+            className="mt-2 rounded-full bg-blue-600 px-3 py-1 text-white transition-all duration-300 hover:px-5"
+          >
+            Go Home
+          </button>
+
+          <button
+            onClick={resetErrorBoundary}
+            className="mt-2 rounded-full bg-white px-3 py-1 text-blue-600 transition-all duration-300 hover:px-5"
+          >
+            Try Again
+          </button>
+        </div>
       </div>
     </div>
   );

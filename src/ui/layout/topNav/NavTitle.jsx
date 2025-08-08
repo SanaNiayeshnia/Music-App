@@ -1,4 +1,4 @@
-import on from "../../PlayButton";
+import PlayButton from "../../PlayButton";
 
 function NavTitle({ children, noPlayButton, uri }) {
   return (

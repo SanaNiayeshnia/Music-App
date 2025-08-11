@@ -6,8 +6,11 @@ function SliderBar({
   thumbDisplay = "on",
   step = 1,
   disabled = false,
+  value,
+  setValue,
 }) {
   const { isDarkMode } = useSelector((store) => store.global);
+
   return (
     <Slider
       size="medium"
@@ -16,6 +19,8 @@ function SliderBar({
       valueLabelDisplay={valueLabelDisplay}
       step={step}
       disabled={disabled}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
       sx={{
         "& .MuiSlider-thumb": {
           width: 15,

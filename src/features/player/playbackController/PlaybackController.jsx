@@ -1,12 +1,13 @@
-import useCurrentlyPlayingTrack from "../hooks/useCurrentlyPlayingTrack";
+import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 import Controls from "./Controls";
 import SongSlider from "./SongSlider";
 
 function PlaybackController() {
-  const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const { currentTrack } = usePlayerContext();
+
   return (
     <div
-      className={`${!currentlyPlayingTrack && "opacity-50"} flex w-8/12 flex-col md:w-5/12 lg:w-5/12`}
+      className={`${!currentTrack && "opacity-50"} flex w-8/12 flex-col md:w-5/12 lg:w-5/12`}
     >
       <Controls />
       <SongSlider />

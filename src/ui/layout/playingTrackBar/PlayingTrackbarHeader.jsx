@@ -1,37 +1,40 @@
 import { useDispatch } from "react-redux";
 import { togglePlayingTrackBar } from "../../../features/player/PlaybackSlice";
 import { TbX } from "react-icons/tb";
-import useCurrentlyPlayingTrack from "../../../features/player/hooks/useCurrentlyPlayingTrack";
 import Skeleton from "../../Skeleton";
 import { useNavigate } from "react-router-dom";
 import TrackContextMenu from "../../../features/tracks/TrackContextMenu";
+import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 
 function PlayingTrackbarHeader({ isScrolled }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const { currentTrack, playerState } = usePlayerContext();
+  const contextSplitArray = playerState?.context?.uri?.split(":");
+
   return (
     <div
       className={`${isScrolled && "bg-white/50 shadow backdrop-blur-lg dark:bg-black/50"} flex items-center justify-between px-3 py-6`}
     >
-      {isLoading ? (
+      {!currentTrack ? (
         <Skeleton className="h-4 w-32 rounded-sm" />
       ) : (
         <p
           className="cursor-pointer text-sm font-semibold text-black hover:underline dark:text-white"
           onClick={() => {
             navigate(
-              `/${currentlyPlayingTrack?.context?.type}/${currentlyPlayingTrack?.context?.id}`,
+              `/${contextSplitArray?.[1] || "track"}/${contextSplitArray?.[2] || currentTrack?.id}`,
             );
           }}
         >
-          {currentlyPlayingTrack?.context?.name}
+          {playerState?.context?.metadata?.context_description ||
+            currentTrack?.name}
         </p>
       )}
 
       <div className="flex items-center gap-2">
-        <div className={`${!currentlyPlayingTrack && "hidden"}`}>
-          <TrackContextMenu track={currentlyPlayingTrack} position="center" />
+        <div className={`${!currentTrack && "hidden"}`}>
+          <TrackContextMenu track={currentTrack} position="center" />
         </div>
         <TbX
           onClick={() => dispatch(togglePlayingTrackBar())}

@@ -6,12 +6,14 @@ import { useEffect } from "react";
 import { APP_NAME } from "../../utilities/constants";
 import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 import { transferPlaybackToThisDevice } from "../../services/playerApi";
+import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
 
 function Player() {
   const { accessToken } = useSelector((store) => store.authentication);
   const { dispatch } = usePlayerContext();
 
   useEffect(() => {
+    let intervalId;
     const loadSpotifyPlayer = () => {
       if (window.Spotify) {
         const player = new window.Spotify.Player({
@@ -19,8 +21,6 @@ function Player() {
           getOAuthToken: (cb) => cb(accessToken),
           volume: 0.5,
         });
-
-        console.log(player);
 
         dispatch({ type: "setPlayer", payload: player });
 
@@ -32,6 +32,16 @@ function Player() {
             deviceId: device_id,
             player,
           });
+
+          intervalId = setInterval(async () => {
+            const state = await player.getCurrentState();
+            if (state) {
+              dispatch({
+                type: "changePlayerState",
+                payload: state,
+              });
+            }
+          }, 1000);
         });
 
         player.addListener("not_ready", ({ device_id }) => {
@@ -76,6 +86,8 @@ function Player() {
     } else {
       loadSpotifyPlayer();
     }
+
+    () => clearInterval(intervalId);
   }, [accessToken, dispatch]);
 
   return (

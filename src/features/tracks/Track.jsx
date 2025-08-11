@@ -160,7 +160,7 @@ function Track({
           <div
             className={
               isUsingContextMenu
-                ? "inline-block"
+                ? "md:inline-block"
                 : "md:hidden md:group-hover:inline-block"
             }
           >

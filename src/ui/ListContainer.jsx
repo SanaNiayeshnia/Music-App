@@ -35,9 +35,6 @@ function ListContainer({
   const { ref: endRef, inView } = useInView();
   const uniqueId = `custom-next-${new Date().getTime()}`;
 
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-
   useEffect(() => {
     //fetch new items when the user reachs the end of the page
     if (inView && hasNextPage && !isFetching && !isLoading && all)

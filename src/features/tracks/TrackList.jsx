@@ -40,7 +40,7 @@ function TrackList({
               <td className="text-gray-600 dark:text-gray-300">#</td>
               <td className="text-gray-600 dark:text-gray-300">Title</td>
               <td
-                className={`${isPlayingTrackbarOpen ? "hidden" : "hidden xl:inline-block"} text-gray-600 dark:text-gray-300`}
+                className={`${isPlayingTrackbarOpen ? "hidden" : "hidden md:inline-block"} text-gray-600 dark:text-gray-300`}
               >
                 {!noAlbum && "Album"}
               </td>

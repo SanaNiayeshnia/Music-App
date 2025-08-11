@@ -51,14 +51,15 @@ export async function getQueue() {
   return data.item;
 }
 
-export async function play(uri) {
+export async function play({ uri, deviceId }) {
+  console.log(deviceId);
   try {
     const res = await fetch("https://api.spotify.com/v1/me/player/play", {
       method: "PUT",
       headers: getRequestHeader(),
       body: JSON.stringify({
-        // device_id: deviceId,
-        uris: [uri],
+        device_id: deviceId,
+        ...(uri.includes("track") ? { uris: [uri] } : { context_uri: uri }),
       }),
     });
     if (!res.ok) {

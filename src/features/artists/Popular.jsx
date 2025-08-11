@@ -5,7 +5,7 @@ function Popular({ artistsTopTracks }) {
   return (
     <div>
       <ListTitle title="Popular" conditionForShowAll={false} />
-      <TrackListV2 tracks={artistsTopTracks} />
+      <TrackListV2 tracks={artistsTopTracks} noAlbum={false} />
     </div>
   );
 }

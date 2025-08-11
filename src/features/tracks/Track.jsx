@@ -32,7 +32,8 @@ function Track({
 
   return (
     <tr
-      className={`${isPlayingTrackbarOpen ? "md:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "md:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid grid-cols-[0.5fr_4fr_0.5fr_0.5fr] items-center gap-1 rounded-md py-2 pl-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : `${!isLoading && "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"} `}`}
+      onClick={playTrack}
+      className={`${isPlayingTrackbarOpen ? "md:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "md:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} group grid cursor-pointer grid-cols-[0.5fr_4fr_0.5fr_0.5fr] items-center gap-1 rounded-md py-2 pl-2 ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : `${!isLoading && "hover:bg-white/40 hover:shadow dark:hover:bg-black/40"} `}`}
     >
       {!noIndex && (
         <td className="w-3.5 text-center">
@@ -92,7 +93,10 @@ function Track({
           ) : (
             <>
               <p
-                onClick={() => navigate(`/track/${track?.id}`)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(`/track/${track?.id}`);
+                }}
                 className="line-clamp-2 cursor-pointer text-sm font-medium text-black hover:underline dark:text-white"
               >
                 {track?.name}
@@ -101,7 +105,10 @@ function Track({
                 <p className="line-clamp-1 cursor-pointer text-sm text-gray-600 dark:text-gray-300">
                   {track?.artists?.map((artist, index) => (
                     <span
-                      onClick={() => navigate(`/artist/${artist?.id}`)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/artist/${artist?.id}`);
+                      }}
                       className="hover:underline"
                       key={artist?.id}
                     >
@@ -119,14 +126,17 @@ function Track({
       </td>
 
       <td
-        onClick={() => navigate(`/album/${track?.album?.id}`)}
+        onClick={(e) => {
+          e.stopPropagation();
+          navigate(`/album/${track?.album?.id}`);
+        }}
         className={`${!isPlayingTrackbarOpen ? "md:[display:-webkit-box]" : ""} line-clamp-2 hidden cursor-pointer text-ellipsis text-sm text-black hover:underline dark:text-white`}
       >
         {isLoading && <Skeleton className="h-3 w-20 rounded-sm" />}
         {!noAlbum && track?.album?.name}
       </td>
 
-      <td className="text-center">
+      <td className="text-center" onClick={(e) => e.stopPropagation()}>
         {!isLoading && (
           <SaveTrackButton
             className={`${isUsingContextMenu ? "inline-block" : "group-hover:inline-block md:hidden"} min-h-6 min-w-6 cursor-pointer duration-100 hover:text-blue-600 dark:text-white`}
@@ -145,13 +155,13 @@ function Track({
         )}
       </td>
 
-      <td className="text-center">
+      <td className="text-center" onClick={(e) => e.stopPropagation()}>
         {!isLoading && (
           <div
             className={
               isUsingContextMenu
                 ? "inline-block"
-                : "group-hover:inline-block md:hidden"
+                : "md:hidden md:group-hover:inline-block"
             }
           >
             <TrackContextMenu

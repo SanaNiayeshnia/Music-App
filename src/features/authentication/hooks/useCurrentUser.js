@@ -9,6 +9,7 @@ function useCurrentUser() {
   const { isLoading, data: user } = useQuery({
     queryKey: ["current-user"],
     queryFn: getCurrentUser,
+    staleTime: 10 * 60 * 1000,
   });
   useEffect(() => {
     if (user) dispatch(setUser(user));

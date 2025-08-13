@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import { getRequestHeader } from "../utilities/helper";
 
 export async function getRecentlyPlayed(all = false) {
@@ -72,5 +71,26 @@ export async function play({ uri, deviceId }) {
     }
   } catch (error) {
     throw new Error(error);
+  }
+}
+
+export async function transferPlaybackToThisDevice({
+  accessToken,
+  deviceId,
+  player,
+}) {
+  try {
+    await fetch("https://api.spotify.com/v1/me/player", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({ device_ids: [deviceId], play: true }),
+    });
+    const s = await player.getCurrentState();
+    console.log("Initial state:", s);
+  } catch (e) {
+    console.error("Failed to transfer/start playback:", e);
   }
 }

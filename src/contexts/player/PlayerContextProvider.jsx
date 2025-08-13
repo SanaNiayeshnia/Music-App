@@ -8,8 +8,11 @@ function reducer(state, action) {
     case "setDeviceId":
       return { ...state, deviceId: action.payload };
     case "changePlayerState": {
-      const { trackInfo, paused, position, duration } = action.payload;
-      return { ...state, trackInfo, paused, position, duration };
+      return {
+        ...state,
+        playerState: action.payload,
+        currentTrack: action.payload.track_window?.current_track,
+      };
     }
     default:
       return state;
@@ -20,13 +23,11 @@ function PlayerContextProvider({ children }) {
   const initialState = {
     player: {},
     deviceId: null,
-    trackInfo: {},
-    paused: true,
-    position: 0,
-    duration: 0,
+    playerState: {},
+    currentTrack: {},
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-  const value = { state, dispatch };
+  const value = { ...state, dispatch };
   return (
     <playerContext.Provider value={value}>{children}</playerContext.Provider>
   );

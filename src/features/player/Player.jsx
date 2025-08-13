@@ -1,14 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlayerTrack from "../tracks/PlayerTrack";
 import PlaybackController from "./playbackController/PlaybackController";
 import PlayerMenu from "./playerMenu/PlayerMenu";
 import { useEffect } from "react";
 import { APP_NAME } from "../../utilities/constants";
 import { usePlayerContext } from "../../contexts/player/usePlayerContext";
+import { transferPlaybackToThisDevice } from "../../services/playerApi";
+import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
+import { useQueryClient } from "@tanstack/react-query";
 
 function Player() {
   const { accessToken } = useSelector((store) => store.authentication);
-  const { dispatch } = usePlayerContext();
+  const { dispatch: playerDispatch, currentTrack } = usePlayerContext();
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const loadSpotifyPlayer = () => {
@@ -19,34 +24,41 @@ function Player() {
           volume: 0.5,
         });
 
-        console.log(player);
+        playerDispatch({ type: "setPlayer", payload: player });
 
-        dispatch({ type: "setPlayer", payload: player });
-
-        player.addListener("ready", ({ device_id }) => {
+        player.addListener("ready", async ({ device_id }) => {
           console.log("Ready with Device ID:", device_id);
-          dispatch({ type: "setDeviceId", payload: device_id });
+          playerDispatch({ type: "setDeviceId", payload: device_id });
+          await transferPlaybackToThisDevice({
+            accessToken,
+            deviceId: device_id,
+            player,
+          });
+        });
+
+        player.addListener("not_ready", ({ device_id }) => {
+          console.log("Device ID has gone offline", device_id);
+        });
+
+        player.addListener("initialization_error", ({ message }) => {
+          console.error(message);
+        });
+
+        player.addListener("authentication_error", ({ message }) => {
+          console.error(message);
+        });
+
+        player.addListener("account_error", ({ message }) => {
+          console.error(message);
         });
 
         player.addListener("player_state_changed", (state) => {
           if (!state) return;
-          console.log(state);
+          console.log("state", state);
 
-          dispatch({
+          playerDispatch({
             type: "changePlayerState",
-            payload: {
-              trackInfo: {
-                name: state.track_window.current_track.name,
-                artists: state.track_window.current_track.artists
-                  .map((a) => a.name)
-                  .join(", "),
-                album: state.track_window.current_track.album.name,
-                image: state.track_window.current_track.album.images[0]?.url,
-              },
-              paused: state.paused,
-              position: state.position,
-              duration: state.duration,
-            },
+            payload: { ...state, lastUpdated: new Date() },
           });
         });
 
@@ -66,7 +78,7 @@ function Player() {
     } else {
       loadSpotifyPlayer();
     }
-  }, [accessToken, dispatch]);
+  }, [accessToken, playerDispatch]);
 
   return (
     <>

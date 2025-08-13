@@ -1,6 +1,8 @@
 import PlayButton from "../../../ui/PlayButton";
 import {
   TbArrowsShuffle,
+  TbPlayerPauseFilled,
+  TbPlayerPlayFilled,
   TbPlayerSkipBackFilled,
   TbPlayerSkipForwardFilled,
   TbRepeat,
@@ -8,9 +10,11 @@ import {
 import useCurrentlyPlayingTrack from "../hooks/useCurrentlyPlayingTrack";
 import { useDispatch } from "react-redux";
 import { togglePlayingTrackBar } from "../PlaybackSlice";
+import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 function Controls() {
   const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const dispatch = useDispatch();
+  const { playerState, player, currentTrack } = usePlayerContext();
 
   function handlePlay() {
     if (!currentlyPlayingTrack)
@@ -20,18 +24,27 @@ function Controls() {
 
   return (
     <div className="flex items-center justify-center gap-5">
-      <TbArrowsShuffle
-        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105"} text-2xl text-black transition-all duration-100 dark:text-white`}
-      />
       <TbPlayerSkipBackFilled
-        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105"} text-2xl text-black transition-all duration-100 dark:text-white`}
+        onClick={() => player?.previousTrack()}
+        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105 hover:text-black dark:hover:text-white"} text-2xl text-black/70 transition-all duration-100 dark:text-white/70`}
       />
-      <PlayButton className="text-3xl" onClick={handlePlay} uri="" />
+      <div
+        onClick={() => player?.togglePlay()}
+        className={`min-h-10 min-w-10 rounded-full bg-blue-600 p-2 shadow-md hover:scale-105`}
+      >
+        {playerState?.paused ? (
+          <TbPlayerPlayFilled
+            className={`h-full w-full cursor-pointer text-white transition-all duration-100`}
+          />
+        ) : (
+          <TbPlayerPauseFilled
+            className={`h-full w-full cursor-pointer text-white transition-all duration-100`}
+          />
+        )}
+      </div>
       <TbPlayerSkipForwardFilled
-        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105"} text-2xl text-black transition-all duration-100 dark:text-white`}
-      />
-      <TbRepeat
-        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105"} text-2xl text-black transition-all duration-100 dark:text-white`}
+        onClick={() => player?.nextTrack()}
+        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105 hover:text-black dark:hover:text-white"} text-2xl text-black/70 transition-all duration-100 dark:text-white/70`}
       />
     </div>
   );

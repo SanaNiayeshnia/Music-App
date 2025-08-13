@@ -6,16 +6,27 @@ function SliderBar({
   thumbDisplay = "on",
   step = 1,
   disabled = false,
+  max = 100,
+  value,
+  defaultValue = 0,
+  onChange = () => {},
+  onChangeCommitted,
 }) {
   const { isDarkMode } = useSelector((store) => store.global);
   return (
     <Slider
       size="medium"
-      defaultValue={70}
+      defaultValue={defaultValue}
       aria-label="medium"
       valueLabelDisplay={valueLabelDisplay}
       step={step}
       disabled={disabled}
+      value={value}
+      max={max}
+      onChangeCommitted={onChangeCommitted}
+      onChange={(e, value) => {
+        onChange(value);
+      }}
       sx={{
         "& .MuiSlider-thumb": {
           width: 15,

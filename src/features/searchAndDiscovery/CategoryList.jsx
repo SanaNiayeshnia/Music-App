@@ -29,7 +29,7 @@ function CategoryList({ all = false }) {
       )}
       {all ? (
         <div
-          className={`grid-cols-2 ${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"} mt-5 grid grid-rows-1 items-center gap-5 overflow-hidden`}
+          className={`grid-cols-2 ${isPlayingTrackbarOpen ? "md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"} mt-5 grid grid-rows-1 place-content-center items-center justify-center gap-5 overflow-hidden`}
         >
           {isLoading
             ? Array.from({ length: 12 }).map((cat, index) => (

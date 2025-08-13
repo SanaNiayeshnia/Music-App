@@ -9,7 +9,7 @@ import PageHeaderWrapper from "./PageHeaderWrapper";
 import PageTitle from "./PageTitle";
 import { Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
-import useCurrentlyPlayingTrack from "../../../features/player/hooks/useCurrentlyPlayingTrack";
+import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 
 function PageHeader({ item, artist }) {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function PageHeader({ item, artist }) {
   );
   const { hour, min, sec } = getTrackDuration(totalDuration);
   const isDarkMode = useSelector((store) => store.global.isDarkMode);
-  const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const { currentTrack, playerState } = usePlayerContext();
 
   const info =
     type === "album" ? (
@@ -75,8 +75,8 @@ function PageHeader({ item, artist }) {
             cover={cover}
             title={title}
             spinDisc={
-              currentlyPlayingTrack?.id === item?.id ||
-              currentlyPlayingTrack?.context?.id === item?.id
+              currentTrack?.id === item?.id ||
+              playerState?.context?.uri?.split(":")?.[2] === item?.id
             }
           />
         </div>

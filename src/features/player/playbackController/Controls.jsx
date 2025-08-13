@@ -7,17 +7,15 @@ import {
   TbPlayerSkipForwardFilled,
   TbRepeat,
 } from "react-icons/tb";
-import useCurrentlyPlayingTrack from "../hooks/useCurrentlyPlayingTrack";
 import { useDispatch } from "react-redux";
 import { togglePlayingTrackBar } from "../PlaybackSlice";
 import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 function Controls() {
-  const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const dispatch = useDispatch();
   const { playerState, player, currentTrack } = usePlayerContext();
 
   function handlePlay() {
-    if (!currentlyPlayingTrack)
+    if (!currentTrack)
       dispatch(togglePlayingTrackBar()); //if there was no track playling, open the playing track bar to show the empty queue message.
     else return null;
   }
@@ -26,7 +24,7 @@ function Controls() {
     <div className="flex items-center justify-center gap-5">
       <TbPlayerSkipBackFilled
         onClick={() => player?.previousTrack()}
-        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105 hover:text-black dark:hover:text-white"} text-2xl text-black/70 transition-all duration-100 dark:text-white/70`}
+        className={`${currentTrack?.id && "cursor-pointer hover:scale-105 hover:text-black dark:hover:text-white"} text-2xl text-black/70 transition-all duration-100 dark:text-white/70`}
       />
       <div
         onClick={() => player?.togglePlay()}
@@ -44,7 +42,7 @@ function Controls() {
       </div>
       <TbPlayerSkipForwardFilled
         onClick={() => player?.nextTrack()}
-        className={`${currentlyPlayingTrack && "cursor-pointer hover:scale-105 hover:text-black dark:hover:text-white"} text-2xl text-black/70 transition-all duration-100 dark:text-white/70`}
+        className={`${currentTrack?.id && "cursor-pointer hover:scale-105 hover:text-black dark:hover:text-white"} text-2xl text-black/70 transition-all duration-100 dark:text-white/70`}
       />
     </div>
   );

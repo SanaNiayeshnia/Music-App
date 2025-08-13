@@ -7,10 +7,10 @@ import SaveTrackButton from "../tracks/SaveTrackButton";
 import { TbArrowsDiagonalMinimize2, TbChevronDown } from "react-icons/tb";
 import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
 import IconLogo from "../../ui/layout/topNav/IconLogo";
-import useCurrentlyPlayingTrack from "./hooks/useCurrentlyPlayingTrack";
 import TrackContextMenu from "../tracks/TrackContextMenu";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 
 function FullScreenPlayingTrack() {
   const { isFullScreenPlayingTrackOpen } = useSelector(
@@ -19,7 +19,7 @@ function FullScreenPlayingTrack() {
   const { isSmall } = useSelector((store) => store.global);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const { currentTrack, playerState } = usePlayerContext();
   function close() {
     dispatch(setIsFullScreenPlayingTrack(false));
   }
@@ -45,7 +45,7 @@ function FullScreenPlayingTrack() {
   return (
     <div
       style={{
-        backgroundImage: `url(${currentlyPlayingTrack?.album?.images[0]?.url})`,
+        backgroundImage: `url(${currentTrack?.album?.images[0]?.url ?? ""})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -63,24 +63,26 @@ function FullScreenPlayingTrack() {
             <IconLogo noTitle className="hidden h-12 w-12 md:flex" />
             <div className="text-center text-sm uppercase md:text-left md:text-base">
               <p className="text-black/70 dark:text-white/70">
-                Playing from {currentlyPlayingTrack?.context?.type}
+                Playing from{" "}
+                {playerState?.context?.uri?.split(":")?.[1] || "track"}
               </p>
               <p
                 onClick={() => {
                   close();
                   navigate(
-                    `/${currentlyPlayingTrack?.context?.type}/${currentlyPlayingTrack?.context?.id}`,
+                    `/${playerState?.context?.uri?.split(":")?.[1] || "track"}/${playerState?.context?.uri?.split(":")?.[2] || currentTrack?.id}`,
                   );
                 }}
                 className="cursor-pointer text-black hover:underline dark:text-white"
               >
-                {currentlyPlayingTrack?.context?.name}
+                {playerState?.context?.metadata?.context_description ||
+                  currentTrack?.name}
               </p>
             </div>
           </div>
 
           {isSmall && (
-            <TrackContextMenu track={currentlyPlayingTrack} position="center" />
+            <TrackContextMenu track={currentTrack} position="center" />
           )}
         </div>
 
@@ -91,10 +93,7 @@ function FullScreenPlayingTrack() {
           <SongSlider />
           <div className="flex w-full items-center justify-between gap-5">
             <div className="flex w-1/4 justify-start">
-              <SaveTrackButton
-                track={currentlyPlayingTrack}
-                className="h-6 w-6"
-              />
+              <SaveTrackButton track={currentTrack} className="h-6 w-6" />
             </div>
             <Controls />
             <div className="flex w-1/4 items-center justify-end gap-2 md:gap-3">

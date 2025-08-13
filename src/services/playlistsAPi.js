@@ -35,7 +35,7 @@ export async function getPlaylist(id) {
 export async function getPlaylistItems({ pageParam = null, playlistId }) {
   const url =
     pageParam ||
-    `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=25`;
+    `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=15`;
 
   const res = await fetch(url, {
     headers: getRequestHeader(),

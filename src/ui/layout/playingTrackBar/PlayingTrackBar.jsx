@@ -5,14 +5,14 @@ import PlayingTrackbarHeader from "./PlayingTrackbarHeader";
 import useScrollbar from "../../../hooks/useScrollbar";
 import QueueBar from "../../../features/player/queue/QueueBar";
 import { useState } from "react";
-import useCurrentlyPlayingTrack from "../../../features/player/hooks/useCurrentlyPlayingTrack";
 import TrackBarError from "./TrackBarError";
+import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 
 function PlayingTrackBar() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const ref = useScrollbar();
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
+  const { currentTrack } = usePlayerContext();
 
   return (
     <div
@@ -25,7 +25,7 @@ function PlayingTrackBar() {
           className="scrollbar hide-scroll h-[calc(100%-5rem)] space-y-6 overflow-auto px-3 pb-5"
           onScroll={(e) => setIsScrolled(e.target.scrollTop > 0)}
         >
-          {!isLoading && !currentlyPlayingTrack?.name ? (
+          {!currentTrack ? (
             <TrackBarError />
           ) : (
             <>

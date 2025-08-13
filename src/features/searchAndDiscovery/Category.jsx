@@ -16,7 +16,7 @@ function Category({ category, isLoading }) {
   return (
     <div
       onClick={handleOnClick}
-      className="group relative flex min-h-36 max-w-60 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/50"
+      className="group relative flex min-h-36 cursor-pointer overflow-hidden rounded-md bg-white/50 px-4 py-4 shadow dark:bg-black/50"
     >
       {isLoading ? (
         <Skeleton className="h-5 w-20" />
@@ -33,7 +33,7 @@ function Category({ category, isLoading }) {
         src={!isLoading ? category?.icons[0]?.url : ""}
         alt={category?.name}
         onLoad={() => setIsImageLoaded(true)}
-        className={`${!isImageLoaded && "hidden"} absolute -bottom-8 -right-5 aspect-square w-24 rotate-[15deg] rounded-md shadow-md filter transition-all group-hover:scale-110 md:w-[7.5rem] dark:brightness-150`}
+        className={`${!isImageLoaded && "hidden"} absolute -bottom-8 -right-5 aspect-square w-24 rotate-[15deg] rounded-md shadow-md filter transition-all group-hover:scale-110 sm:w-[7.5rem] dark:brightness-150`}
       />
     </div>
   );

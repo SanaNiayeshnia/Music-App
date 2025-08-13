@@ -13,6 +13,7 @@ function SliderBar({
   onChangeCommitted,
 }) {
   const { isDarkMode } = useSelector((store) => store.global);
+
   return (
     <Slider
       size="medium"

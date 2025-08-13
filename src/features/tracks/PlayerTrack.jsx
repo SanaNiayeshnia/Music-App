@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import Skeleton from "../../ui/Skeleton";
-import useCurrentlyPlayingTrack from "../player/hooks/useCurrentlyPlayingTrack";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import Cover from "../../ui/Cover";
 import { setIsFullScreenPlayingTrack } from "../player/PlaybackSlice";
+import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 
 function PlayerTrack({ fullScreen = false }) {
-  const { isLoading, currentlyPlayingTrack } = useCurrentlyPlayingTrack();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { currentTrack } = usePlayerContext();
 
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
     setIsImageLoaded(false);
-  }, [currentlyPlayingTrack?.id]);
+  }, [currentTrack?.id]);
 
   return (
     <div
-      className={`${!currentlyPlayingTrack && "opacity-50"} ${!fullScreen && "gap-4 md:w-72"} flex items-center justify-between`}
+      className={`${!currentTrack && "opacity-50"} ${!fullScreen && "gap-4 md:w-72"} flex items-center justify-between`}
     >
       <div
         className={`${fullScreen ? "flex-col md:flex-row" : ""} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
@@ -29,29 +29,24 @@ function PlayerTrack({ fullScreen = false }) {
         <div className="flex-shrink-0">
           {fullScreen ? (
             <Cover
-              cover={
-                !isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""
-              }
-              title={currentlyPlayingTrack?.name}
+              cover={currentTrack?.album?.images[0]?.url ?? ""}
+              title={currentTrack?.name}
               size="large"
               spinDisc
             />
           ) : (
             <>
-              {(isLoading ||
-                (!isImageLoaded &&
-                  currentlyPlayingTrack?.album?.images[0]?.url)) && (
+              {(!currentTrack ||
+                (!isImageLoaded && currentTrack?.album?.images[0]?.url)) && (
                 <Skeleton
                   className={`aspect-square h-11 w-11 flex-shrink-0 rounded shadow md:h-14 md:w-14`}
                 />
               )}
               <img
-                key={currentlyPlayingTrack?.id}
+                key={currentTrack?.id}
                 className={`${!isImageLoaded && "hidden"} aspect-square h-11 w-11 flex-shrink-0 rounded shadow md:h-14 md:w-14`}
-                src={
-                  !isLoading ? currentlyPlayingTrack?.album?.images[0]?.url : ""
-                }
-                alt={currentlyPlayingTrack?.name}
+                src={currentTrack?.album?.images[0]?.url ?? ""}
+                alt={currentTrack?.name}
                 onLoad={() => setIsImageLoaded(true)}
               />
             </>
@@ -59,9 +54,9 @@ function PlayerTrack({ fullScreen = false }) {
         </div>
 
         <div
-          className={`${!isLoading && !currentlyPlayingTrack && "w-16"} ${fullScreen ? "gap-2" : "gap-1"} flex flex-col justify-end leading-4`}
+          className={`${!currentTrack && "w-16"} ${fullScreen ? "gap-2" : "gap-1"} flex flex-col justify-end leading-4`}
         >
-          {isLoading ? (
+          {!currentTrack ? (
             <>
               <Skeleton className="w- h-2 w-16 rounded-sm" />
               <Skeleton className="w- h-2 w-10 rounded-sm" />
@@ -72,16 +67,16 @@ function PlayerTrack({ fullScreen = false }) {
                 onClick={(e) => {
                   e.stopPropagation();
                   dispatch(setIsFullScreenPlayingTrack(false));
-                  navigate(`/track/${currentlyPlayingTrack?.id}`);
+                  navigate(`/track/${currentTrack?.id}`);
                 }}
                 className={`${fullScreen ? "line-clamp-2 max-w-96 text-xl font-bold leading-8 md:text-3xl md:leading-10" : "line-clamp-1 text-sm font-medium md:w-40"} cursor-pointer ${fullScreen ? "text-black dark:text-white" : "text-white md:text-black md:dark:text-white"} hover:underline`}
               >
-                {currentlyPlayingTrack?.name}
+                {currentTrack?.name}
               </p>
               <p
                 className={`${fullScreen ? "text-lg font-semibold md:text-2xl" : "text-[0.8rem]"} cursor-pointer ${fullScreen ? "text-black/70 dark:text-white/70" : "text-white/80 md:text-gray-600 md:dark:text-gray-300"} `}
               >
-                {currentlyPlayingTrack?.artists?.map((artist, index) => (
+                {currentTrack?.artists?.map((artist, index) => (
                   <span
                     onClick={(e) => {
                       e.stopPropagation();
@@ -92,8 +87,8 @@ function PlayerTrack({ fullScreen = false }) {
                     key={artist?.id}
                   >
                     {artist.name}
-                    {currentlyPlayingTrack.artists.length > 1 &&
-                      index < currentlyPlayingTrack.artists.length - 1 &&
+                    {currentTrack.artists.length > 1 &&
+                      index < currentTrack.artists.length - 1 &&
                       ", "}
                   </span>
                 ))}
@@ -103,11 +98,11 @@ function PlayerTrack({ fullScreen = false }) {
         </div>
       </div>
       <div className="flex items-center gap-4">
-        {currentlyPlayingTrack?.name && !fullScreen && (
+        {currentTrack?.name && !fullScreen && (
           <>
             <SaveTrackButton
               className={`min-h-5 min-w-5 text-white hover:text-white md:text-black md:hover:text-blue-600`}
-              track={currentlyPlayingTrack}
+              track={currentTrack}
             />
             <TbPlayerPlayFilled className="min-h-5 min-w-5 text-white md:hidden" />
           </>

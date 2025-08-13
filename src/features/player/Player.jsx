@@ -7,77 +7,78 @@ import { APP_NAME } from "../../utilities/constants";
 import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 import { transferPlaybackToThisDevice } from "../../services/playerApi";
 import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
-import { useQueryClient } from "@tanstack/react-query";
 
 function Player() {
   const { accessToken } = useSelector((store) => store.authentication);
-  const { dispatch: playerDispatch, currentTrack } = usePlayerContext();
+  const { dispatch: playerDispatch } = usePlayerContext();
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
 
   useEffect(() => {
-    const loadSpotifyPlayer = () => {
-      if (window.Spotify) {
-        const player = new window.Spotify.Player({
-          name: APP_NAME,
-          getOAuthToken: (cb) => cb(accessToken),
-          volume: 0.5,
+    if (!accessToken) return;
+    if (window._spotifyPlayerInit) return; // prevent multiple inits
+    window._spotifyPlayerInit = true;
+
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const player = new window.Spotify.Player({
+        name: APP_NAME,
+        getOAuthToken: (cb) => cb(accessToken),
+        volume: 0.5,
+      });
+
+      playerDispatch({ type: "setPlayer", payload: player });
+
+      player.addListener("ready", async ({ device_id }) => {
+        console.log("Ready with Device ID:", device_id);
+        playerDispatch({ type: "setDeviceId", payload: device_id });
+        const res = await transferPlaybackToThisDevice({
+          accessToken,
+          deviceId: device_id,
+          player,
         });
+        console.log("Transfer response", res);
+      });
 
-        playerDispatch({ type: "setPlayer", payload: player });
+      player.addListener("not_ready", ({ device_id }) => {
+        console.warn("Device ID has gone offline", device_id);
+      });
 
-        player.addListener("ready", async ({ device_id }) => {
-          console.log("Ready with Device ID:", device_id);
-          playerDispatch({ type: "setDeviceId", payload: device_id });
-          await transferPlaybackToThisDevice({
-            accessToken,
-            deviceId: device_id,
-            player,
-          });
+      player.addListener("initialization_error", ({ message }) => {
+        console.error(message);
+      });
+
+      player.addListener("authentication_error", ({ message }) => {
+        console.error(message);
+      });
+
+      player.addListener("account_error", ({ message }) => {
+        console.error(message);
+      });
+
+      player.addListener("player_state_changed", (state) => {
+        if (!state) return;
+        playerDispatch({
+          type: "changePlayerState",
+          payload: { ...state, lastUpdated: new Date() },
         });
+      });
 
-        player.addListener("not_ready", ({ device_id }) => {
-          console.log("Device ID has gone offline", device_id);
-        });
+      player.connect().then((success) => {
+        if (!success) console.error("Spotify Player failed to connect");
+      });
 
-        player.addListener("initialization_error", ({ message }) => {
-          console.error(message);
-        });
-
-        player.addListener("authentication_error", ({ message }) => {
-          console.error(message);
-        });
-
-        player.addListener("account_error", ({ message }) => {
-          console.error(message);
-        });
-
-        player.addListener("player_state_changed", (state) => {
-          if (!state) return;
-          console.log("state", state);
-
-          playerDispatch({
-            type: "changePlayerState",
-            payload: { ...state, lastUpdated: new Date() },
-          });
-        });
-
-        player.connect();
-      }
+      window._spotifyPlayer = player; // store globally for cleanup
     };
 
     if (!window.Spotify) {
       const script = document.createElement("script");
       script.src = "https://sdk.scdn.co/spotify-player.js";
       script.async = true;
-      script.onload = () => {
-        console.log("SDK Loaded");
-        loadSpotifyPlayer();
-      };
       document.body.appendChild(script);
-    } else {
-      loadSpotifyPlayer();
     }
+
+    return () => {
+      window._spotifyPlayer?.disconnect();
+    };
   }, [accessToken, playerDispatch]);
 
   return (

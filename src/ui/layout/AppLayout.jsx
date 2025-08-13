@@ -11,13 +11,11 @@ import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 import { togglePlayingTrackBar } from "../../features/player/PlaybackSlice";
 import PlayerContextProvider from "../../contexts/player/PlayerContextProvider";
-import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,
   );
-  const { currentTrack } = usePlayerContext();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -48,11 +46,8 @@ function AppLayout() {
             {isPlayingTrackbarOpen && <PlayingTrackBar />}
           </div>
 
-<<<<<<< HEAD
           <Player />
-=======
-          {currentTrack?.id && <Player />}
->>>>>>> 9c80ce1e8d709adbfed5829aa8f2f3521704e204
+
           <BottomNav />
           <FullScreenPlayingTrack />
         </div>

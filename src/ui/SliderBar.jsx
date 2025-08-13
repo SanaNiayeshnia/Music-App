@@ -24,7 +24,7 @@ function SliderBar({
       disabled={disabled}
       value={value}
       max={max}
-      onChangeCommitted={onChangeCommitted}
+      onChangeCommitted={(e, value) => onChangeCommitted(value)}
       onChange={(e, value) => {
         onChange(value);
       }}

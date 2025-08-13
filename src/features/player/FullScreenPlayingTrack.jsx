@@ -24,8 +24,6 @@ function FullScreenPlayingTrack() {
     dispatch(setIsFullScreenPlayingTrack(false));
   }
 
-  console.log(isFullScreenPlayingTrackOpen);
-
   const containerRef = useRef();
 
   useEffect(() => {

@@ -6,8 +6,7 @@ import TinySpinner from "../../ui/TinySpinner";
 import { RiHeart3Fill, RiHeartAdd2Line } from "react-icons/ri";
 
 function SaveTrackButton({ track, className }) {
-  // const { isTrackSaved } = useIsTrackSaved(track?.id);
-  const isTrackSaved = false;
+  const { isTrackSaved } = useIsTrackSaved(track?.id);
   const { isPending: isPendingSave, saveTrackMutate } = useSaveTrack(track?.id);
   const { isPending: isPendingUnsave, unsaveTrackMutate } = useUnsaveTrack(
     track?.id,

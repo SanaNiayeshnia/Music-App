@@ -4,8 +4,13 @@ import { formatTrackDuration } from "../../../utilities/helper";
 import { useEffect, useState } from "react";
 import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 
-function SongSlider() {
-  const { playerState, currentTrack, player } = usePlayerContext();
+function SongSlider({}) {
+  const {
+    playerState,
+    currentTrack,
+    player,
+    dispatch: playerDispatch,
+  } = usePlayerContext();
   const { isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,
   );
@@ -30,8 +35,12 @@ function SongSlider() {
   }, [playerState]);
 
   function changePosition(value) {
-    player.seek(value);
+    if (!currentTrack?.id) return null;
     setPosition(value);
+  }
+
+  async function onSeek(value) {
+    await player.seek(value);
   }
 
   return (
@@ -41,7 +50,7 @@ function SongSlider() {
       <span
         className={`${isFullScreenPlayingTrackOpen ? "text-black/70 dark:text-white/70" : "text-gray-600 dark:text-gray-300"} font-medium`}
       >
-        {position ? formatTrackDuration(position) : "0:00"}
+        {formatTrackDuration(position || 0)}
       </span>
       <SliderBar
         disabled={Boolean(!currentTrack)}
@@ -50,6 +59,7 @@ function SongSlider() {
         value={position || 0}
         max={currentTrack?.duration_ms || 0}
         onChange={changePosition}
+        onChangeCommitted={onSeek}
       />
       <span
         className={`${isFullScreenPlayingTrackOpen ? "text-black/70 dark:text-white/70" : "text-gray-600 dark:text-gray-300"} font-medium`}

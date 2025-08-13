@@ -5,34 +5,32 @@ import { useEffect, useState } from "react";
 import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 
 function SongSlider({}) {
-  const {
-    playerState,
-    currentTrack,
-    player,
-    dispatch: playerDispatch,
-  } = usePlayerContext();
+  const { playerState, currentTrack, player } = usePlayerContext();
   const { isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,
   );
   const [position, setPosition] = useState(playerState?.position || 0);
+  const [isSeeking, setIsSeeking] = useState(false);
 
   useEffect(() => {
     if (!playerState) return;
 
     let animationFrame;
     const update = () => {
-      if (!playerState.paused) {
-        const elapsed = Date.now() - playerState.lastUpdated;
-        setPosition(playerState.position + elapsed);
-      } else {
-        setPosition(playerState.position);
+      if (!isSeeking) {
+        if (!playerState.paused) {
+          const elapsed = Date.now() - playerState.lastUpdated;
+          setPosition(playerState.position + elapsed);
+        } else {
+          setPosition(playerState.position);
+        }
+        animationFrame = requestAnimationFrame(update);
       }
-      animationFrame = requestAnimationFrame(update);
     };
     update();
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [playerState]);
+  }, [playerState, isSeeking]);
 
   function changePosition(value) {
     if (!currentTrack?.id) return null;
@@ -40,7 +38,16 @@ function SongSlider({}) {
   }
 
   async function onSeek(value) {
-    await player.seek(value);
+    if (playerState.paused) {
+      await player.seek(value);
+    } else {
+      setIsSeeking(true);
+      await player.seek(value);
+      setPosition(value);
+      setTimeout(() => {
+        setIsSeeking(false);
+      }, 5000);
+    }
   }
 
   return (

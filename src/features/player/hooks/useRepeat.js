@@ -6,7 +6,7 @@ function useRepeat() {
   const { isPending, mutate: repeatMutate } = useMutation({
     mutationFn: repeat,
     mutationKey: ["repeat"],
-    onError: (error) => toast.error(error),
+    onError: (error) => toast.error(error.message),
   });
   return { isPending, repeatMutate };
 }

@@ -77,14 +77,13 @@ export async function play({ uri, deviceId }) {
 
 export async function repeat({ state, deviceId }) {
   try {
-    const res = await fetch("https://api.spotify.com/v1/me/player/repeat", {
-      method: "PUT",
-      headers: getRequestHeader(),
-      body: JSON.stringify({
-        device_id: deviceId,
-        state,
-      }),
-    });
+    const res = await fetch(
+      `https://api.spotify.com/v1/me/player/repeat?device_id=${deviceId}&state=${state}`,
+      {
+        method: "PUT",
+        headers: getRequestHeader(),
+      },
+    );
     if (!res.ok) {
       throw new Error("something went wrong!");
     }
@@ -95,14 +94,13 @@ export async function repeat({ state, deviceId }) {
 
 export async function toggleShuffle({ state, deviceId }) {
   try {
-    const res = await fetch("https://api.spotify.com/v1/me/player/shuffle", {
-      method: "PUT",
-      headers: getRequestHeader(),
-      body: JSON.stringify({
-        device_id: deviceId,
-        state,
-      }),
-    });
+    const res = await fetch(
+      `https://api.spotify.com/v1/me/player/shuffle?device_id=${deviceId}&state=${state}`,
+      {
+        method: "PUT",
+        headers: getRequestHeader(),
+      },
+    );
     if (!res.ok) {
       throw new Error("something went wrong!");
     }
@@ -123,7 +121,7 @@ export async function transferPlaybackToThisDevice({
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({ device_ids: [deviceId], play: true }),
+      body: JSON.stringify({ device_ids: [deviceId], play: false }),
     });
     const s = await player.getCurrentState();
     console.log("Initial state:", s);

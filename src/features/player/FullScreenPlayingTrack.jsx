@@ -89,7 +89,7 @@ function FullScreenPlayingTrack() {
         </div>
         <div className="flex w-11/12 flex-col gap-3">
           <SongSlider />
-          <div className="flex w-full items-center justify-between gap-5">
+          <div className="flex w-full flex-row-reverse items-center justify-between gap-5 md:flex-row">
             <div className="flex w-1/4 justify-start">
               <SaveTrackButton track={currentTrack} className="h-6 w-6" />
             </div>

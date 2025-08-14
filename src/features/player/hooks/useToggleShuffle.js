@@ -6,7 +6,7 @@ function useToggleShuffle() {
   const { isPending, mutate: toggleShuffleMutate } = useMutation({
     mutationFn: toggleShuffle,
     mutationKey: ["shuffle"],
-    onError: (error) => toast.error(error),
+    onError: (error) => toast.error(error.message),
   });
   return { isPending, toggleShuffleMutate };
 }

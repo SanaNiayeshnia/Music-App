@@ -84,7 +84,7 @@ function PlayerTrack({ fullScreen = false }) {
                       navigate(`/artist/${artist?.id}`);
                     }}
                     className="hover:underline"
-                    key={artist?.id}
+                    key={index}
                   >
                     {artist.name}
                     {currentTrack.artists.length > 1 &&

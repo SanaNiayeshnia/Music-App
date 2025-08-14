@@ -47,11 +47,12 @@ export async function getQueue() {
   });
   if (res.status !== 200) throw new Error("Failed to get the queue!");
   const data = await res.json();
-  return data.item;
+  console.log(data);
+  return data;
 }
 
 export async function play({ uri, deviceId }) {
-  console.log(deviceId);
+  console.log("deviceId", deviceId);
   try {
     const res = await fetch("https://api.spotify.com/v1/me/player/play", {
       method: "PUT",
@@ -68,6 +69,42 @@ export async function play({ uri, deviceId }) {
           ? "You need to have a premium account in order to play a song!"
           : "You can't play tracks currently!",
       );
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function repeat({ state, deviceId }) {
+  try {
+    const res = await fetch("https://api.spotify.com/v1/me/player/repeat", {
+      method: "PUT",
+      headers: getRequestHeader(),
+      body: JSON.stringify({
+        device_id: deviceId,
+        state,
+      }),
+    });
+    if (!res.ok) {
+      throw new Error("something went wrong!");
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function toggleShuffle({ state, deviceId }) {
+  try {
+    const res = await fetch("https://api.spotify.com/v1/me/player/shuffle", {
+      method: "PUT",
+      headers: getRequestHeader(),
+      body: JSON.stringify({
+        device_id: deviceId,
+        state,
+      }),
+    });
+    if (!res.ok) {
+      throw new Error("something went wrong!");
     }
   } catch (error) {
     throw new Error(error);

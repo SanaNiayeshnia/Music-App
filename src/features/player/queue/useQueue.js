@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getQueue } from "../../../services/playerApi";
 
 function useQueue() {
-  const { isLoading, data: queue } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["queue"],
     queryFn: getQueue,
   });
 
-  return { isLoading, queue };
+  return { isLoading, queue: data || {} };
 }
 
 export default useQueue;

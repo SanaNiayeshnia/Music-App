@@ -1,15 +1,19 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { play } from "../../../services/playerApi";
 import toast from "react-hot-toast";
 import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 
 function usePlay() {
-  const { state } = usePlayerContext();
+  const { deviceId } = usePlayerContext();
+  const queryClient = useQueryClient();
   const { isPending, mutate: playMutate } = useMutation({
     mutationKey: ["play"],
-    mutationFn: (uri) => play({ uri, deviceId: state?.deviceId }),
+    mutationFn: (uri) => play({ uri, deviceId: deviceId }),
     onError: (error) => {
       toast.error(error?.message);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["queue"]);
     },
   });
   return { isPending, playMutate };

@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 import useScrollbar from "../../../hooks/useScrollbar";
 import Track from "../../tracks/Track";
 import useQueue from "./useQueue";
 
 function QueueList({ setIsScrolled }) {
   const ref = useScrollbar();
-  // const { isLoading, queue } = useQueue();
+  const { isLoading, queue } = useQueue();
+  const { playerState } = usePlayerContext();
+  const contextSplittedArray = playerState?.context?.uri?.split(":");
 
   return (
     <div
@@ -18,27 +22,32 @@ function QueueList({ setIsScrolled }) {
         </p>
         <table className="w-full">
           <tbody>
-            <Track smallScreen />
+            <Track
+              smallScreen
+              track={queue?.currently_playing}
+              isLoading={isLoading}
+            />
           </tbody>
         </table>
       </div>
       <div className="space-y-2">
         <p className="text-sm font-semibold text-gray-900 dark:text-white">
-          Next from: Radical Optimism
+          Next from:{" "}
+          <Link
+            to={`/${contextSplittedArray?.[1]}/${contextSplittedArray?.[2]}`}
+          >
+            {playerState?.context?.metadata?.context_description}
+          </Link>
         </p>
         <table className="w-full">
           <tbody>
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
-            <Track smallScreen />
+            {isLoading
+              ? Array.from({ length: 10 }).map((item, index) => (
+                  <Track smallScreen key={index} isLoading />
+                ))
+              : queue?.queue?.map((item, index) => (
+                  <Track smallScreen key={index} track={item} />
+                ))}
           </tbody>
         </table>
       </div>

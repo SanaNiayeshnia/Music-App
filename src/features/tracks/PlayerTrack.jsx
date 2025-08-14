@@ -21,7 +21,7 @@ function PlayerTrack({ fullScreen = false }) {
 
   return (
     <div
-      className={`${!currentTrack && "opacity-50"} ${!fullScreen && "gap-4 md:w-72"} flex items-center justify-between`}
+      className={`${!currentTrack?.id ? "opacity-50" : ""} ${!fullScreen && "gap-4 md:w-72"} flex items-center justify-between`}
     >
       <div
         className={`${fullScreen ? "flex-col md:flex-row" : ""} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
@@ -36,7 +36,7 @@ function PlayerTrack({ fullScreen = false }) {
             />
           ) : (
             <>
-              {(!currentTrack ||
+              {(!currentTrack?.id ||
                 (!isImageLoaded && currentTrack?.album?.images[0]?.url)) && (
                 <Skeleton
                   className={`aspect-square h-11 w-11 flex-shrink-0 rounded shadow md:h-14 md:w-14`}
@@ -56,7 +56,7 @@ function PlayerTrack({ fullScreen = false }) {
         <div
           className={`${!currentTrack && "w-16"} ${fullScreen ? "gap-2" : "gap-1"} flex flex-col justify-end leading-4`}
         >
-          {!currentTrack ? (
+          {!currentTrack?.id ? (
             <>
               <Skeleton className="w- h-2 w-16 rounded-sm" />
               <Skeleton className="w- h-2 w-10 rounded-sm" />

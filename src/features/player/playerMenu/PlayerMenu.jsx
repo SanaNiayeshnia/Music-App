@@ -19,14 +19,14 @@ function PlayerMenu() {
 
   return (
     <div
-      className={`${!currentTrack && "opacity-50"} hidden items-center justify-end gap-4 md:flex md:w-72`}
+      className={`${!currentTrack?.id && "opacity-50"} hidden items-center justify-end gap-4 md:flex md:w-72`}
     >
       <Tooltip title="Currently playing view" placement="top">
         <div>
           <BiAlbum
-            className={` ${currentTrack && isPlayingTrackbarOpen && !isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} ${currentTrack && "cursor-pointer"} min-h-5 min-w-5 duration-100`}
+            className={` ${currentTrack && isPlayingTrackbarOpen && !isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} ${currentTrack?.id && "cursor-pointer"} min-h-5 min-w-5 duration-100`}
             onClick={() =>
-              currentTrack ? dispatch(togglePlayingTrackBar()) : null
+              currentTrack?.id ? dispatch(togglePlayingTrackBar()) : null
             }
           />
         </div>
@@ -35,8 +35,10 @@ function PlayerMenu() {
       <Tooltip title="Queue" placement="top">
         <div>
           <TbPlaylist
-            onClick={() => (currentTrack ? dispatch(toggleQueueBar()) : null)}
-            className={`${isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} ${currentTrack && "cursor-pointer"} min-h-5 min-w-5 duration-100`}
+            onClick={() =>
+              currentTrack?.id ? dispatch(toggleQueueBar()) : null
+            }
+            className={`${isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} ${currentTrack?.id && "cursor-pointer"} min-h-5 min-w-5 duration-100`}
           />
         </div>
       </Tooltip>
@@ -44,9 +46,9 @@ function PlayerMenu() {
       <VolumeHandler />
       <TbArrowsDiagonal
         onClick={() =>
-          currentTrack ? dispatch(setIsFullScreenPlayingTrack(true)) : null
+          currentTrack?.id ? dispatch(setIsFullScreenPlayingTrack(true)) : null
         }
-        className={`${currentTrack && "cursor-pointer hover:text-blue-600"} min-h-5 min-w-5 text-black duration-100 dark:text-white`}
+        className={`${currentTrack?.id && "cursor-pointer hover:text-blue-600"} min-h-5 min-w-5 text-black duration-100 dark:text-white`}
       />
     </div>
   );

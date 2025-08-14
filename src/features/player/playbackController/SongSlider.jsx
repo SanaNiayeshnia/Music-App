@@ -18,7 +18,7 @@ function SongSlider() {
     let animationFrame;
     const update = () => {
       if (!isSeeking) {
-        if (!playerState.paused) {
+        if (!playerState.paused && !playerState?.loading) {
           const elapsed = Date.now() - playerState.lastUpdated;
           setPosition(playerState.position + elapsed);
         } else {
@@ -60,7 +60,7 @@ function SongSlider() {
         {formatTrackDuration(position || 0)}
       </span>
       <SliderBar
-        disabled={Boolean(!currentTrack)}
+        disabled={!currentTrack?.id || playerState?.loading}
         thumbDisplay="off"
         valueLabelDisplay="off"
         value={position || 0}

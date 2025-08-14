@@ -85,7 +85,6 @@ function ListContainer({
                 spaceBetween: 10,
               },
             }}
-            watchOverflow={true}
           >
             {isLoading
               ? loadingItems.map((item, index) => (

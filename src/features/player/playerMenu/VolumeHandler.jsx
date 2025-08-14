@@ -4,7 +4,7 @@ import SliderBar from "../../../ui/SliderBar";
 import { TbVolume } from "react-icons/tb";
 
 function VolumeHandler() {
-  const { player } = usePlayerContext();
+  const { player, currentTrack } = usePlayerContext();
   const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
@@ -26,6 +26,7 @@ function VolumeHandler() {
         max={1}
         value={volume}
         step={0.05}
+        disabled={!currentTrack?.id}
       />
     </div>
   );

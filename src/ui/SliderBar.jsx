@@ -29,6 +29,7 @@ function SliderBar({
         onChange(value);
       }}
       sx={{
+        cursor: "default",
         "& .MuiSlider-thumb": {
           width: 15,
           height: 15,

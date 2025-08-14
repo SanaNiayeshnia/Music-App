@@ -28,8 +28,7 @@ function CategoryPage() {
     <Page>
       <TopNav>
         {isMainScrolled && (
-          <NavTitle noPlayButton>
-            <IconLogo noTitle />
+          <NavTitle noPlayButton icon={<IconLogo noTitle />}>
             {category?.name}
           </NavTitle>
         )}

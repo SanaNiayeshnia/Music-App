@@ -13,8 +13,7 @@ function LibraryPage() {
     <Page>
       <TopNav>
         {isMainScrolled && (
-          <NavTitle noPlayButton>
-            <IconLogo noTitle />
+          <NavTitle noPlayButton icon={<IconLogo noTitle />}>
             Library
           </NavTitle>
         )}

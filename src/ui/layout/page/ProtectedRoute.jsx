@@ -35,7 +35,7 @@ function ProtectedRoute({ children }) {
 
   if (isLoading)
     return (
-      <div className="grid h-screen place-items-center">
+      <div className="grid h-[98vh] place-items-center">
         <Spinner />
       </div>
     );

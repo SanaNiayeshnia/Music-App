@@ -4,7 +4,7 @@ import { formatTrackDuration } from "../../../utilities/helper";
 import { useEffect, useState } from "react";
 import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 
-function SongSlider({}) {
+function SongSlider() {
   const { playerState, currentTrack, player } = usePlayerContext();
   const { isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,

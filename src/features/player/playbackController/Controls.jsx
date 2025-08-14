@@ -1,23 +1,12 @@
 import {
-  TbArrowsShuffle,
   TbPlayerPauseFilled,
   TbPlayerPlayFilled,
   TbPlayerSkipBackFilled,
   TbPlayerSkipForwardFilled,
-  TbRepeat,
 } from "react-icons/tb";
-import { useDispatch } from "react-redux";
-import { togglePlayingTrackBar } from "../PlaybackSlice";
 import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 function Controls() {
-  const dispatch = useDispatch();
   const { playerState, player, currentTrack } = usePlayerContext();
-
-  function handlePlay() {
-    if (!currentTrack)
-      dispatch(togglePlayingTrackBar()); //if there was no track playling, open the playing track bar to show the empty queue message.
-    else return null;
-  }
 
   return (
     <div className="flex items-center justify-center gap-5">

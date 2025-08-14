@@ -8,7 +8,6 @@ function useCurrentlyPlayingTrack() {
   const { isLoading, data: currentlyPlayingTrack } = useQuery({
     queryKey: ["currently-playing-track"],
     queryFn: getCurrentlyPlaingTrack,
-    staleTime: 1000,
     enabled: Boolean(isAuthenticated),
   });
 

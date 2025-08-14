@@ -40,7 +40,7 @@ function Track({
       onClick={playTrack}
       className={`group grid items-center gap-1 rounded-md py-2 pl-2 ${
         smallScreen
-          ? `grid-cols-[4fr_1fr]`
+          ? `grid-cols-[4fr_0.75fr]`
           : `${isPlayingTrackbarOpen ? "md:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_0.5fr_0.5fr_0.5fr]" : "md:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr] md:pl-3 xl:grid-cols-[0.5fr_4fr_3fr_0.5fr_0.5fr_0.5fr]"} grid-cols-[0.5fr_4fr_0.5fr_0.5fr]`
       } ${isUsingContextMenu ? "bg-white/40 shadow dark:bg-black/40" : `${!isLoading && "cursor-pointer hover:bg-white/40 hover:shadow dark:hover:bg-black/40"} `}`}
     >

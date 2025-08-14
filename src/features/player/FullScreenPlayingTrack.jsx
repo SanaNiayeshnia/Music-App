@@ -88,22 +88,20 @@ function FullScreenPlayingTrack() {
           <PlayerTrack fullScreen />
         </div>
         <div className="flex w-11/12 flex-col gap-3">
+          <SaveTrackButton track={currentTrack} className="h-6 w-6 md:hidden" />
+
           <SongSlider />
-          <div className="flex w-full flex-row-reverse items-center justify-between gap-5 md:flex-row">
-            <div className="flex w-1/4 justify-start">
+          <div className="flex w-full flex-row-reverse items-center justify-center gap-5 md:flex-row md:justify-between">
+            <div className="hidden w-1/4 justify-start md:flex">
               <SaveTrackButton track={currentTrack} className="h-6 w-6" />
             </div>
             <Controls />
-            <div className="flex w-1/4 items-center justify-end gap-2 md:gap-3">
-              {!isSmall && (
-                <>
-                  <VolumeHandler />
-                  <TbArrowsDiagonalMinimize2
-                    onClick={close}
-                    className="h-6 w-6 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white"
-                  />
-                </>
-              )}
+            <div className="hidden w-1/4 items-center justify-end gap-2 md:flex md:gap-3">
+              <VolumeHandler />
+              <TbArrowsDiagonalMinimize2
+                onClick={close}
+                className="h-6 w-6 cursor-pointer text-black duration-100 hover:text-blue-600 dark:text-white"
+              />
             </div>
           </div>
         </div>

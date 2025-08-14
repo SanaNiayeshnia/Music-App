@@ -81,7 +81,7 @@ function PlayerTrack({ fullScreen = false }) {
                     onClick={(e) => {
                       e.stopPropagation();
                       dispatch(setIsFullScreenPlayingTrack(false));
-                      navigate(`/artist/${artist?.id}`);
+                      navigate(`/artist/${artist?.uri?.split(":")?.[2]}`);
                     }}
                     className="hover:underline"
                     key={index}

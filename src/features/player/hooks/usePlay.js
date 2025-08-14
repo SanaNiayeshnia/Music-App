@@ -14,6 +14,7 @@ function usePlay() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["queue"]);
+      queryClient.invalidateQueries(["currently-playing-track"]);
     },
   });
   return { isPending, playMutate };

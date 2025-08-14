@@ -7,7 +7,7 @@ import useQueue from "./useQueue";
 function QueueList({ setIsScrolled }) {
   const ref = useScrollbar();
   const { isLoading, queue } = useQueue();
-  const { playerState } = usePlayerContext();
+  const { playerState, currentTrack } = usePlayerContext();
   const contextSplittedArray = playerState?.context?.uri?.split(":");
 
   return (
@@ -34,9 +34,15 @@ function QueueList({ setIsScrolled }) {
         <p className="text-sm font-semibold text-gray-900 dark:text-white">
           Next from:{" "}
           <Link
-            to={`/${contextSplittedArray?.[1]}/${contextSplittedArray?.[2]}`}
+            className="overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-300 hover:text-blue-600"
+            to={
+              contextSplittedArray?.[1]
+                ? `/${contextSplittedArray?.[1]}/${contextSplittedArray?.[2]}`
+                : `/track/${currentTrack?.id}`
+            }
           >
-            {playerState?.context?.metadata?.context_description}
+            {playerState?.context?.metadata?.context_description ||
+              currentTrack?.name}
           </Link>
         </p>
         <table className="w-full">

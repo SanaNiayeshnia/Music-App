@@ -52,7 +52,7 @@ function TopResult({ item, isLoading }) {
             </div>
           ) : (
             <>
-              <p className="max-w-96 text-3xl font-bold text-black dark:text-white">
+              <p className="max-w-96 overflow-hidden text-ellipsis whitespace-nowrap text-3xl font-bold text-black dark:text-white">
                 {item?.name}
               </p>
 

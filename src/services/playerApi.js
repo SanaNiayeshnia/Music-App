@@ -121,7 +121,7 @@ export async function transferPlaybackToThisDevice({
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({ device_ids: [deviceId], play: false }),
+      body: JSON.stringify({ device_ids: [deviceId] }),
     });
     const s = await player.getCurrentState();
     console.log("Initial state:", s);

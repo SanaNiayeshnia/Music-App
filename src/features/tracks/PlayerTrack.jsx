@@ -21,7 +21,7 @@ function PlayerTrack({ fullScreen = false }) {
 
   return (
     <div
-      className={`${!currentTrack?.id ? "opacity-50" : ""} ${!fullScreen && "gap-4 md:w-72"} flex items-center justify-between`}
+      className={`${!currentTrack?.id ? "opacity-50" : ""} ${!fullScreen && "gap-4"} col-span-3 flex items-center justify-between md:justify-start`}
     >
       <div
         className={`${fullScreen ? "flex-col md:flex-row" : ""} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
@@ -69,9 +69,11 @@ function PlayerTrack({ fullScreen = false }) {
                   dispatch(setIsFullScreenPlayingTrack(false));
                   navigate(`/track/${currentTrack?.id}`);
                 }}
-                className={`${fullScreen ? "line-clamp-2 max-w-96 text-xl font-bold leading-8 md:text-3xl md:leading-10" : "line-clamp-1 text-sm font-medium md:w-40"} cursor-pointer ${fullScreen ? "text-black dark:text-white" : "text-white md:text-black md:dark:text-white"} hover:underline`}
+                className={`${fullScreen ? "line-clamp-2 max-w-96 text-xl font-bold leading-8 md:text-3xl md:leading-10" : "line-clamp-1 text-sm font-medium md:max-w-full"} cursor-pointer ${fullScreen ? "text-black dark:text-white" : "text-white md:text-black md:dark:text-white"} hover:underline`}
               >
-                {currentTrack?.name}
+                {currentTrack?.name} Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Repudiandae ducimus asperiores nihil ea
+                explicabo dolores inventore quo maxime magni. Magnam!
               </p>
               <p
                 className={`${fullScreen ? "text-lg font-semibold md:text-2xl" : "text-[0.8rem]"} cursor-pointer ${fullScreen ? "text-black/70 dark:text-white/70" : "text-white/80 md:text-gray-600 md:dark:text-gray-300"} `}

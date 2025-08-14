@@ -94,7 +94,7 @@ function Player() {
         </div>
       )}
 
-      <div className="relative z-10 col-start-1 col-end-[-1] hidden items-center justify-between gap-4 rounded-lg bg-white/50 px-5 py-2 text-black shadow-lg backdrop-blur-md md:flex dark:bg-black/50 dark:text-white">
+      <div className="relative z-10 col-start-1 col-end-[-1] hidden items-center justify-between gap-4 rounded-lg bg-white/50 px-5 py-2 text-black shadow-lg backdrop-blur-md md:grid md:grid-cols-12 dark:bg-black/50 dark:text-white">
         <PlayerTrack />
         <PlaybackController />
         <PlayerMenu />

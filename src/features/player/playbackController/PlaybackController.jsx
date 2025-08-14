@@ -6,7 +6,7 @@ function PlaybackController() {
   const { currentTrack, playerState } = usePlayerContext();
   return (
     <div
-      className={`${!currentTrack?.id || playerState?.loading ? "opacity-50" : ""} flex w-8/12 flex-col md:w-5/12 lg:w-5/12`}
+      className={`${!currentTrack?.id || playerState?.loading ? "opacity-50" : ""} col-span-6 flex flex-col px-8`}
     >
       <Controls />
       <SongSlider />

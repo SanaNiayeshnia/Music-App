@@ -19,7 +19,7 @@ function PlayerMenu() {
 
   return (
     <div
-      className={`${!currentTrack?.id && "opacity-50"} hidden items-center justify-end gap-4 md:flex md:w-72`}
+      className={`${!currentTrack?.id && "opacity-50"} col-span-3 hidden items-center justify-end gap-4 md:flex`}
     >
       <Tooltip title="Currently playing view" placement="top">
         <div>

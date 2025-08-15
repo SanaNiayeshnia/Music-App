@@ -25,13 +25,19 @@ function SaveTrackButton({ track, className }) {
           <>
             {!isTrackSaved ? (
               <RiHeartAdd2Line
-                onClick={saveTrackMutate}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  saveTrackMutate();
+                }}
                 className={`${className} cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white`}
               />
             ) : (
               <RiHeart3Fill
-                onClick={unsaveTrackMutate}
-                className={`${className} cursor-pointer !text-blue-600 duration-100 hover:scale-105 dark:!text-white dark:hover:text-blue-600`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  unsaveTrackMutate();
+                }}
+                className={`${className} cursor-pointer duration-100 hover:scale-105 md:!text-blue-600 dark:!text-white dark:hover:text-blue-600`}
               />
             )}
           </>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Skeleton from "../../ui/Skeleton";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
-import { TbPlayerPlayFilled } from "react-icons/tb";
+import { TbPlayerPauseFilled, TbPlayerPlayFilled } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import Cover from "../../ui/Cover";
 import { setIsFullScreenPlayingTrack } from "../player/PlaybackSlice";
@@ -12,7 +12,7 @@ function PlayerTrack({ fullScreen = false }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { currentTrack } = usePlayerContext();
+  const { currentTrack, playerState, player } = usePlayerContext();
 
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
@@ -104,7 +104,18 @@ function PlayerTrack({ fullScreen = false }) {
               className={`min-h-5 min-w-5 text-white hover:text-white md:text-black md:hover:text-blue-600`}
               track={currentTrack}
             />
-            <TbPlayerPlayFilled className="min-h-5 min-w-5 text-white md:hidden" />
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                player?.togglePlay();
+              }}
+            >
+              {playerState?.paused ? (
+                <TbPlayerPlayFilled className="min-h-5 min-w-5 text-white md:hidden" />
+              ) : (
+                <TbPlayerPauseFilled className="min-h-5 min-w-5 text-white md:hidden" />
+              )}
+            </div>
           </>
         )}
       </div>

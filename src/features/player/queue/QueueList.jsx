@@ -16,7 +16,7 @@ function QueueList({ setIsScrolled }) {
     <div
       ref={ref}
       onScroll={(e) => setIsScrolled(e.target.scrollTop)}
-      className="scrollbar hide-scroll flex-grow space-y-10 overflow-auto pb-3 pl-3 pr-2"
+      className="scrollbar hide-scroll max-h-[calc(100%-5rem)] flex-grow space-y-10 overflow-auto pb-3 pl-3 pr-2"
     >
       <div className="space-y-2">
         <p className="text-sm font-semibold text-gray-900 dark:text-white">

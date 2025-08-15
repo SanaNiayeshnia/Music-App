@@ -20,7 +20,7 @@ function PersonPageHeader({ person }) {
           />
         )}
         <img
-          className={`${!isImageLoaded && "hidden"} relative h-48 w-48 flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 xl:h-48 xl:w-48 ${isPlayingTrackbarOpen ? "md:h-36 md:w-36 lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"}`}
+          className={`${(!isImageLoaded || person?.images?.length === 0) && "hidden"} relative h-48 w-48 flex-shrink-0 rounded-full drop-shadow-lg md:h-36 md:w-36 xl:h-48 xl:w-48 ${isPlayingTrackbarOpen ? "md:h-36 md:w-36 lg:h-40 lg:w-40" : "lg:h-48 lg:w-48"} object-cover`}
           src={
             person?.images[0]?.url ||
             (isDarkMode && person?.type === "artist"

@@ -23,7 +23,7 @@ function GramophoneDisc({ image, title, spin = false, className }) {
               }
               alt={title}
               onLoad={() => setIsImgLoaded(true)}
-              className={`${isImgLoaded ? "inline-block" : "hidden"} absolute left-1/2 top-1/2 h-2/5 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-full`}
+              className={`${isImgLoaded ? "inline-block" : "hidden"} absolute left-1/2 top-1/2 h-2/5 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-full object-cover`}
             />
             <div className="absolute left-1/2 top-1/2 h-[10%] w-[10%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black"></div>
           </div>

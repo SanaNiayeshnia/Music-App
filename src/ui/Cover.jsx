@@ -22,7 +22,7 @@ function Cover({ cover, title, size = "medium", spinDisc = false, className }) {
         }
         alt={title}
         onLoad={() => setIsImgLoaded(true)}
-        className={`${!isImgLoaded && "hidden"} absolute inset-0 z-20 h-full w-full rounded shadow-[5px_3px_8px_0_black]`}
+        className={`${!isImgLoaded && "hidden"} absolute inset-0 z-20 h-full w-full rounded object-cover shadow-[5px_3px_8px_0_black]`}
       />
       <div
         className={` ${isPlayingTrackbarOpen && size === "medium" ? "left-0" : "left-20 md:left-14 lg:left-20"} ${size === "large" && "left-20 md:left-24 lg:left-28"} absolute top-0 z-10 grid h-full w-full place-items-center p-1 transition-all duration-300`}

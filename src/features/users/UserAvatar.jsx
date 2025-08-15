@@ -18,7 +18,7 @@ function UserAvatar({ size }) {
           {/*show the first letter of username when there is no image*/}
           {user?.images?.length > 0 ? (
             <img
-              className="size-full"
+              className="size-full object-cover"
               src={user.images[0].url}
               alt={user.display_name}
             />

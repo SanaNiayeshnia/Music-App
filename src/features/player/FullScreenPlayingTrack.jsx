@@ -4,16 +4,22 @@ import Controls from "./playbackController/Controls";
 import SongSlider from "./playbackController/SongSlider";
 import VolumeHandler from "./playerMenu/VolumeHandler";
 import SaveTrackButton from "../tracks/SaveTrackButton";
-import { TbArrowsDiagonalMinimize2, TbChevronDown } from "react-icons/tb";
-import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
+import {
+  TbArrowsDiagonalMinimize2,
+  TbChevronDown,
+  TbPlaylist,
+} from "react-icons/tb";
+import { setIsFullScreenPlayingTrack, toggleQueueBar } from "./PlaybackSlice";
 import IconLogo from "../../ui/layout/topNav/IconLogo";
 import TrackContextMenu from "../tracks/TrackContextMenu";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { usePlayerContext } from "../../contexts/player/usePlayerContext";
+import { Tooltip } from "@mui/material";
+import QueueBar from "./queue/QueueBar";
 
 function FullScreenPlayingTrack() {
-  const { isFullScreenPlayingTrackOpen } = useSelector(
+  const { isFullScreenPlayingTrackOpen, isQueueBarOpen } = useSelector(
     (store) => store.playback,
   );
   const { isSmall } = useSelector((store) => store.global);
@@ -88,14 +94,26 @@ function FullScreenPlayingTrack() {
           <PlayerTrack fullScreen />
         </div>
         <div className="flex w-11/12 flex-col gap-3">
-          <SaveTrackButton track={currentTrack} className="h-6 w-6 md:hidden" />
-
+          <div className="flex items-center justify-between gap-4">
+            <Tooltip title="Queue" placement="top">
+              <div>
+                <TbPlaylist
+                  onClick={() =>
+                    currentTrack?.id ? dispatch(toggleQueueBar()) : null
+                  }
+                  className={`${isQueueBarOpen ? "text-blue-600" : "text-black dark:text-white"} ${currentTrack?.id && "cursor-pointer"} min-h-5 min-w-5 duration-100`}
+                />
+              </div>
+            </Tooltip>
+            <SaveTrackButton track={currentTrack} className="h-6 w-6" />
+          </div>
           <SongSlider />
           <div className="flex w-full flex-row-reverse items-center justify-center gap-5 md:flex-row md:justify-between">
             <div className="hidden w-1/4 justify-start md:flex">
               <SaveTrackButton track={currentTrack} className="h-6 w-6" />
             </div>
             <Controls />
+
             <div className="hidden w-1/4 items-center justify-end gap-2 md:flex md:gap-3">
               <VolumeHandler />
               <TbArrowsDiagonalMinimize2
@@ -105,6 +123,9 @@ function FullScreenPlayingTrack() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="md:hidden">
+        <QueueBar />
       </div>
     </div>
   );

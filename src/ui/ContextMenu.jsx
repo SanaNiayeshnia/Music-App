@@ -29,6 +29,7 @@ function ContextMenu({
           setIsUsingContextMenu &&
             setIsUsingContextMenu((isUsingContextMenu) => !isUsingContextMenu);
         }}
+        className="flex justify-center"
       >
         {children}
       </div>

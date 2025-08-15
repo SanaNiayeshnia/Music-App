@@ -9,7 +9,7 @@ function QueueBar() {
 
   return (
     <div
-      className={`${isQueueBarOpen ? "translate-y-0" : "translate-y-full"} absolute inset-0 rounded-md bg-blue-100 shadow transition-all duration-300 dark:bg-blue-950`}
+      className={`${isQueueBarOpen ? "translate-y-0" : "translate-y-full"} absolute inset-0 bg-blue-100 shadow transition-all duration-300 dark:bg-blue-950`}
     >
       <QueueBarHeader isScrolled={isScrolled} />
       <QueueList setIsScrolled={setIsScrolled} />

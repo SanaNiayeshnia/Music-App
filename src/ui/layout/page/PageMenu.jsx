@@ -14,7 +14,9 @@ function PageMenu({ item }) {
       {(item?.type !== "playlist" || item?.tracks?.total > 0) && (
         <PlayButton
           className="order-1 min-h-14 min-w-14 md:-order-1"
+          type={item?.type}
           uri={item?.uri}
+          context={item?.type !== "track" ? item?.uri : null}
         />
       )}
       <div className="flex items-center gap-5">

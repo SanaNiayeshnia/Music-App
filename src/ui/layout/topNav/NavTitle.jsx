@@ -1,9 +1,16 @@
 import PlayButton from "../../PlayButton";
 
-function NavTitle({ children, noPlayButton = false, uri, icon }) {
+function NavTitle({
+  children,
+  noPlayButton = false,
+  uri,
+  icon,
+  type,
+  context,
+}) {
   return (
     <div className="flex items-center gap-2">
-      {!noPlayButton && <PlayButton uri={uri} />}
+      {!noPlayButton && <PlayButton uri={uri} type={type} context={context} />}
       {icon}
 
       <p

@@ -13,6 +13,7 @@ function AlbumItems({ id }) {
       noCover
       noAlbum
       isLoading={isLoading}
+      context={`spotify:album:${id}`}
     />
   );
 }

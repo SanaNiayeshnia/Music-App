@@ -24,6 +24,7 @@ function PlaylistItems({ id }) {
       fetchNextPage={fetchNextPage}
       hasNextPage={hasNextPage}
       isFetching={isFetching}
+      context={`spotify:playlist:${id}`}
     />
   );
 }

@@ -8,7 +8,7 @@ function usePlay() {
   const queryClient = useQueryClient();
   const { isPending, mutate: playMutate } = useMutation({
     mutationKey: ["play"],
-    mutationFn: (uri) => play({ uri, deviceId: deviceId }),
+    mutationFn: (data) => play({ ...data, deviceId: deviceId }),
     onError: (error) => {
       toast.error(error?.message);
     },

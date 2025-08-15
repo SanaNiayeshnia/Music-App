@@ -18,6 +18,7 @@ function Track({
   isLoading = false,
   playlist,
   smallScreen = false,
+  context = "",
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -28,7 +29,7 @@ function Track({
   const { isPending: isPendingPlay, playMutate } = usePlay();
 
   function playTrack() {
-    playMutate(track?.uri);
+    playMutate({ type: "track", uri: track?.uri, context });
   }
 
   useEffect(() => {

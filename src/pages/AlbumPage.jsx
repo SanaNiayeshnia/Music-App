@@ -25,7 +25,11 @@ function AlbumPage() {
   return (
     <Page>
       <TopNav>
-        {isMainScrolled && <NavTitle uri={album?.uri}>{album?.name}</NavTitle>}
+        {isMainScrolled && (
+          <NavTitle type="album" context={album?.uri}>
+            {album?.name}
+          </NavTitle>
+        )}
       </TopNav>
       {isLoadingAlbum || isLoadingArtist ? (
         <div className="grid h-[calc(100%-52px)] place-items-center">

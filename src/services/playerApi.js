@@ -51,7 +51,7 @@ export async function getQueue() {
   return data;
 }
 
-export async function play({ uri, deviceId }) {
+export async function play({ uri, type, context = undefined, deviceId }) {
   console.log("deviceId", deviceId);
   try {
     const res = await fetch("https://api.spotify.com/v1/me/player/play", {
@@ -59,7 +59,9 @@ export async function play({ uri, deviceId }) {
       headers: getRequestHeader(),
       body: JSON.stringify({
         device_id: deviceId,
-        ...(uri.includes("track") ? { uris: [uri] } : { context_uri: uri }),
+        ...(context ? { context_uri: context } : {}),
+        ...(type === "track" && !context ? { uris: [uri] } : {}),
+        ...(type === "track" && context ? { offset: { uri } } : {}),
       }),
     });
     if (!res.ok) {

@@ -25,7 +25,9 @@ function PlaylistPage() {
     <Page>
       <TopNav transparent>
         {isMainScrolled && (
-          <NavTitle uri={playlist?.uri}>{playlist?.name}</NavTitle>
+          <NavTitle type="playlist" context={playlist?.uri}>
+            {playlist?.name}
+          </NavTitle>
         )}
       </TopNav>
       {isLoadingPlaylist || isLoadingOwner ? (

@@ -16,6 +16,7 @@ function TrackList({
   fetchNextPage = null,
   hasNextPage = false,
   isFetching,
+  context = "",
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
   const itemsToShow = useMemo(
@@ -64,6 +65,7 @@ function TrackList({
                 noAlbum={noAlbum}
                 noArtist={noArtist}
                 playlist={playlist}
+                context={context}
               />
             ))}
         </tbody>

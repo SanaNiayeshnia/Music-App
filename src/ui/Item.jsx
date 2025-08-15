@@ -66,7 +66,12 @@ const Item = forwardRef(function Item(
         />
 
         {size === "large" && !isLoading && (
-          <FloatingPlayButton isHovered={isHovered} uri={item?.uri} />
+          <FloatingPlayButton
+            isHovered={isHovered}
+            type={item?.type}
+            uri={item?.uri}
+            context={item?.type !== "track" ? item?.uri : null}
+          />
         )}
       </div>
 

@@ -14,6 +14,12 @@ function Player() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (currentTrack?.name)
+      document.title = `${currentTrack?.name} • ${APP_NAME}`;
+    else document.title = APP_NAME;
+  }, [currentTrack?.name]);
+
+  useEffect(() => {
     if (!accessToken) return;
     if (window._spotifyPlayerInit) return; // prevent multiple inits
     window._spotifyPlayerInit = true;

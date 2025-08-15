@@ -25,9 +25,7 @@ function ArtistPage() {
     <Page>
       <TopNav>
         {isMainScrolled && (
-          <NavTitle context={artist?.uri} type="artist">
-            {artist?.name}
-          </NavTitle>
+          <NavTitle uri={artist?.uri}>{artist?.name}</NavTitle>
         )}
       </TopNav>
       {isLoadingArtist || isLoadingArtistsTopTracks ? (

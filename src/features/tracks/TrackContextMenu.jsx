@@ -21,6 +21,7 @@ function TrackContextMenu({
   const { user } = useSelector((store) => store.authentication);
   const doesPlaylistBelongsToUser = playlist?.owner?.id === user?.id;
   const { removeItemsFromPlaylistMutate } = useRemoveItemsFromPlaylist();
+
   function removeFromPlaylist() {
     removeItemsFromPlaylistMutate({
       playlistId: playlist?.id,

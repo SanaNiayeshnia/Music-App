@@ -129,3 +129,14 @@ export async function transferPlaybackToThisDevice({
     console.error("Failed to transfer/start playback:", e);
   }
 }
+
+export async function addItemToQueue({ uri, deviceId }) {
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/player/queue?uri=${uri}&device_id=${deviceId}`,
+    {
+      method: "POST",
+      headers: getRequestHeader(),
+    },
+  );
+  if (!res.ok) throw new Error("Couldn't add item to the queue!");
+}

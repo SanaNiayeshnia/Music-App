@@ -57,7 +57,7 @@ function FullScreenPlayingTrack() {
       className={`${isFullScreenPlayingTrackOpen ? "translate-y-0" : "translate-y-full"} fixed inset-0 z-50 transition-all duration-300`}
       ref={containerRef}
     >
-      <div className="absolute inset-0 grid place-items-center bg-white/50 px-8 backdrop-blur-lg dark:bg-black/50">
+      <div className="absolute inset-0 grid place-items-center bg-white/50 px-2 backdrop-blur-lg md:px-8 dark:bg-black/50">
         <div className="flex w-11/12 items-center justify-between">
           <TbChevronDown
             onClick={close}

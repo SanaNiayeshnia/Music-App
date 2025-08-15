@@ -53,8 +53,8 @@ function PlayingTrack() {
                     key={index}
                   >
                     {artist?.name}
-                    {currentTrack.artists.length > 1 &&
-                      index < currentTrack.artists.length - 1 &&
+                    {currentTrack?.artists?.length > 1 &&
+                      index < currentTrack?.artists?.length - 1 &&
                       ", "}
                   </span>
                 ))}
@@ -62,7 +62,7 @@ function PlayingTrack() {
             </>
           )}
         </div>
-        {!currentTrack && (
+        {currentTrack?.id && (
           <SaveTrackButton className="min-h-5 min-w-5" track={currentTrack} />
         )}
       </div>

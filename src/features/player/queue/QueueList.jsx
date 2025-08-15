@@ -3,6 +3,8 @@ import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 import useScrollbar from "../../../hooks/useScrollbar";
 import Track from "../../tracks/Track";
 import useQueue from "./useQueue";
+import { Skeleton } from "@mui/material";
+import NothingFound from "../../../ui/NothingFound";
 
 function QueueList({ setIsScrolled }) {
   const ref = useScrollbar();
@@ -24,27 +26,38 @@ function QueueList({ setIsScrolled }) {
           <tbody>
             <Track
               smallScreen
-              track={queue?.currently_playing}
+              track={{
+                ...currentTrack,
+                artists: currentTrack?.artists?.map((artist) => ({
+                  ...artist,
+                  id: artist?.uri?.split(":")?.[2],
+                })),
+              }}
               isLoading={isLoading}
             />
           </tbody>
         </table>
       </div>
       <div className="space-y-2">
-        <p className="text-sm font-semibold text-gray-900 dark:text-white">
+        <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white">
           Next from:{" "}
-          <Link
-            className="overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-300 hover:text-blue-600"
-            to={
-              contextSplittedArray?.[1]
-                ? `/${contextSplittedArray?.[1]}/${contextSplittedArray?.[2]}`
-                : `/track/${currentTrack?.id}`
-            }
-          >
-            {playerState?.context?.metadata?.context_description ||
-              currentTrack?.name}
-          </Link>
+          {playerState?.loading ? (
+            <Skeleton variant="text" width="100px" />
+          ) : (
+            <Link
+              className="overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-300 hover:text-blue-600"
+              to={
+                contextSplittedArray?.[1]
+                  ? `/${contextSplittedArray?.[1]}/${contextSplittedArray?.[2]}`
+                  : `/track/${currentTrack?.id}`
+              }
+            >
+              {playerState?.context?.metadata?.context_description ||
+                currentTrack?.name}
+            </Link>
+          )}
         </p>
+        {!isLoading && queue?.queue?.length === 0 && <NothingFound />}
         <table className="w-full">
           <tbody>
             {isLoading

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { setPageTitle } from "../../GlobalSlice";
 import { useDispatch } from "react-redux";
 
-function MoreByArtist({ all }) {
+function MoreByArtist({ all = false }) {
   const { id } = useParams();
   const { isLoading: isLoadingAlbum, album } = useAlbum(id);
   const {

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Item from "./Item";
 import { useInView } from "react-intersection-observer";
@@ -29,11 +29,11 @@ function ListContainer({
   children,
 }) {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);
-  // const [slicedItems, setSlicedItems] = useState(items);
   const loadingItems = Array.from({ length: 12 });
   const ref = useScrollbar();
   const { ref: endRef, inView } = useInView();
   const uniqueId = `custom-next-${new Date().getTime()}`;
+  const { isSmall } = useSelector((store) => store.global);
 
   useEffect(() => {
     //fetch new items when the user reachs the end of the page
@@ -60,10 +60,10 @@ function ListContainer({
           </>
         )}
 
-        {!all && (
+        {!all && !isSmall && (
           <div
             id={uniqueId}
-            className={`absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 md:inline-block dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
+            className={`absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-full border bg-blue-600/50 p-2 backdrop-blur-lg transition-all duration-300 dark:border-white dark:bg-black/50 ${isLoading ? "invisible" : ""}`}
           >
             <TbChevronRight className="text-xl text-white transition-all duration-300 dark:text-white" />
           </div>

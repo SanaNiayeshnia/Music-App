@@ -71,9 +71,7 @@ function PlayerTrack({ fullScreen = false }) {
                 }}
                 className={`${fullScreen ? "line-clamp-2 max-w-96 text-xl font-bold leading-8 md:text-3xl md:leading-10" : "line-clamp-1 text-sm font-medium md:max-w-full"} cursor-pointer ${fullScreen ? "text-black dark:text-white" : "text-white md:text-black md:dark:text-white"} hover:underline`}
               >
-                {currentTrack?.name} Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Repudiandae ducimus asperiores nihil ea
-                explicabo dolores inventore quo maxime magni. Magnam!
+                {currentTrack?.name}
               </p>
               <p
                 className={`${fullScreen ? "text-lg font-semibold md:text-2xl" : "text-[0.8rem]"} cursor-pointer ${fullScreen ? "text-black/70 dark:text-white/70" : "text-white/80 md:text-gray-600 md:dark:text-gray-300"} `}

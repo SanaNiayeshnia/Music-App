@@ -1,37 +1,13 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SearchPage from "./pages/SearchPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./utilities/theme";
-import AppLayout from "./ui/layout/AppLayout";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ArtistPage from "./pages/ArtistPage";
-import PageNotFound from "./pages/PageNotFound";
-import AlbumPage from "./pages/AlbumPage";
-import TrackPage from "./pages/TrackPage";
-import PlaylistPage from "./pages/PlaylistPage";
-import LoginPage from "./pages/LoginPage";
-import ProtectedRoute from "./ui/layout/page/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import { setIsOnline } from "./features/authentication/authSlice";
-import SectionPage from "./pages/SectionPage";
-import RecentlyPlayed from "./features/player/RecentlyPlayed";
-import MoreByArtist from "./features/artists/MoreByArtist";
-import AlsoLikePlaylists from "./features/playlists/AlsoLikePlaylists";
-import Discography from "./features/artists/Discography";
-import RelatedArtists from "./features/artists/RelatedArtists";
-import AppearsOn from "./features/artists/AppearsOn";
-import FeaturedPlaylists from "./features/playlists/FeaturedPlaylists";
-import NewReleases from "./features/albums/NewReleases";
-import AccountCenterPage from "./pages/AccountCenterPage";
-import UsersTopTracks from "./features/users/UsersTopTracks";
-import UsersTopArtists from "./features/users/UsersTopArtists";
-import UsersFollowings from "./features/users/UsersFollowings";
-import LibraryPage from "./pages/LibraryPage";
-import CategoryPage from "./pages/CategoryPage";
+import { RouterProvider } from "react-router-dom";
+import routerFn from "./router";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -65,6 +41,8 @@ function App() {
     };
   }, [dispatch]);
 
+  const router = routerFn({ isSmall });
+
   return (
     <QueryClientProvider client={client}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -86,114 +64,7 @@ function App() {
             },
           }}
         />
-        <BrowserRouter>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<HomePage />} />
-              <Route
-                path="library"
-                element={
-                  isSmall ? <LibraryPage /> : <Navigate replace to="/" />
-                }
-              />
-              <Route path="category/:id" element={<CategoryPage />} />
-              <Route path="account" element={<AccountCenterPage />} />
-              <Route
-                path="account/top/tracks"
-                element={
-                  <SectionPage>
-                    <UsersTopTracks all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route
-                path="account/top/artists"
-                element={
-                  <SectionPage>
-                    <UsersTopArtists all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route
-                path="account/following"
-                element={
-                  <SectionPage>
-                    <UsersFollowings all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route path="search" element={<SearchPage />} />
-              <Route path="artist/:id" element={<ArtistPage />} />
-              <Route
-                path="artist/:id/discography"
-                element={
-                  <SectionPage>
-                    <Discography all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route
-                path="artist/:id/appears-on"
-                element={
-                  <SectionPage>
-                    <AppearsOn all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route
-                path="artist/:id/fans-also-like"
-                element={
-                  <SectionPage>
-                    <RelatedArtists all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route path="album/:id" element={<AlbumPage />} />
-              <Route
-                path="album/:id/more-by-artist"
-                element={
-                  <SectionPage>
-                    <MoreByArtist all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route path="track/:id" element={<TrackPage />} />
-              <Route path="playlist/:id" element={<PlaylistPage />} />
-              <Route
-                path="playlist/:id/might-also-like"
-                element={
-                  <SectionPage>
-                    <AlsoLikePlaylists all={true} />
-                  </SectionPage>
-                }
-              />
-              <Route path="section/" element={<SectionPage />}>
-                <Route
-                  path="recently-played"
-                  element={<RecentlyPlayed all={true} />}
-                />
-                <Route
-                  path="featured-playlists"
-                  element={<FeaturedPlaylists all={true} />}
-                />
-                <Route
-                  path="new-releases"
-                  element={<NewReleases all={true} />}
-                />
-              </Route>
-              <Route path="*" element={<PageNotFound />} />
-            </Route>
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </BrowserRouter>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </QueryClientProvider>
   );

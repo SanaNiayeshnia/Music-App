@@ -6,10 +6,10 @@ import {
   TbPlayerSkipForwardFilled,
   TbRepeat,
 } from "react-icons/tb";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 import useToggleShuffle from "../hooks/useToggleShuffle";
 import useRepeat from "../hooks/useRepeat";
 import { Tooltip } from "@mui/material";
+import { usePlayerContext } from "../hooks/usePlayerContext";
 function Controls() {
   const { playerState, player, currentTrack, deviceId } = usePlayerContext();
   const iconClassNames = `${currentTrack?.id && !playerState?.loading && "cursor-pointer hover:scale-105 hover:text-black dark:hover:text-white"} text-2xl text-black/70 transition-all duration-100 dark:text-white/70`;

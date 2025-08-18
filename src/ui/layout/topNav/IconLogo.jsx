@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { APP_NAME } from "../../../utilities/constants";
 
 function IconLogo({ className, noTitle }) {
   return (
@@ -7,11 +6,11 @@ function IconLogo({ className, noTitle }) {
       <img
         className={`${className} h-10 w-10`}
         src="/images/icons/icon.png"
-        alt={APP_NAME}
+        alt={import.meta.env.VITE_APP_NAME}
       />
       {!noTitle && (
         <p className="text-2xl font-bold text-black dark:text-white">
-          {APP_NAME}
+          {import.meta.env.VITE_APP_NAME}
         </p>
       )}
     </Link>

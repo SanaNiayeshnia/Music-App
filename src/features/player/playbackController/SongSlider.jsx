@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import SliderBar from "../../../ui/SliderBar";
 import { formatTrackDuration } from "../../../utilities/helper";
 import { useEffect, useState } from "react";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../hooks/usePlayerContext";
 
 function SongSlider() {
   const { playerState, currentTrack, player } = usePlayerContext();

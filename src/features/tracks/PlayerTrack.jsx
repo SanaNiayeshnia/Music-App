@@ -6,7 +6,7 @@ import { TbPlayerPauseFilled, TbPlayerPlayFilled } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import Cover from "../../ui/Cover";
 import { setIsFullScreenPlayingTrack } from "../player/PlaybackSlice";
-import { usePlayerContext } from "../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../player/hooks/usePlayerContext";
 
 function PlayerTrack({ fullScreen = false }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);

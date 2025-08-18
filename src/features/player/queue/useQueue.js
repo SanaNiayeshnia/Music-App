@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getQueue } from "../../../services/playerApi";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../hooks/usePlayerContext";
 
 function useQueue() {
   const { currentTrack, playerState } = usePlayerContext();

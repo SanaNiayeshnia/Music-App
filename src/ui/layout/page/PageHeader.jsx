@@ -9,7 +9,7 @@ import PageHeaderWrapper from "./PageHeaderWrapper";
 import PageTitle from "./PageTitle";
 import { Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../../../features/player/hooks/usePlayerContext";
 
 function PageHeader({ item, artist }) {
   const navigate = useNavigate();

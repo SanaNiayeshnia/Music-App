@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 import useScrollbar from "../../../hooks/useScrollbar";
 import Track from "../../tracks/Track";
 import useQueue from "./useQueue";
 import { Skeleton } from "@mui/material";
 import NothingFound from "../../../ui/NothingFound";
+import { usePlayerContext } from "../hooks/usePlayerContext";
 
 function QueueList({ setIsScrolled }) {
   const ref = useScrollbar();
@@ -45,7 +45,7 @@ function QueueList({ setIsScrolled }) {
             <Skeleton variant="text" width="100px" />
           ) : (
             <Link
-              className="overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-300 hover:text-blue-600"
+              className="line-clamp-2 transition-all duration-300 hover:text-blue-600"
               to={
                 contextSplittedArray?.[1]
                   ? `/${contextSplittedArray?.[1]}/${contextSplittedArray?.[2]}`

@@ -2,7 +2,7 @@ import Skeleton from "../../ui/Skeleton";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SaveTrackButton from "./SaveTrackButton";
-import { usePlayerContext } from "../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../player/hooks/usePlayerContext";
 
 function PlayingTrack() {
   const [isImageLoaded, setIsImageLoaded] = useState(false);

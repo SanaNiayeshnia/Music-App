@@ -1,9 +1,8 @@
 import toast from "react-hot-toast";
-import { APP_NAME, REDIRECT_URI } from "./constants";
 
 export function getRequestHeader() {
   const accessToken = JSON.parse(
-    localStorage.getItem(APP_NAME),
+    localStorage.getItem(import.meta.env.VITE_APP_NAME),
   ).spotifyAccessToken;
   return {
     authorization: `Bearer ${accessToken}`,
@@ -32,6 +31,8 @@ export function formatDate(date = new Date()) {
 }
 
 export function copyLink(item) {
-  navigator.clipboard.writeText(`${REDIRECT_URI}/${item.type}/${item.id}`);
+  navigator.clipboard.writeText(
+    `${import.meta.env.VITE_REDIRECT_URI}/${item.type}/${item.id}`,
+  );
   toast("Link copied to clipboard");
 }

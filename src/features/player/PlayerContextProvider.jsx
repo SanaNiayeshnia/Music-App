@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { playerContext } from "./usePlayerContext";
+import { playerContext } from "./hooks/usePlayerContext";
 
 function reducer(state, action) {
   switch (action.type) {

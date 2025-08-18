@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { play } from "../../../services/playerApi";
 import toast from "react-hot-toast";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "./usePlayerContext";
 
 function usePlay() {
   const { deviceId } = usePlayerContext();

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopularityHearts from "../../ui/PopularityHearts";
 import FollowArtistButton from "./FollowArtistButton";
-import { usePlayerContext } from "../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../player/hooks/usePlayerContext";
 
 function PlayingArtist() {
   const { currentTrack } = usePlayerContext();

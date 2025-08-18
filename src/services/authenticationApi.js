@@ -1,4 +1,3 @@
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../utilities/constants";
 import { getRequestHeader } from "../utilities/helper";
 
 export async function getAccessToken(code) {
@@ -6,11 +5,11 @@ export async function getAccessToken(code) {
     method: "POST",
     headers: {
       "content-type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+      Authorization: `Basic ${btoa(`${import.meta.env.VITE_CLIENT_ID}:${import.meta.env.VITE_CLIENT_SECRET}`)}`,
     },
     body: new URLSearchParams({
       grant_type: "authorization_code",
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: import.meta.env.VITE_REDIRECT_URI,
       code,
     }).toString(),
   });
@@ -26,8 +25,8 @@ export async function refreshAccessToken(refresh_token) {
     body: new URLSearchParams({
       grant_type: "refresh_token",
       refresh_token,
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
+      client_id: import.meta.env.VITE_CLIENT_ID,
+      client_secret: import.meta.env.VITE_CLIENT_SECRET,
     }).toString(),
   });
   if (res.status !== 200) throw new Error("Authentication failed!");

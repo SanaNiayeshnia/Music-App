@@ -6,7 +6,7 @@ import useScrollbar from "../../../hooks/useScrollbar";
 import QueueBar from "../../../features/player/queue/QueueBar";
 import { useState } from "react";
 import TrackBarError from "./TrackBarError";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../../../features/player/hooks/usePlayerContext";
 
 function PlayingTrackBar() {
   const { isPlayingTrackbarOpen } = useSelector((store) => store.playback);

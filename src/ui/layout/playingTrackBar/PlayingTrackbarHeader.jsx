@@ -4,7 +4,7 @@ import { TbX } from "react-icons/tb";
 import Skeleton from "../../Skeleton";
 import { useNavigate } from "react-router-dom";
 import TrackContextMenu from "../../../features/tracks/TrackContextMenu";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../../../features/player/hooks/usePlayerContext";
 
 function PlayingTrackbarHeader({ isScrolled }) {
   const dispatch = useDispatch();

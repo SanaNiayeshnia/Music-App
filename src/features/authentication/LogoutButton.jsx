@@ -1,6 +1,6 @@
 import { TbLogout } from "react-icons/tb";
 import useLogout from "./hooks/useLogout";
-import { usePlayerContext } from "../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../player/hooks/usePlayerContext";
 
 function LogoutButton() {
   const { logout } = useLogout();

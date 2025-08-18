@@ -1,4 +1,4 @@
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../../../features/player/hooks/usePlayerContext";
 
 function PageBody({
   children,

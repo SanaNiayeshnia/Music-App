@@ -1,4 +1,4 @@
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../hooks/usePlayerContext";
 import Controls from "./Controls";
 import SongSlider from "./SongSlider";
 

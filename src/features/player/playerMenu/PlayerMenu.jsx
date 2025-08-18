@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TbArrowsDiagonal, TbPlaylist } from "react-icons/tb";
 import { BiAlbum } from "react-icons/bi";
 import { Tooltip } from "@mui/material";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
+import { usePlayerContext } from "../hooks/usePlayerContext";
 
 function PlayerMenu() {
   const dispatch = useDispatch();

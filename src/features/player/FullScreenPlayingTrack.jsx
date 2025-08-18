@@ -14,9 +14,9 @@ import IconLogo from "../../ui/layout/topNav/IconLogo";
 import TrackContextMenu from "../tracks/TrackContextMenu";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 import { Tooltip } from "@mui/material";
 import QueueBar from "./queue/QueueBar";
+import { usePlayerContext } from "./hooks/usePlayerContext";
 
 function FullScreenPlayingTrack() {
   const { isFullScreenPlayingTrackOpen, isQueueBarOpen } = useSelector(

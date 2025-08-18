@@ -17,8 +17,8 @@ import AddToPlaylist from "../features/playlists/AddToPlaylist";
 import useOutsideClick from "../hooks/useOutsideClick";
 import Modal from "./Modal";
 import CreateEditNewPlaylistForm from "../features/playlists/CreateEditNewPlaylistForm";
-import { usePlayerContext } from "../contexts/player/usePlayerContext";
 import useAddItemToQueue from "../features/player/hooks/useAddItemToQueue";
+import { usePlayerContext } from "../features/player/hooks/usePlayerContext";
 
 function ItemContextMenu({
   item,
@@ -43,8 +43,7 @@ function ItemContextMenu({
   const className =
     "min-h-6 min-w-6 cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white";
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isPending: isPendingQueue, addItemToQueueMutate } =
-    useAddItemToQueue();
+  const { addItemToQueueMutate } = useAddItemToQueue();
   const { deviceId } = usePlayerContext();
 
   const options = [

@@ -3,10 +3,9 @@ import PlayerTrack from "../tracks/PlayerTrack";
 import PlaybackController from "./playbackController/PlaybackController";
 import PlayerMenu from "./playerMenu/PlayerMenu";
 import { useEffect } from "react";
-import { APP_NAME } from "../../utilities/constants";
-import { usePlayerContext } from "../../contexts/player/usePlayerContext";
 import { transferPlaybackToThisDevice } from "../../services/playerApi";
 import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
+import { usePlayerContext } from "./hooks/usePlayerContext";
 
 function Player() {
   const { accessToken } = useSelector((store) => store.authentication);
@@ -15,9 +14,11 @@ function Player() {
 
   useEffect(() => {
     if (currentTrack?.name)
-      document.title = `${currentTrack?.name} • ${APP_NAME}`;
-    else document.title = APP_NAME;
+      document.title = `${currentTrack?.name} • ${import.meta.env.VITE_APP_NAME}`;
+    else document.title = import.meta.env.VITE_APP_NAME;
   }, [currentTrack?.name]);
+
+  console.log(import.meta.env);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -26,7 +27,7 @@ function Player() {
 
     window.onSpotifyWebPlaybackSDKReady = () => {
       const player = new window.Spotify.Player({
-        name: APP_NAME,
+        name: import.meta.env.VITE_APP_NAME,
         getOAuthToken: (cb) => cb(accessToken),
         volume: 0.5,
       });

@@ -10,7 +10,7 @@ import MainContextProvider from "./main/MainContextProvider";
 import BottomNav from "./bottomNav/BottomNav";
 import FullScreenPlayingTrack from "../../features/player/FullScreenPlayingTrack";
 import { togglePlayingTrackBar } from "../../features/player/PlaybackSlice";
-import PlayerContextProvider from "../../contexts/player/PlayerContextProvider";
+import PlayerContextProvider from "../../features/player/PlayerContextProvider";
 
 function AppLayout() {
   const { isPlayingTrackbarOpen, isFullScreenPlayingTrackOpen } = useSelector(

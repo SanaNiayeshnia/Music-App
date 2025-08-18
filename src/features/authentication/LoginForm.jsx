@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { APP_NAME, CLIENT_ID, REDIRECT_URI } from "../../utilities/constants";
 import { useSelector } from "react-redux";
 import Logo from "../../ui/Logo";
 
@@ -14,14 +13,14 @@ function LoginForm() {
     //check if the user has a refresh token, use it to get a new access token, otherwise go to spotify login page to get a code
     if (refreshToken) navigate("/");
     else
-      window.location.href = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${scope}&show_dialog=true`;
+      window.location.href = `https://accounts.spotify.com/authorize?client_id=${import.meta.env.VITE_CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${encodeURIComponent(import.meta.env.VITE_REDIRECT_URI)}&scope=${scope}&show_dialog=true`;
   }
 
   return (
     <div className="max-w-96 space-y-8 rounded-lg bg-white/50 px-8 py-5 text-center shadow-md md:max-w-[650px] md:space-y-10 md:p-10 lg:max-w-[750px] dark:bg-black/50">
       <p className="flex flex-col justify-center text-center text-3xl font-bold text-black md:mb-10 md:flex-row md:gap-2 dark:text-white">
         <span>Welcome to</span>
-        <span>{APP_NAME}!</span>
+        <span>{import.meta.env.VITE_APP_NAME}!</span>
       </p>
       <div className="flex flex-col items-center gap-5 md:flex-row md:gap-10">
         <Logo />

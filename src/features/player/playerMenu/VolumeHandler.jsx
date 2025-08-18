@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { usePlayerContext } from "../../../contexts/player/usePlayerContext";
 import SliderBar from "../../../ui/SliderBar";
 import { TbVolume } from "react-icons/tb";
+import { usePlayerContext } from "../hooks/usePlayerContext";
 
 function VolumeHandler() {
   const { player, currentTrack } = usePlayerContext();

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { transferPlaybackToThisDevice } from "../../services/playerApi";
 import { setIsFullScreenPlayingTrack } from "./PlaybackSlice";
 import { usePlayerContext } from "./hooks/usePlayerContext";
+import SongSlider from "./playbackController/SongSlider";
 
 function Player() {
   const { accessToken } = useSelector((store) => store.authentication);
@@ -95,8 +96,11 @@ function Player() {
           className="absolute bottom-20 mb-2 flex w-full cursor-pointer justify-center px-3 md:hidden"
           onClick={() => dispatch(setIsFullScreenPlayingTrack(true))}
         >
-          <div className="w-full rounded bg-blue-600/60 px-3 py-2 shadow backdrop-blur-lg">
+          <div className="w-full rounded bg-blue-600/60 px-3 pt-2 shadow backdrop-blur-lg md:py-2">
             <PlayerTrack />
+            <div className="pb-2 pt-3" onClick={(e) => e.stopPropagation()}>
+              <SongSlider displayLables={false} lightMode />
+            </div>
           </div>
         </div>
       )}

@@ -11,6 +11,7 @@ function SliderBar({
   defaultValue = 0,
   onChange = () => {},
   onChangeCommitted,
+  lightMode = false,
 }) {
   const { isDarkMode } = useSelector((store) => store.global);
 
@@ -30,12 +31,14 @@ function SliderBar({
       }}
       sx={{
         cursor: "default",
+        padding: lightMode ? "0 !important" : "13px 0 !important",
         "& .MuiSlider-thumb": {
           width: 15,
           height: 15,
           boxShadow: "none",
           transition: "all 0.3s ease",
           opacity: thumbDisplay === "off" && 0,
+          backgroundColor: lightMode ? "white" : "",
         },
         "& .MuiSlider-thumb:focus, & .MuiSlider-thumb:hover, & .MuiSlider-thumb.Mui-active":
           {
@@ -44,7 +47,15 @@ function SliderBar({
           },
         "& .MuiSlider-rail": {
           opacity: 0.6,
-          backgroundColor: isDarkMode ? "#ffffff" : "#60a5fa",
+          backgroundColor: isDarkMode
+            ? "#ffffff"
+            : lightMode
+              ? "#dddddd"
+              : "#60a5fa",
+        },
+        "& .MuiSlider-track": {
+          backgroundColor: lightMode ? "white" : "",
+          border: lightMode ? "white" : "",
         },
       }}
     />

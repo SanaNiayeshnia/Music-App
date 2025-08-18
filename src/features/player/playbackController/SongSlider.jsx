@@ -4,7 +4,7 @@ import { formatTrackDuration } from "../../../utilities/helper";
 import { useEffect, useState } from "react";
 import { usePlayerContext } from "../hooks/usePlayerContext";
 
-function SongSlider() {
+function SongSlider({ displayLables = true, lightMode = false }) {
   const { playerState, currentTrack, player } = usePlayerContext();
   const { isFullScreenPlayingTrackOpen } = useSelector(
     (store) => store.playback,
@@ -52,13 +52,17 @@ function SongSlider() {
 
   return (
     <div
+      onClick={(e) => e.stopPropagation()}
       className={`flex items-center gap-2 ${isFullScreenPlayingTrackOpen ? "text-base" : "text-sm"}`}
     >
-      <span
-        className={`${isFullScreenPlayingTrackOpen ? "text-black/70 dark:text-white/70" : "text-gray-600 dark:text-gray-300"} font-medium`}
-      >
-        {formatTrackDuration(position || 0)}
-      </span>
+      {displayLables && (
+        <span
+          className={`${isFullScreenPlayingTrackOpen ? "text-black/70 dark:text-white/70" : "text-gray-600 dark:text-gray-300"} font-medium`}
+        >
+          {formatTrackDuration(position || 0)}
+        </span>
+      )}
+
       <SliderBar
         disabled={!currentTrack?.id || playerState?.loading}
         thumbDisplay="off"
@@ -67,12 +71,15 @@ function SongSlider() {
         max={currentTrack?.duration_ms || 0}
         onChange={changePosition}
         onChangeCommitted={onSeek}
+        lightMode={lightMode}
       />
-      <span
-        className={`${isFullScreenPlayingTrackOpen ? "text-black/70 dark:text-white/70" : "text-gray-600 dark:text-gray-300"} font-medium`}
-      >
-        {formatTrackDuration(currentTrack?.duration_ms || 0)}
-      </span>
+      {displayLables && (
+        <span
+          className={`${isFullScreenPlayingTrackOpen ? "text-black/70 dark:text-white/70" : "text-gray-600 dark:text-gray-300"} font-medium`}
+        >
+          {formatTrackDuration(currentTrack?.duration_ms || 0)}
+        </span>
+      )}
     </div>
   );
 }

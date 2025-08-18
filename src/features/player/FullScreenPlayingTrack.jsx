@@ -58,10 +58,10 @@ function FullScreenPlayingTrack() {
       ref={containerRef}
     >
       <div className="absolute inset-0 grid place-items-center bg-white/50 px-2 backdrop-blur-lg md:px-8 dark:bg-black/50">
-        <div className="flex w-11/12 items-center justify-between">
+        <div className="flex w-11/12 items-center justify-between gap-3">
           <TbChevronDown
             onClick={close}
-            className="duration h-6 w-6 cursor-pointer text-black hover:text-blue-600 md:hidden dark:text-white"
+            className="duration h-6 w-6 shrink-0 cursor-pointer text-black hover:text-blue-600 md:hidden dark:text-white"
           />
           <div className="flex items-center gap-2 font-semibold">
             <IconLogo noTitle className="hidden h-12 w-12 md:flex" />
@@ -77,7 +77,7 @@ function FullScreenPlayingTrack() {
                     `/${playerState?.context?.uri?.split(":")?.[1] || "track"}/${playerState?.context?.uri?.split(":")?.[2] || currentTrack?.id}`,
                   );
                 }}
-                className="cursor-pointer text-black hover:underline dark:text-white"
+                className="line-clamp-2 cursor-pointer text-black hover:underline dark:text-white"
               >
                 {playerState?.context?.metadata?.context_description ||
                   currentTrack?.name}

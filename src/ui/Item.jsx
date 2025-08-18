@@ -97,7 +97,7 @@ const Item = forwardRef(function Item(
                 {item?.release_date?.slice(0, 4)} • {item?.album_type}
               </p>
             ) : (
-              <p className="text-gray-600 first-letter:uppercase dark:text-gray-300">
+              <p className="line-clamp-3 text-gray-600 first-letter:uppercase dark:text-gray-300">
                 {contextPlaylist?.name || contextAlbum?.name ? (
                   <>
                     <span

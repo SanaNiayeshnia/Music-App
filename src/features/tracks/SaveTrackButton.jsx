@@ -29,7 +29,7 @@ function SaveTrackButton({ track, className }) {
                   e.stopPropagation();
                   saveTrackMutate();
                 }}
-                className={`${className} cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 dark:text-white`}
+                className={`${className} cursor-pointer text-black duration-100 hover:scale-105 hover:text-blue-600 md:!text-black dark:text-white md:dark:!text-white`}
               />
             ) : (
               <RiHeart3Fill

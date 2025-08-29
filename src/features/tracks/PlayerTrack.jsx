@@ -101,7 +101,7 @@ function PlayerTrack({ fullScreen = false }) {
         {currentTrack?.name && !fullScreen && (
           <>
             <SaveTrackButton
-              className={`min-h-5 min-w-5 text-white hover:text-white md:text-black md:hover:text-blue-600`}
+              className={`min-h-5 min-w-5 !text-white hover:text-white md:text-black md:hover:text-blue-600`}
               track={currentTrack}
             />
             <div

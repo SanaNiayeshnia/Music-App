@@ -37,7 +37,7 @@ function SaveTrackButton({ track, className }) {
                   e.stopPropagation();
                   unsaveTrackMutate();
                 }}
-                className={`${className} cursor-pointer duration-100 hover:scale-105 md:!text-blue-600 dark:!text-white dark:hover:text-blue-600`}
+                className={`${className} cursor-pointer !text-blue-600 duration-100 hover:scale-105 md:!text-blue-600 dark:!text-white dark:hover:text-blue-600`}
               />
             )}
           </>

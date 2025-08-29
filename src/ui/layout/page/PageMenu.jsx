@@ -7,8 +7,10 @@ import TrackContextMenu from "../../../features/tracks/TrackContextMenu";
 import AlbumContextMenu from "../../../features/albums/AlbumContextMenu";
 import PlaylistContextMenu from "../../../features/playlists/PlaylistContextMenu";
 import ArtistContextMenu from "../../../features/artists/ArtistContextMenu";
+import { usePlayerContext } from "../../../features/player/hooks/usePlayerContext";
 
 function PageMenu({ item }) {
+  const { currentTrack, playerState, player } = usePlayerContext();
   return (
     <div className="flex items-center justify-between gap-5 md:justify-start">
       {(item?.type !== "playlist" || item?.tracks?.total > 0) && (
@@ -17,6 +19,12 @@ function PageMenu({ item }) {
           type={item?.type}
           uri={item?.uri}
           context={item?.type !== "track" ? item?.uri : null}
+          isPlaying={
+            (currentTrack?.id === item?.id ||
+              playerState?.context?.uri?.split(":")?.[2] === item?.id) &&
+            !playerState?.paused
+          }
+          player={player}
         />
       )}
       <div className="flex items-center gap-5">

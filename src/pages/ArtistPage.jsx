@@ -7,7 +7,6 @@ import useArtist from "../features/artists/hooks/useArtist";
 import { useParams } from "react-router-dom";
 import Spinner from "../ui/Spinner";
 import useArtistsTopTracks from "../features/artists/hooks/useArtistsTopTracks";
-import RelatedArtists from "../features/artists/RelatedArtists";
 import AppearsOn from "../features/artists/AppearsOn";
 import PersonPageHeader from "../ui/layout/page/PersonPageHeader";
 import PageMenu from "../ui/layout/page/PageMenu";
@@ -40,7 +39,6 @@ function ArtistPage() {
             <Popular artistsTopTracks={artistsTopTracks} />
             <Discography />
             <AppearsOn />
-            {/* <RelatedArtists /> */}
           </PageBody>
         </>
       )}

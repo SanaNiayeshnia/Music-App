@@ -19,8 +19,6 @@ function Player() {
     else document.title = import.meta.env.VITE_APP_NAME;
   }, [currentTrack?.name]);
 
-  console.log(import.meta.env);
-
   useEffect(() => {
     if (!accessToken) return;
     if (window._spotifyPlayerInit) return; // prevent multiple inits

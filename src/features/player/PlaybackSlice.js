@@ -20,6 +20,10 @@ const playbackSlice = createSlice({
     setIsFullScreenPlayingTrack(state, action) {
       state.isFullScreenPlayingTrackOpen = action.payload;
     },
+    resetPlayerSlice() {
+      console.log("reset");
+      return { ...initialState };
+    },
   },
 });
 
@@ -28,4 +32,5 @@ export const {
   togglePlayingTrackBar,
   toggleQueueBar,
   setIsFullScreenPlayingTrack,
+  resetPlayerSlice,
 } = playbackSlice.actions;

@@ -7,19 +7,8 @@ import OfflineNotification from "../../OfflineNotification";
 
 function ProtectedRoute({ children }) {
   const { isLoading, isAuthenticated } = useAccessToken(); //get a new access token
-  const { isOnLine, expiresAt, accessToken } = useSelector(
-    (store) => store.authentication,
-  );
+  const { isOnLine } = useSelector((store) => store.authentication);
   const navigate = useNavigate();
-  const local = new Date(expiresAt);
-
-  console.log(
-    "isAuthenticated:",
-    isAuthenticated,
-    expiresAt,
-    local.toLocaleString(),
-    accessToken,
-  );
 
   useEffect(() => {
     //go to login page if the user isn't authenticated

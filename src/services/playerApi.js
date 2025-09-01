@@ -47,7 +47,6 @@ export async function getQueue() {
   });
   if (res.status !== 200) throw new Error("Failed to get the queue!");
   const data = await res.json();
-  console.log(data);
   return data;
 }
 

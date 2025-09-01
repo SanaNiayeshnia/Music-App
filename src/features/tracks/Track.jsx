@@ -34,7 +34,7 @@ function Track({
 
   useEffect(() => {
     setIsImageLoaded(false);
-  }, [track?.id]);
+  }, [track?.id, isLoading]);
 
   return (
     <tr

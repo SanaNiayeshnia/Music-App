@@ -24,7 +24,7 @@ function PlayerTrack({ fullScreen = false }) {
       className={`${!currentTrack?.id ? "opacity-50" : ""} ${!fullScreen && "gap-4"} col-span-3 flex items-center justify-between md:justify-start`}
     >
       <div
-        className={`${fullScreen ? "flex-col md:flex-row" : ""} ${fullScreen ? "gap-6" : "gap-4"} flex items-center`}
+        className={`${fullScreen ? "flex-col items-start md:flex-row md:items-center" : "items-center"} ${fullScreen ? "gap-6" : "gap-4"} flex`}
       >
         <div className="flex-shrink-0">
           {fullScreen ? (

@@ -94,7 +94,7 @@ function FullScreenPlayingTrack() {
           <PlayerTrack fullScreen />
         </div>
         <div className="flex w-11/12 flex-col gap-3">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-4 md:hidden">
             <Tooltip title="Queue" placement="top">
               <div>
                 <TbPlaylist

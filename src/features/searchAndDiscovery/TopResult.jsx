@@ -20,7 +20,7 @@ function TopResult({ item, isLoading }) {
   useEffect(() => {
     //if the query changed, set the isImageLoaded to false and show the skeleton before loading the new image
     setIsImageLoaded(false);
-  }, [item]);
+  }, [item, isLoading]);
 
   return (
     <div

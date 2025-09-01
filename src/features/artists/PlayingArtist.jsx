@@ -17,7 +17,7 @@ function PlayingArtist() {
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
     setIsImageLoaded(false);
-  }, [currentTrack?.id]);
+  }, [currentTrack?.id, isLoadingArtist]);
 
   return (
     <div className="overflow-hidden rounded-md shadow">

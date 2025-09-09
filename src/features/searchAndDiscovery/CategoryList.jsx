@@ -15,7 +15,7 @@ function CategoryList({ all = false }) {
   return (
     <div className={`relative w-full overflow-hidden ${!all ? "md:pr-3" : ""}`}>
       <div className="flex justify-between gap-4">
-        <Title>Browse all categories</Title>
+        <Title>Browse All Categories</Title>
         {!all && !isLoading && <ShowAll to="/search">Show all</ShowAll>}
       </div>
 

@@ -7,12 +7,12 @@ import { usePlayerContext } from "../player/hooks/usePlayerContext";
 function PlayingTrack() {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const navigate = useNavigate();
-  const { currentTrack } = usePlayerContext();
+  const { currentTrack, playerState } = usePlayerContext();
 
   useEffect(() => {
     //if the currently playing song changed, set isImageLoaded to false and show the skeleton before loading the new image
     setIsImageLoaded(false);
-  }, [currentTrack?.id]);
+  }, [currentTrack?.id, playerState?.loading]);
 
   return (
     <div className="space-y-3">

@@ -62,8 +62,8 @@ The goal is to provide a user experience similar to professional music apps, ena
 
    ```env
    VITE_APP_NAME="Music App"
-   VITE_CLIENT_ID=your_client_id
-   VITE_CLIENT_SECRET=your_client_secret
+   VITE_CLIENT_ID=your_spotify_client_id
+   VITE_CLIENT_SECRET=your_spotify_client_secret
    VITE_REDIRECT_URI=http://localhost:5173/
    ```
 

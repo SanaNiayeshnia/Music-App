@@ -37,6 +37,7 @@ The goal is to provide a user experience similar to professional music apps, ena
 - Node.js >= 18
 - npm or yarn package manager
 - Spotify Developer Account (with registered application in [Spotify Developer Dashboard](https://developer.spotify.com/dashboard))
+  To use this app, you need to have a **Spotify Developer Account** and create a new application in the **Spotify Developer Dashboard**, then use the client id and the client secret in your .env file.
 
 > ⚠️ **Important:**
 

@@ -12,7 +12,7 @@ function ProtectedRoute({ children }) {
 
   useEffect(() => {
     //go to login page if the user isn't authenticated
-    if (!isLoading && !isAuthenticated && isOnLine) navigate("/login");
+    if (!isLoading && !isAuthenticated && isOnLine) navigate("/admin/login");
   }, [navigate, isAuthenticated, isLoading, isOnLine]);
 
   if (!isOnLine)

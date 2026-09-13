@@ -15,6 +15,7 @@ export async function getAccessToken(code) {
   });
   if (res.status !== 200) throw new Error("Authentication failed!");
   const data = await res.json();
+  console.log(res, data);
   return { ...data, expiresAt: Date.now() + data.expires_in * 1000 };
 }
 

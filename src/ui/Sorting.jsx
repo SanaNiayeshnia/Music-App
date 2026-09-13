@@ -12,9 +12,9 @@ function Sorting({ options, handler }) {
     <div
       ref={ref}
       onClick={() => setIsOpen((isOpen) => !isOpen)}
-      className="group relative flex cursor-pointer items-center gap-1 text-sm text-black dark:text-white"
+      className="group relative flex shrink-0 cursor-pointer items-center gap-1 text-sm text-black dark:text-white"
     >
-      {sortBy}
+      <span className="shrink-0">{sortBy}</span>
       <TbList
         className={`${isOpen ? "text-blue-600" : "text-black group-hover:text-blue-600 dark:text-white"} min-h-6 min-w-6 rounded-full duration-100 md:min-h-5 md:min-w-5`}
       />
